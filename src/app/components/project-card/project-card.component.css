@@ -3,24 +3,35 @@
   border: 2px solid var(--border-color);
   padding: 1em;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 2em;
+  font-size: clamp(14px, 1vw, 18px);
+  align-items: center;
 }
 .projectDiv .imageDiv {
   position: relative;
-  max-width: 50%;
+  flex: 1 0 50%;
+  height: auto;
+  order: 1;
 }
 .projectDiv .imageDiv img {
   width: 100%;
+  height: auto;
+  max-height: 20em;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .projectDiv .imageDiv:hover .hoverDiv {
   display: flex;
 }
 .projectDiv .descriptionDiv {
-  padding: 0 3em;
+  flex: 1 0 50%;
+  min-width: 20em;
+  max-width: 100%;
+  order: 2;
+  padding: 0 2%;
   box-sizing: border-box;
-  width: 60%;
-  font-size: 18px;
 }
 .projectDiv .descriptionDiv h3 {
   font-size: 24px;
@@ -43,7 +54,7 @@
   padding: 1em;
   margin: 0.5em;
   text-decoration: none;
-  font-size: 2em;
+  font-size: 150%;
 }
 .projectDiv .hoverDiv .linksDiv a:hover {
   background-color: whitesmoke;

@@ -3,16 +3,22 @@
     border: 2px solid var(--border-color);
     padding: 1em;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     margin-bottom: 2em;
-    // box-shadow: #768fff 0 -1px 0px, rgb(54, 57, 219) 0 -2px 10px, #361da7 0 -10px 20px, rgb(32, 11, 88) 0 -18px 40px, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-
+    font-size: clamp(14px, 1vw, 18px);
+    align-items: center;
     .imageDiv {
         position: relative;
-        max-width: 50%;
+        flex: 1 0 50%;
+        height: auto;
+        order: 1;
         
         img {
             width: 100%;
+            height: auto;
+            max-height: 20em;
+            object-fit: contain;
         }
     }
 
@@ -21,15 +27,16 @@
     }
 
     .descriptionDiv{
-        padding: 0 3em;
+        flex: 1 0 50%;
+        min-width: 20em;
+        max-width: 100%;
+        order: 2;
+        padding: 0 2%;
         box-sizing: border-box;
-        width: 60%;
 
         h3 {
             font-size: 24px;
         }
-
-        font-size: 18px;
     }
 
     .hoverDiv {
@@ -50,7 +57,7 @@
                 padding: 1em;
                 margin: 0.5em;
                 text-decoration: none;
-                font-size: 2em;
+                font-size: 150%;
             }
 
             a:hover {

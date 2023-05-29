@@ -16,7 +16,7 @@
     }
 
     h1 {
-        font-size: 60px;
+        font-size: clamp(34px, 4vw, 60px);
     }
 
     .sloganDiv {
@@ -25,7 +25,7 @@
         grid-row: 1;
 
         p {
-            font-size: 32px;
+            font-size: clamp(20px, 2vw, 32px);
         }
     }
 
@@ -60,7 +60,7 @@
         display: flex;
 
         img {
-            max-height: 80px;
+            max-height: 4em;
         }
     }
 
@@ -114,20 +114,17 @@
             grid-template-rows: auto auto;
             padding-top: 5em;
         }
-
+        
+        .sloganDiv {
+            grid-row: 2;
+        }
+        
         .profilePicDiv {
             grid-column: 1;
             grid-row: 1;
             margin: 0 auto;
-        }
-
-        .sloganDiv {
-            grid-row: 2;
-        }
-
-        .profilePicDiv {
             max-height: 26em;
-            width: 75vw;
+            width: 50vw;
 
             img {
                 max-height: 26em;
@@ -136,6 +133,10 @@
             .shadowDiv {
                 max-height: 26em;
             }
+        }
+
+        .profilePic, .shadowDiv {
+            height: 30vh;
         }
     }
 }
@@ -148,6 +149,6 @@
     }
 
     h2 {
-        font-size: 36px;
+       font-size: clamp(24px, 4vw, 36px);
     }
 }

@@ -14,7 +14,7 @@
   animation-duration: 600ms;
 }
 #firstSection h1 {
-  font-size: 60px;
+  font-size: clamp(34px, 4vw, 60px);
 }
 #firstSection .sloganDiv {
   padding-right: 1em;
@@ -22,7 +22,7 @@
   grid-row: 1;
 }
 #firstSection .sloganDiv p {
-  font-size: 32px;
+  font-size: clamp(20px, 2vw, 32px);
 }
 #firstSection .profilePicDiv {
   width: 100%;
@@ -52,7 +52,7 @@
   display: flex;
 }
 #firstSection .logoDiv img {
-  max-height: 80px;
+  max-height: 4em;
 }
 @keyframes grow {
   0% {
@@ -95,17 +95,15 @@
     grid-template-rows: auto auto;
     padding-top: 5em;
   }
-  #firstSection .profilePicDiv {
-    grid-column: 1;
-    grid-row: 1;
-    margin: 0 auto;
-  }
   #firstSection .sloganDiv {
     grid-row: 2;
   }
   #firstSection .profilePicDiv {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 auto;
     max-height: 26em;
-    width: 75vw;
+    width: 50vw;
   }
   #firstSection .profilePicDiv img {
     max-height: 26em;
@@ -113,11 +111,14 @@
   #firstSection .profilePicDiv .shadowDiv {
     max-height: 26em;
   }
+  #firstSection .profilePic, #firstSection .shadowDiv {
+    height: 30vh;
+  }
 }
 
 #projectsSection app-project-card li {
   margin-top: 0.5em;
 }
 #projectsSection h2 {
-  font-size: 36px;
+  font-size: clamp(24px, 4vw, 36px);
 }/*# sourceMappingURL=home.component.css.map */
