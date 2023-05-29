@@ -115,30 +115,9 @@
   }
 }
 
-#projectsSection .projectDiv {
-  border-radius: 12px;
-  border: 2px solid var(--border-color);
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2em;
-}
-#projectsSection .projectDiv img {
-  max-width: 30em;
-}
-#projectsSection .projectDiv .descriptionDiv {
-  padding: 0 3em;
-  box-sizing: border-box;
-  width: 60%;
-  font-size: 18px;
-}
-#projectsSection .projectDiv .descriptionDiv h3 {
-  font-size: 24px;
-}
-#projectsSection .projectDiv .descriptionDiv li {
+#projectsSection app-project-card li {
   margin-top: 0.5em;
 }
-
-h2 {
+#projectsSection h2 {
   font-size: 36px;
 }/*# sourceMappingURL=home.component.css.map */

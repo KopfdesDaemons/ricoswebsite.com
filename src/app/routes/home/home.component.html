@@ -15,44 +15,38 @@
             </div>
             <div class="profilePicDiv">
                 <div class="shadowDiv"></div>
-                <img src="assets/images/profile.jpg" alt="profile picture" class="profilePic" width="467" height="568">
+                <img src="assets/images/profile.jpg" alt="profile picture" class="profilePic" width="441" height="568">
             </div>
         </div>
     </section>
     <section id="projectsSection">
         <div class="sectionSpacer">
             <h2>My Projects</h2>
-            <div class="projectDiv">
-                <div class="imageDiv">
-                    <img src="assets\images\grundbuch-musterantrag.de.PNG" alt="">
-                </div>
-                <div class="descriptionDiv">
-                    <h3>grundbuch-musterantrag.de</h3>
-                    <p>A website about German land register law</p>
-                    <ul>
-                        <li>darkmode / lightmode</li>
-                        <li>custom primary theme color</li>
-                        <li>admin login / dashboard</li>
-                        <li>pdf generation</li>
-                        <li>step by step formular</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="projectDiv">
-                <div class="imageDiv">
-                    <img src="assets\images\tickturtle.com.PNG" alt="">
-                </div>
-                <div class="descriptionDiv">
-                    <h3>tickturtle.com</h3>
-                    <p>A website for time recording of work steps</p>
-                    <ul>
-                        <li>time calculation / time pause / time resume</li>
-                        <li>edit tasks / delete tasks</li>
-                        <li>storage of data in local storage</li>
-                        <li>own design of a table with several features</li>
-                    </ul>
-                </div>
-            </div>
+            <app-project-card image="assets\images\grundbuch-musterantrag.de.PNG"
+            linkWebsite="https://www.grundbuch-musterantrag.de" 
+            linkGithub="https://github.com/KopfdesDaemons/grundbuch-musterantrag.de">
+                <h3>grundbuch-musterantrag.de</h3>
+                <p>A website about German land register law</p>
+                <ul>
+                    <li>darkmode / lightmode</li>
+                    <li>custom primary theme color</li>
+                    <li>admin login / dashboard</li>
+                    <li>pdf generation</li>
+                    <li>step by step formular</li>
+                </ul>
+            </app-project-card>
+            <app-project-card image="assets\images\tickturtle.com.PNG"
+            linkWebsite="https://tickturtle.com"
+            linkGithub="https://github.com/KopfdesDaemons/tickturtle.com">
+                <h3>tickturtle.com</h3>
+                <p>A website for time recording of work steps</p>
+                <ul>
+                    <li>time calculation / time pause / time resume</li>
+                    <li>edit tasks / delete tasks</li>
+                    <li>storage of data in local storage</li>
+                    <li>own design of a table with several features</li>
+                </ul>
+            </app-project-card>
         </div>
     </section>
 </main>
