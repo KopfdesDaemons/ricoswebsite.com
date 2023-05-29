@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --border-color:rgb(49, 49, 150);
+    --body: rgb(22, 22, 24);
+    --section: rgb(26, 25, 46);
+} 
+
+body {
+    background-color: var(--body);
+}
+
+html, body {
+    margin: 0;
+}
+
+span,
+p,
+h1, h2, h3, li {
+    color: rgb(238, 238, 238);
+    font-family: monospace;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+.sectionSpacer {
+    padding: 0 5%;
+    max-width: 80em;
+}

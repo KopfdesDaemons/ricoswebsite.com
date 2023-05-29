@@ -1,0 +1,15 @@
+.websiteName {
+    font-size: 40px;
+
+    :nth-child(2){
+        color: blue;
+    }
+}
+
+header {
+    padding: 1em 2em;
+    position: fixed;
+    z-index: 10;
+    background-color: var(--section);
+    width: 100%;
+}
