@@ -1,7 +1,15 @@
 #firstSection {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: 85vh;
-  background-color: var(--section);
+  background: rgb(26, 25, 46);
+  background: linear-gradient(90deg, rgb(26, 25, 46) 0%, rgb(49, 49, 150) 75%, rgb(26, 25, 46) 100%);
+  align-items: center;
+}
+#firstSection app-header {
+  width: 100%;
 }
 #firstSection .sectionSpacer {
   padding-top: 3em;
@@ -92,6 +100,7 @@
 @media only screen and (max-width: 800px) {
   #firstSection {
     height: auto;
+    background: radial-gradient(circle, rgb(26, 25, 46) 0%, rgb(49, 49, 150) 37%, rgb(26, 25, 46) 100%);
   }
   #firstSection .sectionSpacer {
     grid-template-columns: 1fr;
@@ -113,8 +122,7 @@
     max-height: 26em;
   }
   #firstSection .profilePic, #firstSection .shadowDiv {
-    height: 30vh;
-    margin-top: 2em;
+    height: 45vh;
   }
 }
 

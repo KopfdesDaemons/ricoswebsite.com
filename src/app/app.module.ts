@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     HeaderComponent,
     ProjectCardComponent,
-    FooterComponent
+    FooterComponent,
+    LegalNoticeComponent
   ],
   imports: [
     BrowserModule,
