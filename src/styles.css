@@ -14,7 +14,7 @@ html, body {
 
 span,
 p,
-h1, h2, h3, li, a {
+h1, h2, h3, li, a, h5 {
   color: rgb(238, 238, 238);
   font-family: monospace;
 }

@@ -1,0 +1,31 @@
+footer {
+    padding: 8vw;
+    background-color: var(--section);
+    display: flex;
+}
+
+.linkGroup {
+    padding: 1em;
+    margin-right: 2em;
+}
+
+h5 {
+    font-size: 2em;
+    margin: 0;
+    color: rgb(206, 245, 245);
+}
+
+ul {
+    list-style: none;
+    padding-left: 0.8em;
+}
+
+li {
+    display: flex;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+
+    fa-icon {
+        margin-right: 0.5em;
+    }
+}

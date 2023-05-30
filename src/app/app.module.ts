@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './routes/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

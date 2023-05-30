@@ -1,10 +1,10 @@
 #firstSection {
     box-sizing: border-box;
-    height: 85vh;
+    min-height: 85vh;
     background-color: var(--section);
 
     .sectionSpacer {
-        padding-top: 8em;
+        padding-top:3em;
         padding-bottom: 2em;
         display: grid;
         grid-template-columns: 1fr auto;
@@ -30,16 +30,19 @@
     }
 
     .profilePicDiv {
-        width: 100%;
+        width: auto;
         position: relative;
         height: auto;
         grid-column: 2;
         animation: grow 500ms ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .profilePic {
         height: 60vh;
-        width: 100%;
+        width: auto;
         object-fit: cover;
         animation: wabeln 5s linear infinite;
         border: 6px solid var(--border-color);
@@ -112,7 +115,7 @@
         .sectionSpacer {
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
-            padding-top: 5em;
+            padding-top: 0;
         }
         
         .sloganDiv {
@@ -123,8 +126,6 @@
             grid-column: 1;
             grid-row: 1;
             margin: 0 auto;
-            max-height: 26em;
-            width: 50vw;
 
             img {
                 max-height: 26em;
@@ -137,6 +138,7 @@
 
         .profilePic, .shadowDiv {
             height: 30vh;
+            margin-top: 2em;
         }
     }
 }
@@ -151,4 +153,6 @@
     h2 {
        font-size: clamp(24px, 4vw, 36px);
     }
+
+    padding: 4em;
 }

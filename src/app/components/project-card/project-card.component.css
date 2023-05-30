@@ -23,7 +23,8 @@
      object-fit: contain;
 }
 .projectDiv .imageDiv:hover .hoverDiv {
-  display: flex;
+  opacity: 100;
+  transition: all 300ms;
 }
 .projectDiv .descriptionDiv {
   flex: 1 0 50%;
@@ -38,7 +39,8 @@
 }
 .projectDiv .hoverDiv {
   position: absolute;
-  display: none;
+  display: flex;
+  opacity: 0;
   background-color: rgba(0, 0, 0, 0.582);
   width: 100%;
   height: 100%;
