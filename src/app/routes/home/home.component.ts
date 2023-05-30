@@ -11,6 +11,6 @@ export class HomeComponent {
   constructor(public meta: Meta){
     this.meta.addTag({ 
       name: 'description',
-      content: 'My portfolio website as a hobby web designer.' });
+      content: 'My portfolio website as a hobby web developer.' });
   }
 }
