@@ -6,13 +6,36 @@
 
 header {
   font-size: clamp(14px, 5vw, 24px);
-  padding: 1em 2em;
   z-index: 10;
   width: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  vertical-align: middle;
 }
 header a {
   text-decoration: none;
+  margin: 0 0.5em;
+}
+header .websiteName {
+  display: flex;
+  align-items: center;
+}
+header nav ul {
+  padding-left: 0;
+}
+header nav li {
+  list-style: none;
+  padding-left: 0;
+}
+header nav a {
+  background-color: #0a0a79;
+  border-radius: 25px;
+  padding: 0.8em 0.5em;
+  font-size: 0.8em;
+  box-shadow: inset 1px 1px 3px 1px rgba(159, 166, 255, 0.6);
+}
+header nav li:hover {
+  transform: scale(1.05);
+  transition: all 100ms;
 }/*# sourceMappingURL=header.component.css.map */

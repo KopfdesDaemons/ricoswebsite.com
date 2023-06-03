@@ -22,16 +22,22 @@ h1, h2, h3, li, a, h5 {
 
 main {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 section {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .sectionSpacer {
     padding: 0 5%;
     max-width: 80em;
+}
+
+.gradient {
+    background: linear-gradient(90deg, rgba(26,25,46,1) 0%, rgba(49,49,150,1) 75%, rgba(26,25,46,1) 100%);
 }

@@ -20,4 +20,8 @@ p {
 .spacingDiv {
   padding-right: 30vw;
   min-height: 100vh;
+}
+
+section {
+  align-items: center;
 }/*# sourceMappingURL=legal-notice.component.css.map */

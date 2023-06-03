@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
+import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'legalNotice', component: LegalNoticeComponent}
+  {path: 'legalNotice', component: LegalNoticeComponent},
+  {path: 'my-basic-CSS-gallery', component: MyBasicCssGalleryComponent},
+  {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -9,6 +9,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
+import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.compone
     HeaderComponent,
     ProjectCardComponent,
     FooterComponent,
-    LegalNoticeComponent
+    LegalNoticeComponent,
+    MyBasicCssGalleryComponent
   ],
   imports: [
     BrowserModule,

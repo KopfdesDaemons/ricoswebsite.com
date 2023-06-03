@@ -1,11 +1,6 @@
 #firstSection {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     min-height: 85vh;
-    background: rgb(26,25,46);
-    background: linear-gradient(90deg, rgba(26,25,46,1) 0%, rgba(49,49,150,1) 75%, rgba(26,25,46,1) 100%);
     align-items: center;
     
     app-header {
