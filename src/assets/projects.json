@@ -1,0 +1,30 @@
+{
+    "projects": [
+        {
+            "name": "grundbuch-musterantrag.de",
+            "description": "A website about German land register law",
+            "image": "assets\\images\\grundbuch-musterantrag.de.PNG",
+            "features": [
+                "darkmode / lightmode", 
+                "custom primary theme color",
+                "admin login / dashboard",
+                "pdf generation",
+                "step by step formular"],
+            "projectURL": "https://www.grundbuch-musterantrag.de/",
+            "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de"
+        },
+        {
+            "name": "tickturtle.com",
+            "description": "A website for time recording of work steps",
+            "image": "assets\\images\\tickturtle.com.PNG",
+            "features": [
+                "time calculation / time pause / time resume",
+                "edit tasks / delete tasks",
+                "storage of data in local storage",
+                "own design of a table with several features"
+            ],
+            "projectURL": "https://tickturtle.com/",
+            "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com"
+        }
+    ]
+}

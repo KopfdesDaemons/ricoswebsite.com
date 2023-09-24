@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { ProjectService } from 'src/app/project.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor(public meta: Meta){
+  projects: any[] = [];
+
+  constructor(public meta: Meta, public ps: ProjectService){
     this.meta.addTag({ 
       name: 'description',
       content: 'My portfolio website as a hobby web developer.' });
+  }
+
+  async ngOnInit(){
+    this.projects = await this.ps.getProjects();
   }
 }

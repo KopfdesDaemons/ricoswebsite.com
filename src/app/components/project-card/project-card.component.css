@@ -62,4 +62,7 @@
 .projectDiv .hoverDiv .linksDiv a:hover {
   background-color: whitesmoke;
   color: black;
+}
+.projectDiv li {
+  margin-top: 0.5em;
 }/*# sourceMappingURL=project-card.component.css.map */

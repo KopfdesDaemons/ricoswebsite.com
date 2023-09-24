@@ -9,6 +9,10 @@
         <img src="{{image}}" width="436" height="326">
     </div>
     <div class="descriptionDiv">
-        <ng-content></ng-content>
+        <h3>{{name}}</h3>
+        <p>{{description}}</p>
+        <ul>
+            <li *ngFor="let f of features">{{f}}</li>
+        </ul>
     </div>
 </div>

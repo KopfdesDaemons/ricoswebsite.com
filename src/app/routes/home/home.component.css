@@ -122,11 +122,15 @@
 }
 
 #projectsSection {
-  padding: 4em;
+  padding: 4em 1em;
 }
-#projectsSection app-project-card li {
-  margin-top: 0.5em;
+#projectsSection ul {
+  list-style: none;
+  padding: 0;
 }
 #projectsSection h2 {
   font-size: clamp(24px, 4vw, 36px);
+}
+#projectsSection .sectionSpacer {
+  padding: 0;
 }/*# sourceMappingURL=home.component.css.map */

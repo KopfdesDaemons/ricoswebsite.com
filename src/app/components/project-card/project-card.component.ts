@@ -7,8 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class ProjectCardComponent {
 
-  @Input() image:string = '' 
-  @Input() linkWebsite:string = '' 
-  @Input() linkGithub:string = '' 
-
+  @Input() name: string = ''
+  @Input() description: string = ''
+  @Input() features: string[] = []
+  @Input() image: string = '' 
+  @Input() linkWebsite: string = '' 
+  @Input() linkGithub: string = '' 
 }

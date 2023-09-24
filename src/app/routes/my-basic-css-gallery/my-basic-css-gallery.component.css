@@ -11,12 +11,16 @@ h1 {
   font-size: clamp(1em, 2vw, 2em);
 }
 
+.demo {
+  margin-bottom: 3em;
+}
+
 #buttonSection {
   align-items: center;
 }
 #buttonSection .sectionSpacer {
   display: flex;
   flex-flow: column;
-  width: 90%;
-  max-width: 60em;
+  width: 80%;
+  max-width: 30em;
 }/*# sourceMappingURL=my-basic-css-gallery.component.css.map */
