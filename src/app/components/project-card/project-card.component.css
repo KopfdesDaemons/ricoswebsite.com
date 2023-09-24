@@ -10,6 +10,9 @@
   font-size: clamp(14px, 1vw, 18px);
   align-items: center;
 }
+.projectDiv a {
+  text-decoration: none;
+}
 .projectDiv .imageDiv {
   position: relative;
   flex: 1 0 50%;
@@ -23,10 +26,6 @@
   -o-object-fit: contain;
      object-fit: contain;
 }
-.projectDiv .imageDiv:hover .hoverDiv {
-  opacity: 100;
-  transition: all 300ms;
-}
 .projectDiv .descriptionDiv {
   flex: 1 0 50%;
   min-width: 20em;
@@ -34,35 +33,40 @@
   order: 2;
   padding: 0 2%;
   box-sizing: border-box;
+  margin: 0.5em 0;
 }
 .projectDiv .descriptionDiv h3 {
   font-size: 24px;
+  color: rgb(25, 25, 145);
+  margin-top: 0;
 }
-.projectDiv .hoverDiv {
-  position: absolute;
+.projectDiv .descriptionDiv .links {
   display: flex;
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.582);
-  width: 100%;
-  height: 100%;
+  justify-content: space-evenly;
+  margin-top: 1em;
 }
-.projectDiv .hoverDiv .linksDiv {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-}
-.projectDiv .hoverDiv .linksDiv a {
-  border: 1px solid whitesmoke;
-  border-radius: 25px;
+.projectDiv .descriptionDiv .links a {
+  border: 1px solid;
   padding: 1em;
-  margin: 0.5em;
-  text-decoration: none;
-  font-size: 150%;
+  border-radius: 4px;
 }
-.projectDiv .hoverDiv .linksDiv a:hover {
-  background-color: whitesmoke;
-  color: black;
+.projectDiv .descriptionDiv .links a fa-icon {
+  margin-right: 0.5em;
 }
-.projectDiv li {
+.projectDiv .descriptionDiv .links a:hover {
+  color: #5857FF;
+}
+.projectDiv ul {
+  padding-left: 2em;
+}
+.projectDiv ul li {
   margin-top: 0.5em;
+}
+
+.projectDiv:hover {
+  transition: all 200ms;
+  box-shadow: 0px 0px 40px 5px #5857FF;
+}
+.projectDiv:hover .descriptionDiv h3 {
+  color: blue;
 }/*# sourceMappingURL=project-card.component.css.map */

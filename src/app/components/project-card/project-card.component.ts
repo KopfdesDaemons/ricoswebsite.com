@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project-card',
@@ -6,6 +8,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./project-card.component.scss']
 })
 export class ProjectCardComponent {
+  faGithub = faGithub;
+  faUpRightFromSquare = faUpRightFromSquare;
 
   @Input() name: string = ''
   @Input() description: string = ''

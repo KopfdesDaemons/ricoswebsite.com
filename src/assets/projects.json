@@ -1,6 +1,17 @@
 {
     "projects": [
         {
+            "name": "Neo Blog",
+            "description": "WordPress Theme",
+            "image": "assets\\images\\neo-blog.jpg",
+            "features": [
+                "darkmode / lightmode", 
+                "lots of customization options"
+            ],
+            "projectURL": "https://wordpress.org/themes/neo-blog/",
+            "githubURL": "https://github.com/KopfdesDaemons/neo-blog"
+        },
+        {
             "name": "grundbuch-musterantrag.de",
             "description": "A website about German land register law",
             "image": "assets\\images\\grundbuch-musterantrag.de.PNG",
