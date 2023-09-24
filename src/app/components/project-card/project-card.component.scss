@@ -4,21 +4,30 @@
     border: 2px solid var(--border-color);
     padding: 1em;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 2em;
     font-size: clamp(14px, 1vw, 18px);
     align-items: center;
-
+    flex-direction: column;
+    
+    .row1 {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    
     a {
         text-decoration: none;
+    }
+
+    ul, p {
+        font-size: 0.9em;
     }
 
     .imageDiv {
         position: relative;
         flex: 1 0 50%;
         height: auto;
-        order: 1;
         
         img {
             width: 100%;
@@ -32,7 +41,6 @@
         flex: 1 0 50%;
         min-width: 20em;
         max-width: 100%;
-        order: 2;
         padding: 0 2%;
         box-sizing: border-box;
         margin: 0.5em 0;
@@ -67,6 +75,28 @@
         padding-left: 2em;
         li {
             margin-top: 0.5em;
+        }
+    }
+
+    .technologiesDiv {
+        flex: 1 0 100%;
+
+        ul {
+            display: flex;
+            list-style: none;
+            gap: 0.4em;
+            padding: 0;
+
+            li {
+                border: 1px solid rgb(95, 95, 95);
+                padding: 0.8em;
+                border-radius: 4px;
+                background-color: rgb(48, 48, 48);
+
+                fa-icon {
+                    margin-right: 0.5em;
+                }
+            }
         }
     }
 }

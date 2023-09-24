@@ -5,24 +5,33 @@
             "description": "WordPress Theme",
             "image": "assets\\images\\neo-blog.jpg",
             "features": [
-                "darkmode / lightmode", 
+                "dark mode / light mode", 
                 "lots of customization options"
             ],
             "projectURL": "https://wordpress.org/themes/neo-blog/",
-            "githubURL": "https://github.com/KopfdesDaemons/neo-blog"
+            "githubURL": "https://github.com/KopfdesDaemons/neo-blog",
+            "technologies": [
+                "WordPress",
+                "PHP"
+            ]
         },
         {
             "name": "grundbuch-musterantrag.de",
             "description": "A website about German land register law",
             "image": "assets\\images\\grundbuch-musterantrag.de.PNG",
             "features": [
-                "darkmode / lightmode", 
+                "dark mode / light mode", 
                 "custom primary theme color",
                 "admin login / dashboard",
                 "pdf generation",
-                "step by step formular"],
+                "step by step form"
+            ],
             "projectURL": "https://www.grundbuch-musterantrag.de/",
-            "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de"
+            "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de",
+            "technologies": [
+                "Angular",
+                "Node.js"
+            ]
         },
         {
             "name": "tickturtle.com",
@@ -31,11 +40,14 @@
             "features": [
                 "time calculation / time pause / time resume",
                 "edit tasks / delete tasks",
-                "storage of data in local storage",
-                "own design of a table with several features"
+                "data storage in local storage",
+                "custom table design with several features"
             ],
             "projectURL": "https://tickturtle.com/",
-            "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com"
+            "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
+            "technologies": [
+                "Angular"
+            ]
         }
     ]
 }

@@ -1,18 +1,31 @@
 <div class="projectDiv">
-    <a href="{{linkWebsite}}" target="_blank" class="imageDiv">
-        <img src="{{image}}" width="436" height="326">
-    </a>
-    <div class="descriptionDiv">
-        <a href="{{linkWebsite}}" target="_blank">
-            <h3>{{name}}</h3>
+    <div class="row1">
+        <a href="{{linkWebsite}}" target="_blank" class="imageDiv">
+            <img src="{{image}}" width="436" height="326">
         </a>
-        <p>{{description}}</p>
-        <ul>
-            <li *ngFor="let f of features">{{f}}</li>
-        </ul>
-        <div class="links">
-            <a href="{{linkWebsite}}" target="_blank"><fa-icon [icon]="faUpRightFromSquare"></fa-icon><span>visit project</span></a>
-            <a href="{{linkGithub}}" target="_blank"><fa-icon [icon]="faGithub"></fa-icon><span>github</span></a>
+        <div class="descriptionDiv">
+            <a href="{{linkWebsite}}" target="_blank">
+                <h3>{{name}}</h3>
+            </a>
+            <p>{{description}}</p>
+            <ul>
+                <li *ngFor="let f of features">{{f}}</li>
+            </ul>
+            <div class="links">
+                <a href="{{linkWebsite}}" target="_blank"><fa-icon [icon]="faUpRightFromSquare"></fa-icon><span>visit project</span></a>
+                <a href="{{linkGithub}}" target="_blank"><fa-icon [icon]="faGithub"></fa-icon><span>github</span></a>
+            </div>
         </div>
+    </div>
+    <div class="technologiesDiv">
+        <ul>
+            <li *ngFor="let t of technologies">
+                <fa-icon *ngIf="t === 'Angular'" [icon]="faAngular"></fa-icon>
+                <fa-icon *ngIf="t === 'PHP'" [icon]="faPhp"></fa-icon>
+                <fa-icon *ngIf="t === 'WordPress'" [icon]="faWordpress"></fa-icon>
+                <fa-icon *ngIf="t === 'Node.js'" [icon]="faNodeJs"></fa-icon>
+                <span>{{t}}</span>
+            </li>
+        </ul>
     </div>
 </div>

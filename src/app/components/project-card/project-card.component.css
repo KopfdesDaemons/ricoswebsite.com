@@ -4,20 +4,27 @@
   border: 2px solid var(--border-color);
   padding: 1em;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 2em;
   font-size: clamp(14px, 1vw, 18px);
   align-items: center;
+  flex-direction: column;
+}
+.projectDiv .row1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .projectDiv a {
   text-decoration: none;
+}
+.projectDiv ul, .projectDiv p {
+  font-size: 0.9em;
 }
 .projectDiv .imageDiv {
   position: relative;
   flex: 1 0 50%;
   height: auto;
-  order: 1;
 }
 .projectDiv .imageDiv img {
   width: 100%;
@@ -30,7 +37,6 @@
   flex: 1 0 50%;
   min-width: 20em;
   max-width: 100%;
-  order: 2;
   padding: 0 2%;
   box-sizing: border-box;
   margin: 0.5em 0;
@@ -61,6 +67,24 @@
 }
 .projectDiv ul li {
   margin-top: 0.5em;
+}
+.projectDiv .technologiesDiv {
+  flex: 1 0 100%;
+}
+.projectDiv .technologiesDiv ul {
+  display: flex;
+  list-style: none;
+  gap: 0.4em;
+  padding: 0;
+}
+.projectDiv .technologiesDiv ul li {
+  border: 1px solid rgb(95, 95, 95);
+  padding: 0.8em;
+  border-radius: 4px;
+  background-color: rgb(48, 48, 48);
+}
+.projectDiv .technologiesDiv ul li fa-icon {
+  margin-right: 0.5em;
 }
 
 .projectDiv:hover {
