@@ -22,6 +22,20 @@
     <section id="projectsSection">
         <div class="sectionSpacer" *ngIf="projects.length > 0">
             <h2>My Projects</h2>
+            <div class="filter">
+                <ul class="activTechnologiesFilterOptions">
+                    <li *ngFor="let technologie of activTechnologiesFilterOptions"><span>{{technologie}} <mat-icon (click)="removeTechnologieFromFilter(technologie)" fontIcon="cancel"></mat-icon>
+                    </span></li>
+                </ul>
+                <div class="technologiesFilterOption">
+                    <div>
+                        <span *ngIf="technologiesFilterOptions.length > 0">Filter Options:</span>
+                        <ul >
+                            <li *ngFor="let technologie of technologiesFilterOptions"><button (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <ul>
                 <li *ngFor="let project of projects">
                     <app-project-card 
@@ -31,7 +45,8 @@
                         linkWebsite="{{project.projectURL}}" 
                         linkGithub="{{project.githubURL}}" 
                         [features]="project.features"
-                        [technologies]="project.technologies">
+                        [technologies]="project.technologies"
+                        (clickOnTag)="clickOnTag($event)">
                     </app-project-card>
                 </li>
             </ul>

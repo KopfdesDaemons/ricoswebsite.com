@@ -133,4 +133,48 @@
 }
 #projectsSection .sectionSpacer {
   padding: 0;
+}
+#projectsSection .filter {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#projectsSection .technologiesFilterOption {
+  display: flex;
+  justify-content: flex-end;
+}
+#projectsSection .technologiesFilterOption ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+#projectsSection .technologiesFilterOption button {
+  all: unset;
+  border-radius: 12px;
+  padding: 8px;
+  margin: 4px;
+  background-color: rgb(43, 43, 43);
+  color: rgb(238, 238, 238);
+  cursor: pointer;
+}
+#projectsSection .technologiesFilterOption button:hover {
+  background-color: gray;
+}
+#projectsSection .activTechnologiesFilterOptions {
+  display: flex;
+  flex-wrap: wrap;
+}
+#projectsSection .activTechnologiesFilterOptions span {
+  border-radius: 12px;
+  border-radius: 12px;
+  padding: 8px;
+  margin: 4px;
+  background-color: rgb(43, 43, 43);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#projectsSection .activTechnologiesFilterOptions span mat-icon:hover {
+  color: rgb(121, 121, 121);
+  cursor: pointer;
 }/*# sourceMappingURL=home.component.css.map */

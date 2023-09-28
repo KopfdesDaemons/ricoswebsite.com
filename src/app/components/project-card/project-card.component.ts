@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {faGithub, faWordpress, faPhp, faAngular, faNodeJs} from '@fortawesome/free-brands-svg-icons';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,4 +22,6 @@ export class ProjectCardComponent {
   @Input() linkWebsite: string = '' 
   @Input() linkGithub: string = ''
   @Input() technologies: string[] = [] 
+
+  @Output() clickOnTag = new EventEmitter();
 }

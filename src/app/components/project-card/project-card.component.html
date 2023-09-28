@@ -19,7 +19,7 @@
     </div>
     <div class="technologiesDiv">
         <ul>
-            <li *ngFor="let t of technologies">
+            <li *ngFor="let t of technologies" (click)="clickOnTag.emit(t)">
                 <fa-icon *ngIf="t === 'Angular'" [icon]="faAngular"></fa-icon>
                 <fa-icon *ngIf="t === 'PHP'" [icon]="faPhp"></fa-icon>
                 <fa-icon *ngIf="t === 'WordPress'" [icon]="faWordpress"></fa-icon>

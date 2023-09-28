@@ -6,7 +6,8 @@
             "image": "assets\\images\\neo-blog.jpg",
             "features": [
                 "dark mode / light mode", 
-                "lots of customization options"
+                "lots of customization options",
+                "custom theme colors"
             ],
             "projectURL": "https://wordpress.org/themes/neo-blog/",
             "githubURL": "https://github.com/KopfdesDaemons/neo-blog",
