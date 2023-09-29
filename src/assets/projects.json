@@ -3,7 +3,7 @@
         {
             "name": "Neo Blog",
             "description": "WordPress Theme",
-            "image": "assets\\images\\neo-blog.jpg",
+            "image": "assets\\images\\neo-blog.avif",
             "features": [
                 "dark mode / light mode", 
                 "lots of customization options",
@@ -19,7 +19,7 @@
         {
             "name": "grundbuch-musterantrag.de",
             "description": "A website about German land register law",
-            "image": "assets\\images\\grundbuch-musterantrag.de.PNG",
+            "image": "assets\\images\\grundbuch-musterantrag.de.avif",
             "features": [
                 "dark mode / light mode", 
                 "custom primary theme color",
@@ -37,7 +37,7 @@
         {
             "name": "tickturtle.com",
             "description": "A website for time recording of work steps",
-            "image": "assets\\images\\tickturtle.com.PNG",
+            "image": "assets\\images\\tickturtle.com.avif",
             "features": [
                 "time calculation / time pause / time resume",
                 "edit tasks / delete tasks",
