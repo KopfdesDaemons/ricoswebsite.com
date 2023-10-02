@@ -133,19 +133,39 @@
 }
 #projectsSection .sectionSpacer {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
 }
 #projectsSection .filter {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
+#projectsSection .projectCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#projectsSection .projectCards li {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+#projectsSection .projectCards app-project-card {
+  flex-grow: 1;
+  max-width: 65em;
+}
 #projectsSection .technologiesFilterOption {
   display: flex;
   justify-content: flex-end;
+  flex: 1 0 50%;
+  min-width: 20em;
 }
 #projectsSection .technologiesFilterOption ul {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   margin: 0;
 }
 #projectsSection .technologiesFilterOption button {
@@ -163,6 +183,7 @@
 #projectsSection .activTechnologiesFilterOptions {
   display: flex;
   flex-wrap: wrap;
+  flex: 1 0 50%;
 }
 #projectsSection .activTechnologiesFilterOptions span {
   border-radius: 12px;
@@ -177,4 +198,42 @@
 #projectsSection .activTechnologiesFilterOptions span mat-icon:hover {
   color: rgb(121, 121, 121);
   cursor: pointer;
+}
+#projectsSection .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#projectsSection .pagination a {
+  text-decoration: none;
+}
+#projectsSection .pagination .navLink {
+  background-color: #361da7;
+  margin: 0.5em;
+  padding: 0.8em 2em;
+  border-radius: 4px;
+}
+#projectsSection .pagination ul {
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  height: 3em;
+}
+#projectsSection .pagination ul a, #projectsSection .pagination ul span {
+  padding: 0.8em 1.2em;
+  background: black;
+  border: solid 1px gray;
+}
+#projectsSection .pagination ul .current span {
+  background-color: rgb(0, 0, 68);
+}
+#projectsSection .pagination ul a:hover {
+  background-color: rgb(54, 54, 54);
+}
+#projectsSection .pagination ul .dots span {
+  background-color: transparent;
+}
+#projectsSection ::-webkit-scrollbar {
+  height: 1px;
 }/*# sourceMappingURL=home.component.css.map */

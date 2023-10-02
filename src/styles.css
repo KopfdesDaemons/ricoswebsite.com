@@ -16,7 +16,7 @@
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -webkit-font-feature-settings: "liga";
+  font-variant-ligatures: common-ligatures;
   -webkit-font-smoothing: antialiased;
 }
 

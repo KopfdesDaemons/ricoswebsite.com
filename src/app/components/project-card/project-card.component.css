@@ -74,6 +74,7 @@
 .projectDiv .technologiesDiv ul {
   display: flex;
   list-style: none;
+  flex-wrap: wrap;
   gap: 0.4em;
   padding: 0;
 }

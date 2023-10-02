@@ -162,6 +162,9 @@
 
     .sectionSpacer {
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        width: 95vw;
     }
 
     .filter {
@@ -170,12 +173,33 @@
         flex-wrap: wrap;
     }
 
+    .projectCards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        li {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+        }
+
+        app-project-card {
+            flex-grow: 1;
+            max-width: 65em;
+        }
+    }
+    
     .technologiesFilterOption {
         display: flex;
         justify-content: flex-end;
+        flex: 1 0 50%;
+        min-width: 20em;
         ul {
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
             margin: 0;
         }
 
@@ -197,6 +221,7 @@
     .activTechnologiesFilterOptions {
         display: flex;
         flex-wrap: wrap;
+        flex: 1 0 50%;
 
         span {
             border-radius: 12px;
@@ -213,5 +238,52 @@
                 cursor: pointer;
             }
         }
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            text-decoration: none;
+        }
+        
+        .navLink {
+            background-color: #361da7;
+            margin: 0.5em;
+            padding: 0.8em 2em;
+            border-radius: 4px;
+        }
+        
+        ul {
+            overflow-x: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            height: 3em;
+
+            a, span {
+                padding: 0.8em 1.2em;
+                background: black;
+                border: solid 1px gray;
+            }
+
+            .current span{
+                background-color: rgb(0, 0, 68);
+            }
+
+            a:hover {
+                background-color: rgb(54, 54, 54);
+            }
+
+            .dots span{
+                background-color: transparent;
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        height: 1px;
     }
 }

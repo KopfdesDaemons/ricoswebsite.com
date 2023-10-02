@@ -6,13 +6,18 @@ import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-bas
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'projects/page/:page/:technologies', component: HomeComponent, pathMatch: 'full' },
   {path: 'legalNotice', component: LegalNoticeComponent},
   {path: 'my-basic-CSS-gallery', component: MyBasicCssGalleryComponent},
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes,{
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled',
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -24,32 +24,76 @@
             <h2>My Projects</h2>
             <div class="filter">
                 <ul class="activTechnologiesFilterOptions">
-                    <li *ngFor="let technologie of activTechnologiesFilterOptions"><span>{{technologie}} <mat-icon (click)="removeTechnologieFromFilter(technologie)" fontIcon="cancel"></mat-icon>
-                    </span></li>
+                    <li *ngFor="let technologie of activTechnologiesFilterOptions"><span>{{technologie}} <mat-icon
+                                (click)="removeTechnologieFromFilter(technologie)" fontIcon="cancel"></mat-icon>
+                        </span></li>
                 </ul>
                 <div class="technologiesFilterOption">
                     <div>
                         <span *ngIf="technologiesFilterOptions.length > 0">Filter Options:</span>
-                        <ul >
-                            <li *ngFor="let technologie of technologiesFilterOptions"><button (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
+                        <ul>
+                            <li *ngFor="let technologie of technologiesFilterOptions"><button
+                                    (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <ul>
+            <ul class="projectCards">
                 <li *ngFor="let project of projects">
-                    <app-project-card 
-                        name="{{project.name}}"
-                        description="{{project.description}}" 
-                        image="{{project.image}}"
-                        linkWebsite="{{project.projectURL}}" 
-                        linkGithub="{{project.githubURL}}" 
-                        [features]="project.features"
-                        [technologies]="project.technologies"
-                        (clickOnTag)="clickOnTag($event)">
+                    <app-project-card name="{{project.name}}" description="{{project.description}}"
+                        image="{{project.image}}" linkWebsite="{{project.projectURL}}"
+                        linkGithub="{{project.githubURL}}" [features]="project.features"
+                        [technologies]="project.technologies" (clickOnTag)="clickOnTag($event)">
                     </app-project-card>
                 </li>
             </ul>
+            <div class="pagination" *ngIf="totalPages > 1">
+                <a class="navLink" *ngIf="(currentPage - 1) > 0"
+                    [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+                    [fragment]="'projectsSection'">&lt;</a>
+                <ul>
+                    <li *ngIf="currentPage >= 4">
+                        <a [routerLink]="['/projects/page', 1, getParamChain(activTechnologiesFilterOptions)]"
+                            [fragment]="'projectsSection'">1</a>
+                    </li>
+                    <li class="dots" *ngIf="currentPage >= 5">
+                        <span>…</span>
+                    </li>
+                    <li *ngIf="(currentPage - 2) > 0">
+                        <a [routerLink]="['/projects/page', currentPage - 2, getParamChain(activTechnologiesFilterOptions)]"
+                            [fragment]="'projectsSection'">{{
+                            currentPage - 2 }}</a>
+                    </li>
+                    <li *ngIf="(currentPage - 1) > 0">
+                        <a [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+                            [fragment]="'projectsSection'">{{
+                            currentPage - 1 }}</a>
+                    </li>
+                    <li class="current">
+                        <span>{{currentPage}}</span>
+                    </li>
+                    <li *ngIf="(currentPage + 1) < totalPages">
+                        <a [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+                            [fragment]="'projectsSection'">{{
+                            currentPage + 1 }}</a>
+                    </li>
+                    <li *ngIf="(currentPage + 2) < totalPages">
+                        <a [routerLink]="['/projects/page', currentPage + 2, getParamChain(activTechnologiesFilterOptions)]"
+                            [fragment]="'projectsSection'">{{
+                            currentPage + 2 }}</a>
+                    </li>
+                    <li class="dots" *ngIf="(totalPages - 4) >= currentPage">
+                        <span>…</span>
+                    </li>
+                    <li *ngIf="(totalPages - 3) >= currentPage">
+                        <a [routerLink]="['/projects/page', totalPages, getParamChain(activTechnologiesFilterOptions)]"
+                            [fragment]="'projectsSection'">{{totalPages}}</a>
+                    </li>
+                </ul>
+                <a class="navLink" *ngIf="(currentPage + 1) < totalPages"
+                    [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+                    [fragment]="'projectsSection'">&gt;</a>
+            </div>
         </div>
     </section>
 </main>

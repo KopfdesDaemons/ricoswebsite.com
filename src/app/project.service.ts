@@ -18,29 +18,43 @@ export class ProjectService {
     this.projects = json.projects;
   }
 
-  // Abfragen der Projektdaten
-  async getProjects(filter: string[] = []): Promise<any[]> {
-    if (this.projects.length === 0) {   
+  // Abragen der Anzahl der Projecte für Paginierung
+  async getTotalProjectCount(filter: string[] = []): Promise<number> {
+    if (this.projects.length === 0) {
       await this.loadProjectsFromJson();
     }
-
+    
     if (filter.length > 0) {
-      const filteredProjects: any[] = [];
-  
-      // Filter die Projekte nach Technologien
-      for(const project of this.projects){
-        for(const filterTechnologie of filter){
-          if(project.technologies.includes(filterTechnologie)){
-            if(!filteredProjects.includes(project))filteredProjects.push(project);
-            continue;
-          }
-        }
-      }
-      return filteredProjects;
+      let filteredProjects: any[] = [...this.projects];
+      filteredProjects = filteredProjects.filter((project) =>
+        filter.some((filterTechnologie) => project.technologies.includes(filterTechnologie))
+      );
+      return filteredProjects.length;
     }
-    return this.projects;
+
+    return this.projects.length;
   }
 
+  // Abfragen der Projektdaten
+  async getProjects(filter: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<any[]> {
+    if (this.projects.length === 0) {
+      await this.loadProjectsFromJson();
+    }
+  
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+  
+    let filteredProjects: any[] = [...this.projects];
+  
+    if (filter.length > 0) {
+      filteredProjects = filteredProjects.filter((project) =>
+        filter.some((filterTechnologie) => project.technologies.includes(filterTechnologie))
+      );
+    }
+    // this.projects = filteredProjects;
+    return filteredProjects.slice(startIndex, endIndex);
+  }
+  
   async getAllTechnologies(): Promise<string[]> {
     if (this.projects.length === 0) {   
       await this.loadProjectsFromJson();
