@@ -1,6 +1,22 @@
 {
     "projects": [
         {
+            "name": "Blog Layouts",
+            "description": "A WordPress theme that has the swapping of layouts as a core feature",
+            "image": "assets\\images\\blog-layouts.avif",
+            "features": [
+                "swapping layouts", 
+                "well-known layouts such as Material Design 2 and 3",
+                "extensive author page",
+                "custom theme colors"
+            ],
+            "githubURL": "https://github.com/KopfdesDaemons/blog-layouts",
+            "technologies": [
+                "WordPress",
+                "PHP"
+            ]
+        },
+        {
             "name": "Neo Blog",
             "description": "WordPress Theme",
             "image": "assets\\images\\neo-blog.avif",
@@ -49,6 +65,6 @@
             "technologies": [
                 "Angular"
             ]
-        }
+        }   
     ]
 }
