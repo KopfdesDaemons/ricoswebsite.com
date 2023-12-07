@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {faGithub, faWordpress, faPhp, faAngular, faNodeJs} from '@fortawesome/free-brands-svg-icons';
+import {faGithub, faWordpress, faPhp, faAngular, faNodeJs, faJs} from '@fortawesome/free-brands-svg-icons';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,6 +14,7 @@ export class ProjectCardComponent {
   faPhp = faPhp;
   faAngular = faAngular;
   faNodeJs = faNodeJs;
+  faJs = faJs;
 
   @Input() name: string = ''
   @Input() description: string = ''

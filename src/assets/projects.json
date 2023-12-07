@@ -10,10 +10,12 @@
                 "extensive author page",
                 "custom theme colors"
             ],
+            "projectURL": "https://wordpress.org/themes/blog-layouts/",
             "githubURL": "https://github.com/KopfdesDaemons/blog-layouts",
             "technologies": [
                 "WordPress",
-                "PHP"
+                "PHP",
+                "JavaScript"
             ]
         },
         {
@@ -29,7 +31,8 @@
             "githubURL": "https://github.com/KopfdesDaemons/neo-blog",
             "technologies": [
                 "WordPress",
-                "PHP"
+                "PHP",
+                "JavaScript"
             ]
         },
         {
@@ -47,7 +50,9 @@
             "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de",
             "technologies": [
                 "Angular",
-                "Node.js"
+                "TypeScript",
+                "Node.js",
+                "JavaScript"
             ]
         },
         {
@@ -63,7 +68,8 @@
             "projectURL": "https://tickturtle.com/",
             "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
             "technologies": [
-                "Angular"
+                "Angular",
+                "TypeScript"
             ]
         }   
     ]
