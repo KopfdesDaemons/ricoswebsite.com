@@ -51,7 +51,7 @@ export class ProjectService {
         filter.some((filterTechnologie) => project.technologies.includes(filterTechnologie))
       );
     }
-    // this.projects = filteredProjects;
+    
     return filteredProjects.slice(startIndex, endIndex);
   }
   
@@ -67,6 +67,7 @@ export class ProjectService {
         if(!technologies.includes(technologie)) technologies.push(technologie);
       }
     }
-    return technologies;
+
+    return technologies.sort();
   }
 }
