@@ -1,6 +1,24 @@
 {
     "projects": [
         {
+            "name": "BlogTube",
+            "description": "A WordPress theme that is based on the design scheme of YouTube",
+            "image": "assets\\images\\blogtube.avif",
+            "features": [
+                "infinite scroll feed", 
+                "custom sidemenu",
+                "custom primary color",
+                "custom font"
+            ],
+            "projectURL": "https://wordpress.org/themes/blogtube/",
+            "githubURL": "https://github.com/KopfdesDaemons/blogtube",
+            "technologies": [
+                "WordPress",
+                "PHP",
+                "JavaScript"
+            ]
+        },
+        {
             "name": "Blog Layouts",
             "description": "A WordPress theme that has the swapping of layouts as a core feature",
             "image": "assets\\images\\blog-layouts.avif",
