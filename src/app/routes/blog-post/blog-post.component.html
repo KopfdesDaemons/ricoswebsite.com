@@ -1,0 +1,14 @@
+<main>
+    <div class="hero gradient">
+        <div class="sectionSpacer">
+            <h1>{{post?.title}}</h1>
+            <div>{{post?.description}}</div>
+            <time>{{post?.date}}</time>
+        </div>
+    </div>
+    <section>
+        <div class="sectionSpacer">
+            <div class="content" [innerHTML]="content"></div>
+        </div>
+    </section>
+</main>

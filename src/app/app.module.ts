@@ -13,7 +13,7 @@ import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-bas
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
-import { BasicLayoutComponent } from './layouts/basic-layout/basic-layout.component';
+import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { BasicLayoutComponent } from './layouts/basic-layout/basic-layout.compon
     LegalNoticeComponent,
     MyBasicCssGalleryComponent,
     SidemenuComponent,
-    BasicLayoutComponent
+    BlogPostComponent,
   ],
   imports: [
     BrowserModule,

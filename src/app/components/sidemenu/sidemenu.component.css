@@ -48,7 +48,7 @@ aside .sidemenuContent ul hr {
 }
 aside .sidemenuContent ul a {
   border-radius: 10px;
-  padding: 1em 3em;
+  padding: 1em 1em;
   flex: 1 1 auto;
   text-decoration: none;
   display: flex;

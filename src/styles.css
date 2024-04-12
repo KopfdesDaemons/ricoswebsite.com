@@ -41,7 +41,7 @@ html, body {
 
 span,
 p,
-h1, h2, h3, li, a, h5 {
+h1, h2, h3, li, a, h5, time {
   color: var(--font-color);
   font-family: monospace;
 }
