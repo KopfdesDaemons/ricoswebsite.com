@@ -8,6 +8,9 @@ h1 {
 }
 
 #firstSection {
+  z-index: -1;
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: var(--header-height);
   font-size: clamp(1em, 2vw, 2em);
 }
 

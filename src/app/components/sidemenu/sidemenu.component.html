@@ -1,0 +1,20 @@
+<div class="closingDiv" [ngClass]="{'sidemenuOpen': sidemenuS.MenuIsOpen}" (click)="sidemenuS.toggleMenu()"></div>
+<aside #sidemenu [ngClass]="{'sidemenuOpen': sidemenuS.MenuIsOpen}">
+    <div class="sidemenuContent">
+        <nav>
+            <ul>
+                <a [routerLink]="['/']">
+                    <fa-icon [icon]="faHome"></fa-icon>
+                    <span>Home</span>
+                </a>
+                <hr>
+                <a [routerLink]="['/']" fragment="projectsSection">
+                    <span>Portfolio</span>
+                </a>
+                <a [routerLink]="['/my-basic-CSS-gallery']">
+                    <span>CSS gallery</span>
+                </a>
+            </ul>
+        </nav>
+    </div>
+</aside>

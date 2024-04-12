@@ -4,23 +4,27 @@
  }
 
  h1 {
-    font-size: clamp(34px, 4vw, 60px);
-}
+     font-size: clamp(34px, 4vw, 60px);
+ }
 
-#firstSection {
-    font-size: clamp(1em, 2vw, 2em);
-}
+ #firstSection {
+     z-index: -1;
+     margin-top: calc(-1 * var(--header-height));
+     padding-top: var(--header-height);
+     font-size: clamp(1em, 2vw, 2em);
+ }
 
-.demo {
-    margin-bottom: 3em;
-}
+ .demo {
+     margin-bottom: 3em;
+ }
 
-#buttonSection {
-    align-items: center;
-    .sectionSpacer {
-        display: flex;
-        flex-flow: column;
-        width: 80%;
-        max-width: 30em;
-    }
-}
+ #buttonSection {
+     align-items: center;
+
+     .sectionSpacer {
+         display: flex;
+         flex-flow: column;
+         width: 80%;
+         max-width: 30em;
+     }
+ }

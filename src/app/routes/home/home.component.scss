@@ -1,14 +1,19 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
 #firstSection {
     box-sizing: border-box;
     min-height: 85vh;
     align-items: center;
+    padding-top:2em;
     
     app-header {
         width: 100%;
     }
 
     .sectionSpacer {
-        padding-top:3em;
         padding-bottom: 2em;
         display: grid;
         grid-template-columns: 1fr auto;
@@ -53,7 +58,7 @@
     }
 
     .shadowDiv {
-        box-shadow: #768fff 0 -1px 140px, rgb(54, 57, 219) 0 -2px 10px, #361da7 0 -10px 20px, rgb(32, 11, 88) 0 -18px 40px, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+        box-shadow: #768fff 0 -1px 100px, rgb(54, 57, 219) 0 -2px 10px, #361da7 0 -10px 20px, rgb(32, 11, 88) 0 -18px 40px, 5px 5px 15px 5px rgba(0, 0, 0, 0);
         position: absolute;
         height: 60vh;
         width: 100%;
@@ -115,11 +120,11 @@
 
     @media only screen and (max-width: 800px) {
         height: auto;
-        background: radial-gradient(circle, rgba(26,25,46,1) 0%, rgba(49,49,150,1) 37%, rgba(26,25,46,1) 100%);
+        // background: radial-gradient(circle, rgba(26,25,46,1) 0%, rgba(49,49,150,1) 37%, rgba(26,25,46,1) 100%);
+
         .sectionSpacer {
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
-            padding-top: 0;
         }
         
         .sloganDiv {
@@ -130,41 +135,34 @@
             grid-column: 1;
             grid-row: 1;
             margin: 0 auto;
-
-            img {
-                max-height: 26em;
-            }
-
-            .shadowDiv {
-                max-height: 26em;
-            }
         }
-
+        
         .profilePic, .shadowDiv {
-            height: 45vh;
+            max-height: 26em;
+            height: 45svh;
         }
     }
 }
 
 // My Projects ###########################################################
 
-#projectsSection {
-    padding: 4em 1em;
-
+#projectsSection {    
     ul {
         list-style: none;
         padding: 0;
     }
-
+    
     h2 {
-       font-size: clamp(24px, 4vw, 36px);
+        font-size: clamp(24px, 4vw, 36px);
     }
-
+    
     .sectionSpacer {
-        padding: 0;
         display: flex;
         flex-direction: column;
-        width: 95vw;
+        flex: 1;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .filter {
@@ -211,6 +209,7 @@
             background-color: rgb(43, 43, 43);
             color: rgb(238, 238, 238);
             cursor: pointer;
+            user-select: none;
         }
 
         button:hover {

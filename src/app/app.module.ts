@@ -12,6 +12,8 @@ import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.compone
 import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
+import { BasicLayoutComponent } from './layouts/basic-layout/basic-layout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {MatIconModule} from '@angular/material/icon';
     ProjectCardComponent,
     FooterComponent,
     LegalNoticeComponent,
-    MyBasicCssGalleryComponent
+    MyBasicCssGalleryComponent,
+    SidemenuComponent,
+    BasicLayoutComponent
   ],
   imports: [
     BrowserModule,

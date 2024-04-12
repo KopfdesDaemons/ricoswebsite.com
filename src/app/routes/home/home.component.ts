@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/project.service';
+import { SidemenuService } from 'src/app/sidemenu.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,14 @@ export class HomeComponent implements OnInit {
   currentPage: number = 0;
   projectsPerPage = 5;
 
-  constructor(private route: ActivatedRoute, public meta: Meta, public ps: ProjectService, private elementRef: ElementRef, private renderer: Renderer2, private router: Router) {
+  constructor(
+    private route: ActivatedRoute, 
+    public meta: Meta,
+    public ps: ProjectService,
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private router: Router,
+    public sidemenuS: SidemenuService) {
     this.meta.addTag({
       name: 'description',
       content: 'My portfolio website as a hobby web developer.'

@@ -8,44 +8,35 @@
 
 header {
     font-size: clamp(14px, 5vw, 24px);
-    z-index: 10;
     width: 100%;
     box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    gap: 1em;
     vertical-align: middle;
+    height: var(--header-height);
+    padding-left: 1em;
+    position: fixed;
+    background-color: var(--body);
+    background-color: var(--section);
+    z-index: 2;
 
     a {
         text-decoration: none;
-        margin: 0 0.5em;
     }
 
     .websiteName {
         display: flex;
         align-items: center;
     }
-
-    nav {
-        ul {
-            padding-left: 0;
-        }
-
-        li {
-            list-style: none;
-            padding-left: 0;
-        }
     
-        a {
-            background-color: #0a0a79;
-            border-radius: 25px;
-            padding: 0.8em 0.5em;
-            font-size: 0.8em;
-            box-shadow: inset 1px 1px 3px 1px rgba(159, 166, 255, 0.6);
-        }
-        
-        li:hover {
-            transform: scale(1.05);
-            transition: all 100ms;
+    .toggle_sidemenu_button {
+        all: unset;
+        color: var(--font-color);
+        cursor: pointer;
+        transition: all 100ms;
+
+        &:hover {
+            transform: scale(1.3);
         }
     }
 }

@@ -24,6 +24,9 @@
   --border-color:rgb(49, 49, 150);
   --body: rgb(22, 22, 24);
   --section: rgb(26, 25, 46);
+  --font-color: rgb(238, 238, 238);
+  --sidemenu-width: 16em;
+  --header-height: 5rem;
 }
 
 body {
@@ -33,12 +36,13 @@ body {
 html, body {
   margin: 0;
   min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 span,
 p,
 h1, h2, h3, li, a, h5 {
-  color: rgb(238, 238, 238);
+  color: var(--font-color);
   font-family: monospace;
 }
 
@@ -61,7 +65,8 @@ section {
 }
 
 .gradient {
-  background: linear-gradient(90deg, rgb(26, 25, 46) 0%, rgb(49, 49, 150) 75%, rgb(26, 25, 46) 100%);
+  background: linear-gradient(90deg, #1a192e 0%, rgb(49, 49, 150) 75%, rgb(26, 25, 46) 100%);
+  background: radial-gradient(ellipse at center, #2d26ad 5%, #050073 35%, #1a192e 72%);
 }
 
 /* width */
