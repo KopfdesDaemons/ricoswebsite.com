@@ -66,7 +66,6 @@ section {
 
 .gradient {
   background: linear-gradient(90deg, #1a192e 0%, rgb(49, 49, 150) 75%, rgb(26, 25, 46) 100%);
-  background: radial-gradient(ellipse at center, #2d26ad 5%, #050073 35%, #1a192e 72%);
 }
 
 /* width */
