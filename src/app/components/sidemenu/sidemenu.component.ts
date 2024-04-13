@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SidemenuService } from 'src/app/sidemenu.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class SidemenuComponent implements AfterViewInit{
   @ViewChild('sidemenu') component!: ElementRef;
   
   faHome = faHome;
+  faGithub = faGithub;
 
   constructor(public sidemenuS: SidemenuService) {}
 

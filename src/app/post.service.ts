@@ -15,6 +15,16 @@ export class PostService {
   getPost(title: string) {
     const postDataUrl = `assets/posts/${title}/post.json`;
     const contentUrl = `assets/posts/${title}/content.md`;
+    const imageURL = `assets/posts/${title}/image.avif`;
+
+    // Define custom renderer class
+    class CustomRenderer extends marked.Renderer {
+      override link(href: string, title: string | null | undefined, text: string) {
+        return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
+      }
+    }
+
+    const renderer = new CustomRenderer();
 
     return this.http.get(postDataUrl).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -35,8 +45,8 @@ export class PostService {
             }
           }),
           map(contentData => {
-            var md = marked.setOptions({});
-            return { post: postData, content: md.parse(contentData) };
+            var md = marked.setOptions({ renderer });
+            return { post: postData, content: md.parse(contentData), image: imageURL };
           })
         );
       })

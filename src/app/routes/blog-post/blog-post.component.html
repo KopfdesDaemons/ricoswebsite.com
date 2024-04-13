@@ -1,14 +1,17 @@
 <main>
-    <div class="hero gradient">
-        <div class="sectionSpacer">
-            <h1>{{post?.title}}</h1>
-            <div>{{post?.description}}</div>
-            <time>{{post?.date}}</time>
-        </div>
+  <div class="hero gradient">
+    <div class="sectionSpacer">
+      <img [src]="image" alt="{{ post?.title }}" />
+      <h1>{{ post?.title }}</h1>
+      <div class="description">
+        <p>{{ post?.description }}</p>
+      </div>
+      <time>{{ post?.date }}</time>
     </div>
-    <section>
-        <div class="sectionSpacer">
-            <div class="content" [innerHTML]="content"></div>
-        </div>
-    </section>
+  </div>
+  <section>
+    <div class="sectionSpacer">
+      <div class="content" [innerHTML]="content"></div>
+    </div>
+  </section>
 </main>

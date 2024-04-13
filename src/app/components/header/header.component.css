@@ -6,7 +6,6 @@
 
 header {
   font-size: clamp(14px, 5vw, 24px);
-  width: 100%;
   box-sizing: border-box;
   display: flex;
   gap: 1em;
@@ -14,7 +13,6 @@ header {
   height: var(--header-height);
   padding-left: 1em;
   position: absolute;
-  background-color: var(--section);
   z-index: 2;
 }
 header.menuIsOpen {
@@ -23,10 +21,14 @@ header.menuIsOpen {
 @media only screen and (min-width: 1100px) {
   header {
     position: fixed;
-    background-color: unset;
   }
   header.menuIsOpen {
     position: absolute;
+  }
+}
+@media only screen and (min-width: 1900px) {
+  header.menuIsOpen {
+    position: fixed;
   }
 }
 header a {

@@ -8,7 +8,7 @@
 
 header {
     font-size: clamp(14px, 5vw, 24px);
-    width: 100%;
+    // width: 100%;
     box-sizing: border-box;
     display: flex;
     gap: 1em;
@@ -16,19 +16,27 @@ header {
     height: var(--header-height);
     padding-left: 1em;
     position: absolute;
-    background-color: var(--section);
     z-index: 2;
 
     &.menuIsOpen {
         position: fixed;
     }
     
+    // Fixiertes Menü nur wenn Menü offen
     @media only screen and (min-width:1100px) {
+        // Menü offen
         position: fixed;
-        background-color: unset;
 
+        // Menü zu (invertierte Klasse)
         &.menuIsOpen {
             position: absolute;
+        }
+    }
+
+    // Fixiertes Menü wenn genug Breite
+    @media only screen and (min-width:1900px) {
+        &.menuIsOpen {
+            position: fixed;
         }
     }
 

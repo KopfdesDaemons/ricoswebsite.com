@@ -8,6 +8,11 @@
   align-items: center;
   padding-top: 2em;
 }
+@media only screen and (max-width: 1100px) {
+  #firstSection {
+    padding-top: var(--header-height);
+  }
+}
 #firstSection app-header {
   width: 100%;
 }
@@ -16,6 +21,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
+  max-width: 70em;
 }
 #firstSection .profilePicDiv:hover .shadowDiv {
   animation-duration: 600ms;
@@ -29,7 +35,7 @@
   grid-row: 1;
 }
 #firstSection .sloganDiv p {
-  font-size: clamp(20px, 2vw, 32px);
+  font-size: clamp(20px, 2vw, 24px);
 }
 #firstSection .profilePicDiv {
   width: auto;
@@ -60,9 +66,11 @@
 }
 #firstSection .logoDiv {
   display: flex;
+  gap: 1em;
 }
 #firstSection .logoDiv img {
-  max-height: 4em;
+  height: clamp(2.5em, 4vw, 4em);
+  width: auto;
 }
 @keyframes grow {
   0% {
@@ -113,7 +121,7 @@
     margin: 0 auto;
   }
   #firstSection .profilePic, #firstSection .shadowDiv {
-    max-height: 26em;
+    max-height: 15rem;
     height: 45svh;
   }
 }

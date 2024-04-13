@@ -41,5 +41,6 @@ export class AppRoutingModule {
     this.meta.removeTag('name="description"');
     this.meta.removeTag('name="author"');
     this.meta.removeTag('name="robots"');
+    this.meta.removeTag('name="image"');
   }
 }

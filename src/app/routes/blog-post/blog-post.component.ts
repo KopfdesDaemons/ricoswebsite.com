@@ -12,6 +12,7 @@ import { lastValueFrom } from 'rxjs';
 export class BlogPostComponent implements OnInit {
   post: any;
   content: any;
+  image: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,18 +32,17 @@ export class BlogPostComponent implements OnInit {
 
         this.post = data.post;
         this.content = data.content;
+        this.image = data.image;
 
-        // Entferne vorhandene Meta-Tags
-        this.metaS.removeTag('name="keywords"');
-        this.metaS.removeTag('name="description"');
-        this.metaS.removeTag('name="author"');
-        this.metaS.removeTag('name="robots"');
+        // Generiere die vollständige URL des Bildes
+        const absoluteImageUrl = window.location.origin + '/' + this.image;
 
         // Füge neue Meta-Tags hinzu
         this.metaS.addTags([
           { name: 'keywords', content: this.post.keywords },
           { name: 'description', content: this.post.description },
           { name: 'author', content: this.post.author },
+          { name: 'image', content: absoluteImageUrl },
           { name: 'robots', content: 'index, follow' }
         ]);
       } catch (error: any) {
