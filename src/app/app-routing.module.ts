@@ -37,13 +37,13 @@ export class AppRoutingModule {
 
   private removeMetaTags(): void {
     // Entferne vorhandene Meta-Tags
-    this.meta.removeTag('name="og:keywords"');
-    this.meta.removeTag('name="og:description"');
-    this.meta.removeTag('name="og:author"');
-    this.meta.removeTag('name="og:robots"');
-    this.meta.removeTag('name="og:image"');
-    this.meta.removeTag('name="og:url"');
-    this.meta.removeTag('name="og:title"');
-    this.meta.removeTag('name="og:type"');
+    this.meta.removeTag('property="og:keywords"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:author"');
+    this.meta.removeTag('property="og:robots"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('property="og:url"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:type"');
   }
 }

@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     public sidemenuS: SidemenuService) {
     this.meta.addTag({
-      name: 'description',
+      property: 'og:description',
       content: 'My portfolio website as a hobby web developer.'
     });
   }

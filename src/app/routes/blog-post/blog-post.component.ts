@@ -39,14 +39,14 @@ export class BlogPostComponent implements OnInit {
 
         // Füge neue Meta-Tags hinzu
         this.metaS.addTags([
-          { name: 'og:title', content: this.post.title },
-          { name: 'og:image', content: absoluteImageUrl },
-          { name: 'og:author', content: this.post.author },
-          { name: 'og:description', content: this.post.description },
-          { name: 'og:keywords', content: this.post.keywords },
-          { name: 'og:type', content: 'article' },
-          { name: 'og:url', content: window.location },
-          { name: 'og:robots', content: 'index, follow' }
+          { property: 'og:title', content: this.post.title },
+          { property: 'og:image', content: absoluteImageUrl },
+          { property: 'og:author', content: this.post.author },
+          { property: 'og:description', content: this.post.description },
+          { property: 'og:keywords', content: this.post.keywords },
+          { property: 'og:type', content: 'article' },
+          { property: 'og:url', content: window.location },
+          { property: 'og:robots', content: 'index, follow' }
           
         ]);
       } catch (error: any) {
