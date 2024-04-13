@@ -15,7 +15,7 @@ export class PostService {
   getPost(title: string) {
     const postDataUrl = `assets/posts/${title}/post.json`;
     const contentUrl = `assets/posts/${title}/content.md`;
-    const imageURL = `assets/posts/${title}/image.avif`;
+    const imageURL = `assets/posts/${title}/image.jpg`;
 
     // Define custom renderer class
     class CustomRenderer extends marked.Renderer {
