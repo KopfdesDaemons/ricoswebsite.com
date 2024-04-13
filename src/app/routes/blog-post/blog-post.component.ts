@@ -39,11 +39,15 @@ export class BlogPostComponent implements OnInit {
 
         // Füge neue Meta-Tags hinzu
         this.metaS.addTags([
-          { name: 'keywords', content: this.post.keywords },
-          { name: 'description', content: this.post.description },
-          { name: 'author', content: this.post.author },
-          { name: 'image', content: absoluteImageUrl },
-          { name: 'robots', content: 'index, follow' }
+          { name: 'og:title', content: this.post.title },
+          { name: 'og:image', content: absoluteImageUrl },
+          { name: 'og:author', content: this.post.author },
+          { name: 'og:description', content: this.post.description },
+          { name: 'og:keywords', content: this.post.keywords },
+          { name: 'og:type', content: 'article' },
+          { name: 'og:url', content: window.location },
+          { name: 'og:robots', content: 'index, follow' }
+          
         ]);
       } catch (error: any) {
         console.error('Fehler beim Laden des Beitrags:', error.message);
