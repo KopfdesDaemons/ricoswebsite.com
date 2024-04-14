@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ricoswebsite.com",
+            "outputPath": "dist/ricoswebsite.com/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -104,6 +104,61 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ricoswebsite.com/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "ricoswebsite.com:build:development",
+              "serverTarget": "ricoswebsite.com:server:development"
+            },
+            "production": {
+              "browserTarget": "ricoswebsite.com:build:production",
+              "serverTarget": "ricoswebsite.com:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ricoswebsite.com:build:production",
+              "serverTarget": "ricoswebsite.com:server:production"
+            },
+            "development": {
+              "browserTarget": "ricoswebsite.com:build:development",
+              "serverTarget": "ricoswebsite.com:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
