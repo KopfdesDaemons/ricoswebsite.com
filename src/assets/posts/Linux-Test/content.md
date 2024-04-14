@@ -20,4 +20,6 @@
     - DaVinci Resolve does not have h264 codec support
 - only a few supported games
     - Steam settings are bugged
+- Graphics glitch in cinnamon after starting from standby mode
+    - Restarting cinnamon helps: Press "Ctrl" + "F2", Type "r", Press "Enter"
 
