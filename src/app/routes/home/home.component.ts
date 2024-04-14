@@ -23,8 +23,6 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute, 
     public meta: Meta,
     public ps: ProjectService,
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
     private router: Router,
     public sidemenuS: SidemenuService) {
     this.meta.addTag({
