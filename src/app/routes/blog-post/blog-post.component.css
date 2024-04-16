@@ -8,9 +8,11 @@ main {
   padding: 0 0 1em 0;
   text-align: center;
   padding-top: 1em;
+  overflow: hidden;
 }
 .hero img {
   max-width: 100%;
+  height: auto;
   animation: grow 500ms ease-out;
 }
 @media only screen and (max-width: 1100px) {
@@ -48,4 +50,7 @@ main {
   background-color: #32384b;
   padding: clamp(1em, 2vw, 2em);
   border-radius: 1em;
+}
+.content h2 {
+  color: red;
 }/*# sourceMappingURL=blog-post.component.css.map */

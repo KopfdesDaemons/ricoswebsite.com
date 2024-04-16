@@ -8,9 +8,11 @@ main {
     padding: 0 0 1em 0;
     text-align: center;
     padding-top: 1em;
+    overflow: hidden;
 
     img {
         max-width: 100%;
+        height: auto;
         animation: grow 500ms ease-out;
     }
 
@@ -52,4 +54,8 @@ main {
     background-color: #32384b;
     padding: clamp(1em, 2vw, 2em);
     border-radius: 1em;
+
+    h2 {
+        color: red;
+    }
 }
