@@ -1,8 +1,7 @@
-main {
+.blogpostMain {
   font-size: 1.1em;
 }
-
-.hero {
+.blogpostMain .hero {
   display: flex;
   justify-content: center;
   padding: 0 0 1em 0;
@@ -10,21 +9,22 @@ main {
   padding-top: 1em;
   overflow: hidden;
 }
-.hero img {
+.blogpostMain .hero img {
   max-width: 100%;
   height: auto;
   animation: grow 500ms ease-out;
+  aspect-ratio: 16/9;
 }
 @media only screen and (max-width: 1100px) {
-  .hero {
+  .blogpostMain .hero {
     padding-top: var(--header-height);
   }
 }
-.hero time {
+.blogpostMain .hero time {
   float: right;
   font-style: italic;
 }
-.hero .description {
+.blogpostMain .hero .description {
   max-width: 80%;
   margin: 0 auto;
 }
@@ -36,12 +36,10 @@ main {
     transform: scale(1);
   }
 }
-
-.sectionSpacer {
+.blogpostMain .sectionSpacer {
   max-width: 50em;
 }
-
-.content {
+.blogpostMain .postContent {
   margin-top: 2em;
   max-width: 50rem;
   min-height: 40em;
@@ -49,8 +47,8 @@ main {
   margin-bottom: 4em;
   background-color: #32384b;
   padding: clamp(1em, 2vw, 2em);
-  border-radius: 1em;
+  border-radius: 12px;
 }
-.content h2 {
-  color: red;
+.blogpostMain .postContent ul {
+  padding-left: 1.5em;
 }/*# sourceMappingURL=blog-post.component.css.map */

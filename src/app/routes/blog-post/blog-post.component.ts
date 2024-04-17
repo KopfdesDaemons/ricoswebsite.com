@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/post.service';
@@ -7,7 +7,8 @@ import { lastValueFrom } from 'rxjs';
 @Component({
   selector: 'app-blog-post',
   templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.css']
+  styleUrls: ['./blog-post.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BlogPostComponent implements OnInit {
   post: any;
@@ -19,7 +20,6 @@ export class BlogPostComponent implements OnInit {
     private postS: PostService,
     private metaS: Meta,
     private router: Router,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -49,9 +49,6 @@ export class BlogPostComponent implements OnInit {
           { property: 'og:url', content: window.location },
           { property: 'og:robots', content: 'index, follow' }
         ]);
-
-        // Manuelle Aktualisierung der UI auslösen
-        this.cdr.detectChanges();
       } catch (error: any) {
         console.error('Fehler beim Laden des Beitrags:', error.message);
         this.router.navigate(['']);

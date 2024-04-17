@@ -1,7 +1,7 @@
-<main>
+<main class="blogpostMain">
   <div class="hero gradient">
     <div class="sectionSpacer">
-      <img height="495" width="880" [src]="image" alt="{{ post?.title }}" />
+      <img *ngIf="image" height="495" width="880" [src]="image" alt="{{ post?.title }}" />
       <h1>{{ post?.title }}</h1>
       <div class="description">
         <p>{{ post?.description }}</p>
@@ -11,7 +11,7 @@
   </div>
   <section>
     <div class="sectionSpacer">
-      <div *ngIf="content" class="content" [innerHTML]="content"></div>
+      <div *ngIf="content" class="postContent" [innerHTML]="content"></div>
     </div>
   </section>
 </main>
