@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NavigationEnd, Router, RouterModule, Routes } from '@angular/router';
+import { NavigationEnd, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
 import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
@@ -12,16 +12,19 @@ const routes: Routes = [
   {path: 'projects/page/:page/:technologies', component: HomeComponent, pathMatch: 'full' },
   {path: 'legalNotice', component: LegalNoticeComponent},
   {path: 'my-basic-CSS-gallery', component: MyBasicCssGalleryComponent},
-  {path: 'blogpost/:title', component: BlogPostComponent},
+  {path: 'blogpost/:title', component: BlogPostComponent },
+  // {path: 'blogpost/:title/', component: BlogPostComponent },
+  // {path: 'blogpost/:title', component: BlogPostComponent },  
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     scrollPositionRestoration: 'enabled',
+    preloadingStrategy: PreloadAllModules,
     anchorScrolling: 'enabled',
     onSameUrlNavigation: 'reload',
-    initialNavigation: 'enabledBlocking'
+    // initialNavigation: 'enabledBlocking'
 })],
   exports: [RouterModule]
 })

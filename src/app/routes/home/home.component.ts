@@ -31,8 +31,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     // Wenn Route sich ändert
+    console.log("Home geladen");
+    
     this.route.params.subscribe(params => {
       
       // Lese Seite und Filter der Technologien aus URL Parametern

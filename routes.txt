@@ -1,1 +1,1 @@
-/blogpost/Linux-Test
+blogpost/Linux-Test
