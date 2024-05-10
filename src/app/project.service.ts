@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
+import { environment } from 'src/environment/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ProjectService {
 
   // Projeckte aus JSON laden
   private async loadProjectsFromJson() {
-    if(isPlatformServer(this.platformId)) this.projectsUrl = 'http://localhost:4200/assets/projects.json';
+    if(isPlatformServer(this.platformId)) this.projectsUrl = 'http://localhost:4200/' + this.projectsUrl;
     const json: any = await lastValueFrom(this.http.get<any[]>(this.projectsUrl));
     this.projects = json.projects;
   }

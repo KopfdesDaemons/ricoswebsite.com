@@ -19,7 +19,7 @@ export class PostService {
 
     const postMetaUrl = `${baseUrl}assets/posts/${title}/post.json`;
     const contentUrl = `${baseUrl}assets/posts/${title}/content.md`;
-    const postImageURL = `${baseUrl}assets/posts/${title}/image.jpg`;
+    const postImageURL = `assets/posts/${title}/image.jpg`;
 
     try {
       const postMeta = await lastValueFrom(this.http.get<any>(postMetaUrl));

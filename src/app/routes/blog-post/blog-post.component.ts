@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location, isPlatformBrowser } from '@angular/common';
 import { PostService } from 'src/app/post.service';
 import { isPlatformServer } from '@angular/common';
+import { environment } from 'src/environment/enviroment';
 
 @Component({
   selector: 'app-blog-post',
@@ -14,8 +15,8 @@ import { isPlatformServer } from '@angular/common';
 export class BlogPostComponent implements OnInit {
   postMeta: any;
   postContent: any;
-  postImage: string | undefined;
-
+  postImageURL: string | undefined;
+  
   constructor(
     private route: ActivatedRoute,
     private postS: PostService,
@@ -25,33 +26,33 @@ export class BlogPostComponent implements OnInit {
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
-
+  
   ngOnInit(): void {
     const title = this.route.snapshot.paramMap.get('title');    
     if(!title) return;
-
+    
     if (isPlatformServer(this.platformId)) this.loadPostData(title);
     else if (isPlatformBrowser(this.platformId)) {
-
+      
       // Versuche die Daten aus dem TransferState zu laden
       const key = makeStateKey<any>('post-' + title);
       const storedData = this.transferState.get(key, null);
       if (storedData) {
         this.postMeta = storedData.postMeta;
         this.postContent = storedData.postContent;
-        this.postImage = storedData.postImageURL;
+        this.postImageURL = storedData.postImageURL;
         this.updateMetaTags();
       } else this.loadPostData(title);
     }
   }
-
+  
   async loadPostData(title: string): Promise<void> {
     try {
       const data = await this.postS.getPost(title);
       
       this.postMeta = data.postMeta;
       this.postContent = data.postContent;
-      this.postImage = data.postImageURL;
+      this.postImageURL = data.postImageURL;
       this.updateMetaTags();
       
       // Speichern der Daten im TransferState, um sie beim nächsten Laden der Seite zu verwenden
@@ -65,10 +66,9 @@ export class BlogPostComponent implements OnInit {
   
   updateMetaTags(): void {
     if (this.postMeta) {
-      const absoluteImageUrl = this.location.prepareExternalUrl(this.postImage ?? '');
       this.metaS.addTags([
         { property: 'og:title', content: this.postMeta.title },
-        { property: 'og:image', content: absoluteImageUrl },
+        { property: 'og:image', content: environment.baseUrl + this.postImageURL },
         { property: 'og:author', content: this.postMeta.author },
         { property: 'og:description', content: this.postMeta.description },
         { property: 'og:keywords', content: this.postMeta.keywords },
