@@ -24,9 +24,11 @@
             <h2>My Projects</h2>
             <div class="filter">
                 <ul class="activTechnologiesFilterOptions">
-                    <li *ngFor="let technologie of activTechnologiesFilterOptions"><span>{{technologie}} <mat-icon
-                                (click)="removeTechnologieFromFilter(technologie)" fontIcon="cancel"></mat-icon>
-                        </span></li>
+                    <li *ngFor="let technologie of activTechnologiesFilterOptions">
+                        <span>{{technologie}}
+                            <fa-icon [icon]="faCircleXmark" (click)="removeTechnologieFromFilter(technologie)"></fa-icon>
+                        </span>
+                    </li>
                 </ul>
                 <div class="technologiesFilterOption">
                     <div>

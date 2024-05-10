@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/project.service';
 import { SidemenuService } from 'src/app/sidemenu.service';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   totalPages: number = 0;
   currentPage: number = 0;
   projectsPerPage = 5;
+  faCircleXmark = faCircleXmark;
 
   constructor(
     private route: ActivatedRoute, 

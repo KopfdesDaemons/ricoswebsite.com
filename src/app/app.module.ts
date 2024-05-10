@@ -11,7 +11,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
 import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatIconModule} from '@angular/material/icon';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 
@@ -32,7 +31,6 @@ import { BlogPostComponent } from './routes/blog-post/blog-post.component';
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    MatIconModule
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent]
