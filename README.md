@@ -5,17 +5,17 @@ My portfolio website as a hobby web developer.
 
 ## Development
 
-start angular live server
+start angular live server and start development
 ```bash
 ng serve --host 0.0.0.0 --disable-host-check
 ```
-prerender website for development
+prerender website
 
 ```bash
 ng run ricoswebsite.com:prerender
 ```
 
-start http-server
+start http-server to testing the prerendered website
 
 ```bash
 cd ricoswebsite.com/browser/

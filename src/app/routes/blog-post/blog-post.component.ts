@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation, makeStateKey, TransferState } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation, makeStateKey, TransferState, Renderer2, ElementRef } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location, isPlatformBrowser } from '@angular/common';
 import { PostService } from 'src/app/post.service';
 import { isPlatformServer } from '@angular/common';
 import { environment } from 'src/environment/enviroment';
+import { ScriptService } from 'src/app/script.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -24,10 +25,13 @@ export class BlogPostComponent implements OnInit {
     private router: Router,
     private location: Location,
     private transferState: TransferState,
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private scriptS: ScriptService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
-  
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
     const title = this.route.snapshot.paramMap.get('title');    
     if(!title) return;
     
@@ -42,7 +46,9 @@ export class BlogPostComponent implements OnInit {
         this.postContent = storedData.postContent;
         this.postImageURL = storedData.postImageURL;
         this.updateMetaTags();
-      } else this.loadPostData(title);
+      } else await this.loadPostData(title);
+      
+      this.loadDisqus();
     }
   }
   
@@ -77,5 +83,18 @@ export class BlogPostComponent implements OnInit {
         { property: 'og:robots', content: 'index, follow' }
       ]);
     }
+  }
+
+  loadDisqus(): void {
+    const script = this.renderer.createElement('script');
+    script.type = 'text/javascript';
+    script.text = `
+      var disqus_config = function () {
+        this.page.url = '${window.location.href}';
+        this.page.identifier = '${this.postMeta.title}';
+      };
+    `;
+    this.renderer.appendChild(this.elementRef.nativeElement, script);
+    this.scriptS.reloadJsScript(this.renderer, 'https://ricoswebsite-com.disqus.com/embed.js');  
   }
 }
