@@ -101,7 +101,9 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "cname": "ricoswebsite.com",
+          "silent": false
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",

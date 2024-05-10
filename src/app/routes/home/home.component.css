@@ -190,7 +190,7 @@
 #projectsSection .activTechnologiesFilterOptions {
   display: flex;
   flex-wrap: wrap;
-  flex: 1 0 50%;
+  flex: 1 0 60%;
 }
 #projectsSection .activTechnologiesFilterOptions span {
   border-radius: 12px;

@@ -1,4 +1,4 @@
-## positive
+## Positive
 
 - native development with Apache, MySQL and PHP
 - pretty and feature-rich file explorer (Nemo)
@@ -11,7 +11,7 @@
 - updates only in the background
 - integration for the google account
 
-## negative
+## Negative
 
 - standard theme and icons are ugly
 - no autoscroll in Google Chrome
