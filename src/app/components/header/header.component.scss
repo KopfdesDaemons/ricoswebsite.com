@@ -8,13 +8,10 @@
 
 header {
     font-size: clamp(14px, 5vw, 24px);
-    // width: 100%;
     box-sizing: border-box;
     display: flex;
-    gap: 1em;
     vertical-align: middle;
     height: var(--header-height);
-    padding-left: 1em;
     position: absolute;
     z-index: 2;
 
@@ -54,6 +51,10 @@ header {
         color: var(--font-color);
         cursor: pointer;
         transition: all 100ms;
+        width: var(--header-height);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
             transform: scale(1.3);

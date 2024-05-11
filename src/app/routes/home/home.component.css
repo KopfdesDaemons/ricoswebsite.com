@@ -159,6 +159,7 @@
 #projectsSection .projectCards app-project-card {
   flex-grow: 1;
   max-width: 65em;
+  max-width: 100%;
 }
 #projectsSection .technologiesFilterOption {
   display: flex;
@@ -192,7 +193,7 @@
   flex-wrap: wrap;
   flex: 1 0 60%;
 }
-#projectsSection .activTechnologiesFilterOptions span {
+#projectsSection .activTechnologiesFilterOptions li {
   border-radius: 12px;
   border-radius: 12px;
   padding: 8px;
@@ -202,7 +203,7 @@
   align-items: center;
   gap: 5px;
 }
-#projectsSection .activTechnologiesFilterOptions span fa-icon:hover {
+#projectsSection .activTechnologiesFilterOptions li .material-icon:hover {
   color: rgb(121, 121, 121);
   cursor: pointer;
 }

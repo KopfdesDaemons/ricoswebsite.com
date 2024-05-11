@@ -1,8 +1,7 @@
 .projectDiv {
   background-color: black;
   border-radius: 12px;
-  border: 2px solid var(--border-color);
-  padding: 1em;
+  padding: 1em 1em 0.5em 1em;
   display: flex;
   justify-content: center;
   margin-bottom: 2em;
@@ -35,7 +34,7 @@
 }
 .projectDiv .descriptionDiv {
   flex: 1 0 50%;
-  min-width: 20em;
+  min-width: 15em;
   max-width: 100%;
   padding: 0 2%;
   box-sizing: border-box;
@@ -48,13 +47,14 @@
 }
 .projectDiv .descriptionDiv .links {
   display: flex;
-  justify-content: space-evenly;
+  gap: 0.5em;
   margin-top: 1em;
 }
 .projectDiv .descriptionDiv .links a {
-  border: 1px solid;
+  border: 1px solid gray;
   padding: 1em;
   border-radius: 4px;
+  flex: 1;
 }
 .projectDiv .descriptionDiv .links a fa-icon {
   margin-right: 0.5em;
@@ -69,29 +69,36 @@
   margin-top: 0.5em;
 }
 .projectDiv .technologiesDiv {
-  flex: 1 0 100%;
+  max-width: 100%;
+  overflow-y: auto;
+  padding-bottom: 0.5em;
 }
 .projectDiv .technologiesDiv ul {
   display: flex;
   list-style: none;
-  flex-wrap: wrap;
   gap: 0.4em;
   padding: 0;
 }
 .projectDiv .technologiesDiv ul li {
   border: 1px solid rgb(95, 95, 95);
-  padding: 0.8em;
+  padding: 0.5em;
   border-radius: 4px;
   background-color: rgb(48, 48, 48);
   cursor: pointer;
+  gap: 0.5em;
+  display: flex;
+  align-items: center;
 }
 .projectDiv .technologiesDiv ul li fa-icon {
-  margin-right: 0.5em;
+  font-size: 1.3em;
 }
-
+.projectDiv .technologiesDiv ul li svg {
+  height: 1.3em;
+  width: 1.3em;
+}
 .projectDiv:hover {
   transition: all 200ms;
-  box-shadow: 0px 0px 40px 5px #5857FF;
+  box-shadow: 0px 0px 50px 10px #5857FF;
 }
 .projectDiv:hover .descriptionDiv h3 {
   color: blue;

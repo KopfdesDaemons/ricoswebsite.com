@@ -192,6 +192,7 @@
         app-project-card {
             flex-grow: 1;
             max-width: 65em;
+            max-width: 100%;
         }
     }
     
@@ -228,7 +229,7 @@
         flex-wrap: wrap;
         flex: 1 0 60%;
 
-        span {
+        li {
             border-radius: 12px;
             border-radius: 12px;
             padding: 8px;
@@ -238,7 +239,7 @@
             align-items: center;
             gap: 5px;
 
-            fa-icon:hover {
+            .material-icon:hover {
                 color: rgb(121, 121, 121);
                 cursor: pointer;
             }

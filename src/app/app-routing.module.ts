@@ -4,7 +4,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
 import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { filter } from 'rxjs';
 
 const routes: Routes = [
@@ -13,8 +13,6 @@ const routes: Routes = [
   {path: 'legalNotice', component: LegalNoticeComponent},
   {path: 'my-basic-CSS-gallery', component: MyBasicCssGalleryComponent},
   {path: 'blogpost/:title', component: BlogPostComponent },
-  // {path: 'blogpost/:title/', component: BlogPostComponent },
-  // {path: 'blogpost/:title', component: BlogPostComponent },  
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -24,21 +22,22 @@ const routes: Routes = [
     preloadingStrategy: PreloadAllModules,
     anchorScrolling: 'enabled',
     onSameUrlNavigation: 'reload',
-    // initialNavigation: 'enabledBlocking'
+    initialNavigation: 'enabledBlocking'
 })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor(private router: Router, private meta: Meta) {
+  constructor(private router: Router, private meta: Meta, private titleS: Title) {
+
     // Überwache das Router-Navigationsend-Ereignis, um Meta-Tags zu aktualisieren
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.removeMetaTags();
+      this.removeMetaData();
     });
   }
 
-  private removeMetaTags(): void {
+  private removeMetaData(): void {
     // Entferne vorhandene Meta-Tags
     this.meta.removeTag('property="og:keywords"');
     this.meta.removeTag('property="og:description"');
@@ -48,5 +47,8 @@ export class AppRoutingModule {
     this.meta.removeTag('property="og:url"');
     this.meta.removeTag('property="og:title"');
     this.meta.removeTag('property="og:type"');
+    this.meta.removeTag('name="description"');
+
+    this.titleS.setTitle('Ricos Website');
   }
 }

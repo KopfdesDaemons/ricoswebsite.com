@@ -5,20 +5,9 @@
   src: url(assets/fonts/material-icons.woff2) format('woff2');
 }
 
-.material-icons {
+.material-icon {
   font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
   font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  font-variant-ligatures: common-ligatures;
-  -webkit-font-smoothing: antialiased;
 }
 
 :root {
@@ -35,7 +24,7 @@
 body {
   background-color: var(--body);
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: sans-serif;
 }
 
 html,
@@ -52,15 +41,16 @@ p,
 h1,
 h2,
 h3,
+h4,
+h5,
 li,
 a,
-h5,
 time {
   color: var(--font-color);
 }
 
 h1 {
-  font-size: clamp(34px, 4vw, 60px);
+  font-size: clamp(34px, 4vw, 40px);
 }
 
 main {
@@ -84,5 +74,4 @@ section {
 
 .gradient {
   background: var(--gradient);
-  // background: radial-gradient(ellipse at center, #2d26ad 5%, #050073 35%, #1a192e 72%);
 }

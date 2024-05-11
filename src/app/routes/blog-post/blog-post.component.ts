@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation, makeStateKey, TransferState, Renderer2, ElementRef } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location, isPlatformBrowser } from '@angular/common';
 import { PostService } from 'src/app/post.service';
@@ -28,6 +28,7 @@ export class BlogPostComponent implements OnInit {
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private scriptS: ScriptService,
+    private titleS: Title,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -80,8 +81,11 @@ export class BlogPostComponent implements OnInit {
         { property: 'og:keywords', content: this.postMeta.keywords },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: this.location.prepareExternalUrl(this.location.path()) },
-        { property: 'og:robots', content: 'index, follow' }
+        { property: 'og:robots', content: 'index, follow' },
+        { name: 'description', content: this.postMeta.description}
       ]);
+
+      this.titleS.setTitle(this.postMeta.title);
     }
   }
 

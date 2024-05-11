@@ -1,6 +1,4 @@
 .blogpostMain {
-    font-size: 1em;
-
     .hero {
         display: flex;
         justify-content: center;
@@ -46,15 +44,21 @@
     }
     
     .postContent {
+        font-size: 0.9em;
         margin-top: 2em;
         max-width: 50rem;
         min-height: 40em;
         line-height: 1.4em;
         margin-bottom: 4em;
-        background-color: #32384b;
+        background-color: #32384b75;
         padding: clamp(1em, 2vw, 2em);
         border-radius: 12px;
+        overflow: auto;
     
+        > * {
+            margin-top: 0;
+        }
+
         ul {
             padding-left: 1.5em;
         }
