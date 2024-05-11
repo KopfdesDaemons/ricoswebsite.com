@@ -5,28 +5,34 @@ import { Inject, Injectable, Renderer2 } from '@angular/core';
   providedIn: 'root'
 })
 export class ScriptService {
-  private loadedScripts: string[] = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document
   ) { }
 
-  public reloadJsScript(renderer: Renderer2, src: string): HTMLScriptElement {
-    this.removeJsScript(src); // Skript entfernen, falls vorhanden
+  public addJsScript(renderer: Renderer2, src: string) {
+    const existingScript = this.document.querySelector(`script[src="${src}"]`);
+    if (existingScript) return;
 
     const script = renderer.createElement('script');
     script.type = 'text/javascript';
     script.src = src;
     renderer.appendChild(this.document.body, script);
-    this.loadedScripts.push(src);
-    return script;
+  }
+
+  public reloadJsScript(renderer: Renderer2, src: string) {
+    this.removeJsScript(src);
+    this.addJsScript(renderer, src)
   }
 
   private removeJsScript(src: string): void {
     const existingScript = this.document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
       existingScript.remove();
-      this.loadedScripts = this.loadedScripts.filter(script => script !== src);
     }
+  }
+
+  public ceckIfJsScriptExist(src: string): boolean {
+    return !!this.document.querySelector(`script[src="${src}"]`);
   }
 }
