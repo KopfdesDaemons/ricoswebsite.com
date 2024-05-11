@@ -6,6 +6,7 @@ import { PostService } from 'src/app/services/post.service';
 import { isPlatformServer } from '@angular/common';
 import { environment } from 'src/environment/enviroment';
 import { ScriptService } from 'src/app/services/script.service';
+import { DisqusService } from 'src/app/services/disqus.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -29,6 +30,7 @@ export class BlogPostComponent implements OnInit {
     private elementRef: ElementRef,
     private scriptS: ScriptService,
     private titleS: Title,
+    private disqusS: DisqusService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -51,7 +53,7 @@ export class BlogPostComponent implements OnInit {
           this.updateMetaTags();
         } else await this.loadPostData(title);
 
-        this.loadDisqus();
+        this.disqusS.loadDisqus(this.renderer, this.postMeta.title);
       }
     })
   }
@@ -95,30 +97,5 @@ export class BlogPostComponent implements OnInit {
       };
       this.titleS.setTitle(this.postMeta.title);
     }
-  }
-
-  loadDisqus(): void {
-    const script = this.renderer.createElement('script');
-    script.type = 'text/javascript';
-    if(!this.disqusIsLoaded) {      
-      script.text = `
-      var disqus_config = function () {
-        this.page.url = '${window.location.href}';
-        this.page.identifier = '${this.postMeta.title}';
-      };
-    `;
-    this.disqusIsLoaded = true;
-    } else {      
-      script.text = `
-      DISQUS.reset({
-        reload: true,
-        config: function () { 
-          this.page.url = '${window.location.href}';
-          this.page.identifier = '${this.postMeta.title}';
-        }})
-      `;
-    }
-    this.renderer.appendChild(this.elementRef.nativeElement, script);
-    this.scriptS.addJsScript(this.renderer, 'https://ricoswebsite-com.disqus.com/embed.js');
   }
 }
