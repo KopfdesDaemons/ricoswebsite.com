@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    baseUrl: 'https://ricoswebsite.com/'
+    baseUrl: 'https://ricoswebsite.com'
 };
   

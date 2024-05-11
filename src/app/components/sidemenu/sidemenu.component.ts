@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { SidemenuService } from 'src/app/sidemenu.service';
+import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({

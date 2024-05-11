@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { SidemenuService } from 'src/app/sidemenu.service';
+import { SidemenuService } from 'src/app/services/sidemenu.service';
 
 @Component({
   selector: 'app-header',

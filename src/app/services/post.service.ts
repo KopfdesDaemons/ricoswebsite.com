@@ -19,12 +19,15 @@ export class PostService {
 
     const postMetaUrl = `${baseUrl}assets/posts/${title}/post.json`;
     const contentUrl = `${baseUrl}assets/posts/${title}/content.md`;
-    const postImageURL = `assets/posts/${title}/image.jpg`;
+    let postImageURL = `${baseUrl}assets/posts/${title}/image.jpg`;
 
     try {
       const postMeta = await lastValueFrom(this.http.get<any>(postMetaUrl));
+      postMeta.hasImage = JSON.parse(postMeta.hasImage);
+      
       const contentData = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
 
+      // Alle Links werden so verändert, dass sie im neuen Tab geöffnet werden
       class CustomRenderer extends marked.Renderer {
         override link(href: string, title: string | null | undefined, text: string) {
           return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;

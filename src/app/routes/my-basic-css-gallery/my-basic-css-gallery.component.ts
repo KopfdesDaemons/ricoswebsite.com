@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ScriptService } from 'src/app/script.service';
+import { ScriptService } from 'src/app/services/script.service';
 
 @Component({
   selector: 'app-my-basic-css-gallery',

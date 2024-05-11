@@ -1,7 +1,7 @@
 <main class="blogpostMain">
   <div class="hero gradient">
     <div class="sectionSpacer">
-      <img *ngIf="postImageURL" height="495" width="880" [src]="postImageURL" alt="{{ postMeta?.title }}" />
+      <img *ngIf="postMeta?.hasImage" height="495" width="880" [src]="postImageURL" alt="{{ postMeta?.title }}" />
       <h1>{{ postMeta?.title }}</h1>
       <div class="description">
         <p>{{ postMeta?.description }}</p>

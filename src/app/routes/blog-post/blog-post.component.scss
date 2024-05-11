@@ -41,6 +41,12 @@
     
     .sectionSpacer {
         max-width: 50em;
+        flex: 1;
+    }
+
+    section {
+        flex-direction: unset;
+        justify-content: center;
     }
     
     .postContent {

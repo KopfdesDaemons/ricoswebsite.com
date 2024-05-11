@@ -35,6 +35,11 @@
 }
 .blogpostMain .sectionSpacer {
   max-width: 50em;
+  flex: 1;
+}
+.blogpostMain section {
+  flex-direction: unset;
+  justify-content: center;
 }
 .blogpostMain .postContent {
   font-size: 0.9em;

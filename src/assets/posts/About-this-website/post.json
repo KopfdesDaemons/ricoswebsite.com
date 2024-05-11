@@ -1,0 +1,10 @@
+{
+    "title": "About this Website",
+    "author": "Rico",
+    "hasImage": "false",
+    "keywords": [
+        "angular",
+        "markdown"
+    ],
+    "description": "A quick insight into how this website works."
+}

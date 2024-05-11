@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectService } from 'src/app/project.service';
-import { SidemenuService } from 'src/app/sidemenu.service';
+import { ProjectService } from 'src/app/services/project.service';
+import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

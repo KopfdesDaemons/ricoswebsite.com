@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SidemenuService } from './sidemenu.service';
+import { SidemenuService } from './services/sidemenu.service';
 
 @Component({
   selector: 'app-root',

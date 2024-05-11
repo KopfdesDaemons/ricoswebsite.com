@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation, makeStateKey, TransferState, Renderer2, ElementRef } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location, isPlatformBrowser } from '@angular/common';
-import { PostService } from 'src/app/post.service';
+import { isPlatformBrowser } from '@angular/common';
+import { PostService } from 'src/app/services/post.service';
 import { isPlatformServer } from '@angular/common';
 import { environment } from 'src/environment/enviroment';
-import { ScriptService } from 'src/app/script.service';
+import { ScriptService } from 'src/app/services/script.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -23,7 +23,6 @@ export class BlogPostComponent implements OnInit {
     private postS: PostService,
     private metaS: Meta,
     private router: Router,
-    private location: Location,
     private transferState: TransferState,
     private renderer: Renderer2,
     private elementRef: ElementRef,
@@ -33,24 +32,27 @@ export class BlogPostComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    const title = this.route.snapshot.paramMap.get('title');    
-    if(!title) return;
-    
-    if (isPlatformServer(this.platformId)) this.loadPostData(title);
-    else if (isPlatformBrowser(this.platformId)) {
-      
-      // Versuche die Daten aus dem TransferState zu laden
-      const key = makeStateKey<any>('post-' + title);
-      const storedData = this.transferState.get(key, null);
-      if (storedData) {
-        this.postMeta = storedData.postMeta;
-        this.postContent = storedData.postContent;
-        this.postImageURL = storedData.postImageURL;
-        this.updateMetaTags();
-      } else await this.loadPostData(title);
-      
-      this.loadDisqus();
-    }
+        // Wenn Route sich ändert    
+        this.route.params.subscribe(async params => {
+          const title = this.route.snapshot.paramMap.get('title');    
+          if(!title) return;
+          
+          if (isPlatformServer(this.platformId)) this.loadPostData(title);
+          else if (isPlatformBrowser(this.platformId)) {
+            
+            // Versuche die Daten aus dem TransferState zu laden
+            const key = makeStateKey<any>('post-' + title);
+            const storedData = this.transferState.get(key, null);
+            if (storedData) {
+              this.postMeta = storedData.postMeta;
+              this.postContent = storedData.postContent;
+              this.postImageURL = storedData.postImageURL;
+              this.updateMetaTags();
+            } else await this.loadPostData(title);
+            
+            this.loadDisqus();
+          }
+        })
   }
   
   async loadPostData(title: string): Promise<void> {
@@ -75,16 +77,19 @@ export class BlogPostComponent implements OnInit {
     if (this.postMeta) {
       this.metaS.addTags([
         { property: 'og:title', content: this.postMeta.title },
-        { property: 'og:image', content: environment.baseUrl + this.postImageURL },
         { property: 'og:author', content: this.postMeta.author },
         { property: 'og:description', content: this.postMeta.description },
         { property: 'og:keywords', content: this.postMeta.keywords },
         { property: 'og:type', content: 'article' },
-        { property: 'og:url', content: this.location.prepareExternalUrl(this.location.path()) },
+        { property: 'og:url', content: environment.baseUrl + this.router.url},
         { property: 'og:robots', content: 'index, follow' },
         { name: 'description', content: this.postMeta.description}
       ]);
-
+      if(this.postImageURL) {
+        this.metaS.addTag({ 
+        property: 'og:image', 
+        content: environment.baseUrl + this.postImageURL },
+      )};
       this.titleS.setTitle(this.postMeta.title);
     }
   }
