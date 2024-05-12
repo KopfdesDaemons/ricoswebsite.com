@@ -88,10 +88,12 @@ export class BlogPostComponent implements OnInit {
         { property: 'og:robots', content: 'index, follow' },
         { name: 'description', content: this.postMeta.description }
       ]);
-      if (this.postImageURL) {
+      if (this.postMeta.hasImage) {
+        console.log("image");
+        
         this.metaS.addTag({
           property: 'og:image',
-          content: environment.baseUrl + this.postImageURL
+          content:  environment.baseUrl + this.postImageURL
         },
         )
       };

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NavigationEnd, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
+import { NavigationEnd, NavigationStart, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
@@ -29,7 +29,7 @@ export class AppRoutingModule {
 
     // Überwache das Router-Navigationsend-Ereignis, um Meta-Tags zu aktualisieren
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
+      filter(event => event instanceof NavigationStart)
     ).subscribe(() => {
       this.removeMetaData();
     });
