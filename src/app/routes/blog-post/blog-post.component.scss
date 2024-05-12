@@ -89,6 +89,20 @@
             border-radius: 12px;
             max-width: 100%;
             overflow-x: auto;
+
+            + .toolbar {
+                opacity: unset;
+
+                button {
+                    padding: 0.5em;
+                    font-size: 1.1em;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: gray;
+                    }
+                }
+            }
         }
     }
 }

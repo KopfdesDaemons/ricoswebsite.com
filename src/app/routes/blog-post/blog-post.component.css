@@ -77,4 +77,15 @@
   border-radius: 12px;
   max-width: 100%;
   overflow-x: auto;
+}
+.blogpostMain .postContent pre + .toolbar {
+  opacity: unset;
+}
+.blogpostMain .postContent pre + .toolbar button {
+  padding: 0.5em;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.blogpostMain .postContent pre + .toolbar button:hover {
+  background-color: gray;
 }/*# sourceMappingURL=blog-post.component.css.map */

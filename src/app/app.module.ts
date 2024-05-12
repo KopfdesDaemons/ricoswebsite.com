@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
+import { HighlightService } from './services/highlight.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,10 @@ import { SafeHtmlPipe } from './safe-html.pipe';
     FontAwesomeModule,
     HttpClientModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    HighlightService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
