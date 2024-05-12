@@ -1,17 +1,17 @@
 <main class="blogpostMain">
   <div class="hero gradient">
     <div class="sectionSpacer">
-      <img *ngIf="postMeta?.hasImage" height="495" width="880" [src]="postImageURL" alt="{{ postMeta?.title }}" />
-      <h1>{{ postMeta?.title }}</h1>
+      <img *ngIf="post?.postMeta?.hasImage" height="495" width="880" [src]="post?.postImageURL" alt="{{ post?.postMeta?.title }}" />
+      <h1>{{ post?.postMeta?.title }}</h1>
       <div class="description">
-        <p>{{ postMeta?.description }}</p>
+        <p>{{ post?.postMeta?.description }}</p>
       </div>
-      <time>{{ postMeta?.date }}</time>
+      <time>{{ post?.postMeta?.date }}</time>
     </div>
   </div>
   <section>
     <div class="sectionSpacer">
-      <div *ngIf="postContent" class="postContent" [innerHTML]="postContent | safeHtml"></div>
+      <div *ngIf="post?.postContent" class="postContent" [innerHTML]="post?.postContent ?? '' | safeHtml"></div>
       <div id="disqus_thread"></div>
     </div>
   </section>

@@ -20,7 +20,6 @@ export class DisqusService {
     if(!this.isLoaded) {      
       script.text = `
       var disqus_config = function () {
-        this.page.url = '${window.location.href}';
         this.page.identifier = '${title}';
       };
     `;
@@ -30,7 +29,6 @@ export class DisqusService {
       DISQUS.reset({
         reload: true,
         config: function () { 
-          this.page.url = '${window.location.href}';
           this.page.identifier = '${title}';
         }})
       `;

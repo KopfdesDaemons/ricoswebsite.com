@@ -27,7 +27,7 @@
 - only a few supported games
     - Steam settings are bugged
 - Graphics glitch in cinnamon after starting from standby mode
-    - Restarting cinnamon helps: Press "Ctrl" + "F2", Type "r", Press "Enter"
+    - Restarting cinnamon helps: Press "Alt" + "F2", Type "r", Press "Enter"
 - LibreOffice icons are not clearly visible with a dark Cinnamon theme
     - Icons can be exchanged
 
