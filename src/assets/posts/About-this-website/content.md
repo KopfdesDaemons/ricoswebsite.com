@@ -27,6 +27,8 @@ Blog posts are loaded from a folder structure containing Markdown, JSON, and ima
         "date": "5/12/24"
     }
 
+When the page is initially accessed, the data has already been pre-rendered. When navigating after the initial page view, the data is loaded via http requests.
+
 ### Portfoliio
 
 Portfolio project information is loaded dynamically from a JSON file.

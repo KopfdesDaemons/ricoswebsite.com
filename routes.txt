@@ -1,2 +1,3 @@
 blogpost/Linux-Test
 blogpost/About-this-website
+blogpost/CSS-gallery

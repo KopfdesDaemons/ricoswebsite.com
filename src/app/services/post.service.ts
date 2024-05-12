@@ -24,7 +24,8 @@ export class PostService {
     try {
       const postMeta = await lastValueFrom(this.http.get<any>(postMetaUrl));
       postMeta.hasImage = JSON.parse(postMeta.hasImage);
-      
+      postMeta.hasCodePen = JSON.parse(postMeta.hasCodePen || 'false');
+
       const contentData = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
 
       // Alle Links werden so verändert, dass sie im neuen Tab geöffnet werden
@@ -34,7 +35,7 @@ export class PostService {
         }
       }
       const md = marked.setOptions({ renderer: new CustomRenderer() });
-      const postContent = md.parse(contentData);
+      const postContent = await md.parse(contentData);
 
       return { postMeta: postMeta, postContent: postContent, postImageURL: postImageURL };
     } catch (error) {

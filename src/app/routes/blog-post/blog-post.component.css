@@ -20,6 +20,7 @@
 .blogpostMain .hero time {
   float: right;
   font-style: italic;
+  font-size: 0.8em;
 }
 .blogpostMain .hero .description {
   max-width: 80%;

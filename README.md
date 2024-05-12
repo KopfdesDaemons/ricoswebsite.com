@@ -1,4 +1,4 @@
-## Portfolio Website
+# Portfolio Website
 
 My portfolio website as a hobby web developer.
 [www.ricoswebsite.com](https://ricoswebsite.com)
@@ -31,6 +31,8 @@ Blog posts are loaded from a folder structure containing Markdown, JSON, and ima
         "description": "A quick insight into how this website works.",
         "date": "5/12/24"
     }
+
+When the page is initially accessed, the data has already been pre-rendered. When navigating after the initial page view, the data is loaded via http requests.
 
 ### Portfoliio
 

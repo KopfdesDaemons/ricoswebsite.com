@@ -9,10 +9,10 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
-import { MyBasicCssGalleryComponent } from './routes/my-basic-css-gallery/my-basic-css-gallery.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { BlogPostComponent } from './routes/blog-post/blog-post.component';
     ProjectCardComponent,
     FooterComponent,
     LegalNoticeComponent,
-    MyBasicCssGalleryComponent,
     SidemenuComponent,
     BlogPostComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

@@ -12,4 +12,8 @@ export class HeaderComponent {
   constructor(public sidemenuS: SidemenuService) {}
 
   faBars = faBars;
+
+  public clickOnWebsitename() {
+    if(this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
+  }
 }

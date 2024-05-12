@@ -1,12 +1,12 @@
-import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation, makeStateKey, TransferState, Renderer2, ElementRef } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation, makeStateKey, TransferState, Renderer2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { PostService } from 'src/app/services/post.service';
 import { isPlatformServer } from '@angular/common';
 import { environment } from 'src/environment/enviroment';
-import { ScriptService } from 'src/app/services/script.service';
 import { DisqusService } from 'src/app/services/disqus.service';
+import { ScriptService } from 'src/app/services/script.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -27,16 +27,15 @@ export class BlogPostComponent implements OnInit {
     private router: Router,
     private transferState: TransferState,
     private renderer: Renderer2,
-    private elementRef: ElementRef,
-    private scriptS: ScriptService,
     private titleS: Title,
     private disqusS: DisqusService,
+    private scriptS: ScriptService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   async ngOnInit(): Promise<void> {
     // Wenn Route sich ändert    
-    this.route.params.subscribe(async params => {
+    this.route.params.subscribe(async () => {
       const title = this.route.snapshot.paramMap.get('title');
       if (!title) return;
 
@@ -54,6 +53,7 @@ export class BlogPostComponent implements OnInit {
         } else await this.loadPostData(title);
 
         this.disqusS.loadDisqus(this.renderer, this.postMeta.title);
+        if(this.postMeta.hasCodePen) this.scriptS.reloadJsScript(this.renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
       }
     })
   }
