@@ -25,6 +25,10 @@ body {
   font-family: sans-serif;
 }
 
+a, body {
+  color: var(--font-color);
+}
+
 html,
 body {
   margin: 0;
@@ -32,19 +36,6 @@ body {
   min-height: 100%;
   scroll-behavior: smooth;
   scrollbar-color: rgb(117, 117, 117) transparent;
-}
-
-span,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-li,
-a,
-time {
-  color: var(--font-color);
 }
 
 h1 {
@@ -66,7 +57,7 @@ section {
 }
 
 .sectionSpacer {
-  padding: 0 5%;
+  padding: 0 2%;
   max-width: 80em;
 }
 

@@ -36,6 +36,8 @@
 .blogpostMain .sectionSpacer {
   max-width: 50em;
   flex: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 .blogpostMain section {
   flex-direction: unset;
@@ -52,10 +54,26 @@
   padding: clamp(1em, 2vw, 2em);
   border-radius: 12px;
   overflow: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 .blogpostMain .postContent > * {
   margin-top: 0;
 }
 .blogpostMain .postContent ul {
   padding-left: 1.5em;
+}
+.blogpostMain .postContent h2 {
+  color: rgb(68, 68, 177);
+}
+.blogpostMain .postContent a {
+  color: blue;
+}
+.blogpostMain .postContent pre {
+  margin-left: 1em;
+  background-color: black;
+  padding: 1em;
+  border-radius: 12px;
+  max-width: 100%;
+  overflow-x: auto;
 }/*# sourceMappingURL=blog-post.component.css.map */
