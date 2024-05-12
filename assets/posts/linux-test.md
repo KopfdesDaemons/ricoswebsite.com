@@ -1,3 +1,14 @@
+---
+title: Linux Mint Cinnamon tested as a desktop
+author: Rico
+image: assets/images/linux-mint-desktop.jpg
+keywords: 
+- linux, 
+- desktop
+description: As a hobby web developer, I tested Linux Mint Cinnamon as a desktop. Here I list my positive experiences and problems.
+date: 4/12/24
+---
+
 ## Positive
 
 - native development with Apache, MySQL and PHP
@@ -27,7 +38,7 @@
 - only a few supported games
     - Steam settings are bugged
 - Graphics glitch in cinnamon after starting from standby mode
-    - Restarting cinnamon helps: Press "Ctrl" + "F2", Type "r", Press "Enter"
+    - Restarting cinnamon helps: Press "Alt" + "F2", Type "r", Press "Enter"
 - LibreOffice icons are not clearly visible with a dark Cinnamon theme
     - Icons can be exchanged
 
