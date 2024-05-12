@@ -2,7 +2,6 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
-import { environment } from 'src/environment/enviroment';
 
 @Injectable({
   providedIn: 'root'

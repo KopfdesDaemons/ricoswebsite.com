@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID, Renderer2, makeStateKey, TransferState } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import * as marked from 'marked';
 import { isPlatformServer } from '@angular/common';
 import { Post } from '../post';
 import { Meta, Title } from '@angular/platform-browser';
@@ -9,6 +8,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environment/enviroment';
 import { DisqusService } from './disqus.service';
 import { ScriptService } from './script.service';
+import { MarkdownService } from './markdown.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,7 @@ export class PostService {
     private disqusS: DisqusService,
     private scriptS: ScriptService,
     private transferState: TransferState,
+    private markdownS: MarkdownService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -41,46 +42,27 @@ export class PostService {
   }
 
   private saveTransfereState() {
-    // Speichern der Daten im TransferState, um sie beim nächsten Laden der Seite zu verwenden
     const key = makeStateKey<Post>('post-' + this.post?.postMeta.title);
     this.transferState.set(key, this.post);
   }
 
   private loadFromTranfareState(title: string): Post | null {
-    // Versuche die Daten aus dem TransferState zu laden
     const key = makeStateKey<Post>('post-' + title);
     return this.transferState.get(key, null);
   }
 
   private async loadFromFiles(title: string): Promise<Post | null> {
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
-    const postMetaUrl = `${baseUrl}assets/posts/${title}/post.json`;
-    const contentUrl = `${baseUrl}assets/posts/${title}/content.md`;
-    const postImageURL = `/assets/posts/${title}/image.jpg`;
+    const contentUrl = `${baseUrl}assets/posts/${title}.md`;
 
     try {
-      const postMeta = await lastValueFrom(this.http.get<any>(postMetaUrl));
-      postMeta.hasImage = JSON.parse(postMeta.hasImage);
-      postMeta.hasCodePen = JSON.parse(postMeta.hasCodePen || 'false');
-      const contentData = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
+      const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
+      const postMeta = this.markdownS.extractYamlHeader(markdownFile);
+      const markdownBody = this.markdownS.extractBody(markdownFile);
+      const postContent = await this.markdownS.parseMarkdown(markdownBody);
 
-      // Alle Links werden so verändert, dass sie im neuen Tab geöffnet werden
-      class CustomRenderer extends marked.Renderer {
-        override link(href: string, title: string | null | undefined, text: string) {
-          return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
-        }
-      }
-      const md = marked.setOptions({ renderer: new CustomRenderer() });
-      const postContent = await md.parse(contentData);
-
-      return new Post(postMeta, postContent, postImageURL);
+      return new Post(postMeta, postContent);
     } catch (error) {
-      if (error instanceof HttpErrorResponse) {
-        console.error('HTTP error:', error);
-        if (error.status === 404) {
-          throw new Error(`Post "${title}" not found at: ${postMetaUrl}`);
-        }
-      }
       console.error(error);
       return null;
     }
@@ -98,10 +80,10 @@ export class PostService {
         { property: 'og:robots', content: 'index, follow' },
         { name: 'description', content: this.post.postMeta.description }
       ]);
-      if (this.post.postMeta.hasImage) {
+      if (this.post.postMeta.image) {
         this.metaS.addTag({
           property: 'og:image',
-          content:  environment.baseUrl + this.post.postImageURL
+          content:  environment.baseUrl + '/' + this.post.postMeta.image
         },)
       };
       this.titleS.setTitle(this.post.postMeta.title);
