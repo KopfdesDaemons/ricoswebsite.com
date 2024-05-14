@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID, Renderer2, makeStateKey, TransferState } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
@@ -36,7 +36,6 @@ export class PostService {
 
     this.updateMetaData();
     this.saveTransfereState();
-    if(this.post.postMeta.title) this.disqusS.loadDisqus(renderer, this.post.postMeta.title);
     if(this.post.postMeta.hasCodePen) this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
     return this.post;
   }

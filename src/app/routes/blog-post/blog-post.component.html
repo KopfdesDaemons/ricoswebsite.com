@@ -12,7 +12,7 @@
   <section>
     <div class="sectionSpacer">
       <div *ngIf="post?.postContent" class="postContent" [innerHTML]="post?.postContent ?? '' | safeHtml"></div>
-      <div id="disqus_thread"></div>
+      <app-disqus *ngIf="post" [title]="post.postMeta?.title"></app-disqus>
     </div>
   </section>
 </main>

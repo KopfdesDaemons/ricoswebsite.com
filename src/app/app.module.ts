@@ -14,6 +14,7 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { HighlightService } from './services/highlight.service';
+import { DisqusComponent } from './components/disqus/disqus.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HighlightService } from './services/highlight.service';
     LegalNoticeComponent,
     SidemenuComponent,
     BlogPostComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    DisqusComponent
   ],
   imports: [
     BrowserModule,

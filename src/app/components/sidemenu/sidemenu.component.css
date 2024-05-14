@@ -43,6 +43,9 @@ aside .sidemenuContent ul {
   display: flex;
   flex-direction: column;
 }
+aside .sidemenuContent ul li {
+  list-style: none;
+}
 aside .sidemenuContent ul hr {
   width: 100%;
 }

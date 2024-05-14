@@ -8,23 +8,36 @@ import { DOCUMENT } from '@angular/common';
 export class DisqusService {
 
   isLoaded: boolean = false;
+  consent: boolean = false;
 
   constructor(
     public scriptS: ScriptService,
-    @Inject(DOCUMENT) private document: Document) { }
+    @Inject(DOCUMENT) private document: Document,
+  ) { 
+    this.loadLocalstorgae();
+  }
 
-  public loadDisqus(renderer: Renderer2, title: string): void {    
+  consentGanted() {
+    this.consent = true;
+    localStorage.setItem('DisqusConsent', 'true');
+  }
+
+  loadLocalstorgae() {
+    this.consent = localStorage.getItem('DisqusConsent') === 'true';
+  }
+
+  public loadDisqus(renderer: Renderer2, title: string): void {
     const script = renderer.createElement('script');
     script.type = 'text/javascript';
 
-    if(!this.isLoaded) {      
+    if (!this.isLoaded) {
       script.text = `
       var disqus_config = function () {
         this.page.identifier = '${title}';
       };
     `;
-    this.isLoaded = true;
-    } else {            
+      this.isLoaded = true;
+    } else {
       script.text = `
       DISQUS.reset({
         reload: true,

@@ -1,0 +1,10 @@
+<div *ngIf="disqusS.consent" #disqusDiv id="disqus_thread"></div>
+<div class="consentBanner" *ngIf="!disqusS.consent">
+    <button (click)="consent()">
+        <fa-icon [icon]="faComment"></fa-icon>
+        <span>Load Comments</span>
+    </button>
+    <span class="disclaimer">The comments are loaded by the third-party provider Disqus. For more details see privacy policy.</span>
+</div>
+
+
