@@ -18,19 +18,20 @@ To deploy the website to GitHub Pages [angular-cli-ghpages](https://github.com/a
 ## Scalability
 
 ### Blog posts
-Blog posts are loaded from a folder structure containing Markdown, JSON, and image files. Title, description, and meta tags are loaded from the corresponding JSON files.
+The blog posts are loaded from markdown files, which contain all metadata in the header. Here's an example:
 
-    {
-        "title": "About this Website",
-        "author": "Rico",
-        "hasImage": "false",
-        "keywords": [
-            "angular",
-            "markdown"
-        ],
-        "description": "A quick insight into how this website works.",
-        "date": "5/12/24"
-    }
+```yaml
+---
+title: About this Website
+author: Rico
+keywords:
+- angular
+- markdown
+- YAML
+description: A quick insight into how this website works.
+date: 5/12/24
+---
+```
 
 When the page is initially accessed, the data has already been pre-rendered. When navigating after the initial page view, the data is loaded via http requests.
 

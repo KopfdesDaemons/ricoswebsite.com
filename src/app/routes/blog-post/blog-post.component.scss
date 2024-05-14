@@ -75,11 +75,11 @@
         }
 
         h2 {
-            color: rgb(68, 68, 177);
+            color: #6262cf;
         }
 
         a {
-            color: blue;
+            color: #6262cf;
         }
 
         pre {
@@ -104,5 +104,9 @@
                 }
             }
         }
+    }
+
+    #disqus_thread {
+        min-height: 500px;
     }
 }

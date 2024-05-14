@@ -65,10 +65,10 @@
   padding-left: 1.5em;
 }
 .blogpostMain .postContent h2 {
-  color: rgb(68, 68, 177);
+  color: #6262cf;
 }
 .blogpostMain .postContent a {
-  color: blue;
+  color: #6262cf;
 }
 .blogpostMain .postContent pre {
   margin-left: 1em;
@@ -88,4 +88,7 @@
 }
 .blogpostMain .postContent pre + .toolbar button:hover {
   background-color: gray;
+}
+.blogpostMain #disqus_thread {
+  min-height: 500px;
 }/*# sourceMappingURL=blog-post.component.css.map */

@@ -60,6 +60,8 @@ aside {
                 font-size: 1.2em;
                 justify-content: center;
                 transition: all 100ms;
+                text-align: center;
+                text-wrap: balance;
     
                 &:hover {
                     background-color: #1c2e64;

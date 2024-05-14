@@ -3,28 +3,40 @@
     <div class="sidemenuContent">
         <nav>
             <ul>
-                <a [routerLink]="['/']">
-                    <fa-icon [icon]="faHome"></fa-icon>
-                    <span>Home</span>
-                </a>
-                <a href="https://github.com/KopfdesDaemons" target="_blank">
-                    <fa-icon [icon]="faGithub"></fa-icon>
-                    <span>GitHub</span>
-                </a>
-                <hr>
-                <a [routerLink]="['/']" fragment="projectsSection">
-                    <span>Portfolio</span>
-                </a>
-                <hr>
-                <a [routerLink]="['/blogpost/css-gallery']">
-                    <span>CSS gallery</span>
-                </a>
-                <a [routerLink]="['/blogpost/linux-test']">
-                    <span>Linux Mint tested as a desktop</span>
-                </a>
-                <a [routerLink]="['/blogpost/about-this-website']">
-                    <span>About this website</span>
-                </a>
+                <li>
+                    <a [routerLink]="['/']">
+                        <fa-icon [icon]="faHome"></fa-icon>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/KopfdesDaemons" target="_blank">
+                        <fa-icon [icon]="faGithub"></fa-icon>
+                        <span>GitHub</span>
+                    </a>
+                </li>
+                <li>
+                    <hr>
+                    <a [routerLink]="['/']" fragment="projectsSection">
+                        <span>Portfolio</span>
+                    </a>
+                    <hr>
+                </li>
+                <li>
+                    <a [routerLink]="['/blogpost/css-gallery']">
+                        <span>CSS gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/blogpost/linux-test']">
+                        <span>Linux Mint tested as a desktop</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/blogpost/about-this-website']">
+                        <span>About this website</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
