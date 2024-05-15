@@ -1,2 +1,3 @@
 user-agent: *
-Disallow: /LegalNotice
+Disallow: /legal-notice
+Disallow: /privacy-policy

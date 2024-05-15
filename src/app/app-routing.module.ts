@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NavigationEnd, NavigationStart, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
+import { NavigationStart, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './routes/home/home.component';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
@@ -9,8 +9,9 @@ import { filter } from 'rxjs';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'projects/page/:page/:technologies', component: HomeComponent, pathMatch: 'full' },
-  {path: 'legalNotice', component: LegalNoticeComponent},
+  {path: 'legal-notice', component: LegalNoticeComponent},
   {path: 'blogpost/:title', component: BlogPostComponent },
+  {path: 'privacy-policy', component: BlogPostComponent, data: {title: 'privacy-policy' } },
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

@@ -23,8 +23,14 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   async ngOnInit() {
     // when route changes 
     this.route.params.subscribe(async () => {
-      const title = this.route.snapshot.paramMap.get('title');
+      const title = this.route.snapshot.paramMap.get('title');      
       if (title) this.post = await this.postS.getPost(title, this.renderer);
+      else {
+        this.route.data.subscribe( async (data) => {
+          if(data['title']) this.post = await this.postS.getPost(data['title'], this.renderer);
+          if(this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;          
+        });
+      }
     })
   }
 

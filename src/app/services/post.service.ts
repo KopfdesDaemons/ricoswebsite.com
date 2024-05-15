@@ -6,7 +6,6 @@ import { Post } from '../post';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/enviroment';
-import { DisqusService } from './disqus.service';
 import { ScriptService } from './script.service';
 import { MarkdownService } from './markdown.service';
 
@@ -22,7 +21,6 @@ export class PostService {
     private metaS: Meta,
     private titleS: Title,
     private router: Router,
-    private disqusS: DisqusService,
     private scriptS: ScriptService,
     private transferState: TransferState,
     private markdownS: MarkdownService,
@@ -53,7 +51,7 @@ export class PostService {
   private async loadFromFiles(title: string): Promise<Post | null> {
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
     const contentUrl = `${baseUrl}assets/posts/${title}.md`;
-
+    
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
       const postMeta = this.markdownS.extractYamlHeader(markdownFile);
@@ -65,27 +63,41 @@ export class PostService {
       console.error(error);
       return null;
     }
+    
   }
 
   private updateMetaData(): void {
     if (this.post?.postMeta) {
-      this.metaS.addTags([
+      const tagsToAdd: any = [
         { property: 'og:title', content: this.post.postMeta.title },
-        { property: 'og:author', content: this.post.postMeta.author },
-        { property: 'og:description', content: this.post.postMeta.description },
-        { property: 'og:keywords', content: this.post.postMeta.keywords },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: environment.baseUrl + this.router.url },
         { property: 'og:robots', content: 'index, follow' },
-        { name: 'description', content: this.post.postMeta.description }
-      ]);
+      ];
+  
+      if (this.post.postMeta.author) {
+        tagsToAdd.push({ property: 'og:author', content: this.post.postMeta.author });
+      }
+  
+      if (this.post.postMeta.description) {
+        tagsToAdd.push({ property: 'og:description', content: this.post.postMeta.description });
+        tagsToAdd.push({ name: 'description', content: this.post.postMeta.description });
+      }
+  
+      if (this.post.postMeta.keywords) {
+        tagsToAdd.push({ name: 'keywords', content: this.post.postMeta.keywords });
+      }
+  
       if (this.post.postMeta.image) {
-        this.metaS.addTag({
+        tagsToAdd.push({
           property: 'og:image',
-          content:  environment.baseUrl + '/' + this.post.postMeta.image
-        },)
-      };
+          content: environment.baseUrl + '/' + this.post.postMeta.image
+        });
+      }
+  
+      this.metaS.addTags(tagsToAdd);
       this.titleS.setTitle(this.post.postMeta.title);
     }
   }
+  
 }
