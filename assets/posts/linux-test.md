@@ -1,7 +1,7 @@
 ---
 title: Linux Mint Cinnamon tested as a desktop
 author: Rico
-image: assets/images/linux-mint-desktop.jpg
+image: assets/images/linux-mint-desktop.avif
 keywords: 
 - linux, 
 - desktop
