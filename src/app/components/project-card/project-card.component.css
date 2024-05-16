@@ -58,6 +58,7 @@
 }
 .projectDiv .descriptionDiv .links a fa-icon {
   margin-right: 0.5em;
+  font-size: 1.4em;
 }
 .projectDiv .descriptionDiv .links a:hover {
   color: #5857FF;

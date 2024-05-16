@@ -28,27 +28,28 @@ export class PostService {
   ) { }
 
   async getPost(title: string, renderer: Renderer2): Promise<Post | null> {
-    this.post = this.loadFromTranfareState(title);
+    this.post = this.loadFromTransfareState(title);
     if(!this.post) this.post = await this.loadFromFiles(title);
     if(!this.post) return null;
 
     this.updateMetaData();
-    this.saveTransfereState();
+    this.saveTransfereState(title);
     if(this.post.postMeta.hasCodePen) this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
     return this.post;
   }
 
-  private saveTransfereState() {
-    const key = makeStateKey<Post>('post-' + this.post?.postMeta.title);
+  private saveTransfereState(title: string) {
+    const key = makeStateKey<Post>('post-' + title);
     this.transferState.set(key, this.post);
   }
 
-  private loadFromTranfareState(title: string): Post | null {
+  private loadFromTransfareState(title: string): Post | null {
+    if(isPlatformServer(this.platformId)) return null;
     const key = makeStateKey<Post>('post-' + title);
     return this.transferState.get(key, null);
   }
 
-  private async loadFromFiles(title: string): Promise<Post | null> {
+  private async loadFromFiles(title: string): Promise<Post | null> {  console.log('load from Files');
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
     const contentUrl = `${baseUrl}assets/posts/${title}.md`;
     
@@ -63,7 +64,6 @@ export class PostService {
       console.error(error);
       return null;
     }
-    
   }
 
   private updateMetaData(): void {
@@ -72,7 +72,6 @@ export class PostService {
         { property: 'og:title', content: this.post.postMeta.title },
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: environment.baseUrl + this.router.url },
-        { property: 'og:robots', content: 'index, follow' },
       ];
   
       if (this.post.postMeta.author) {
@@ -99,5 +98,4 @@ export class PostService {
       this.titleS.setTitle(this.post.postMeta.title);
     }
   }
-  
 }

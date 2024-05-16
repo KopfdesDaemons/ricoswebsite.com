@@ -64,11 +64,8 @@
 .blogpostMain .postContent ul {
   padding-left: 1.5em;
 }
-.blogpostMain .postContent h2, .blogpostMain .postContent h3 {
-  color: #6262cf;
-}
-.blogpostMain .postContent a {
-  color: #6262cf;
+.blogpostMain .postContent h2, .blogpostMain .postContent h3, .blogpostMain .postContent a {
+  color: #8888ff;
 }
 .blogpostMain .postContent pre {
   margin-left: 1em;

@@ -1,6 +1,6 @@
-import { Inject, Injectable, Renderer2 } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { ScriptService } from './script.service';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class DisqusService {
   constructor(
     public scriptS: ScriptService,
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { 
     this.loadLocalstorgae();
   }
@@ -23,6 +24,7 @@ export class DisqusService {
   }
 
   loadLocalstorgae() {
+    if(isPlatformServer(this.platformId)) return;
     this.consent = localStorage.getItem('DisqusConsent') === 'true';
   }
 
