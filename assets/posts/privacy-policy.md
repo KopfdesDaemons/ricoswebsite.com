@@ -34,6 +34,10 @@ This is necessary to display the website and ensure stability and security and n
 
 The third-party provider [Disqus](https://disqus.com/) is used to provide the comment function. The comment function will only be loaded if the user agrees. The legal basis is therefore [Art. 6 (1) a) GDPR](https://dsgvo-gesetz.de/art-6-dsgvo/). Which data is transferred and how it is used can be found in the [Disqus privacy policy](https://disqus.com/privacy-policy/).
 
+### CodePen
+
+The third-party provider [CodePen](https://codepen.io/) is used to provide code snippets. The code snippets will only be loaded if the user agrees. The legal basis is therefore [Art. 6 (1) a) GDPR](https://dsgvo-gesetz.de/art-6-dsgvo/). Which data is transferred and how it is used can be found in the [CodePen privacy policy](https://blog.codepen.io/documentation/privacy-policy/).
+
 ## Legal instructions
 
 You will be informed about the existence of a right
