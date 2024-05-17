@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject, PLATFORM_ID, Renderer2, makeStateKey, TransferState } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, makeStateKey, TransferState } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
 import { Post } from '../models/post';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/enviroment';
-import { ScriptService } from './script.service';
 import { MarkdownService } from './markdown.service';
 
 @Injectable({
@@ -21,20 +20,18 @@ export class PostService {
     private metaS: Meta,
     private titleS: Title,
     private router: Router,
-    private scriptS: ScriptService,
     private transferState: TransferState,
     private markdownS: MarkdownService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  async getPost(title: string, renderer: Renderer2): Promise<Post | null> {
+  async getPost(title: string): Promise<Post | null> {
     this.post = this.loadFromTransfareState(title);
     if (!this.post) this.post = await this.loadFromFiles(title);
     if (!this.post) return null;
 
     this.updateMetaData();
     this.saveTransfereState(title);
-    if (this.post.postMeta.hasCodePen) this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
     return this.post;
   }
 
@@ -50,7 +47,6 @@ export class PostService {
   }
 
   private async loadFromFiles(title: string): Promise<Post | null> {
-    console.log('load from Files');
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
     const contentUrl = `${baseUrl}assets/posts/${title}.md`;
 

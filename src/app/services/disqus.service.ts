@@ -1,6 +1,7 @@
-import { Inject, Injectable, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { Inject, Injectable, Renderer2 } from '@angular/core';
 import { ScriptService } from './script.service';
-import { DOCUMENT, isPlatformServer } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { ConsentService } from './consent.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +13,15 @@ export class DisqusService {
 
   constructor(
     public scriptS: ScriptService,
+    public consentS: ConsentService,
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.loadLocalstorgae();
+    this.consent = this.consentS.checkConsent('Disqus');
   }
 
   giveConsent() {
+    this.consentS.giveConsent('Disqus');
     this.consent = true;
-    localStorage.setItem('DisqusConsent', 'true');
-  }
-
-  private loadLocalstorgae() {
-    if (isPlatformServer(this.platformId)) return;
-    this.consent = localStorage.getItem('DisqusConsent') === 'true';
   }
 
   loadDisqus(renderer: Renderer2, title: string): void {

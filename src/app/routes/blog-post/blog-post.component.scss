@@ -6,40 +6,40 @@
         text-align: center;
         padding-top: 1em;
         overflow: hidden;
-    
+
         img {
             max-width: 100%;
             height: auto;
             animation: grow 500ms ease-out;
             aspect-ratio: 16/9;
         }
-    
+
         @media only screen and (max-width: 1100px) {
             padding-top: var(--header-height);
         }
-    
+
         time {
             float: right;
             font-style: italic;
             font-size: 0.8em;
         }
-    
+
         .description {
             max-width: 80%;
             margin: 0 auto;
         }
-    
+
         @keyframes grow {
             0% {
                 transform: scale(0);
             }
-    
+
             100% {
                 transform: scale(1);
             }
         }
     }
-    
+
     .sectionSpacer {
         max-width: 50em;
         flex: 1;
@@ -51,7 +51,7 @@
         flex-direction: unset;
         justify-content: center;
     }
-    
+
     .postContent {
         font-size: 0.9em;
         margin-top: 2em;
@@ -65,8 +65,8 @@
         overflow: auto;
         width: 100%;
         box-sizing: border-box;
-    
-        > * {
+
+        >* {
             margin-top: 0;
         }
 
@@ -74,7 +74,9 @@
             padding-left: 1.5em;
         }
 
-        h2, h3, a {
+        h2,
+        h3,
+        a {
             color: #8888ff;
         }
 
@@ -86,7 +88,7 @@
             max-width: 100%;
             overflow-x: auto;
 
-            + .toolbar {
+            +.toolbar {
                 opacity: unset;
 
                 button {
@@ -104,5 +106,35 @@
 
     #disqus_thread {
         min-height: 500px;
+    }
+
+    .codepen:has(.codePenConsentButton) {
+        flex-direction: column;
+    }
+
+    .codePenConsentButton {
+        $color: rgb(193, 192, 255);
+        padding: 1em;
+        background-color: $color;
+        border-radius: 4px;
+        border: 3px solid transparent;
+        cursor: pointer;
+        display: flex;
+        gap: 0.5em;
+        font-size: 1.2em;
+        transition: all 250ms;
+        margin: 0 auto;
+
+        &:hover {
+            color: var(--font-color);
+            border-color: $color;
+            background-color: transparent;
+        }
+
+        +p {
+            font-size: 0.8em;
+            text-wrap: balance;
+            text-align: center;
+        }
     }
 }
