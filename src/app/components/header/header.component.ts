@@ -9,11 +9,11 @@ import { SidemenuService } from 'src/app/services/sidemenu.service';
 })
 export class HeaderComponent {
 
-  constructor(public sidemenuS: SidemenuService) {}
+  constructor(public sidemenuS: SidemenuService) { }
 
   faBars = faBars;
 
   public clickOnWebsitename() {
-    if(this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
+    if (this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
   }
 }

@@ -15,7 +15,7 @@ export class ProjectService {
 
   // Projeckte aus JSON laden
   private async loadProjectsFromJson() {
-    if(isPlatformServer(this.platformId)) this.projectsUrl = 'http://localhost:4200/' + this.projectsUrl;
+    if (isPlatformServer(this.platformId)) this.projectsUrl = 'http://localhost:4200/' + this.projectsUrl;
     const json: any = await lastValueFrom(this.http.get<any[]>(this.projectsUrl));
     this.projects = json.projects;
   }
@@ -25,7 +25,7 @@ export class ProjectService {
     if (this.projects.length === 0) {
       await this.loadProjectsFromJson();
     }
-    
+
     if (filter.length > 0) {
       let filteredProjects: any[] = [...this.projects];
       filteredProjects = filteredProjects.filter((project) =>
@@ -42,31 +42,31 @@ export class ProjectService {
     if (this.projects.length === 0) {
       await this.loadProjectsFromJson();
     }
-  
+
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-  
+
     let filteredProjects: any[] = [...this.projects];
-  
+
     if (filter.length > 0) {
       filteredProjects = filteredProjects.filter((project) =>
         filter.some((filterTechnologie) => project.technologies.includes(filterTechnologie))
       );
     }
-    
+
     return filteredProjects.slice(startIndex, endIndex);
   }
-  
+
   async getAllTechnologies(): Promise<string[]> {
-    if (this.projects.length === 0) {   
+    if (this.projects.length === 0) {
       await this.loadProjectsFromJson();
     }
 
     const technologies: string[] = [];
 
-    for(const project of this.projects){
-      for(const technologie of project.technologies){
-        if(!technologies.includes(technologie)) technologies.push(technologie);
+    for (const project of this.projects) {
+      for (const technologie of project.technologies) {
+        if (!technologies.includes(technologie)) technologies.push(technologie);
       }
     }
 

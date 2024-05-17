@@ -1,6 +1,6 @@
 <div *ngIf="disqusS.consent" #disqusDiv id="disqus_thread"></div>
 <div class="consentBanner" *ngIf="!disqusS.consent">
-    <button (click)="consent()">
+    <button (click)="giveConsent()">
         <fa-icon [icon]="faComment"></fa-icon>
         <span>Load Comments</span>
     </button>

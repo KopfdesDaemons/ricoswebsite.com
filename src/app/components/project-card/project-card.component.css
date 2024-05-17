@@ -17,7 +17,8 @@
 .projectDiv a {
   text-decoration: none;
 }
-.projectDiv ul, .projectDiv p {
+.projectDiv ul,
+.projectDiv p {
   font-size: 0.9em;
 }
 .projectDiv .imageDiv {
@@ -42,7 +43,7 @@
 }
 .projectDiv .descriptionDiv h3 {
   font-size: 24px;
-  color: rgb(25, 25, 145);
+  color: #6464ff;
   margin-top: 0;
 }
 .projectDiv .descriptionDiv .links {

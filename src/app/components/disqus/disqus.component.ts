@@ -17,27 +17,27 @@ export class DisqusComponent implements OnChanges {
     public disqusS: DisqusService,
     public renderer: Renderer2,
     private elementRef: ElementRef,
-  ) {}
+  ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {    
-    if(!this.disqusS.consent) return;
-    this.observer = new IntersectionObserver(entries => { 
-      entries.forEach(entry => { 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.disqusS.consent) return;
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) this.isVisible();
-      }); 
-    }); 
+      });
+    });
     this.observer.observe(this.elementRef.nativeElement);
   }
 
-  isVisible() {    
-    if(this.disqusS.consent && this.title) {      
+  isVisible() {
+    if (this.disqusS.consent && this.title) {
       this.disqusS.loadDisqus(this.renderer, this.title);
       this.observer?.disconnect();
     }
   }
 
-  consent() {
-    this.disqusS.consentGanted();
+  giveConsent() {
+    this.disqusS.giveConsent();
     this.observer?.disconnect();
     this.disqusS.loadDisqus(this.renderer, this.title);
   }

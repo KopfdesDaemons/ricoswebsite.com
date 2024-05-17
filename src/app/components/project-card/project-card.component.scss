@@ -1,7 +1,6 @@
 .projectDiv {
     background-color: black;
     border-radius: 12px;
-    // border: 2px solid var(--border-color);
     padding: 1em 1em 0.5em 1em;
     display: flex;
     justify-content: center;
@@ -9,18 +8,19 @@
     font-size: clamp(14px, 1vw, 18px);
     align-items: center;
     flex-direction: column;
-    
+
     .row1 {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
     }
-    
+
     a {
         text-decoration: none;
     }
 
-    ul, p {
+    ul,
+    p {
         font-size: 0.9em;
     }
 
@@ -28,7 +28,7 @@
         position: relative;
         flex: 1 0 50%;
         height: auto;
-        
+
         img {
             width: 100%;
             height: auto;
@@ -37,7 +37,7 @@
         }
     }
 
-    .descriptionDiv{
+    .descriptionDiv {
         flex: 1 0 50%;
         min-width: 15em;
         max-width: 100%;
@@ -47,7 +47,7 @@
 
         h3 {
             font-size: 24px;
-            color: rgb(25, 25, 145);
+            color: #6464ff;
             margin-top: 0;
         }
 
@@ -55,6 +55,7 @@
             display: flex;
             gap: 0.5em;
             margin-top: 1em;
+
             a {
                 border: 1px solid gray;
                 padding: 1em;
@@ -75,6 +76,7 @@
 
     ul {
         padding-left: 2em;
+
         li {
             margin-top: 0.5em;
         }
@@ -100,12 +102,13 @@
                 gap: 0.5em;
                 display: flex;
                 align-items: center;
-                
+
                 $iconSize: 1.3em;
+
                 fa-icon {
                     font-size: $iconSize;
                 }
-                
+
                 svg {
                     height: $iconSize;
                     width: $iconSize;
@@ -117,7 +120,7 @@
     &:hover {
         transition: all 200ms;
         box-shadow: 0px 0px 50px 10px #5857FF;
-        
+
         .descriptionDiv {
             h3 {
                 color: blue;

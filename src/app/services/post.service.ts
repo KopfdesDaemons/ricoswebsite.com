@@ -29,12 +29,12 @@ export class PostService {
 
   async getPost(title: string, renderer: Renderer2): Promise<Post | null> {
     this.post = this.loadFromTransfareState(title);
-    if(!this.post) this.post = await this.loadFromFiles(title);
-    if(!this.post) return null;
+    if (!this.post) this.post = await this.loadFromFiles(title);
+    if (!this.post) return null;
 
     this.updateMetaData();
     this.saveTransfereState(title);
-    if(this.post.postMeta.hasCodePen) this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
+    if (this.post.postMeta.hasCodePen) this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
     return this.post;
   }
 
@@ -44,15 +44,16 @@ export class PostService {
   }
 
   private loadFromTransfareState(title: string): Post | null {
-    if(isPlatformServer(this.platformId)) return null;
+    if (isPlatformServer(this.platformId)) return null;
     const key = makeStateKey<Post>('post-' + title);
     return this.transferState.get(key, null);
   }
 
-  private async loadFromFiles(title: string): Promise<Post | null> {  console.log('load from Files');
+  private async loadFromFiles(title: string): Promise<Post | null> {
+    console.log('load from Files');
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
     const contentUrl = `${baseUrl}assets/posts/${title}.md`;
-    
+
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
       const postMeta = this.markdownS.extractYamlHeader(markdownFile);
@@ -73,27 +74,27 @@ export class PostService {
         { property: 'og:type', content: 'article' },
         { property: 'og:url', content: environment.baseUrl + this.router.url },
       ];
-  
+
       if (this.post.postMeta.author) {
         tagsToAdd.push({ property: 'og:author', content: this.post.postMeta.author });
       }
-  
+
       if (this.post.postMeta.description) {
         tagsToAdd.push({ property: 'og:description', content: this.post.postMeta.description });
         tagsToAdd.push({ name: 'description', content: this.post.postMeta.description });
       }
-  
+
       if (this.post.postMeta.keywords) {
         tagsToAdd.push({ name: 'keywords', content: this.post.postMeta.keywords });
       }
-  
+
       if (this.post.postMeta.image) {
         tagsToAdd.push({
           property: 'og:image',
           content: environment.baseUrl + '/' + this.post.postMeta.image
         });
       }
-  
+
       this.metaS.addTags(tagsToAdd);
       this.titleS.setTitle(this.post.postMeta.title);
     }

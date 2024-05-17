@@ -9,24 +9,24 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './sidemenu.component.html',
   styleUrls: ['./sidemenu.component.scss']
 })
-export class SidemenuComponent implements AfterViewInit{
-  
+export class SidemenuComponent implements AfterViewInit {
+
   @ViewChild('sidemenu') component!: ElementRef;
-  
+
   faHome = faHome;
   faGithub = faGithub;
 
-  constructor(public sidemenuS: SidemenuService, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(public sidemenuS: SidemenuService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngAfterViewInit(): void {
-    if(isPlatformBrowser(this.platformId)){
-        const links = this.component.nativeElement.querySelectorAll('a');
-    
-        for(const link of links) {
-          link.addEventListener('click', () => {
-            if(this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
-          });
-        }
+    if (isPlatformBrowser(this.platformId)) {
+      const links = this.component.nativeElement.querySelectorAll('a');
+
+      for (const link of links) {
+        link.addEventListener('click', () => {
+          if (this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
+        });
+      }
     }
-  } 
+  }
 }

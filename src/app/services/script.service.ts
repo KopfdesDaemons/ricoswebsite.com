@@ -10,7 +10,7 @@ export class ScriptService {
     @Inject(DOCUMENT) private document: Document
   ) { }
 
-  public addJsScript(renderer: Renderer2, src: string) {
+  addJsScript(renderer: Renderer2, src: string) {
     const existingScript = this.document.querySelector(`script[src="${src}"]`);
     if (existingScript) return;
 
@@ -20,7 +20,7 @@ export class ScriptService {
     renderer.appendChild(this.document.body, script);
   }
 
-  public reloadJsScript(renderer: Renderer2, src: string) {
+  reloadJsScript(renderer: Renderer2, src: string) {
     this.removeJsScript(src);
     this.addJsScript(renderer, src)
   }
@@ -32,7 +32,7 @@ export class ScriptService {
     }
   }
 
-  public ceckIfJsScriptExist(src: string): boolean {
+  ceckIfJsScriptExist(src: string): boolean {
     return !!this.document.querySelector(`script[src="${src}"]`);
   }
 }

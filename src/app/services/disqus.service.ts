@@ -14,21 +14,21 @@ export class DisqusService {
     public scriptS: ScriptService,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { 
+  ) {
     this.loadLocalstorgae();
   }
 
-  consentGanted() {
+  giveConsent() {
     this.consent = true;
     localStorage.setItem('DisqusConsent', 'true');
   }
 
-  loadLocalstorgae() {
-    if(isPlatformServer(this.platformId)) return;
+  private loadLocalstorgae() {
+    if (isPlatformServer(this.platformId)) return;
     this.consent = localStorage.getItem('DisqusConsent') === 'true';
   }
 
-  public loadDisqus(renderer: Renderer2, title: string): void {
+  loadDisqus(renderer: Renderer2, title: string): void {
     const script = renderer.createElement('script');
     script.type = 'text/javascript';
 

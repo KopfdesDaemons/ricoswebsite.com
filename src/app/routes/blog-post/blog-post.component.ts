@@ -11,7 +11,7 @@ import { PostService } from 'src/app/services/post.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class BlogPostComponent implements OnInit, AfterViewChecked {
-  post: Post | undefined | null;  
+  post: Post | undefined | null;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,12 +23,12 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   async ngOnInit() {
     // when route changes 
     this.route.params.subscribe(async () => {
-      const title = this.route.snapshot.paramMap.get('title');      
+      const title = this.route.snapshot.paramMap.get('title');
       if (title) this.post = await this.postS.getPost(title, this.renderer);
       else {
-        this.route.data.subscribe( async (data) => {
-          if(data['title']) this.post = await this.postS.getPost(data['title'], this.renderer);
-          if(this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;          
+        this.route.data.subscribe(async (data) => {
+          if (data['title']) this.post = await this.postS.getPost(data['title'], this.renderer);
+          if (this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;
         });
       }
     })
