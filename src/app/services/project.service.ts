@@ -2,74 +2,86 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
+import { Project } from '../models/project';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-
   private projectsUrl = 'assets/projects.json';
-  private projects: any[] = [];
+  private projects: Project[] = [];
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
-  // Projeckte aus JSON laden
-  private async loadProjectsFromJson() {
-    if (isPlatformServer(this.platformId)) this.projectsUrl = 'http://localhost:4200/' + this.projectsUrl;
-    const json: any = await lastValueFrom(this.http.get<any[]>(this.projectsUrl));
-    this.projects = json.projects;
+  // Projekte aus JSON laden
+  private async loadProjectsFromJson(): Promise<void> {
+    if (this.projects.length > 0) return;
+
+    try {
+      const url = isPlatformServer(this.platformId)
+        ? `http://localhost:4200/${this.projectsUrl}`
+        : this.projectsUrl;
+      const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));
+      this.projects = response.projects.map(this.createProjectFromData);
+    } catch (error) {
+      console.error('Fehler beim Laden der Projekte:', error);
+      this.projects = [];
+    }
   }
 
-  // Abragen der Anzahl der Projecte für Paginierung
+  // Hilfsfunktion zum Erstellen eines Project-Objekts aus den Daten
+  private createProjectFromData(data: any): Project {
+    return new Project(
+      data.name,
+      data.description,
+      data.image,
+      data.features,
+      data.projectURL,
+      data.githubURL,
+      data.technologies
+    );
+  }
+
+  // Abragen der Anzahl der Projekte für Paginierung
   async getTotalProjectCount(filter: string[] = []): Promise<number> {
-    if (this.projects.length === 0) {
-      await this.loadProjectsFromJson();
+    await this.loadProjectsFromJson();
+
+    if (filter.length === 0) {
+      return this.projects.length;
     }
 
-    if (filter.length > 0) {
-      let filteredProjects: any[] = [...this.projects];
-      filteredProjects = filteredProjects.filter((project) =>
-        filter.some((filterTechnologie) => project.technologies.includes(filterTechnologie))
-      );
-      return filteredProjects.length;
-    }
+    const filteredProjects = this.projects.filter(project =>
+      filter.some(tech => project.technologies.includes(tech))
+    );
 
-    return this.projects.length;
+    return filteredProjects.length;
   }
 
   // Abfragen der Projektdaten
-  async getProjects(filter: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<any[]> {
-    if (this.projects.length === 0) {
-      await this.loadProjectsFromJson();
+  async getProjects(filter: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
+    await this.loadProjectsFromJson();
+
+    let filteredProjects = this.projects;
+
+    if (filter.length > 0) {
+      filteredProjects = filteredProjects.filter(project =>
+        filter.some(tech => project.technologies.includes(tech))
+      );
     }
 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    let filteredProjects: any[] = [...this.projects];
-
-    if (filter.length > 0) {
-      filteredProjects = filteredProjects.filter((project) =>
-        filter.some((filterTechnologie) => project.technologies.includes(filterTechnologie))
-      );
-    }
-
     return filteredProjects.slice(startIndex, endIndex);
   }
 
+  // Abrufen aller Technologien
   async getAllTechnologies(): Promise<string[]> {
-    if (this.projects.length === 0) {
-      await this.loadProjectsFromJson();
-    }
+    await this.loadProjectsFromJson();
 
-    const technologies: string[] = [];
+    const allTechnologies = this.projects.flatMap(project => project.technologies);
+    const uniqueTechnologies = Array.from(new Set(allTechnologies));
 
-    for (const project of this.projects) {
-      for (const technologie of project.technologies) {
-        if (!technologies.includes(technologie)) technologies.push(technologie);
-      }
-    }
-
-    return technologies.sort();
+    return uniqueTechnologies.sort();
   }
 }

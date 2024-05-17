@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/models/post';
 import { HighlightService } from 'src/app/services/highlight.service';
 import { PostService } from 'src/app/services/post.service';
 

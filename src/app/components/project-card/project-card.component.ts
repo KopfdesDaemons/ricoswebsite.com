@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faGithub, faWordpress, faPhp, faAngular, faNodeJs, faJs } from '@fortawesome/free-brands-svg-icons';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-project-card',
@@ -16,13 +17,6 @@ export class ProjectCardComponent {
   faNodeJs = faNodeJs;
   faJs = faJs;
 
-  @Input() name: string = ''
-  @Input() description: string = ''
-  @Input() features: string[] = []
-  @Input() image: string = ''
-  @Input() linkWebsite: string = ''
-  @Input() linkGithub: string = ''
-  @Input() technologies: string[] = []
-
+  @Input() project: Project | undefined;
   @Output() clickOnTag = new EventEmitter();
 }

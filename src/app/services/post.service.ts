@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject, PLATFORM_ID, Renderer2, makeStateKey, TransferState } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
-import { Post } from '../post';
+import { Post } from '../models/post';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/enviroment';

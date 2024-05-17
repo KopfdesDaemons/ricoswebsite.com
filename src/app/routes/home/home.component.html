@@ -41,10 +41,7 @@
             </div>
             <ul class="projectCards">
                 <li *ngFor="let project of projects">
-                    <app-project-card name="{{project.name}}" description="{{project.description}}"
-                        image="{{project.image}}" linkWebsite="{{project.projectURL}}"
-                        linkGithub="{{project.githubURL}}" [features]="project.features"
-                        [technologies]="project.technologies" (clickOnTag)="clickOnTag($event)">
+                    <app-project-card [project]="project" (clickOnTag)="clickOnTag($event)">
                     </app-project-card>
                 </li>
             </ul>

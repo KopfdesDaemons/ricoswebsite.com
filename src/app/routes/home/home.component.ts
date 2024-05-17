@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
 
-  projects: any[] = [];
+  projects: Project[] = [];
   technologiesFilterOptions: string[] = [];
   activTechnologiesFilterOptions: string[] = [];
   totalProjects: number = 0;
@@ -27,10 +28,9 @@ export class HomeComponent implements OnInit {
     public ps: ProjectService,
     private router: Router,
     public sidemenuS: SidemenuService) {
-    this.meta.addTag({
-      property: 'og:description',
-      content: 'My portfolio website as a hobby web developer.'
-    });
+    this.meta.addTags([
+      { property: 'og:description', content: 'My portfolio website as a hobby web developer.' },
+      { name: 'description', content: 'My portfolio website as a hobby web developer.' }]);
   }
 
   ngOnInit() {
