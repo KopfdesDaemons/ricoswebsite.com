@@ -1,14 +1,14 @@
 ---
 title: My basic CSS gallery
 author: Rico
-hasCodePen: 'true'
+hasCodePen: "true"
 keywords:
-- CSS
-- buttons
-- Icons
-- Material Design
-- Inputs
-- Table
+  - CSS
+  - buttons
+  - Icons
+  - Material Design
+  - Inputs
+  - Table
 description: "My design is \U0001F31Finspired\U0001F31F by Google's Material Design.
   It's minimalist, clean and not overloaded."
 date: 5/12/24
