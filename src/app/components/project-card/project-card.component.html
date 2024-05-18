@@ -2,8 +2,8 @@
     <div class="row1">
         <ng-container *ngIf="project?.blogpostURL || project?.projectURL; else noLink">
 
-            <a *ngIf="project?.blogpostURL; else projectURL" href="{{project?.blogpostURL}}" aria-label="Visit project"
-                class="imageDiv">
+            <a *ngIf="project?.blogpostURL; else projectURL" routerLink="{{project?.blogpostURL}}"
+                aria-label="Visit project" class="imageDiv">
                 <img src="{{project?.image}}" alt="{{project?.name}}" width="436" height="326">
             </a>
 

@@ -19,7 +19,7 @@ export class CodepenService {
     if (this.consentS.checkConsent('CodePen')) {
       this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
     } else {
-      const CodePenDemos = Array.from(document.querySelectorAll('.demo'));
+      const CodePenDemos = Array.from(document.querySelectorAll('.codepen'));
       for (const demo of CodePenDemos) {
         const spans = Array.from(demo.querySelectorAll('span'));
         for (const span of spans) {

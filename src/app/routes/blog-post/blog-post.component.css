@@ -84,6 +84,7 @@
   border-radius: 12px;
   max-width: 100%;
   overflow-x: auto;
+  font-size: 0.9em;
 }
 .blogpostMain .postContent pre + .toolbar {
   opacity: unset;
@@ -95,6 +96,12 @@
 }
 .blogpostMain .postContent pre + .toolbar button:hover {
   background-color: gray;
+}
+@media only screen and (max-width: 800px) {
+  .blogpostMain .postContent ul,
+  .blogpostMain .postContent ol {
+    padding-left: 1em;
+  }
 }
 .blogpostMain .postContent button {
   padding: 1em;
