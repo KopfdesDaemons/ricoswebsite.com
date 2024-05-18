@@ -38,6 +38,7 @@ export class ProjectService {
       data.features,
       data.projectURL,
       data.githubURL,
+      data.blogpostURL,
       data.technologies
     );
   }

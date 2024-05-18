@@ -12,6 +12,7 @@
             height: auto;
             animation: grow 500ms ease-out;
             aspect-ratio: 16/9;
+            object-fit: contain;
         }
 
         @media only screen and (max-width: 1100px) {
@@ -41,7 +42,7 @@
     }
 
     .sectionSpacer {
-        max-width: 50em;
+        max-width: 60em;
         flex: 1;
         width: 100%;
         box-sizing: border-box;
@@ -55,7 +56,7 @@
     .postContent {
         font-size: 0.9em;
         margin-top: 2em;
-        max-width: 50rem;
+        // max-width: 60rem;
         min-height: 40em;
         line-height: 1.5em;
         margin-bottom: 4em;
@@ -80,6 +81,15 @@
             color: #8888ff;
         }
 
+        img {
+            max-width: 100%;
+            border-radius: 12px;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+
         pre {
             margin-left: 1em;
             background-color: black;
@@ -100,6 +110,23 @@
                         background-color: gray;
                     }
                 }
+            }
+        }
+
+        button {
+            $color: rgb(193, 192, 255);
+            padding: 1em;
+            background-color: $color;
+            border-radius: 4px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            gap: 0.5em;
+            transition: all 250ms;
+
+            &:hover {
+                color: var(--font-color);
+                border-color: $color;
+                background-color: transparent;
             }
         }
     }

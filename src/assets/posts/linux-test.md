@@ -3,7 +3,7 @@ title: Linux Mint Cinnamon tested as a desktop
 author: Rico
 image: assets/images/linux-mint-desktop.avif
 keywords:
-  - linux,
+  - linux
   - desktop
 description: As a hobby web developer, I tested Linux Mint Cinnamon as a desktop. Here I list my positive experiences and problems.
 date: 4/12/24

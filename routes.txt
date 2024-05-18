@@ -1,3 +1,4 @@
 blogpost/linux-test
 blogpost/about-this-website
 blogpost/css-gallery
+blogpost/blogtube

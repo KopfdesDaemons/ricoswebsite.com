@@ -11,6 +11,8 @@
   height: auto;
   animation: grow 500ms ease-out;
   aspect-ratio: 16/9;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 @media only screen and (max-width: 1100px) {
   .blogpostMain .hero {
@@ -35,7 +37,7 @@
   }
 }
 .blogpostMain .sectionSpacer {
-  max-width: 50em;
+  max-width: 60em;
   flex: 1;
   width: 100%;
   box-sizing: border-box;
@@ -47,7 +49,6 @@
 .blogpostMain .postContent {
   font-size: 0.9em;
   margin-top: 2em;
-  max-width: 50rem;
   min-height: 40em;
   line-height: 1.5em;
   margin-bottom: 4em;
@@ -69,6 +70,13 @@
 .blogpostMain .postContent a {
   color: #8888ff;
 }
+.blogpostMain .postContent img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+.blogpostMain .postContent img:hover {
+  filter: brightness(0.8);
+}
 .blogpostMain .postContent pre {
   margin-left: 1em;
   background-color: black;
@@ -87,6 +95,20 @@
 }
 .blogpostMain .postContent pre + .toolbar button:hover {
   background-color: gray;
+}
+.blogpostMain .postContent button {
+  padding: 1em;
+  background-color: rgb(193, 192, 255);
+  border-radius: 4px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  gap: 0.5em;
+  transition: all 250ms;
+}
+.blogpostMain .postContent button:hover {
+  color: var(--font-color);
+  border-color: rgb(193, 192, 255);
+  background-color: transparent;
 }
 .blogpostMain #disqus_thread {
   min-height: 500px;
