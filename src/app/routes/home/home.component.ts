@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
     public meta: Meta,
     public ps: ProjectService,
     private router: Router,
+    public translate: TranslateService,
     public sidemenuS: SidemenuService) {
     this.meta.addTags([
       { property: 'og:description', content: 'My portfolio website as a hobby web developer.' },
@@ -36,6 +38,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // Wenn Route sich ändert    
     this.route.params.subscribe(params => {
+
+      let lang = params['lang'];
+      if (!lang) {
+        lang = 'en';
+      }
+      this.translate.use(lang);
 
       // Lese Seite und Filter der Technologien aus URL Parametern
       this.currentPage = +params['page'] || 1;

@@ -7,7 +7,7 @@ keywords:
   - WordPress
   - WordPress Theme
 description: BlogTube is a WordPress theme that is based on the design scheme of YouTube
-date: 5/18/24
+date: 2024-05-18
 ---
 
 The BlogTube WordPress Theme is designed for blog posts.
@@ -52,6 +52,6 @@ Problems, bugs or feature requests can be shared in the [support forum](https://
 
 ## BlogTube - Free Download
 
-<button title="button title" onclick=" window.open('https://wordpress.org/themes/blogtube/', '_blank');">WordPress</button>
-<button title="button title" onclick=" window.open('https://github.com/KopfdesDaemons/blogtube', '_blank');">GitHub</button>
-<button title="button title" onclick="location.href='https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip';">Direct Download</button>
+<button title="downdload from WordPress" onclick=" window.open('https://wordpress.org/themes/blogtube/', '_blank');">WordPress</button>
+<button title="view on GitHub" onclick=" window.open('https://github.com/KopfdesDaemons/blogtube', '_blank');">GitHub</button>
+<button title="direct downdload" onclick="location.href='https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip';">Direct Download</button>

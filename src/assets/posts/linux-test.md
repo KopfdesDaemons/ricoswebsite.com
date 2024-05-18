@@ -6,7 +6,7 @@ keywords:
   - linux
   - desktop
 description: As a hobby web developer, I tested Linux Mint Cinnamon as a desktop. Here I list my positive experiences and problems.
-date: 4/12/24
+date: 2024-04-12
 ---
 
 ## Positive

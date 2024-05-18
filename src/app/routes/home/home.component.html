@@ -2,11 +2,8 @@
     <section id="firstSection" class="gradient">
         <div class="sectionSpacer">
             <div class="sloganDiv">
-                <h1>Web development is my biggest hobby</h1>
-                <p>
-                    I taught myself all skills out of interest.
-                    It's not work if it's your hobby.
-                </p>
+                <h1>{{'home_h1' | translate}}</h1>
+                <p>{{'home_subtitle' | translate}}</p>
                 <div class="logoDiv">
                     <img src="assets/images/angularLogo.svg" alt="angular logo" width="80" height="80">
                     <img src="assets/images/nodeLogo.svg" alt="nodeJS logo" width="80" height="80">
@@ -21,7 +18,7 @@
     </section>
     <section id="projectsSection">
         <div class="sectionSpacer" *ngIf="projects.length > 0">
-            <h2>My Projects</h2>
+            <h2>{{'my_projects' | translate}}</h2>
             <div class="filter">
                 <ul class="activTechnologiesFilterOptions">
                     <li *ngFor="let technologie of activTechnologiesFilterOptions">
@@ -31,7 +28,7 @@
                 </ul>
                 <div class="technologiesFilterOption">
                     <div>
-                        <span *ngIf="technologiesFilterOptions.length > 0">Filter Options:</span>
+                        <span *ngIf="technologiesFilterOptions.length > 0">{{'filter_options' | translate}}:</span>
                         <ul>
                             <li *ngFor="let technologie of technologiesFilterOptions"><button
                                     (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
