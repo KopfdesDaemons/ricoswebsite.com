@@ -10,6 +10,7 @@ export class LanguageService {
 
   supportedLanguages: string[] = ['de', 'en'];
   userLanguage: string = 'en';
+  oldLanguage: string = '';
 
   constructor(
     private router: Router,
@@ -21,18 +22,27 @@ export class LanguageService {
   updateLanguage(lang: string | null) {
     if (!lang) lang = this.getUserLanguage();
 
-    this.replaceUnsupportedLangauge(lang);
-    this.userLanguage = lang;
-    this.translate.use(lang);
+    this.userLanguage = this.replaceUnsupportedLangauge(lang);
+    this.translate.use(this.userLanguage);
   }
 
-  private replaceUnsupportedLangauge(lang: string) {
+  private replaceUnsupportedLangauge(lang: string): string {
     if (!this.supportedLanguages.includes(lang)) {
       const userLang = this.getUserLanguage();
       const newUrl = this.router.url.replace(lang, userLang);
-      console.log('newURL: ' + newUrl);
+      // console.log('Unsupported Language: ' + lang + ' newURL: ' + newUrl);
       this.router.navigateByUrl(newUrl);
+      return userLang;
     }
+    return lang;
+  }
+
+  userLanguageSwitch(lang: string) {
+    this.oldLanguage = this.userLanguage; // Alte Sprache speichern
+    this.userLanguage = lang; // Neue Sprache setzen
+    const newUrl = this.router.url.replace(this.oldLanguage, lang);
+    console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
+    this.router.navigateByUrl(newUrl);
   }
 
   getUserLanguage(): string {

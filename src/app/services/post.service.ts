@@ -39,13 +39,13 @@ export class PostService {
   }
 
   private saveTransfereState(title: string) {
-    const key = makeStateKey<Post>('post-' + title);
+    const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
     this.transferState.set(key, this.post);
   }
 
   private loadFromTransfareState(title: string): Post | null {
     if (isPlatformServer(this.platformId)) return null;
-    const key = makeStateKey<Post>('post-' + title);
+    const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
     return this.transferState.get(key, null);
   }
 

@@ -49,6 +49,6 @@ export class AppRoutingModule {
     this.meta.removeTag('property="og:type"');
     this.meta.removeTag('name="description"');
 
-    this.titleS.setTitle('Ricos Website');
+    // this.titleS.setTitle('Ricos Website');
   }
 }

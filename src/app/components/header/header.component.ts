@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { LanguageService } from 'src/app/services/language.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { SidemenuService } from 'src/app/services/sidemenu.service';
 })
 export class HeaderComponent {
 
-  constructor(public sidemenuS: SidemenuService) { }
+  constructor(
+    public sidemenuS: SidemenuService,
+    public languageS: LanguageService
+  ) { }
 
   faBars = faBars;
 

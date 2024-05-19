@@ -21,6 +21,7 @@ aside {
   transition: transform 100ms ease-in-out;
   box-sizing: border-box;
   background-color: var(--section);
+  display: flex;
 }
 aside.sidemenuOpen {
   transform: translateX(calc(-1 * var(--sidemenu-width)));
@@ -36,6 +37,8 @@ aside.sidemenuOpen {
 aside .sidemenuContent {
   margin-top: 6em;
   padding: 0 1em;
+  display: flex;
+  flex-direction: column;
 }
 aside .sidemenuContent ul {
   padding: 0;
@@ -51,7 +54,7 @@ aside .sidemenuContent ul hr {
 }
 aside .sidemenuContent ul a {
   border-radius: 10px;
-  padding: 1em 1em;
+  padding: 1em 0.5em;
   flex: 1 1 auto;
   text-decoration: none;
   display: flex;
@@ -65,4 +68,34 @@ aside .sidemenuContent ul a {
 }
 aside .sidemenuContent ul a:hover {
   background-color: #1c2e64;
+}
+aside .sidemenuContent .languageSetter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: auto;
+  margin-bottom: 1em;
+}
+aside .sidemenuContent .languageSetter input {
+  display: none;
+}
+aside .sidemenuContent .languageSetter input:checked + label {
+  border: solid 1px rgb(109, 109, 109);
+}
+aside .sidemenuContent .languageSetter label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border: solid 1px transparent;
+  padding: 0.2em;
+  cursor: pointer;
+}
+aside .sidemenuContent .languageSetter label svg {
+  height: 2em;
+}
+aside .sidemenuContent .languageSetter label:hover {
+  background-color: rgb(3, 3, 24);
 }/*# sourceMappingURL=sidemenu.component.css.map */

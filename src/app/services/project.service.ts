@@ -23,8 +23,6 @@ export class ProjectService {
 
   // Projekte aus JSON laden
   private async loadProjectsFromJson(): Promise<void> {
-    if (this.projects.length > 0) return;
-
     try {
       const url = isPlatformServer(this.platformId)
         ? `http://localhost:4200/${this.getProjectsUrl()}`
