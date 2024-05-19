@@ -1,50 +1,50 @@
 ---
-title: About this Website
+title: Über diese Webseite
 author: Rico
 keywords:
   - angular
   - markdown
   - YAML
-description: A quick insight into how this website works.
+description: Ein kleiner Einblick, wie diese Website funktioniert.
 date: 2024-05-12
 ---
 
 ## Rendering
 
-This website was built using Angular and pre-rendered using Angular Prerenderer.
-The initial page view is static and then the website functions like a single-page application.
-Static Site Generation (SSG) with hydration is used.
+Diese Website wurde mit Angular erstellt und mit dem Angular Prerenderer vorgerendert.
+Der initiale Seitenaufruf ist statisch und anschließend funktioniert die Website wie eine Single-Page-Application.
+Es wird Static Site Generation (SSG) mit Hydratation verwendet.
 
 ## Hosting
 
-This website is hosted on GitHub Pages.
-The [GitHub repository](https://github.com/KopfdesDaemons/ricoswebsite.com) is public.
-To deploy the website to GitHub Pages [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) is used.
+Diese Website wird auf GitHub Pages gehostet.
+Das [GitHub Repository](https://github.com/KopfdesDaemons/ricoswebsite.com) ist öffentlich.
+Für das Deployment auf GitHub Pages wird [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) verwendet.
 
-## Scalability
+## Skalierbarkeit
 
-### Blog posts
+### Blogbeiträge
 
-The blog posts are loaded from markdown files, which contain all metadata in the header. Here's an example:
+Die Blogbeiträge werden aus Markdown-Dateien geladen, die alle Metadaten im Header enthalten. Hier ist ein Beispiel:
 
 ```yaml
 ---
-title: About this Website
+title: Über diese Webseite
 author: Rico
 keywords:
   - angular
   - markdown
   - YAML
-description: A quick insight into how this website works.
-date: 5/12/24
+description: Ein kleiner Einblick, wie diese Website funktioniert.
+date: 2024-05-12
 ---
 ```
 
-When the page is initially accessed, the data has already been pre-rendered. When navigating after the initial page view, the data is loaded via http requests.
+Beim ersten Aufruf der Seite sind die Daten bereits vorgerendert. Beim Navigieren nach dem ersten Seitenaufruf werden die Daten über http-Requests geladen.
 
 ### Portfoliio
 
-Portfolio project information is loaded dynamically from a JSON file.
+Die Projektinformationen für das Portfolio werden dynamisch aus einer JSON-Datei geladen.
 
 ```json
 "projects": [

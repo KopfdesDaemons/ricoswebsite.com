@@ -2,5 +2,12 @@
     "home_h1": "Web development is my biggest hobby",
     "home_subtitle": "I taught myself all skills out of interest. It's not work if it's your hobby.",
     "my_projects": "My Projects",
-    "filter_options": "Filter options"
+    "filter_options": "Filter options",
+    "legal_notice": "Legal notice",
+    "privacy_policy": "Privacy policy",
+    "my_links": "My Links",
+    "css_gallery_title": "CSS gallery",
+    "linux_test_title": "Linux Mint tested as a desktop",
+    "codepen_title": "Integrate CodePen into Your Angular Project",
+    "about_this_website_title": "About this website"
 }

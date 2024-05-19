@@ -1,6 +1,6 @@
 <footer>
     <div class="linkGroup">
-        <h2>My Links</h2>
+        <h2>{{'my_links' | translate}}</h2>
         <ul>
             <li><fa-icon [icon]="faInstagram"></fa-icon><a target="_blank"
                     href="https://www.instagram.com/KopfdesDaemons/">Instagram</a></li>
@@ -11,8 +11,8 @@
     <div class="linkGroup">
         <h2>Page</h2>
         <ul>
-            <li><a routerLink="/legal-notice">Legal notice</a></li>
-            <li><a routerLink="{{languageS.userLanguage + '/privacy-policy'}}">Privacy policy</a></li>
+            <li><a routerLink="/legal-notice">{{'legal_notice' | translate}}</a></li>
+            <li><a routerLink="{{languageS.userLanguage + '/privacy-policy'}}">{{'privacy_policy' | translate}}</a></li>
         </ul>
     </div>
 </footer>

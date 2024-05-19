@@ -3,8 +3,8 @@
         <ng-container *ngIf="project?.blogpostURL || project?.projectURL; else noLink">
 
             <a *ngIf="project?.blogpostURL; else projectURL"
-                routerLink="{{languageS.userLanguage + project?.blogpostURL}}" aria-label="Visit project"
-                class="imageDiv">
+                [routerLink]="[languageS.userLanguage ? languageS.userLanguage + project?.blogpostURL : project?.blogpostURL]"
+                aria-label="Visit project" class="imageDiv">
                 <img src="{{project?.image}}" alt="{{project?.name}}" width="436" height="326">
             </a>
 
@@ -16,7 +16,7 @@
 
             <div class="descriptionDiv">
                 <a *ngIf="project?.blogpostURL; else h3ProjectURL"
-                    routerLink="{{languageS.userLanguage + project?.blogpostURL}}">
+                    [routerLink]="[languageS.userLanguage ? languageS.userLanguage + project?.blogpostURL : project?.blogpostURL]">
                     <h3>{{project?.name}}</h3>
                 </a>
 

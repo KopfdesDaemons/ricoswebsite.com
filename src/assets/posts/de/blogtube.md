@@ -1,57 +1,57 @@
 ---
-title: BlogTube - A WordPress YouTube clone
+title: BlogTube - Ein WordPress YouTube Klon
 author: Rico
 image: assets/images/blogtube.avif
 keywords:
   - YouTube
   - WordPress
   - WordPress Theme
-description: BlogTube is a WordPress theme that is based on the design scheme of YouTube
+description: BlogTube ist ein WordPress-Theme, das auf dem Designschema von YouTube basiert
 date: 2024-05-18
 ---
 
-The BlogTube WordPress Theme is designed for blog posts.
+Das BlogTube WordPress Theme ist für Blogbeiträge konzipiert.
 
-BlogTube is available for free, open source and free software. The theme uses the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html) or later.
+BlogTube ist kostenlos verfügbar, Open Source und freie Software. Das Theme verwendet die [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html) oder höher.
 
 ## BlogTube Features
 
-- infinite scroll feed
-- custom sidemenu
-- custom primary color
-- custom font
+- unendlicher Scroll-Feed
+- benutzerdefiniertes Seitenmenü
+- benutzerdefinierte Primärfarbe
+- benutzerdefinierte Schriftart
 - responsive design
 
-## BlogTube - Customizer options
+## BlogTube - Customizer Optionen
 
-- font
-- primary color
-- background color
-- font color
-- options for posts and pages
+- Schriftart
+- Primärfarbe
+- Hintergrundfarbe
+- Schriftfarbe
+- Optionen für Beiträge und Seiten
 
-## BlogTube - Feed example
+## BlogTube - Feed Beispiel
 
-![alt text](assets/images/blogtube-feed.avif "feed example")
+![alt text](assets/images/blogtube-feed.avif "Feed Beispiel")
 
-## BlogTube - Blog post example
+## BlogTube - Blogbeitrag Beispiel
 
-![alt text](assets/images/blogtube-post-screenshot.avif "blog post example")
+![alt text](assets/images/blogtube-post-screenshot.avif "Blogbeitrag Beispiel")
 
-## BlogTube - Author page example
+## BlogTube - Autorenseite Beispiel
 
-![alt text](assets/images/blogtube-author-page.avif "author page example")
+![alt text](assets/images/blogtube-author-page.avif "Autorenseite Beispiel")
 
-## BlogTube - Comment example
+## BlogTube - Kommentar Beispiel
 
-![alt text](assets/images/blogtube-comment.avif "comment example")
+![alt text](assets/images/blogtube-comment.avif "Kommentar Beispiel")
 
 ## BlogTube - Support Forum
 
-Problems, bugs or feature requests can be shared in the [support forum](https://wordpress.org/support/theme/blogtube/) or here in the comments.
+Probleme, Bugs oder Funktionswünsche können im [Support-Forum](https://wordpress.org/support/theme/blogtube/) oder hier in den Kommentaren geteilt werden.
 
 ## BlogTube - Free Download
 
-<button title="downdload from WordPress" onclick=" window.open('https://wordpress.org/themes/blogtube/', '_blank');">WordPress</button>
-<button title="view on GitHub" onclick=" window.open('https://github.com/KopfdesDaemons/blogtube', '_blank');">GitHub</button>
-<button title="direct downdload" onclick="location.href='https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip';">Direct Download</button>
+<button title="Downdload von WordPress" onclick=" window.open('https://wordpress.org/themes/blogtube/', '_blank');">WordPress</button>
+<button title="Ansehen auf GitHub" onclick=" window.open('https://github.com/KopfdesDaemons/blogtube', '_blank');">GitHub</button>
+<button title="Direkter Downdload" onclick="location.href='https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip';">Dirkter Download</button>

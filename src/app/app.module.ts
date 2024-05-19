@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule, PLATFORM_ID, Inject } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,24 +17,27 @@ import { DisqusComponent } from './components/disqus/disqus.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { lastValueFrom } from 'rxjs';
+import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+export function HttpLoaderFactory(http: HttpClient, platformId: object) {
+  const path = isPlatformServer(platformId) ? 'http://localhost:4200/assets/i18n/' : 'assets/i18n/';
+  return new TranslateHttpLoader(http, path, '.json');
 }
 
-export function appInitializerFactory(translate: TranslateService, httpClient: HttpClient) {
+export function appInitializerFactory(translate: TranslateService, httpClient: HttpClient, platformId: object) {
   return async () => {
     // Set default languages
     translate.setDefaultLang('en');
     translate.addLangs(['de', 'en']);
 
+    const path = isPlatformServer(platformId) ? 'http://localhost:4200/assets/i18n/' : 'assets/i18n/';
     try {
       // Load german translation
-      const deTranslations = await lastValueFrom(httpClient.get('assets/i18n/de.json'));
+      const deTranslations = await lastValueFrom(httpClient.get(`${path}de.json`));
       translate.setTranslation('de', deTranslations);
 
       // Load english translation
-      const enTranslations = await lastValueFrom(httpClient.get('assets/i18n/en.json'));
+      const enTranslations = await lastValueFrom(httpClient.get(`${path}en.json`));
       translate.setTranslation('en', enTranslations);
     } catch (error) {
       console.error('Fehler beim Laden der Übersetzungen', error);
@@ -64,7 +67,7 @@ export function appInitializerFactory(translate: TranslateService, httpClient: H
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient, PLATFORM_ID]
       }
     }),
   ],
@@ -75,7 +78,7 @@ export function appInitializerFactory(translate: TranslateService, httpClient: H
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,
-      deps: [TranslateService, HttpClient],
+      deps: [TranslateService, HttpClient, PLATFORM_ID],
       multi: true
     }
   ],
