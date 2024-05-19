@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faGithub, faWordpress, faPhp, faAngular, faNodeJs, faJs } from '@fortawesome/free-brands-svg-icons';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-project-card',
@@ -19,4 +20,6 @@ export class ProjectCardComponent {
 
   @Input() project: Project | undefined;
   @Output() clickOnTag = new EventEmitter();
+
+  constructor(public languageS: LanguageService) { }
 }

@@ -3,6 +3,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { isPlatformBrowser } from '@angular/common';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-sidemenu',
@@ -16,7 +17,10 @@ export class SidemenuComponent implements AfterViewInit {
   faHome = faHome;
   faGithub = faGithub;
 
-  constructor(public sidemenuS: SidemenuService, @Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(
+    public sidemenuS: SidemenuService,
+    public languageS: LanguageService,
+    @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {

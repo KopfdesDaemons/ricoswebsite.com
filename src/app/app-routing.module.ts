@@ -7,12 +7,11 @@ import { Meta, Title } from '@angular/platform-browser';
 import { filter } from 'rxjs';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'en', pathMatch: 'full' },
-  { path: ':lang', component: HomeComponent },
-  { path: 'projects/page/:page/:technologies', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent },
+  { path: 'projects/page/:page/:technologies', component: HomeComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },
-  { path: 'blogpost/:title', component: BlogPostComponent },
-  { path: 'privacy-policy', component: BlogPostComponent, data: { title: 'privacy-policy' } },
+  { path: ':lang/blogpost/:title', component: BlogPostComponent },
+  { path: ':lang/privacy-policy', component: BlogPostComponent, data: { title: 'privacy-policy' } },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

@@ -7,6 +7,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/enviroment';
 import { MarkdownService } from './markdown.service';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,14 @@ export class PostService {
     private router: Router,
     private transferState: TransferState,
     private markdownS: MarkdownService,
+    private languageS: LanguageService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   async getPost(title: string): Promise<Post | null> {
     this.post = this.loadFromTransfareState(title);
-    if (!this.post) this.post = await this.loadFromFiles(title);
+    const lang = this.languageS.userLanguage;
+    if (!this.post) this.post = await this.loadFromFiles(title, lang);
     if (!this.post) return null;
 
     this.updateMetaData();
@@ -46,9 +49,9 @@ export class PostService {
     return this.transferState.get(key, null);
   }
 
-  private async loadFromFiles(title: string): Promise<Post | null> {
+  private async loadFromFiles(title: string, language: string): Promise<Post | null> {
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
-    const contentUrl = `${baseUrl}assets/posts/${title}.md`;
+    const contentUrl = `${baseUrl}assets/posts/${language}/${title}.md`;
 
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
@@ -57,8 +60,11 @@ export class PostService {
       const postContent = await this.markdownS.parseMarkdown(markdownBody);
 
       return new Post(postMeta, postContent);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      if (error.status === 404 && language !== 'en') {
+        return this.loadFromFiles(title, 'en'); // Versuche, den Inhalt auf Englisch zu laden
+      }
       return null;
     }
   }

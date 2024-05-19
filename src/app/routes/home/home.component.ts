@@ -39,12 +39,6 @@ export class HomeComponent implements OnInit {
     // Wenn Route sich ändert    
     this.route.params.subscribe(params => {
 
-      let lang = params['lang'];
-      if (!lang) {
-        lang = 'en';
-      }
-      this.translate.use(lang);
-
       // Lese Seite und Filter der Technologien aus URL Parametern
       this.currentPage = +params['page'] || 1;
       if (params['technologies']) this.activTechnologiesFilterOptions = params['technologies'].split('&');

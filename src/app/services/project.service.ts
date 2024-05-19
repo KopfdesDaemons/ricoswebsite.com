@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
 import { Project } from '../models/project';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProjectService {
   private projectsUrl = 'assets/projects.json';
   private projects: Project[] = [];
 
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object, private languageS: LanguageService) { }
 
   // Projekte aus JSON laden
   private async loadProjectsFromJson(): Promise<void> {
