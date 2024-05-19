@@ -1,5 +1,5 @@
 ---
-title: My basic CSS gallery
+title: Meine basic CSS Gallery
 author: Rico
 hasCodePen: "true"
 keywords:
@@ -9,9 +9,9 @@ keywords:
   - Material Design
   - Inputs
   - Table
-description: "My design is \U0001F31Finspired\U0001F31F by Google's Material Design.
-  It's minimalist, clean and not overloaded."
-date: 5/12/24
+description: "Mein Design ist \U0001F31Finspiriert\U0001F31F von Googles Material Design.
+  Es ist minimalistisch, clean und nicht überladen."
+date: 2024-05-12
 ---
 
 ## Buttons

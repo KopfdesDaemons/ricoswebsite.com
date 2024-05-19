@@ -6,7 +6,7 @@ keywords:
   - markdown
   - YAML
 description: A quick insight into how this website works.
-date: 5/12/24
+date: 2024-05-12
 ---
 
 ## Rendering

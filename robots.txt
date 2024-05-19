@@ -1,3 +1,4 @@
 user-agent: *
 Disallow: /legal-notice
-Disallow: /privacy-policy
+Disallow: /de/privacy-policy
+Disallow: /en/privacy-policy

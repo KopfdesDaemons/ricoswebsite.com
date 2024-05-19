@@ -11,13 +11,9 @@ description: Learn how to seamlessly integrate CodePen snippets into your Angula
 date: 2024-05-18
 ---
 
-## What is CodePen and Why Use it in Angular?
+## What is CodePen?
 
-CodePen is a popular online code editor and community platform that allows developers to write and share code snippets. It offers a convenient way to showcase interactive elements and test code functionalities. Integrating CodePen snippets into your Angular project can be beneficial for:
-
-- **Demonstrating functionality:** Embed live code examples to illustrate features within your Angular application.
-- **Prototyping ideas:** Quickly test and refine UI concepts using CodePen's interactive environment.
-- **Sharing reusable code components:** Showcase reusable code snippets from CodePen within your Angular project.
+CodePen is a popular online code editor and community platform that allows developers to write and share code snippets. It offers a convenient way to showcase interactive elements and test code functionalities.
 
 ## Step-by-Step Guide: Integrate CodePen into Your Angular Project
 
@@ -25,9 +21,9 @@ Integrating CodePen snippets into your Angular project involves this main steps:
 
 1. **Embed the HTML Code:**
 
-   - Open your desired CodePen snippet.
-   - Click on "Embed" located at the bottom.
-   - Copy the HTML code provided. **(Do not include the script tag)**
+   - Open your desired CodePen snippet
+   - Click on "Embed" located at the bottom
+   - Copy the HTML code provided **(Do not include the script tag)**
 
    ```html
    <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="NWOQYqz" data-editable="true" data-user="Rico-the-bold" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">

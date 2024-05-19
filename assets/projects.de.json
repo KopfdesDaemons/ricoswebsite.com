@@ -1,0 +1,95 @@
+{
+    "projects": [
+        {
+            "name": "BlogTube",
+            "description": "Ein WordPress-Theme, das auf dem Designschema von YouTube basiert",
+            "image": "assets\\images\\blogtube.avif",
+            "features": [
+                "unendlicher Scroll-Feed",
+                "benutzerdefiniertes Sidemenu",
+                "benutzerdefinierte Primärfarbe",
+                "benutzerdefinierte Schriftart"
+            ],
+            "projectURL": "https://wordpress.org/themes/blogtube/",
+            "githubURL": "https://github.com/KopfdesDaemons/blogtube",
+            "blogpostURL": "/blogpost/blogtube",
+            "technologies": [
+                "WordPress",
+                "PHP",
+                "JavaScript"
+            ]
+        },
+        {
+            "name": "Blog Layouts",
+            "description": "Ein WordPress-Theme, dessen Kernfunktion der Layoutwechsel ist",
+            "image": "assets\\images\\blog-layouts.avif",
+            "features": [
+                "Layoutwechsel",
+                "bekannte Desings wie Material Design 2 und 3",
+                "umfassende Autorenseite",
+                "benutzerdefinierte Theme-Farben"
+            ],
+            "projectURL": "https://wordpress.org/themes/blog-layouts/",
+            "githubURL": "https://github.com/KopfdesDaemons/blog-layouts",
+            "technologies": [
+                "WordPress",
+                "PHP",
+                "JavaScript"
+            ]
+        },
+        {
+            "name": "Neo Blog",
+            "description": "WordPress-Theme",
+            "image": "assets\\images\\neo-blog.avif",
+            "features": [
+                "Darkmode / Lightmode",
+                "viele Anpassungsoptionen",
+                "benutzerdefinierte Theme-Farben"
+            ],
+            "projectURL": "https://wordpress.org/themes/neo-blog/",
+            "githubURL": "https://github.com/KopfdesDaemons/neo-blog",
+            "technologies": [
+                "WordPress",
+                "PHP",
+                "JavaScript"
+            ]
+        },
+        {
+            "name": "grundbuch-musterantrag.de",
+            "description": "Eine Website über das deutsche Grundbuchrecht",
+            "image": "assets\\images\\grundbuch-musterantrag.de.avif",
+            "features": [
+                "Darkmode / Lightmode",
+                "benutzerdefinierte Primärfarbe",
+                "Admin-Login / Dashboard",
+                "PDF-Erstellung",
+                "Schritt-für-Schritt-Formular"
+            ],
+            "projectURL": "https://www.grundbuch-musterantrag.de/",
+            "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de",
+            "technologies": [
+                "Angular",
+                "TypeScript",
+                "Node.js",
+                "JavaScript"
+            ]
+        },
+        {
+            "name": "tickturtle.com",
+            "description": "Eine Website zur Zeiterfassung von Arbeitsschritten",
+            "image": "assets\\images\\tickturtle.com.avif",
+            "features": [
+                "Zeiterfassung / Zeitpausierung / Zeitfortsetzung",
+                "Aufgaben bearbeiten / Aufgaben löschen",
+                "Datenspeicherung im Local Storage",
+                "eigenes Tabellendesign mit mehreren Funktionen"
+            ],
+            "projectURL": "https://tickturtle.com/",
+            "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
+            "technologies": [
+                "Angular",
+                "TypeScript"
+            ]
+        }
+    ]
+}
