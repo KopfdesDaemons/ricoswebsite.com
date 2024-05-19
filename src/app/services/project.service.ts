@@ -9,10 +9,17 @@ import { LanguageService } from './language.service';
   providedIn: 'root'
 })
 export class ProjectService {
-  private projectsUrl = 'assets/projects.json';
   private projects: Project[] = [];
 
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object, private languageS: LanguageService) { }
+  constructor(
+    private http: HttpClient,
+    private languageS: LanguageService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
+
+  private getProjectsUrl(): string {
+    return `assets/projects.${this.languageS.userLanguage}.json`;
+  }
 
   // Projekte aus JSON laden
   private async loadProjectsFromJson(): Promise<void> {
@@ -20,8 +27,8 @@ export class ProjectService {
 
     try {
       const url = isPlatformServer(this.platformId)
-        ? `http://localhost:4200/${this.projectsUrl}`
-        : this.projectsUrl;
+        ? `http://localhost:4200/${this.getProjectsUrl()}`
+        : this.getProjectsUrl();
       const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));
       this.projects = response.projects.map(this.createProjectFromData);
     } catch (error) {

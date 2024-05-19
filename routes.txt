@@ -1,3 +1,5 @@
+de
+
 de/privacy-policy
 de/blogpost/linux-test
 de/blogpost/about-this-website
