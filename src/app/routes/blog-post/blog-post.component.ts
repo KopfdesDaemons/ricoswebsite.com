@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { HighlightService } from 'src/app/services/highlight.service';
+import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -20,11 +21,16 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     private renderer: Renderer2,
     private highlightS: HighlightService,
     private codePenS: CodepenService,
+    private languageS: LanguageService
   ) { }
 
   async ngOnInit() {
     // when route changes 
     this.route.params.subscribe(async () => {
+
+      const lang = this.route.snapshot.paramMap.get('lang');
+      if (lang) this.languageS.updateLanguage(lang);
+
       const title = this.route.snapshot.paramMap.get('title');
       if (title) this.post = await this.postS.getPost(title);
       else {

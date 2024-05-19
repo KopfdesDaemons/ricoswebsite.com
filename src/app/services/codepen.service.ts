@@ -2,6 +2,9 @@ import { Inject, Injectable, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { ConsentService } from './consent.service';
 import { ScriptService } from './script.service';
 import { isPlatformServer } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { lastValueFrom } from 'rxjs';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +14,12 @@ export class CodepenService {
   constructor(
     private consentS: ConsentService,
     private scriptS: ScriptService,
+    private translate: TranslateService,
+    private languageS: LanguageService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  loadCodePen(renderer: Renderer2) {
+  async loadCodePen(renderer: Renderer2) {
     if (isPlatformServer(this.platformId)) return;
     if (this.consentS.checkConsent('CodePen')) {
       this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
@@ -27,7 +32,8 @@ export class CodepenService {
           renderer.addClass(button, 'codePenConsentButton');
           button.addEventListener('click', () => this.consentS.giveConsent('CodePen'));
 
-          const buttonText = renderer.createText('Load content from CodePen');
+          const buttonTextTranslation = await lastValueFrom(this.translate.get('codepen_button'));
+          const buttonText = renderer.createText(buttonTextTranslation);
           renderer.appendChild(button, buttonText);
 
           const parent = span.parentNode;
@@ -35,12 +41,15 @@ export class CodepenService {
           renderer.removeChild(parent, span);
 
           const paragraph = renderer.createElement('p');
-          const paragraphText = renderer.createText('The code is loaded by the third-party provider CodePen. For more details see ');
+
+          const pTextTranslation = await lastValueFrom(this.translate.get('codepen_privacy_notice'));
+          const paragraphText = renderer.createText(pTextTranslation + ' ');
           renderer.appendChild(paragraph, paragraphText);
 
           const privacyPolicy = renderer.createElement('a');
-          renderer.setAttribute(privacyPolicy, 'href', '/privacy-policy');
-          const privacyPolicyText = renderer.createText('Privacy Policy');
+          renderer.setAttribute(privacyPolicy, 'href', this.languageS.userLanguage + '/privacy-policy');
+          const privacyPolicyTranslation = await lastValueFrom(this.translate.get('privacy_policy'));
+          const privacyPolicyText = renderer.createText(privacyPolicyTranslation);
           renderer.appendChild(privacyPolicy, privacyPolicyText);
           renderer.appendChild(paragraph, privacyPolicy);
           renderer.appendChild(parent, paragraph);

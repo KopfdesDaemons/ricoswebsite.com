@@ -2,9 +2,10 @@
 <div class="consentBanner" *ngIf="!disqusS.consent">
     <button (click)="giveConsent()">
         <fa-icon [icon]="faComment"></fa-icon>
-        <span>Load Comments</span>
+        <span>{{'load_comments' | translate}}</span>
     </button>
-    <span class="disclaimer">The comments are loaded by the third-party provider <a href="https://disqus.com/" target="_blank">Disqus</a>. For more details see <a routerLink="/privacy-policy">privacy policy</a>.</span>
+    <span class="disclaimer">{{'disqus_privacy_notice' | translate}} <a href="https://disqus.com/"
+            target="_blank">Disqus</a>. {{'for_more_details_see' | translate}} <a
+            [routerLink]="['/' + languageS.userLanguage + '/privacy-policy']">{{'privacy_policy' |
+            translate}}</a>.</span>
 </div>
-
-

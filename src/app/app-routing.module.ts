@@ -8,8 +8,9 @@ import { filter } from 'rxjs';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'projects/page/:page/:technologies', component: HomeComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },
+  { path: ':lang', component: HomeComponent },
+  { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
   { path: ':lang/blogpost/:title', component: BlogPostComponent },
   { path: ':lang/privacy-policy', component: BlogPostComponent, data: { title: 'privacy-policy' } },
   { path: '**', redirectTo: '', pathMatch: 'full' }

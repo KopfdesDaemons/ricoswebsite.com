@@ -1,6 +1,7 @@
 import { Component, Input, ElementRef, Renderer2, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { DisqusService } from 'src/app/services/disqus.service';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-disqus',
@@ -17,6 +18,7 @@ export class DisqusComponent implements OnChanges {
     public disqusS: DisqusService,
     public renderer: Renderer2,
     private elementRef: ElementRef,
+    public languageS: LanguageService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -5,7 +5,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project';
-import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-home',
@@ -25,10 +25,10 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public meta: Meta,
+    private meta: Meta,
     public ps: ProjectService,
     private router: Router,
-    public translate: TranslateService,
+    private languageS: LanguageService,
     public sidemenuS: SidemenuService) {
     this.meta.addTags([
       { property: 'og:description', content: 'My portfolio website as a hobby web developer.' },
@@ -38,6 +38,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // Wenn Route sich ändert    
     this.route.params.subscribe(params => {
+
+      let lang = this.route.snapshot.paramMap.get('lang');
+      if (lang) this.languageS.updateLanguage(lang);
+      else {
+        lang = this.languageS.getUserLanguage();
+        this.router.navigate(['/' + lang]);
+      }
 
       // Lese Seite und Filter der Technologien aus URL Parametern
       this.currentPage = +params['page'] || 1;
@@ -74,7 +81,7 @@ export class HomeComponent implements OnInit {
     // Alle aktiven Filteroptionen als ein String
     const technologieString = this.getParamChain(this.activTechnologiesFilterOptions);
 
-    this.router.navigate(['projects/page/1/' + technologieString], { fragment: 'projectsSection' })
+    this.router.navigate([this.languageS.userLanguage + '/projects/page/1/' + technologieString], { fragment: 'projectsSection' })
   }
 
   removeTechnologieFromFilter(technologie: string) {
@@ -84,10 +91,11 @@ export class HomeComponent implements OnInit {
     // Alle aktiven Filteroptionen als ein String
     const technologieString = this.getParamChain(this.activTechnologiesFilterOptions);
 
-    this.router.navigate(['projects/page/1/' + technologieString], { fragment: 'projectsSection' });
+    if (!technologieString) this.router.navigate(['/' + this.languageS.userLanguage], { fragment: 'projectSection' })
+    else this.router.navigate([this.languageS.userLanguage + '/projects/page/1/' + technologieString], { fragment: 'projectsSection' });
   }
 
   clickOnTag(technologie: string) {
-    this.router.navigate(['projects/page/1/' + technologie], { fragment: 'projectsSection' });
+    this.router.navigate([this.languageS.userLanguage + '/projects/page/1/' + technologie], { fragment: 'projectsSection' });
   }
 }

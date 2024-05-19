@@ -9,5 +9,10 @@
     "css_gallery_title": "CSS Gallery",
     "linux_test_title": "Linux Mint als Desktop getestet",
     "codepen_title": "CodePen in ein Angular Projekt integrieren",
-    "about_this_website_title": "Über diese Webseite"
+    "about_this_website_title": "Über diese Webseite",
+    "load_comments": "Lade Kommentare",
+    "disqus_privacy_notice": "Die Kommentare werden geladen vom Drittanbieter",
+    "for_more_details_see": "Für mehr Details siehe",
+    "codepen_button": "Lade Code Snippet von CodePen",
+    "codepen_privacy_notice": "Der Inhalt wird vom Drittanbieter CodePen geladen. Für mehr Details siehe"
 }
