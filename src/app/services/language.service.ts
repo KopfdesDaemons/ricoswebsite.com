@@ -1,4 +1,4 @@
-import { isPlatformServer } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,20 +8,34 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LanguageService {
 
-  supportedLanguages: string[] = ['de', 'en'];
   userLanguage: string = 'en';
-  oldLanguage: string = '';
+  askUserToSwitch: boolean = true;
+  private supportedLanguages: string[] = ['de', 'en'];
+  private oldLanguage: string = '';
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private translate: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {
+    if (isPlatformBrowser(platformId)) {
+      const storedLanguage = localStorage.getItem('language');
+      if (storedLanguage) {
+        this.userLanguage = storedLanguage;
+        this.askUserToSwitch = false;
+      }
+    }
+  }
 
   updateLanguage(lang: string | null) {
-    if (!lang) lang = this.getLanguageFromUserAgent();
+    const UserAgentLang = this.getLanguageFromUserAgent();
+    if (!lang) lang = UserAgentLang;
     this.userLanguage = this.replaceUnsupportedLangauge(lang);
+    const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
+    setTimeout(() => {
+      this.askUserToSwitch = ask;
+    });
     this.translate.use(this.userLanguage);
   }
 
@@ -41,6 +55,8 @@ export class LanguageService {
     const newUrl = this.router.url.replace(this.oldLanguage, lang);
     console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
     this.router.navigateByUrl(newUrl);
+    localStorage.setItem('language', this.userLanguage.toString());
+    this.askUserToSwitch = false;
   }
 
   getLanguageFromUserAgent(): string {

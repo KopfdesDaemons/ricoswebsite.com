@@ -35,10 +35,11 @@ aside.sidemenuOpen {
   }
 }
 aside .sidemenuContent {
-  margin-top: 6em;
+  margin-top: 5em;
   padding: 0 1em;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 aside .sidemenuContent ul {
   padding: 0;

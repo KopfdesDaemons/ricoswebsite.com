@@ -29,6 +29,12 @@ body {
   background-color: var(--body);
   margin: 0;
   font-family: sans-serif;
+
+  @media only screen and (max-width: 800px) {
+    &:has(.menuIsOpen) {
+      overflow: hidden;
+    }
+  }
 }
 
 a,
