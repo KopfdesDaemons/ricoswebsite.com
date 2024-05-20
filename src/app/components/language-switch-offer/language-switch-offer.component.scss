@@ -9,6 +9,7 @@
     box-shadow: 1px 1px 3px 1px black;
     transform: translateX(110%);
     border: solid 1px;
+    opacity: 0;
 
     @media only screen and (max-width:600px) {
         right: 1em;
@@ -20,10 +21,12 @@
     @keyframes moveIn {
         from {
             transform: translateX(110%);
+            opacity: 0;
         }
 
         to {
             transform: translateX(0);
+            opacity: 100;
         }
     }
 

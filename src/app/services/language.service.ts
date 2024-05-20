@@ -10,7 +10,7 @@ export class LanguageService {
 
   userLanguage: string = 'en';
   userAgendLanguage: string;
-  askUserToSwitch: boolean = true;
+  askUserToSwitch: boolean = false;
   private supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
 
@@ -21,6 +21,7 @@ export class LanguageService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     if (isPlatformBrowser(platformId)) {
+      this.askUserToSwitch = true;
       const storedLanguage = localStorage.getItem('language');
       if (storedLanguage) {
         this.userLanguage = storedLanguage;
@@ -35,9 +36,7 @@ export class LanguageService {
     if (!lang) lang = UserAgentLang;
     this.userLanguage = this.replaceUnsupportedLangauge(lang);
     const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
-    setTimeout(() => {
-      this.askUserToSwitch = ask;
-    });
+    this.askUserToSwitch = ask;
     this.translate.use(this.userLanguage);
   }
 
