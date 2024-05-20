@@ -1,0 +1,39 @@
+#consentManager {
+  background-color: rgb(37, 44, 51);
+  padding: 1em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 3px 1px black;
+  border-radius: 12px;
+  border: 1px solid;
+}
+#consentManager .closeButton {
+  border-radius: 4px;
+  height: 1.8em;
+  width: 1.8em;
+  border: none;
+  cursor: pointer;
+}
+#consentManager .closeButton:hover {
+  background-color: rgb(206, 206, 206);
+}
+#consentManager .headlineDiv {
+  display: flex;
+  gap: 0.5em;
+}
+#consentManager .headlineDiv h2 {
+  margin-top: 0;
+}
+#consentManager ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+#consentManager ul li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=consent-manager.component.css.map */

@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LanguageService {
 
   userLanguage: string = 'en';
+  userAgendLanguage: string;
   askUserToSwitch: boolean = true;
   private supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
@@ -26,10 +27,11 @@ export class LanguageService {
         this.askUserToSwitch = false;
       }
     }
+    this.userAgendLanguage = this.getLanguageFromUserAgent();
   }
 
   updateLanguage(lang: string | null) {
-    const UserAgentLang = this.getLanguageFromUserAgent();
+    const UserAgentLang = this.userAgendLanguage;
     if (!lang) lang = UserAgentLang;
     this.userLanguage = this.replaceUnsupportedLangauge(lang);
     const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
@@ -41,7 +43,7 @@ export class LanguageService {
 
   private replaceUnsupportedLangauge(lang: string): string {
     if (!this.supportedLanguages.includes(lang)) {
-      const userLang = this.getLanguageFromUserAgent();
+      const userLang = this.userAgendLanguage;
       const newUrl = this.router.url.replace(lang, userLang);
       this.router.navigateByUrl(newUrl);
       return userLang;
@@ -59,7 +61,7 @@ export class LanguageService {
     this.askUserToSwitch = false;
   }
 
-  getLanguageFromUserAgent(): string {
+  private getLanguageFromUserAgent(): string {
     if (isPlatformServer(this.platformId)) return 'en';
     const userLang = navigator.language || (navigator.languages && navigator.languages[0]);
     console.log(`Detected user language: ${userLang}`);

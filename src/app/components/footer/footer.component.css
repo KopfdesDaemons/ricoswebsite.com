@@ -29,4 +29,8 @@ li {
 }
 li fa-icon {
   margin-right: 0.5em;
+}
+li a {
+  text-decoration: underline;
+  cursor: pointer;
 }/*# sourceMappingURL=footer.component.css.map */

@@ -20,6 +20,7 @@ import { lastValueFrom } from 'rxjs';
 import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LanguageSwitchOfferComponent } from './components/language-switch-offer/language-switch-offer.component';
+import { ConsentManagerComponent } from './components/consent-manager/consent-manager.component';
 
 export function HttpLoaderFactory(http: HttpClient, platformId: object) {
   const path = isPlatformServer(platformId) ? 'http://localhost:4200/assets/i18n/' : 'assets/i18n/';
@@ -59,7 +60,8 @@ export function appInitializerFactory(translate: TranslateService, httpClient: H
     BlogPostComponent,
     SafeHtmlPipe,
     DisqusComponent,
-    LanguageSwitchOfferComponent
+    LanguageSwitchOfferComponent,
+    ConsentManagerComponent
   ],
   imports: [
     BrowserModule,

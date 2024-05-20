@@ -2,9 +2,9 @@
     <button class="closeButton" (click)="closed = true">&#10005;</button>
     <p>
         Do you want to change the language to
-        {{langS.getLanguageFromUserAgent() == 'de' ? 'german' :'english'}}?</p>
+        {{langS.userAgendLanguage == 'de' ? 'german' :'english'}}?</p>
     <div class="buttons">
-        <button (click)="langS.switchUserLanguage(langS.getLanguageFromUserAgent())">Yes</button>
+        <button (click)="langS.switchUserLanguage(langS.userAgendLanguage)">Yes</button>
         <button (click)="langS.askUserToSwitch = false">No</button>
     </div>
 </div>

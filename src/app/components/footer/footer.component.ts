@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { ConsentService } from 'src/app/services/consent.service';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
@@ -11,5 +12,8 @@ export class FooterComponent {
   faInstagram = faInstagram;
   faGithub = faGithub;
 
-  constructor(public languageS: LanguageService) { }
+  constructor(
+    public languageS: LanguageService,
+    public consentS: ConsentService
+  ) { }
 }

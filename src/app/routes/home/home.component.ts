@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
       // Load Language
       let lang = this.route.snapshot.paramMap.get('lang');
       if (lang) this.languageS.updateLanguage(lang);
-      else this.router.navigate(['/' + this.languageS.getLanguageFromUserAgent()]);
+      else this.router.navigate(['/' + this.languageS.userAgendLanguage]);
 
       this.currentPage = +params['page'] || 1;
       if (params['technologies']) this.activTechnologiesFilterOptions = params['technologies'].split('&');
