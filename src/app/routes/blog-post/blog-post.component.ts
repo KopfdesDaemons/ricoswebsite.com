@@ -1,5 +1,6 @@
 import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { HighlightService } from 'src/app/services/highlight.service';
@@ -14,6 +15,7 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class BlogPostComponent implements OnInit, AfterViewChecked {
   post: Post | undefined | null;
+  private routeParamsSubscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +28,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
 
   async ngOnInit() {
     // when route changes 
-    this.route.params.subscribe(async () => {
+    this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
       const lang = this.route.snapshot.paramMap.get('lang');
       if (lang) this.languageS.updateLanguage(lang);
@@ -40,6 +42,12 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
         });
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeParamsSubscription) {
+      this.routeParamsSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {

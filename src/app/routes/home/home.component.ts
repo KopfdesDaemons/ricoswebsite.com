@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -6,6 +6,9 @@ import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project';
 import { LanguageService } from 'src/app/services/language.service';
+import { Location } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription, lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +16,7 @@ import { LanguageService } from 'src/app/services/language.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('projectsSection') projectsSection: ElementRef | undefined;
 
   projects: Project[] = [];
   technologiesFilterOptions: string[] = [];
@@ -22,50 +26,53 @@ export class HomeComponent implements OnInit {
   currentPage: number = 0;
   projectsPerPage = 5;
   faCircleXmark = faCircleXmark;
+  private routeParamsSubscription: Subscription | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private meta: Meta,
     public ps: ProjectService,
     private router: Router,
+    private location: Location,
     private languageS: LanguageService,
+    private translate: TranslateService,
     public sidemenuS: SidemenuService) {
-    this.meta.addTags([
-      { property: 'og:description', content: 'My portfolio website as a hobby web developer.' },
-      { name: 'description', content: 'My portfolio website as a hobby web developer.' }]);
   }
 
   ngOnInit() {
-    // Wenn Route sich ändert    
-    this.route.params.subscribe(params => {
+    this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
 
+      // Load Language
       let lang = this.route.snapshot.paramMap.get('lang');
       if (lang) this.languageS.updateLanguage(lang);
-      else {
-        lang = this.languageS.getUserLanguage();
-        this.router.navigate(['/' + lang]);
-      }
+      else this.router.navigate(['/' + this.languageS.getLanguageFromUserAgent()]);
 
-      // Lese Seite und Filter der Technologien aus URL Parametern
       this.currentPage = +params['page'] || 1;
       if (params['technologies']) this.activTechnologiesFilterOptions = params['technologies'].split('&');
 
-      // Lade Projekte mit der Seite und dem Filter
       this.loadProjects(this.currentPage, this.activTechnologiesFilterOptions);
+
+      const description = await lastValueFrom(this.translate.get('home_description'));
+      this.meta.addTags([
+        { property: 'og:description', content: description },
+        { name: 'description', content: description }
+      ]);
     })
   }
 
+  ngOnDestroy(): void {
+    if (this.routeParamsSubscription) {
+      this.routeParamsSubscription.unsubscribe();
+    }
+  }
+
   async loadProjects(page: number, filter: string[] = []) {
-    // Lade alle vorhanden Technologien
     this.technologiesFilterOptions = await this.ps.getAllTechnologies();
 
-    // Entferne aktive Filter aus der Filterauswahl
+    // remove filter chips for active filters
     this.technologiesFilterOptions = this.technologiesFilterOptions.filter(t => !this.activTechnologiesFilterOptions.includes(t))
 
-    // Lade Projekte mit der Seite und dem Filter
     this.projects = await this.ps.getProjects(filter, this.projectsPerPage, page);
-
-    // Lade Gesamtprojektzahl und Gesamtseitenzahl
     this.totalProjects = await this.ps.getTotalProjectCount(filter);
     this.totalPages = Math.ceil(this.totalProjects / this.projectsPerPage);
   }
@@ -75,27 +82,25 @@ export class HomeComponent implements OnInit {
   }
 
   addTechnologieToFilter(technologie: string) {
-    // Füge Filteroption zu den aktivern Filteroptionen hinzu
-    this.activTechnologiesFilterOptions.push(technologie);
-
-    // Alle aktiven Filteroptionen als ein String
-    const technologieString = this.getParamChain(this.activTechnologiesFilterOptions);
-
-    this.router.navigate([this.languageS.userLanguage + '/projects/page/1/' + technologieString], { fragment: 'projectsSection' })
+    this.applyFilter([...this.activTechnologiesFilterOptions, technologie]);
   }
 
   removeTechnologieFromFilter(technologie: string) {
-    // Entferne Element aus den aktiver Filteroptionen
-    this.activTechnologiesFilterOptions = this.activTechnologiesFilterOptions.filter(item => item !== technologie);
-
-    // Alle aktiven Filteroptionen als ein String
-    const technologieString = this.getParamChain(this.activTechnologiesFilterOptions);
-
-    if (!technologieString) this.router.navigate(['/' + this.languageS.userLanguage], { fragment: 'projectSection' })
-    else this.router.navigate([this.languageS.userLanguage + '/projects/page/1/' + technologieString], { fragment: 'projectsSection' });
+    this.applyFilter(this.activTechnologiesFilterOptions.filter(item => item !== technologie));
   }
 
-  clickOnTag(technologie: string) {
-    this.router.navigate([this.languageS.userLanguage + '/projects/page/1/' + technologie], { fragment: 'projectsSection' });
+  applyFilter(filter: string[]) {
+    this.activTechnologiesFilterOptions = filter;
+
+    const technologieString = this.getParamChain(this.activTechnologiesFilterOptions);
+
+    // change route
+    if (!technologieString) this.location.go(this.languageS.userLanguage + '#projectsSection');
+    else this.location.go(this.languageS.userLanguage + '/projects/page/1/' + technologieString + '#projectsSection');
+
+    this.loadProjects(1, this.activTechnologiesFilterOptions);
+
+    // scroll to projects section
+    if (this.projectsSection) this.projectsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }

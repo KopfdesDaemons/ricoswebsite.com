@@ -16,7 +16,7 @@
             </div>
         </div>
     </section>
-    <section id="projectsSection">
+    <section id="projectsSection" #projectsSection>
         <div class="sectionSpacer" *ngIf="projects.length > 0">
             <h2>{{'my_projects' | translate}}</h2>
             <div class="filter">
@@ -38,7 +38,7 @@
             </div>
             <ul class="projectCards">
                 <li *ngFor="let project of projects">
-                    <app-project-card [project]="project" (clickOnTag)="clickOnTag($event)">
+                    <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])">
                     </app-project-card>
                 </li>
             </ul>
