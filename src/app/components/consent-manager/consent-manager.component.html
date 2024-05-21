@@ -1,13 +1,16 @@
-<div id="consentManager" *ngIf="consentS.consentMangerIsVisible">
+<dialog #dialog id="consentManager" *ngIf="consentS.consentMangerIsVisible">
     <div class="headlineDiv">
         <h2>Consent&nbsp;Manager</h2>
-        <button class="closeButton" (click)="consentS.consentMangerIsVisible = false">&#10005;</button>
+        <button class="closeButton" (click)="consentS.closeConsentmanager()">&#10005;</button>
     </div>
     <ul>
         <li *ngFor="let service of consentS.possibleConsents">
-            <span>{{service.name}}</span>
-            <input (change)="switchConsent($event, service.name)" type="checkbox"
-                [checked]="consentS.checkConsent(service.name)">
+            <div>
+                <span>{{service.name}}</span>
+                <input (change)="switchConsent($event, service.name)" type="checkbox"
+                    [checked]="consentS.checkConsent(service.name)">
+            </div>
+            <p>{{service.descriptionTransString | translate}}</p>
         </li>
     </ul>
-</div>
+</dialog>

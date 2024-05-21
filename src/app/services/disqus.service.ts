@@ -2,6 +2,7 @@ import { Inject, Injectable, Renderer2 } from '@angular/core';
 import { ScriptService } from './script.service';
 import { DOCUMENT } from '@angular/common';
 import { ConsentService } from './consent.service';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class DisqusService {
   constructor(
     public scriptS: ScriptService,
     public consentS: ConsentService,
+    public languageS: LanguageService,
     @Inject(DOCUMENT) private document: Document,
   ) {
     this.consent = this.consentS.checkConsent('Disqus');
@@ -27,11 +29,13 @@ export class DisqusService {
   loadDisqus(renderer: Renderer2, title: string): void {
     const script = renderer.createElement('script');
     script.type = 'text/javascript';
+    const lang = this.languageS.userLanguage;
 
     if (!this.isLoaded) {
       script.text = `
       var disqus_config = function () {
         this.page.identifier = '${title}';
+        this.language = '${lang}';
       };
     `;
       this.isLoaded = true;
@@ -41,6 +45,7 @@ export class DisqusService {
         reload: true,
         config: function () { 
           this.page.identifier = '${title}';
+          this.language = '${lang}';
         }})
       `;
     }

@@ -30,7 +30,7 @@ li {
 li fa-icon {
   margin-right: 0.5em;
 }
-li a {
+li span {
   text-decoration: underline;
   cursor: pointer;
 }/*# sourceMappingURL=footer.component.css.map */

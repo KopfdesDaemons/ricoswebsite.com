@@ -13,7 +13,7 @@
         <ul>
             <li><a routerLink="/legal-notice">{{'legal_notice' | translate}}</a></li>
             <li><a routerLink="{{languageS.userLanguage + '/privacy-policy'}}">{{'privacy_policy' | translate}}</a></li>
-            <li><a (click)="consentS.consentMangerIsVisible = true">Consent Manager</a></li>
+            <li><span (click)="consentS.openConsentmanager()">Consent Manager</span></li>
         </ul>
     </div>
 </footer>

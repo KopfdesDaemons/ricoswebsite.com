@@ -1,6 +1,6 @@
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
@@ -16,13 +16,12 @@ export class LanguageService {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private translate: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     if (isPlatformBrowser(platformId)) {
       this.askUserToSwitch = true;
-      const storedLanguage = localStorage.getItem('language');
+      const storedLanguage = localStorage.getItem('Custom Language');
       if (storedLanguage) {
         this.userLanguage = storedLanguage;
         this.askUserToSwitch = false;
@@ -56,7 +55,7 @@ export class LanguageService {
     const newUrl = this.router.url.replace(this.oldLanguage, lang);
     console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
     this.router.navigateByUrl(newUrl);
-    localStorage.setItem('language', this.userLanguage.toString());
+    localStorage.setItem('Custom Language', this.userLanguage.toString());
     this.askUserToSwitch = false;
   }
 

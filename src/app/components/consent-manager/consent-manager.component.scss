@@ -2,17 +2,21 @@
     background-color: rgb(37, 44, 51);
     padding: 1em;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: -10%;
     box-shadow: 1px 1px 3px 1px black;
     border-radius: 12px;
     border: 1px solid;
+    color: var(--font-color);
+    font-size: 1em;
+
+    &::backdrop {
+        backdrop-filter: blur(1px);
+    }
 
     .closeButton {
         border-radius: 4px;
-        height: 1.8em;
-        width: 1.8em;
+        height: 2em;
+        width: 2em;
         border: none;
         cursor: pointer;
 
@@ -23,7 +27,8 @@
 
     .headlineDiv {
         display: flex;
-        gap: 0.5em;
+        gap: 1em;
+        justify-content: space-between;
 
         h2 {
             margin-top: 0;
@@ -38,8 +43,51 @@
 
         li {
             list-style: none;
-            display: flex;
-            justify-content: space-between;
+
+            div {
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    font-weight: bold;
+                }
+            }
+
+            p {
+                margin-top: 0.3em;
+            }
         }
+    }
+
+    input[type="checkbox"] {
+        font-size: 1em;
+        appearance: none;
+        width: 3em;
+        height: 1.5em;
+        background: #ddd;
+        border-radius: 3em;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+    }
+
+    input[type="checkbox"]:checked {
+        background: #295869;
+    }
+
+    input[type="checkbox"]:after {
+        position: absolute;
+        content: "";
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 .25em rgba(0, 0, 0, .3);
+        left: 0;
+        transition: all 150ms ease-in-out;
+    }
+
+    input[type="checkbox"]:checked:after {
+        left: calc(100% - 1.5em);
     }
 }

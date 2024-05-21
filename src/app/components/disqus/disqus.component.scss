@@ -1,3 +1,7 @@
+#disqus_thread {
+    padding: 0 0.5em;
+}
+
 .consentBanner {
     display: flex;
     flex-direction: column;
@@ -5,6 +9,7 @@
     gap: 0.5em;
 
     $color: rgb(193, 192, 255);
+
     button {
         padding: 1em;
         background-color: $color;

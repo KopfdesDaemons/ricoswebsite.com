@@ -16,5 +16,8 @@
     "codepen_button": "Lade Code Snippet von CodePen",
     "codepen_privacy_notice": "Der Inhalt wird vom Drittanbieter CodePen geladen. Für mehr Details siehe",
     "language": "Sprache",
-    "home_description": "Meine Portfolio-Website als Hobby-Webentwickler."
+    "home_description": "Meine Portfolio-Website als Hobby-Webentwickler.",
+    "disqus_descr": "Stellt die Kommentarfunktion bereit.",
+    "codepen_descr": "Stellt die Codeausschnitte bereit.",
+    "custom_language": "Speicherung der gewählten Sprache."
 }

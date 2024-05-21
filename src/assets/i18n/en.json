@@ -16,5 +16,8 @@
     "codepen_button": "Load code snippet from CodePen",
     "codepen_privacy_notice": "The code is loaded by the third-party provider CodePen. For more details see",
     "language": "Language",
-    "home_description": "My portfolio website as a hobby web developer."
+    "home_description": "My portfolio website as a hobby web developer.",
+    "disqus_descr": "Provides the comment function.",
+    "codepen_descr": "Provides the code snippets.",
+    "custom_language": "Storage of the selected language."
 }
