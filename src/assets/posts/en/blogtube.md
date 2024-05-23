@@ -52,6 +52,6 @@ Problems, bugs or feature requests can be shared in the [support forum](https://
 
 ## BlogTube - Free Download
 
-<button title="downdload from WordPress" onclick=" window.open('https://wordpress.org/themes/blogtube/', '_blank');">WordPress</button>
-<button title="view on GitHub" onclick=" window.open('https://github.com/KopfdesDaemons/blogtube', '_blank');">GitHub</button>
-<button title="direct downdload" onclick="location.href='https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip';">Direct Download</button>
+<a class="linkButton" title="download from WordPress" href="https://wordpress.org/themes/blogtube" target="_blank">WordPress</a>
+<a class="linkButton" title="view on GitHub" href="https://github.com/KopfdesDaemons/blogtube" target="_blank">GitHub</a>
+<a class="linkButton" title="direct download" href="https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip">direct download</a>

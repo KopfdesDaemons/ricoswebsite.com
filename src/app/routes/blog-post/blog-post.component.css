@@ -103,19 +103,17 @@
     padding-left: 1em;
   }
 }
-.blogpostMain .postContent button {
-  padding: 1em;
-  background-color: rgb(193, 192, 255);
-  border-radius: 4px;
-  border: 3px solid transparent;
+.blogpostMain .postContent .linkButton {
+  padding: 0.7em;
+  background-color: #1f1d57;
+  border-radius: 24px;
   cursor: pointer;
-  gap: 0.5em;
+  text-decoration: none;
+  color: rgb(168, 168, 252);
   transition: all 250ms;
 }
-.blogpostMain .postContent button:hover {
-  color: var(--font-color);
-  border-color: rgb(193, 192, 255);
-  background-color: transparent;
+.blogpostMain .postContent .linkButton:hover {
+  background-color: #2d2b5f;
 }
 .blogpostMain #disqus_thread {
   min-height: 500px;

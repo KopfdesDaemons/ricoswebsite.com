@@ -122,20 +122,17 @@
             }
         }
 
-        button {
-            $color: rgb(193, 192, 255);
-            padding: 1em;
-            background-color: $color;
-            border-radius: 4px;
-            border: 3px solid transparent;
+        .linkButton {
+            padding: 0.7em;
+            background-color: #1f1d57;
+            border-radius: 24px;
             cursor: pointer;
-            gap: 0.5em;
+            text-decoration: none;
+            color: rgb(168, 168, 252);
             transition: all 250ms;
 
             &:hover {
-                color: var(--font-color);
-                border-color: $color;
-                background-color: transparent;
+                background-color: #2d2b5f;
             }
         }
     }
