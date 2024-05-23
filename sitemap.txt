@@ -1,1 +1,12 @@
-https://www.ricoswebsite.com/
+https://www.ricoswebsite.com
+https://ricoswebsite.com/en/blogpost/blogtube
+https://ricoswebsite.com/en/blogpost/css-gallery
+https://ricoswebsite.com/en/blogpost/linux-test
+https://ricoswebsite.com/en/blogpost/codepen-in-angular
+https://ricoswebsite.com/en/blogpost/about-this-website
+https://www.ricoswebsite.com/de
+https://ricoswebsite.com/de/blogpost/blogtube
+https://ricoswebsite.com/de/blogpost/css-gallery
+https://ricoswebsite.com/de/blogpost/linux-test
+https://ricoswebsite.com/de/blogpost/codepen-in-angular
+https://ricoswebsite.com/de/blogpost/about-this-website
