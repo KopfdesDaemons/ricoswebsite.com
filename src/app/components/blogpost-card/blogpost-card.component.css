@@ -1,14 +1,27 @@
 .card {
-  background-color: rgb(37, 38, 53);
+  background-color: rgb(41, 43, 70);
   border-radius: 12px;
   display: flex;
   flex-wrap: wrap;
   max-width: 60em;
+  box-shadow: 1px 1px 10px 1px #010147;
+  animation: moveIn 500ms forwards ease-in-out;
+  border: 1px solid;
+}
+@keyframes moveIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 .card .imageContainer {
   position: relative;
   flex: 1 0 50%;
   height: auto;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  box-sizing: border-box;
 }
 .card .imageContainer img {
   width: 100%;
@@ -18,26 +31,31 @@
      object-fit: contain;
   background-color: black;
   border-radius: 12px;
-  border: 1px solid;
+  filter: brightness(0.95);
 }
 .card .imageContainer img:hover {
   filter: brightness(0.9);
 }
 .card .content {
   flex: 1 0 50%;
-  padding: 1.5em 2em;
+  padding: clamp(1em, 2vw, 2em);
   min-width: 15em;
   box-sizing: border-box;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
-.card .content a {
-  color: rgb(46, 46, 180);
+.card .content a,
+.card .content a:visited {
+  color: rgb(66, 66, 240);
   text-decoration: none;
 }
-.card .content a:hover {
-  color: rgb(31, 31, 104);
+.card .content a:hover,
+.card .content a:visited:hover {
+  color: rgb(34, 34, 150);
 }
 .card .content h2 {
   font-size: clamp(24px, 3vw, 28px);
   margin-top: 0;
+}
+.card .content p {
+  line-height: 1.3em;
 }/*# sourceMappingURL=blogpost-card.component.css.map */

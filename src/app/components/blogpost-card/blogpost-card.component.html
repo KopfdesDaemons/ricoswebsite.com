@@ -7,5 +7,6 @@
             <h2>{{title}}</h2>
         </a>
         <p>{{description}}</p>
+        <a [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + fileName]">{{'read_more' | translate}}</a>
     </div>
 </div>

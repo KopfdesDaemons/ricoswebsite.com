@@ -1,3 +1,6 @@
+.blogpostMain {
+  padding-bottom: 3em;
+}
 .blogpostMain .hero {
   display: flex;
   justify-content: center;

@@ -7,6 +7,8 @@
 
 main {
   margin-bottom: auto;
+  padding: 3em 0;
+  background: var(--gradient);
 }
 
 section {

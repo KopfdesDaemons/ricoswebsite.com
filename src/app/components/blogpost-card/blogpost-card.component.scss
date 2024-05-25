@@ -1,15 +1,28 @@
 .card {
-    background-color: rgb(37, 38, 53);
-    // padding: 1em;
+    background-color: rgb(41, 43, 70);
     border-radius: 12px;
     display: flex;
     flex-wrap: wrap;
     max-width: 60em;
+    box-shadow: 1px 1px 10px 1px #010147;
+    animation: moveIn 500ms forwards ease-in-out;
+    border: 1px solid;
+
+    @keyframes moveIn {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+    }
 
     .imageContainer {
         position: relative;
         flex: 1 0 50%;
         height: auto;
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        box-sizing: border-box;
 
         img {
             width: 100%;
@@ -18,7 +31,7 @@
             object-fit: contain;
             background-color: black;
             border-radius: 12px;
-            border: 1px solid;
+            filter: brightness(0.95);
 
             &:hover {
                 filter: brightness(0.9);
@@ -28,23 +41,28 @@
 
     .content {
         flex: 1 0 50%;
-        padding: 1.5em 2em;
+        padding: clamp(1em, 2vw, 2em);
         min-width: 15em;
         box-sizing: border-box;
-        text-wrap: balance;
+        text-wrap: pretty;
 
-        a {
-            color: rgb(46, 46, 180);
+        a,
+        a:visited {
+            color: rgb(66, 66, 240);
             text-decoration: none;
 
             &:hover {
-                color: rgb(31, 31, 104);
+                color: rgb(34, 34, 150);
             }
         }
 
         h2 {
             font-size: clamp(24px, 3vw, 28px);
             margin-top: 0;
+        }
+
+        p {
+            line-height: 1.3em;
         }
     }
 }

@@ -20,5 +20,6 @@
     "disqus_descr": "Provides the comment function.",
     "codepen_descr": "Provides the code snippets.",
     "custom_language": "Storage of the selected language.",
-    "blog_h1": "My blogposts"
+    "blog_h1": "My blogposts",
+    "read_more": "read more"
 }
