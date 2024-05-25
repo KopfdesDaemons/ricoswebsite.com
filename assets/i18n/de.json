@@ -19,5 +19,7 @@
     "home_description": "Meine Portfolio-Website als Hobby-Webentwickler.",
     "disqus_descr": "Stellt die Kommentarfunktion bereit.",
     "codepen_descr": "Stellt die Codeausschnitte bereit.",
-    "custom_language": "Speicherung der gewählten Sprache."
+    "custom_language": "Speicherung der gewählten Sprache.",
+    "blog_h1": "Meine Blogbeiträge",
+    "read_more": "mehr lesen"
 }
