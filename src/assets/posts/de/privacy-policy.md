@@ -1,5 +1,6 @@
 ---
 title: Datenschutzerklärung
+hideInFeed: true
 ---
 
 ## Verantwortlicher

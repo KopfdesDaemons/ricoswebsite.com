@@ -19,5 +19,6 @@
     "home_description": "My portfolio website as a hobby web developer.",
     "disqus_descr": "Provides the comment function.",
     "codepen_descr": "Provides the code snippets.",
-    "custom_language": "Storage of the selected language."
+    "custom_language": "Storage of the selected language.",
+    "blog_h1": "My blogposts"
 }

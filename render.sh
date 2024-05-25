@@ -3,6 +3,8 @@
 # Führe den Befehl ng run ricoswebsite.com:prerender aus
 ng run ricoswebsite.com:prerender
 
+node generateBlogpostList.js
+
 # Wechsle in das Verzeichnis dist/ricoswebsite.com/browser
 cd dist/ricoswebsite.com/browser
 

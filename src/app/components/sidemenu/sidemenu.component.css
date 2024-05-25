@@ -40,6 +40,7 @@ aside .sidemenuContent {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  width: 100%;
 }
 aside .sidemenuContent ul {
   padding: 0;

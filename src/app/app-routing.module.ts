@@ -5,11 +5,13 @@ import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.compone
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { filter } from 'rxjs';
+import { BlogComponent } from './routes/blog/blog.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },
   { path: ':lang', component: HomeComponent },
+  { path: ':lang/blog', component: BlogComponent },
   { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
   { path: ':lang/blogpost/:title', component: BlogPostComponent },
   { path: ':lang/privacy-policy', component: BlogPostComponent, data: { title: 'privacy-policy' } },

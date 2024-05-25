@@ -28,28 +28,28 @@ export class PostService {
   ) { }
 
   async getPost(title: string): Promise<Post | null> {
-    this.post = this.loadFromTransfareState(title);
+    this.post = this.loadPostFromTransfareState(title);
     const lang = this.languageS.userLanguage;
-    if (!this.post) this.post = await this.loadFromFiles(title, lang);
+    if (!this.post) this.post = await this.loadFromMarkdownFile(title, lang);
     if (!this.post) return null;
 
-    this.updateMetaData();
-    this.saveTransfereState(title);
+    this.updateMetaTags();
+    this.savePostTransfereState(title);
     return this.post;
   }
 
-  private saveTransfereState(title: string) {
+  private savePostTransfereState(title: string) {
     const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
     this.transferState.set(key, this.post);
   }
 
-  private loadFromTransfareState(title: string): Post | null {
+  private loadPostFromTransfareState(title: string): Post | null {
     if (isPlatformServer(this.platformId)) return null;
     const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
     return this.transferState.get(key, null);
   }
 
-  private async loadFromFiles(title: string, language: string): Promise<Post | null> {
+  private async loadFromMarkdownFile(title: string, language: string): Promise<Post | null> {
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
     const contentUrl = `${baseUrl}assets/posts/${language}/${title}.md`;
 
@@ -63,13 +63,13 @@ export class PostService {
     } catch (error: any) {
       console.error(error);
       if (error.status === 404 && language !== 'en') {
-        return this.loadFromFiles(title, 'en'); // Versuche, den Inhalt auf Englisch zu laden
+        return this.loadFromMarkdownFile(title, 'en'); // Versuche, den Inhalt auf Englisch zu laden
       }
       return null;
     }
   }
 
-  private updateMetaData(): void {
+  private updateMetaTags(): void {
     if (this.post?.postMeta) {
       const tagsToAdd: any = [
         { property: 'og:title', content: this.post.postMeta.title },
@@ -99,6 +99,32 @@ export class PostService {
 
       this.metaS.addTags(tagsToAdd);
       this.titleS.setTitle(this.post.postMeta.title);
+    }
+  }
+
+  async loadPostList(language: string): Promise<any> {
+    const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
+    const postListURL = `${baseUrl}assets/posts/posts.${language}.json`;
+
+    try {
+      const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
+      const posts = JSON.parse(json);
+
+      // Filtere die Posts, die nicht `hideInFeed` enthalten oder `hideInFeed` auf `false` gesetzt haben
+      const visiblePosts = posts.filter((post: any) => !post.hideInFeed);
+
+      const postArray: Post[] = [];
+
+      for (const post of visiblePosts) {
+        postArray.push(new Post(post))
+      }
+      return postArray;
+    } catch (error: any) {
+      console.error(error);
+      if (error.status === 404 && language !== 'en') {
+        return this.loadPostList('en'); // Versuche, deie Beiträge auf Englisch zu laden
+      }
+      return null;
     }
   }
 }

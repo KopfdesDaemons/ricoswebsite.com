@@ -2,6 +2,7 @@ de
 en
 
 de/privacy-policy
+de/blog
 de/blogpost/linux-test
 de/blogpost/about-this-website
 de/blogpost/css-gallery
@@ -9,6 +10,7 @@ de/blogpost/blogtube
 de/blogpost/codepen-in-angular
 
 en/privacy-policy
+en/blog
 en/blogpost/linux-test
 en/blogpost/about-this-website
 en/blogpost/css-gallery

@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Datenschutzerklärung",
+    "hideInFeed": true,
+    "fileName": "privacy-policy"
+  },
+  {
+    "title": "Linux Mint Cinnamon als Desktop getestet",
+    "author": "Rico",
+    "image": "assets/images/linux-mint-desktop.avif",
+    "keywords": [
+      "linux",
+      "desktop"
+    ],
+    "description": "Als Hobby-Webentwickler habe ich Linux Mint Cinnamon als Desktop getestet. Hier liste ich meine positiven Erfahrungen und Probleme auf.",
+    "date": "2024-04-12T00:00:00.000Z",
+    "fileName": "linux-test"
+  },
+  {
+    "title": "Meine basic CSS Gallery",
+    "author": "Rico",
+    "hasCodePen": "true",
+    "keywords": [
+      "CSS",
+      "buttons",
+      "Icons",
+      "Material Design",
+      "Inputs",
+      "Table"
+    ],
+    "description": "Mein Design ist 🌟inspiriert🌟 von Googles Material Design. Es ist minimalistisch, clean und nicht überladen.",
+    "date": "2024-05-12T00:00:00.000Z",
+    "fileName": "css-gallery"
+  },
+  {
+    "title": "CodePen in Angular integrieren (The Easy Way!)",
+    "author": "Rico",
+    "image": "assets/images/codepen-screenshot.avif",
+    "keywords": [
+      "CodePen integrieren",
+      "Angular CodePen",
+      "Angular CodePen einbetten",
+      "CodePen in Angular"
+    ],
+    "description": "Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren können.",
+    "date": "2024-05-18T00:00:00.000Z",
+    "fileName": "codepen-in-angular"
+  },
+  {
+    "title": "BlogTube - Ein WordPress YouTube Klon",
+    "author": "Rico",
+    "image": "assets/images/blogtube.avif",
+    "keywords": [
+      "YouTube",
+      "WordPress",
+      "WordPress Theme"
+    ],
+    "description": "BlogTube ist ein WordPress-Theme, das auf dem Designschema von YouTube basiert",
+    "date": "2024-05-18T00:00:00.000Z",
+    "fileName": "blogtube"
+  },
+  {
+    "title": "Über diese Webseite",
+    "author": "Rico",
+    "keywords": [
+      "angular",
+      "markdown",
+      "YAML"
+    ],
+    "description": "Ein kleiner Einblick, wie diese Website funktioniert.",
+    "date": "2024-05-12T00:00:00.000Z",
+    "fileName": "about-this-website"
+  }
+]

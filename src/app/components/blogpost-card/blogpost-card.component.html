@@ -1,0 +1,11 @@
+<div class="card">
+    <a class="imageContainer" *ngIf="image" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + fileName]">
+        <img src="{{image}}" alt="{{title}}">
+    </a>
+    <div class="content">
+        <a [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + fileName]">
+            <h2>{{title}}</h2>
+        </a>
+        <p>{{description}}</p>
+    </div>
+</div>

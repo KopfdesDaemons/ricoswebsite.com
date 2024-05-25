@@ -31,7 +31,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
       const lang = this.route.snapshot.paramMap.get('lang');
-      if (lang) this.languageS.updateLanguage(lang);
+      this.languageS.updateLanguage(lang);
 
       const title = this.route.snapshot.paramMap.get('title');
       if (title) this.post = await this.postS.getPost(title);

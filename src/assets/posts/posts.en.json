@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Privacy policy",
+    "hideInFeed": true,
+    "fileName": "privacy-policy"
+  },
+  {
+    "title": "Linux Mint Cinnamon tested as a desktop",
+    "author": "Rico",
+    "image": "assets/images/linux-mint-desktop.avif",
+    "keywords": [
+      "linux",
+      "desktop"
+    ],
+    "description": "As a hobby web developer, I tested Linux Mint Cinnamon as a desktop. Here I list my positive experiences and problems.",
+    "date": "2024-04-12T00:00:00.000Z",
+    "fileName": "linux-test"
+  },
+  {
+    "title": "My basic CSS gallery",
+    "author": "Rico",
+    "hasCodePen": "true",
+    "keywords": [
+      "CSS",
+      "buttons",
+      "Icons",
+      "Material Design",
+      "Inputs",
+      "Table"
+    ],
+    "description": "My design is 🌟inspired🌟 by Google's Material Design. It's minimalist, clean and not overloaded.",
+    "date": "2024-05-12T00:00:00.000Z",
+    "fileName": "css-gallery"
+  },
+  {
+    "title": "Integrate CodePen into Your Angular Project (The Easy Way!)",
+    "author": "Rico",
+    "image": "assets/images/codepen-screenshot.avif",
+    "keywords": [
+      "integrate codepen",
+      "angular codepen",
+      "angular embed codepen",
+      "codepen in angular"
+    ],
+    "description": "Learn how to seamlessly integrate CodePen snippets into your Angular project with this step-by-step guide.",
+    "date": "2024-05-18T00:00:00.000Z",
+    "fileName": "codepen-in-angular"
+  },
+  {
+    "title": "BlogTube - A WordPress YouTube clone",
+    "author": "Rico",
+    "image": "assets/images/blogtube.avif",
+    "keywords": [
+      "YouTube",
+      "WordPress",
+      "WordPress Theme"
+    ],
+    "description": "BlogTube is a WordPress theme that is based on the design scheme of YouTube",
+    "date": "2024-05-18T00:00:00.000Z",
+    "fileName": "blogtube"
+  },
+  {
+    "title": "About this Website",
+    "author": "Rico",
+    "keywords": [
+      "angular",
+      "markdown",
+      "YAML"
+    ],
+    "description": "A quick insight into how this website works.",
+    "date": "2024-05-12T00:00:00.000Z",
+    "fileName": "about-this-website"
+  }
+]

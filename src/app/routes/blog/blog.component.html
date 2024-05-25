@@ -1,0 +1,12 @@
+<main>
+    <section>
+        <h1>{{'blog_h1' | translate}}</h1>
+        <ul>
+            <li *ngFor="let post of postsList">
+                <app-blogpost-card title="{{post.postMeta.title}}" description="{{post.postMeta.description}}"
+                    image="{{post.postMeta.image}}" postURL="{{post.postMeta.postURL}}"
+                    fileName="{{post.postMeta.fileName}}"></app-blogpost-card>
+            </li>
+        </ul>
+    </section>
+</main>
