@@ -21,5 +21,9 @@
     "codepen_descr": "Provides the code snippets.",
     "custom_language": "Storage of the selected language.",
     "blog_h1": "My blogposts",
-    "read_more": "read more"
+    "read_more": "read more",
+    "date_desc": "Date descending",
+    "date_asc": "Date ascending",
+    "title_desc": "Title ascending",
+    "title_asc": "Title descending"
 }

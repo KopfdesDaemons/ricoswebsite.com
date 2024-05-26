@@ -11,7 +11,7 @@ keywords:
   - Table
 description: "Mein Design ist \U0001F31Finspiriert\U0001F31F von Googles Material Design.
   Es ist minimalistisch, clean und nicht überladen."
-date: 2024-05-12
+date: 2023-03-06
 ---
 
 ## Buttons

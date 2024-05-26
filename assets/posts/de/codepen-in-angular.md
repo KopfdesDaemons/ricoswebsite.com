@@ -7,7 +7,7 @@ keywords:
   - Angular CodePen
   - Angular CodePen einbetten
   - CodePen in Angular
-description: Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren können.
+description: Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.
 date: 2024-05-18
 ---
 
