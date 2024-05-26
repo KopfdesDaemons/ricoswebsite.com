@@ -21,5 +21,9 @@
     "codepen_descr": "Stellt die Codeausschnitte bereit.",
     "custom_language": "Speicherung der gewählten Sprache.",
     "blog_h1": "Meine Blogbeiträge",
-    "read_more": "mehr lesen"
+    "read_more": "mehr lesen",
+    "date_desc": "Datum absteigend",
+    "date_asc": "Datum aufsteigend",
+    "title_desc": "Titel aufsteigend",
+    "title_asc": "Titel absteigend"
 }

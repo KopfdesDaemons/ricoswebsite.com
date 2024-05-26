@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'legal-notice', component: LegalNoticeComponent },
   { path: ':lang', component: HomeComponent },
   { path: ':lang/blog', component: BlogComponent },
+  { path: ':lang/blog/page/:page', component: BlogComponent },
   { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
   { path: ':lang/blogpost/:fileName', component: BlogPostComponent },
   { path: ':lang/privacy-policy', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
@@ -49,8 +50,7 @@ export class AppRoutingModule {
     this.meta.removeTag('property="og:url"');
     this.meta.removeTag('property="og:title"');
     this.meta.removeTag('property="og:type"');
+    this.meta.removeTag('proberty="article:published_time"');
     this.meta.removeTag('name="description"');
-
-    // this.titleS.setTitle('Ricos Website');
   }
 }

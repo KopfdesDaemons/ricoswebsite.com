@@ -1,4 +1,4 @@
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,8 @@ export class LanguageService {
     private router: Router,
     private translate: TranslateService,
     private location: Location,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document
   ) {
     if (isPlatformBrowser(platformId)) {
       this.askUserToSwitch = true;
@@ -36,6 +37,7 @@ export class LanguageService {
     const UserAgentLang = this.userAgendLanguage;
     if (!lang) lang = UserAgentLang;
     this.userLanguage = this.replaceUnsupportedLangauge(lang);
+    this.document.documentElement.lang = this.userLanguage;
     const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
     this.askUserToSwitch = ask;
     this.translate.use(this.userLanguage);

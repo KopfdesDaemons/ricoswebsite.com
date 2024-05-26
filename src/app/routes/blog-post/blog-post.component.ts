@@ -1,11 +1,13 @@
 import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { HighlightService } from 'src/app/services/highlight.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
+import { environment } from 'src/environment/enviroment';
 
 @Component({
   selector: 'app-blog-post',
@@ -23,7 +25,10 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     private renderer: Renderer2,
     private highlightS: HighlightService,
     private codePenS: CodepenService,
-    private languageS: LanguageService
+    private languageS: LanguageService,
+    private router: Router,
+    private metaS: Meta,
+    private titleS: Title
   ) { }
 
   async ngOnInit() {
@@ -41,6 +46,11 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
           if (this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;
         });
       }
+
+      this.updateMetaTags();
+      if (this.post?.postMeta && this.post.postMeta?.date) {
+        this.post.postMeta.date = new Date(this.post.postMeta.date).toLocaleDateString(this.languageS.userLanguage);
+      }
     })
   }
 
@@ -54,6 +64,43 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     if (this.post) {
       this.highlightS.highlightAll();
       if (this.post?.postMeta?.hasCodePen) this.codePenS.loadCodePen(this.renderer);
+    }
+  }
+
+  private updateMetaTags(): void {
+    if (this.post?.postMeta) {
+      const tagsToAdd: any = [
+        { property: 'og:title', content: this.post.postMeta.title },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:url', content: environment.baseUrl + this.router.url },
+      ];
+
+      if (this.post.postMeta.author) {
+        tagsToAdd.push({ property: 'og:author', content: this.post.postMeta.author });
+      }
+
+      if (this.post.postMeta.date) {
+        tagsToAdd.push({ property: 'article:published_time', content: this.post.postMeta.date });
+      }
+
+      if (this.post.postMeta.description) {
+        tagsToAdd.push({ property: 'og:description', content: this.post.postMeta.description });
+        tagsToAdd.push({ name: 'description', content: this.post.postMeta.description });
+      }
+
+      if (this.post.postMeta.keywords) {
+        tagsToAdd.push({ name: 'keywords', content: this.post.postMeta.keywords });
+      }
+
+      if (this.post.postMeta.image) {
+        tagsToAdd.push({
+          property: 'og:image',
+          content: environment.baseUrl + '/' + this.post.postMeta.image
+        });
+      }
+
+      this.metaS.addTags(tagsToAdd);
+      this.titleS.setTitle(this.post.postMeta.title ?? 'Ricos Website');
     }
   }
 }

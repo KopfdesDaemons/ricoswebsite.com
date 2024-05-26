@@ -13,11 +13,16 @@ import { PostService } from 'src/app/services/post.service';
 export class BlogComponent implements OnInit {
 
   postsList: Post[] = [];
+  currentPage: number = 1;
+  pageSize: number = 5;
+  sortOrder: 'desc' | 'asc' = 'desc';
+  sortBy: 'date' | 'title' = 'date';
+  totalPages: number = 1;
   private routeParamsSubscription: Subscription | undefined;
 
   constructor(
     private postS: PostService,
-    private languageS: LanguageService,
+    public languageS: LanguageService,
     private route: ActivatedRoute,
   ) { }
 
@@ -28,11 +33,36 @@ export class BlogComponent implements OnInit {
       const lang = this.route.snapshot.paramMap.get('lang');
       this.languageS.updateLanguage(lang);
 
+      const page = this.route.snapshot.paramMap.get('page');
+      if (page) this.currentPage = Number(page);
+
       this.loadPostsList()
     })
   }
 
+  ngOnDestroy(): void {
+    if (this.routeParamsSubscription) {
+      this.routeParamsSubscription.unsubscribe();
+    }
+  }
+
   async loadPostsList() {
-    this.postsList = await this.postS.loadPostList(this.languageS.userLanguage);
+    const { posts, totalPages } = await this.postS.loadPostList(
+      this.languageS.userLanguage,
+      this.currentPage,
+      this.pageSize,
+      this.sortOrder,
+      this.sortBy
+    );
+
+    this.postsList = posts;
+    this.totalPages = totalPages;
+  }
+
+  public sort(event: any) {
+    const [sortBy, sortOrder] = event.target.value.split(' ');
+    this.sortBy = sortBy;
+    this.sortOrder = sortOrder;
+    this.loadPostsList();
   }
 }

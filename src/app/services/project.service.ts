@@ -50,29 +50,29 @@ export class ProjectService {
   }
 
   // Abragen der Anzahl der Projekte für Paginierung
-  async getTotalProjectCount(filter: string[] = []): Promise<number> {
+  async getTotalProjectCount(filterByTechnologies: string[] = []): Promise<number> {
     await this.loadProjectsFromJson();
 
-    if (filter.length === 0) {
+    if (filterByTechnologies.length === 0) {
       return this.projects.length;
     }
 
     const filteredProjects = this.projects.filter(project =>
-      filter.some(tech => project.technologies.includes(tech))
+      filterByTechnologies.some(tech => project.technologies.includes(tech))
     );
 
     return filteredProjects.length;
   }
 
   // Abfragen der Projektdaten
-  async getProjects(filter: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
+  async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
     await this.loadProjectsFromJson();
 
     let filteredProjects = this.projects;
 
-    if (filter.length > 0) {
+    if (filterByTechnologies.length > 0) {
       filteredProjects = filteredProjects.filter(project =>
-        filter.some(tech => project.technologies.includes(tech))
+        filterByTechnologies.some(tech => project.technologies.includes(tech))
       );
     }
 

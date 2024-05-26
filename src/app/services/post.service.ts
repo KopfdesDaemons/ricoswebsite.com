@@ -3,9 +3,6 @@ import { Injectable, Inject, PLATFORM_ID, makeStateKey, TransferState } from '@a
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
 import { Post } from '../models/post';
-import { Meta, Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { environment } from 'src/environment/enviroment';
 import { MarkdownService } from './markdown.service';
 import { LanguageService } from './language.service';
 
@@ -15,12 +12,10 @@ import { LanguageService } from './language.service';
 export class PostService {
 
   private post: Post | null | undefined;
+  private baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
 
   constructor(
     private http: HttpClient,
-    private metaS: Meta,
-    private titleS: Title,
-    private router: Router,
     private transferState: TransferState,
     private markdownS: MarkdownService,
     private languageS: LanguageService,
@@ -33,7 +28,6 @@ export class PostService {
     if (!this.post) this.post = await this.loadFromMarkdownFile(fileName, lang);
     if (!this.post) return null;
 
-    this.updateMetaTags();
     this.savePostTransfereState(fileName);
     return this.post;
   }
@@ -50,8 +44,7 @@ export class PostService {
   }
 
   private async loadFromMarkdownFile(fileName: string, language: string): Promise<Post | null> {
-    const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
-    const contentUrl = `${baseUrl}assets/posts/${language}/${fileName}.md`;
+    const contentUrl = `${this.baseUrl}assets/posts/${language}/${fileName}.md`;
 
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
@@ -69,62 +62,70 @@ export class PostService {
     }
   }
 
-  private updateMetaTags(): void {
-    if (this.post?.postMeta) {
-      const tagsToAdd: any = [
-        { property: 'og:title', content: this.post.postMeta.title },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:url', content: environment.baseUrl + this.router.url },
-      ];
-
-      if (this.post.postMeta.author) {
-        tagsToAdd.push({ property: 'og:author', content: this.post.postMeta.author });
-      }
-
-      if (this.post.postMeta.description) {
-        tagsToAdd.push({ property: 'og:description', content: this.post.postMeta.description });
-        tagsToAdd.push({ name: 'description', content: this.post.postMeta.description });
-      }
-
-      if (this.post.postMeta.keywords) {
-        tagsToAdd.push({ name: 'keywords', content: this.post.postMeta.keywords });
-      }
-
-      if (this.post.postMeta.image) {
-        tagsToAdd.push({
-          property: 'og:image',
-          content: environment.baseUrl + '/' + this.post.postMeta.image
-        });
-      }
-
-      this.metaS.addTags(tagsToAdd);
-      this.titleS.setTitle(this.post.postMeta.title ?? 'Ricos Website');
-    }
-  }
-
-  async loadPostList(language: string): Promise<any> {
-    const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
-    const postListURL = `${baseUrl}assets/posts/posts.${language}.json`;
+  async loadPostList(
+    language: string,
+    page: number = 1,
+    pageSize: number = 10,
+    sortOrder: 'asc' | 'desc' = 'desc',
+    sortBy: 'date' | 'title' = 'date',
+    filterTags: string[] = [],
+    filterTitle: string = ''
+  ): Promise<any> {
+    const postListURL = `${this.baseUrl}assets/posts/posts.${language}.json`;
 
     try {
       const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
       const posts = JSON.parse(json);
 
-      // Filtere die Posts, die nicht `hideInFeed` enthalten oder `hideInFeed` auf `false` gesetzt haben
-      const visiblePosts = posts.filter((post: any) => !post.hideInFeed);
+      // Filter nach Sichtbarkeit, Tags und Titel
+      const visiblePosts = posts.filter((post: any) =>
+        !post.hideInFeed &&
+        (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
+        (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle)))
+      );
+
+
 
       const postArray: Post[] = [];
-
       for (const post of visiblePosts) {
-        postArray.push(new Post(post, post.fileName))
+        postArray.push(new Post(post, post.fileName));
+
       }
-      return postArray;
+      // Sortierung
+      postArray.sort((a: Post, b: Post) => {
+        let compareA: number | string, compareB: number | string;
+
+        if (sortBy === 'date') {
+          compareA = new Date(a.postMeta?.date ?? 0).getTime();
+          compareB = new Date(b.postMeta?.date ?? 0).getTime();
+        } else if (sortBy === 'title') {
+          compareA = a.postMeta?.title?.toLowerCase() ?? '';
+          compareB = b.postMeta?.title?.toLowerCase() ?? '';
+        } else {
+          // Default-Fall, wenn sortBy weder 'date' noch 'name' ist
+          compareA = '';
+          compareB = '';
+        }
+
+        if (compareA < compareB) return sortOrder === 'asc' ? -1 : 1;
+        if (compareA > compareB) return sortOrder === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      // Paginierung
+      const startIndex = (page - 1) * pageSize;
+      const paginatedPosts = postArray.slice(startIndex, startIndex + pageSize);
+
+      const totalPages = Math.ceil(postArray.length / pageSize);
+
+      return { posts: paginatedPosts, totalPages: totalPages };
     } catch (error: any) {
       console.error(error);
       if (error.status === 404 && language !== 'en') {
-        return this.loadPostList('en'); // Versuche, deie Beiträge auf Englisch zu laden
+        return this.loadPostList('en', page, pageSize, sortOrder, sortBy, filterTags, filterTitle); // Versuche, die Beiträge auf Englisch zu laden
       }
       return null;
     }
   }
+
 }

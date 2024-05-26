@@ -4,11 +4,16 @@
         <img src="{{postMeta?.image}}" alt="{{postMeta?.title}}">
     </a>
     <div class="content">
-        <a [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">
+        <a class="titleLink" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">
             <h2>{{postMeta?.title}}</h2>
         </a>
+        <span class="date" *ngIf="postMeta?.date">{{postMeta?.date}}</span>
         <p>{{postMeta?.description}}</p>
-        <a [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">{{'read_more' |
+        <ul *ngIf="postMeta?.keywords" class="keywords">
+            <li *ngFor="let keyword of postMeta?.keywords">{{keyword}}</li>
+        </ul>
+        <a class="readMore"
+            [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">{{'read_more' |
             translate}}</a>
     </div>
 </div>

@@ -10,12 +10,12 @@
 #firstSection {
     box-sizing: border-box;
     align-items: center;
-    padding-top:2em;
-    
+    padding-top: 2em;
+
     @media only screen and (max-width: 1100px) {
         padding-top: var(--header-height);
     }
-    
+
     app-header {
         width: 100%;
     }
@@ -56,7 +56,7 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .profilePic {
         height: 40svh;
         width: auto;
@@ -119,11 +119,13 @@
     }
 
     @keyframes pulse {
-        0%, 100%{
+
+        0%,
+        100% {
             transform: scale(0.9);
         }
 
-        50%{
+        50% {
             transform: scale(0.85);
         }
     }
@@ -136,18 +138,19 @@
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
         }
-        
+
         .sloganDiv {
             grid-row: 2;
         }
-        
+
         .profilePicDiv {
             grid-column: 1;
             grid-row: 1;
             margin: 0 auto;
         }
-        
-        .profilePic, .shadowDiv {
+
+        .profilePic,
+        .shadowDiv {
             max-height: 15rem;
             height: 45svh;
         }
@@ -156,16 +159,16 @@
 
 // My Projects ###########################################################
 
-#projectsSection {    
+#projectsSection {
     ul {
         list-style: none;
         padding: 0;
     }
-    
+
     h2 {
         font-size: clamp(24px, 4vw, 36px);
     }
-    
+
     .sectionSpacer {
         display: flex;
         flex-direction: column;
@@ -199,12 +202,13 @@
             max-width: 100%;
         }
     }
-    
+
     .technologiesFilterOption {
         display: flex;
         justify-content: flex-end;
         flex: 1 0 50%;
         min-width: 20em;
+
         ul {
             display: flex;
             flex-wrap: wrap;
@@ -258,14 +262,14 @@
         a {
             text-decoration: none;
         }
-        
+
         .navLink {
             background-color: #361da7;
             margin: 0.5em;
             padding: 0.8em 2em;
             border-radius: 4px;
         }
-        
+
         ul {
             overflow-x: auto;
             display: flex;
@@ -273,13 +277,14 @@
             gap: 0.5em;
             height: 3em;
 
-            a, span {
+            a,
+            span {
                 padding: 0.8em 1.2em;
                 background: black;
                 border: solid 1px gray;
             }
 
-            .current span{
+            .current span {
                 background-color: rgb(0, 0, 68);
             }
 
@@ -287,7 +292,7 @@
                 background-color: rgb(54, 54, 54);
             }
 
-            .dots span{
+            .dots span {
                 background-color: transparent;
             }
         }
