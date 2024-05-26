@@ -33,11 +33,11 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
       const lang = this.route.snapshot.paramMap.get('lang');
       this.languageS.updateLanguage(lang);
 
-      const title = this.route.snapshot.paramMap.get('title');
-      if (title) this.post = await this.postS.getPost(title);
+      const fileName = this.route.snapshot.paramMap.get('fileName');
+      if (fileName) this.post = await this.postS.getPost(fileName);
       else {
         this.route.data.subscribe(async (data) => {
-          if (data['title']) this.post = await this.postS.getPost(data['title']);
+          if (data['fileName']) this.post = await this.postS.getPost(data['fileName']);
           if (this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;
         });
       }
@@ -53,7 +53,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (this.post) {
       this.highlightS.highlightAll();
-      if (this.post?.postMeta.hasCodePen) this.codePenS.loadCodePen(this.renderer);
+      if (this.post?.postMeta?.hasCodePen) this.codePenS.loadCodePen(this.renderer);
     }
   }
 }

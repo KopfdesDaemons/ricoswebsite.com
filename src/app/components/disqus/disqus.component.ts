@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
   styleUrls: ['./disqus.component.scss']
 })
 export class DisqusComponent implements OnChanges {
-  @Input() title: string = '';
+  @Input() identifier: string | undefined;
   @ViewChild('disqusDiv') disqusDiv: ElementRef | undefined;
   private observer: IntersectionObserver | undefined;
   faComment = faComment;
@@ -32,15 +32,17 @@ export class DisqusComponent implements OnChanges {
   }
 
   isVisible() {
-    if (this.disqusS.consent && this.title) {
-      this.disqusS.loadDisqus(this.renderer, this.title);
+    if (!this.identifier) return;
+    if (this.disqusS.consent && this.identifier) {
+      this.disqusS.loadDisqus(this.renderer, this.identifier);
       this.observer?.disconnect();
     }
   }
 
   giveConsent() {
+    if (!this.identifier) return;
     this.disqusS.giveConsent();
     this.observer?.disconnect();
-    this.disqusS.loadDisqus(this.renderer, this.title);
+    this.disqusS.loadDisqus(this.renderer, this.identifier);
   }
 }

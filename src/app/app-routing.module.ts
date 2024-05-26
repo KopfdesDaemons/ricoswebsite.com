@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: ':lang', component: HomeComponent },
   { path: ':lang/blog', component: BlogComponent },
   { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
-  { path: ':lang/blogpost/:title', component: BlogPostComponent },
-  { path: ':lang/privacy-policy', component: BlogPostComponent, data: { title: 'privacy-policy' } },
+  { path: ':lang/blogpost/:fileName', component: BlogPostComponent },
+  { path: ':lang/privacy-policy', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

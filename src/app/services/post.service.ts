@@ -27,14 +27,14 @@ export class PostService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  async getPost(title: string): Promise<Post | null> {
-    this.post = this.loadPostFromTransfareState(title);
+  async getPost(fileName: string): Promise<Post | null> {
+    this.post = this.loadPostFromTransfareState(fileName);
     const lang = this.languageS.userLanguage;
-    if (!this.post) this.post = await this.loadFromMarkdownFile(title, lang);
+    if (!this.post) this.post = await this.loadFromMarkdownFile(fileName, lang);
     if (!this.post) return null;
 
     this.updateMetaTags();
-    this.savePostTransfereState(title);
+    this.savePostTransfereState(fileName);
     return this.post;
   }
 
@@ -49,21 +49,21 @@ export class PostService {
     return this.transferState.get(key, null);
   }
 
-  private async loadFromMarkdownFile(title: string, language: string): Promise<Post | null> {
+  private async loadFromMarkdownFile(fileName: string, language: string): Promise<Post | null> {
     const baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
-    const contentUrl = `${baseUrl}assets/posts/${language}/${title}.md`;
+    const contentUrl = `${baseUrl}assets/posts/${language}/${fileName}.md`;
 
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
-      const postMeta = this.markdownS.extractYamlHeader(markdownFile);
+      const markdownHeader = this.markdownS.extractYamlHeader(markdownFile);
       const markdownBody = this.markdownS.extractBody(markdownFile);
       const postContent = await this.markdownS.parseMarkdown(markdownBody);
 
-      return new Post(postMeta, postContent);
+      return new Post(markdownHeader, fileName, postContent);
     } catch (error: any) {
       console.error(error);
       if (error.status === 404 && language !== 'en') {
-        return this.loadFromMarkdownFile(title, 'en'); // Versuche, den Inhalt auf Englisch zu laden
+        return this.loadFromMarkdownFile(fileName, 'en'); // Versuche, den Inhalt auf Englisch zu laden
       }
       return null;
     }
@@ -98,7 +98,7 @@ export class PostService {
       }
 
       this.metaS.addTags(tagsToAdd);
-      this.titleS.setTitle(this.post.postMeta.title);
+      this.titleS.setTitle(this.post.postMeta.title ?? 'Ricos Website');
     }
   }
 
@@ -116,7 +116,7 @@ export class PostService {
       const postArray: Post[] = [];
 
       for (const post of visiblePosts) {
-        postArray.push(new Post(post))
+        postArray.push(new Post(post, post.fileName))
       }
       return postArray;
     } catch (error: any) {

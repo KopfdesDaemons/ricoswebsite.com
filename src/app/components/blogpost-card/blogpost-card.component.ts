@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PostMeta } from 'src/app/models/post';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
@@ -8,11 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
 })
 export class BlogpostCardComponent {
 
-  @Input() title: string = ''
-  @Input() description: string = ''
-  @Input() postURL: string = ''
-  @Input() image: string = ''
-  @Input() fileName: string = ''
+  @Input() postMeta: PostMeta | undefined;
 
   constructor(
     public languageS: LanguageService
