@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription, lastValueFrom } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
@@ -24,6 +26,9 @@ export class BlogComponent implements OnInit {
     private postS: PostService,
     public languageS: LanguageService,
     private route: ActivatedRoute,
+    private title: Title,
+    private meta: Meta,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +41,8 @@ export class BlogComponent implements OnInit {
       const page = this.route.snapshot.paramMap.get('page');
       if (page) this.currentPage = Number(page);
 
-      this.loadPostsList()
+      this.loadPostsList();
+      this.setMetaTags();
     })
   }
 
@@ -44,6 +50,12 @@ export class BlogComponent implements OnInit {
     if (this.routeParamsSubscription) {
       this.routeParamsSubscription.unsubscribe();
     }
+  }
+
+  async setMetaTags() {
+    const title = await lastValueFrom(this.translate.get('blog_h1'));
+    this.title.setTitle(title);
+    this.meta.addTag({ name: 'description', content: title })
   }
 
   async loadPostsList() {

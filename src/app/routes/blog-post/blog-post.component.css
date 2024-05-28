@@ -4,9 +4,8 @@
 .blogpostMain .hero {
   display: flex;
   justify-content: center;
-  padding: 0 0 1em 0;
+  padding: 1em 4%;
   text-align: center;
-  padding-top: 1em;
   overflow: hidden;
 }
 .blogpostMain .hero img {
@@ -45,12 +44,16 @@
   width: 100%;
   box-sizing: border-box;
 }
+@media only screen and (max-width: 800px) {
+  .blogpostMain .sectionSpacer {
+    padding: 0;
+  }
+}
 .blogpostMain section {
   flex-direction: unset;
   justify-content: center;
 }
 .blogpostMain .postContent {
-  font-size: 0.9em;
   margin-top: 2em;
   min-height: 40em;
   line-height: 1.5em;
@@ -61,6 +64,12 @@
   overflow: auto;
   width: 100%;
   box-sizing: border-box;
+}
+@media only screen and (max-width: 800px) {
+  .blogpostMain .postContent ul,
+  .blogpostMain .postContent ol {
+    padding-left: 1em;
+  }
 }
 .blogpostMain .postContent > * {
   margin-top: 0;
@@ -81,7 +90,6 @@
   filter: brightness(0.8);
 }
 .blogpostMain .postContent pre {
-  margin-left: 1em;
   background-color: black;
   padding: 1em;
   border-radius: 12px;
@@ -99,12 +107,6 @@
 }
 .blogpostMain .postContent pre + .toolbar button:hover {
   background-color: gray;
-}
-@media only screen and (max-width: 800px) {
-  .blogpostMain .postContent ul,
-  .blogpostMain .postContent ol {
-    padding-left: 1em;
-  }
 }
 .blogpostMain .postContent .linkButton {
   font-size: 1.4em;

@@ -103,7 +103,7 @@ function generateSitemapTxt(lang) {
 
 getLanguagesAndFileNames();
 langFileNames.forEach((lang) => {
-    createPostsJSON(lang);
+    createPostsJSON(lang.lang);
     generateRoutesTxt(lang);
     generateSitemapTxt(lang);
 });

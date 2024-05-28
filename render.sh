@@ -1,15 +1,23 @@
 #!/bin/bash
 
-# Führe den Befehl ng run ricoswebsite.com:prerender aus
-ng run ricoswebsite.com:prerender
-
+# Generiere alle Datein für den Blog: posts.json, sitemap.txt, routes.txt
 node prepareFiles.js
 
-# Wechsle in das Verzeichnis dist/ricoswebsite.com/browser
+
+# Rendere die Webseite vor
+ng run ricoswebsite.com:prerender
+
+
+# Wechsle in das Verzeichnis
 cd dist/ricoswebsite.com/browser
 
+
 # Erstelle die .nojekyll-Datei
+# Diese Datei weist GitHub an, keinen static site generator anzuwenden
+# Das ist erforderlich, weil sonst nicht alle per Http Request nachgeladenen Dateien
+# von GitHub Pages bereitsgestellt werden. Die JSON Dateien werden z.B. sonst nicht geladen
 touch .nojekyll
+
 
 PORT=8080
 

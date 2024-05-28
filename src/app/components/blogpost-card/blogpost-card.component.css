@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   max-width: 60em;
   box-shadow: 1px 1px 10px 1px #010147;
-  animation: moveIn 500ms forwards ease-in-out;
+  animation: moveIn 500ms forwards ease-out;
   border: 1px solid;
   padding: clamp(1em, 2vw, 2em);
   gap: 1em;
@@ -30,7 +30,6 @@
   aspect-ratio: 16/9;
   -o-object-fit: contain;
      object-fit: contain;
-  background-color: black;
   border-radius: 12px;
   filter: brightness(0.95);
 }

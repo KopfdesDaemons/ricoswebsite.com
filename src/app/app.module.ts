@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule, PLATFORM_ID, Inject } from '@angular/core';
+import { APP_INITIALIZER, NgModule, PLATFORM_ID } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,41 +14,53 @@ import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { HighlightService } from './services/highlight.service';
 import { DisqusComponent } from './components/disqus/disqus.component';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { lastValueFrom } from 'rxjs';
-import { isPlatformServer, isPlatformBrowser } from '@angular/common';
+import { isPlatformServer } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LanguageSwitchOfferComponent } from './components/language-switch-offer/language-switch-offer.component';
 import { ConsentManagerComponent } from './components/consent-manager/consent-manager.component';
 import { BlogComponent } from './routes/blog/blog.component';
 import { BlogpostCardComponent } from './components/blogpost-card/blogpost-card.component';
 
-export function HttpLoaderFactory(http: HttpClient, platformId: object) {
-  const path = isPlatformServer(platformId) ? 'http://localhost:4200/assets/i18n/' : 'assets/i18n/';
-  return new TranslateHttpLoader(http, path, '.json');
-}
 
-export function appInitializerFactory(translate: TranslateService, httpClient: HttpClient, platformId: object) {
+export function appInitializerFactory(translate: TranslateService, http: HttpClient, platformId: object) {
   return async () => {
-    // Set default languages
+
+    const languages = ['en', 'de'];
     translate.setDefaultLang('en');
-    translate.addLangs(['de', 'en']);
+    translate.addLangs(languages);
 
     const path = isPlatformServer(platformId) ? 'http://localhost:4200/assets/i18n/' : 'assets/i18n/';
     try {
-      // Load german translation
-      const deTranslations = await lastValueFrom(httpClient.get(`${path}de.json`));
-      translate.setTranslation('de', deTranslations);
-
-      // Load english translation
-      const enTranslations = await lastValueFrom(httpClient.get(`${path}en.json`));
-      translate.setTranslation('en', enTranslations);
+      // Load translations for each language in the array
+      for (const lang of languages) {
+        const translations = await fetchYaml(`${path}${lang}.yaml`);
+        translate.setTranslation(lang, translations);
+      }
     } catch (error) {
       console.error('Fehler beim Laden der Übersetzungen', error);
     }
-  };
+
+    async function fetchYaml(path: string): Promise<{ [key: string]: string }> {
+      const response = await lastValueFrom(http.get(path, { responseType: 'text' }));
+      let lines: string[] = response.split('\n');
+      let object: { [key: string]: string } = {};
+
+      lines.forEach((line: string) => {
+        let delimiter = line.indexOf(':');
+        if (delimiter !== -1) {
+          let key = line.slice(0, delimiter).trim();
+          let value = line.slice(delimiter + 1).trim();
+          object[key] = value;
+        }
+      });
+
+      return object;
+    }
+  }
 }
+
 
 @NgModule({
   declarations: [
@@ -73,13 +85,7 @@ export function appInitializerFactory(translate: TranslateService, httpClient: H
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient, PLATFORM_ID]
-      }
-    }),
+    TranslateModule.forRoot()
   ],
   providers: [
     provideClientHydration(),

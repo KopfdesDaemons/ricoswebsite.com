@@ -52,7 +52,7 @@ export class PostService {
       const markdownBody = this.markdownS.extractBody(markdownFile);
       const postContent = await this.markdownS.parseMarkdown(markdownBody);
 
-      return new Post(markdownHeader, fileName, postContent);
+      return new Post(markdownHeader, fileName, this.languageS.userLanguage, postContent);
     } catch (error: any) {
       console.error(error);
       if (error.status === 404 && language !== 'en') {
@@ -88,7 +88,7 @@ export class PostService {
 
       const postArray: Post[] = [];
       for (const post of visiblePosts) {
-        postArray.push(new Post(post, post.fileName));
+        postArray.push(new Post(post, post.fileName, this.languageS.userLanguage));
 
       }
       // Sortierung

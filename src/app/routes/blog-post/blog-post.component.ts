@@ -48,9 +48,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
       }
 
       this.updateMetaTags();
-      if (this.post?.postMeta && this.post.postMeta?.date) {
-        this.post.postMeta.date = new Date(this.post.postMeta.date).toLocaleDateString(this.languageS.userLanguage);
-      }
     })
   }
 
