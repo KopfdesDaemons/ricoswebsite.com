@@ -1,7 +1,7 @@
 ---
 title: BlogTube - Ein WordPress YouTube Klon
 author: Rico
-image: assets/images/blogtube.avif
+image: assets/images/blogtube-post-screenshot.avif
 keywords:
   - YouTube
   - WordPress

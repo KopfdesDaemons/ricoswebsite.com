@@ -1,5 +1,5 @@
 ---
-title: Integrate CodePen into Your Angular Project (The Easy Way!)
+title: Integrate CodePen into Your Angular Project
 author: Rico
 image: assets/images/codepen-screenshot.avif
 keywords:

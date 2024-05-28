@@ -1,0 +1,26 @@
+---
+home_h1: Web development is my biggest hobby
+home_subtitle: I taught myself all skills out of interest. It's not work if it's your hobby.
+my_projects: My Projects
+filter_options: Filter options
+legal_notice: Legal notice
+privacy_policy: Privacy policy
+my_links: My Links
+css_gallery_title: CSS gallery
+about_this_website_title: About this website
+load_comments: Load Comments
+disqus_privacy_notice: The comments are loaded by the third-party provider
+for_more_details_see: For more details see
+codepen_button: Load code snippet from CodePen
+codepen_privacy_notice: The code is loaded by the third-party provider CodePen. For more details see
+language: Language
+home_description: My portfolio website as a hobby web developer.
+disqus_descr: Provides the comment function.
+codepen_descr: Provides the code snippets.
+custom_language: Storage of the selected language.
+blog_h1: My blogposts
+read_more: read more
+date_desc: Date descending
+date_asc: Date ascending
+title_desc: Title ascending
+title_asc: Title descending
