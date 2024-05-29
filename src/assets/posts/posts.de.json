@@ -5,6 +5,19 @@
     "fileName": "privacy-policy"
   },
   {
+    "title": "Ngx-translate - Flackern der Übersetzungsstrings beheben",
+    "description": "Eine Anleitung wie man die Verzögerung beim Laden der Übersetzungen mit ng-translate beheben kann.",
+    "author": "Rico",
+    "image": "assets/images/ng-translate-flickering-post-thumbnail.avif",
+    "keywords": [
+      "ngx-translate",
+      "angular universal",
+      "angular localisation"
+    ],
+    "date": "2024-05-29T00:00:00.000Z",
+    "fileName": "ngx-translate-flickering"
+  },
+  {
     "title": "Linux Mint Cinnamon als Desktop getestet",
     "author": "Rico",
     "image": "assets/images/linux-mint-desktop.avif",

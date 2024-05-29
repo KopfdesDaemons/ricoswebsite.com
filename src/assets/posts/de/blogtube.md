@@ -52,7 +52,9 @@ Probleme, Bugs oder Funktionswünsche können im [Support-Forum](https://wordpre
 
 ## BlogTube - Free Download
 
-<a class="linkButton" title="Download von WordPress" href="https://wordpress.org/themes/blogtube" target="_blank">
-WordPress</a>
-<a class="linkButton" title="Ansehen auf GitHub" href="https://github.com/KopfdesDaemons/blogtube" target="_blank">GitHub</a>
-<a class="linkButton" title="Direkter Download" href="https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip">Direkter Download</a>
+<div style="display: flex; gap: 0.5em; flex-wrap: wrap">
+  <a class="linkButton" title="Download von WordPress" href="https://wordpress.org/themes/blogtube" target="_blank">
+  WordPress</a>
+  <a class="linkButton" title="Ansehen auf GitHub" href="https://github.com/KopfdesDaemons/blogtube" target="_blank">GitHub</a>
+  <a class="linkButton" title="Direkter Download" href="https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip">Direkter Download</a>
+</div>

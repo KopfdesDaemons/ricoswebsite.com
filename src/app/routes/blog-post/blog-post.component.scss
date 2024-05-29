@@ -101,6 +101,13 @@
             }
         }
 
+        // Für einzelne Wörter in Absätzen
+        p>code {
+            background-color: rgb(21, 39, 90);
+            padding: 0.4em;
+            border-radius: 4px;
+        }
+
         pre {
             background-color: black;
             padding: 1em;

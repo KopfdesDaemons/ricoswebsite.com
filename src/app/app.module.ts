@@ -90,7 +90,6 @@ export function appInitializerFactory(translate: TranslateService, http: HttpCli
   providers: [
     provideClientHydration(),
     HighlightService,
-    [TranslateService],
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFactory,
