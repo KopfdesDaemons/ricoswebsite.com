@@ -8,6 +8,8 @@
         <p>{{ post?.postMeta?.description }}</p>
       </div>
       <time>{{ post?.postMeta?.localDateString }}</time>
+      <h1 *ngIf="postNotFound">404</h1>
+      <div *ngIf="postNotFound">{{'blogpost_not_found' | translate}}</div>
     </div>
   </div>
   <section>

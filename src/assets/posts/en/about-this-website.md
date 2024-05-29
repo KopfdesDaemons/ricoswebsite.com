@@ -2,8 +2,8 @@
 title: About this Website
 author: Rico
 keywords:
-  - angular
-  - markdown
+  - Angular
+  - Markdown
   - YAML
 description: A quick insight into how this website works.
 date: 2024-05-12
@@ -32,8 +32,8 @@ The blog posts are loaded from markdown files, which contain all metadata in the
 title: About this Website
 author: Rico
 keywords:
-  - angular
-  - markdown
+  - Angular
+  - Markdown
   - YAML
 description: A quick insight into how this website works.
 date: 5/12/24

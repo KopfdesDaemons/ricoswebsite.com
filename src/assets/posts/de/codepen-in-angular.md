@@ -1,5 +1,5 @@
 ---
-title: CodePen in Angular integrieren
+title: CodePen in Angular integrieren (DSGVO konform)
 author: Rico
 image: assets/images/codepen-screenshot.avif
 keywords:

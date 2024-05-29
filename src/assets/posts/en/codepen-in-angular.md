@@ -3,10 +3,10 @@ title: Integrate CodePen into Your Angular Project
 author: Rico
 image: assets/images/codepen-screenshot.avif
 keywords:
-  - integrate codepen
-  - angular codepen
-  - angular embed codepen
-  - codepen in angular
+  - Integrate codepen
+  - Angular codepen
+  - Angular embed codepen
+  - Codepen in angular
 description: Learn how to seamlessly integrate CodePen snippets into your Angular project with this step-by-step guide.
 date: 2024-05-18
 ---

@@ -1,32 +1,34 @@
 ---
-title: Ngx-translate - Flackern der Übersetzungsstrings beheben
-description: Eine Anleitung wie man die Verzögerung beim Laden der Übersetzungen mit ng-translate beheben kann.
+title: ngx-translate - Flackern der Texte beheben in 2 Schritten
+description: Eine Anleitung wie man das Flackern der Übersetzungen von ngx-translate beim Laden der Webseite beheben kann.
 author: Rico
-image: assets/images/ng-translate-flickering-post-thumbnail.avif
+image: assets/images/ng-translate-thumbnail.avif
 keywords:
   - ngx-translate
-  - angular universal
-  - angular localisation
+  - Prerendering
+  - Angular Localisation
+  - Hydration
+  - Übersetzungen
 date: 2024-05-29
 ---
 
-## Das Problem: Beim Laden der Seite flackern kurz die Identifier auf
+## Das Problem: Flackernde Texte beim Laden der Webseite
 
-Die Übersetzungen werden standardmäßig aus JSON Dateien geladen. Für jede Übersetzung gibt es einen Identifier, dem ein Übersetzungsstring zugeordnet ist. Bei Aufbau der Seite wird, statt der Übersetzung, für einen kurzen Augenblick der Identifier angezeigt. Dies verursacht ein Flackern und im schlimmsten Fall ein Layout-Shift.
+Bei Verwendung von [ngx-translate](https://github.com/ngx-translate/core) in Angular-Webseiten werden Übersetzungen standardmäßig aus JSON-Dateien geladen. Jeder Übersetzung ist ein Identifier zugeordnet. Beim Aufbau der Seite kann es vorkommen, dass anstelle der Übersetzung kurzzeitig der Identifier oder gar kein Text angezeigt wird. Dies führt zu einem störenden Flackern und im schlimmsten Fall zu einem Layout-Shift.
+
+![alt text](assets/images/ngx-translate-flickering2.gif "Beispiel des Flackerns")
 
 ![alt text](assets/images/ngx-translate-flickering.gif "Beispiel des Flackerns")
 
-Beim [Prerendering](https://angular.dev/guide/prerendering#how-to-prerender-a-page) werden die Übersetzungen nicht gerendert und im vorgerendertem HTML sind die Identifier sichtbar. Erst bei der [Hydration](https://angular.dev/guide/hydration) werden die Übersetzungen geladen. Auch in Hinblick auf SEO ist dies nicht wünschenswert.
+Diese Problem tritt beim [Prerendering](https://angular.dev/guide/prerendering#how-to-prerender-a-page) auf. Während bei Single Page Applications (SPA) das Flackern nicht sichtbar ist, entsteht es nach dem Prerendern bei der [Hydration](https://angular.dev/guide/hydration). Bei vorgerenderten Webseiten tritt das Flackern nur auf, wenn JavaScript aktiviert ist und die Hydration einsetzt.
 
-## Warum kommt es zum Flackern bei ngx-translate?
+## Lösung: So beheben Sie das Flackern von ngx-translate
 
-Das Flackern kommt daher, da die Übersetzungen asynchron geladen werden und beim Aufbau der Seite noch nicht bereitgestellt wurden. Daher wird als Fallback der Identifier angezeigt.
+### Schritt 1: Erstellung einer eigenen Factory
 
-## Wie behebt man das Flackern bei ngx-translate?
+Um das Flackern zu verhindern, müssen die Übersetzungen vor dem Seitenaufbau bereitgestellt werden. Dies erfordert die Erstellung einer eigenen _Factory_, die bei der Initialisierung der App geladen wird.
 
-Die Lösung des Problems ist die Bereitstellung der Übersetzungen vor dem Aufbau der Seite. Um dies zu ermöglichen muss eine eigene `Factory` geschrieben werden. Diese Factory muss bei der Appinitialisierung geladen werden und stellt die Übersetzungen bereit.
-
-In der app.module.ts wird ein provider ergänzt:
+In der _app.module.ts_ wird ein provider ergänzt:
 
 ```typescript
   providers: [
@@ -39,27 +41,30 @@ In der app.module.ts wird ein provider ergänzt:
   ],
 ```
 
-Dann fehlt noch die Factory. Die kann auch in der app.module.ts ergänzt werden oder ausgelagert werden:
+### Schritt 2: Implementierung der Factory
+
+Die folgende factory wird in der _app.module.ts_ ergänzt:
 
 ```typescript
 export function appInitializerFactory(translate: TranslateService, httpClient: HttpClient, platformId: object) {
   return async () => {
-    // Setze standard Sprache
+    const languages = ["de", "en"];
     translate.setDefaultLang("en");
-    translate.addLangs(["en", "de"]);
+    translate.addLangs(languages);
 
     const path = isPlatformServer(platformId) ? "http://localhost:4200/assets/i18n/" : "assets/i18n/";
     try {
-      // Lade deutsche Übersetzung
-      const deTranslations = await lastValueFrom(httpClient.get(`${path}de.json`));
-      translate.setTranslation("de", deTranslations);
-
-      // Lade englische Übersetzung
-      const enTranslations = await lastValueFrom(httpClient.get(`${path}en.json`));
-      translate.setTranslation("en", enTranslations);
+      for (const lang of languages) {
+        const translation = await lastValueFrom(httpClient.get(`${path}${lang}.json`));
+        translate.setTranslation(lang, translation);
+      }
     } catch (error) {
       console.error("Fehler beim Laden der Übersetzungen", error);
     }
   };
 }
 ```
+
+Das Flackern sollte jetzt nicht mehr auftreten.
+
+Um den Code übersichtlicher zu gestalten, ist es ratsam, die Factory aus der app.module.ts auszulagern. Dafür kann eine Datei namens `translation.factory.ts` erstellt werden.

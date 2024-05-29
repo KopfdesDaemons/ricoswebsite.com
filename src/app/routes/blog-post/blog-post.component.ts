@@ -18,6 +18,7 @@ import { environment } from 'src/environment/enviroment';
 export class BlogPostComponent implements OnInit, AfterViewChecked {
   post: Post | undefined | null;
   private routeParamsSubscription: Subscription | undefined;
+  postNotFound: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     // when route changes 
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
+      this.postNotFound = false;
       const lang = this.route.snapshot.paramMap.get('lang');
       this.languageS.updateLanguage(lang);
 
@@ -46,7 +48,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
           if (this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;
         });
       }
-
+      if (!this.post) this.postNotFound = true;
       this.updateMetaTags();
     })
   }
