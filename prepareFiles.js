@@ -63,7 +63,7 @@ function generateRoutesTxt(lang) {
                 if (err) {
                     console.error('Fehler beim Anhängen der Routen:', err);
                 } else {
-                    console.log('routes.txt erfolgreich aktualisiert.');
+                    console.log(`routes.txt erfolgreich für die Sprache ${lang.lang} aktualisiert.`);
                 }
             });
         });
@@ -94,7 +94,7 @@ function generateSitemapTxt(lang) {
                 if (err) {
                     console.error('Fehler beim Anhängen der Routen:', err);
                 } else {
-                    console.log('sitemap.txt erfolgreich aktualisiert.');
+                    console.log(`sitemap.txt erfolgreich für die Sprache ${lang.lang} aktualisiert.`);
                 }
             });
         });

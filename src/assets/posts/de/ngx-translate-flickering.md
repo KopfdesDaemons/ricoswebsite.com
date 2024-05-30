@@ -1,5 +1,5 @@
 ---
-title: ngx-translate - Flackern der Texte beheben in 2 Schritten
+title: "ngx-translate: Flackern der Texte beheben in 2 Schritten"
 description: Eine Anleitung wie man das Flackern der Übersetzungen von ngx-translate beim Laden der Webseite beheben kann.
 author: Rico
 image: assets/images/ng-translate-thumbnail.avif
@@ -20,7 +20,7 @@ Bei Verwendung von [ngx-translate](https://github.com/ngx-translate/core) in Ang
 
 ![alt text](assets/images/ngx-translate-flickering.gif "Beispiel des Flackerns")
 
-Diese Problem tritt beim [Prerendering](https://angular.dev/guide/prerendering#how-to-prerender-a-page) auf. Während bei Single Page Applications (SPA) das Flackern nicht sichtbar ist, entsteht es nach dem Prerendern bei der [Hydration](https://angular.dev/guide/hydration). Bei vorgerenderten Webseiten tritt das Flackern nur auf, wenn JavaScript aktiviert ist und die Hydration einsetzt.
+Diese Problem tritt beim [Prerendering](https://angular.dev/guide/prerendering) auf. Während bei Single Page Applications (SPA) das Flackern nicht sichtbar ist, entsteht es nach dem Prerendern bei der [Hydration](https://angular.dev/guide/hydration). Bei vorgerenderten Webseiten tritt das Flackern nur auf, wenn JavaScript aktiviert ist und die Hydration einsetzt.
 
 ## Lösung: So beheben Sie das Flackern von ngx-translate
 

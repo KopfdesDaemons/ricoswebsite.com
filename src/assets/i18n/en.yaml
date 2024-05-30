@@ -25,3 +25,4 @@ date_asc: Date ascending
 title_desc: Title ascending
 title_asc: Title descending
 blogpost_not_found: This post could not be found
+blogpost_not_found_text: The article does not exist. Perhaps the article does not exist in this language.

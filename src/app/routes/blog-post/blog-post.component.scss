@@ -29,6 +29,7 @@
         .description {
             max-width: 80%;
             margin: 0 auto;
+            font-size: 1.3em;
         }
 
         @keyframes grow {
@@ -92,6 +93,13 @@
             color: #8888ff;
         }
 
+        h1,
+        h2,
+        h3,
+        h4 {
+            line-height: 1.4em;
+        }
+
         img {
             max-width: 100%;
             border-radius: 12px;
@@ -114,7 +122,8 @@
             border-radius: 12px;
             max-width: 100%;
             overflow-x: auto;
-            font-size: 0.9em;
+            font-size: 0.8em;
+            margin-bottom: 1em;
 
             +.toolbar {
                 opacity: unset;

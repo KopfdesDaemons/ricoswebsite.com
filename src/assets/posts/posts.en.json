@@ -5,6 +5,21 @@
     "fileName": "privacy-policy"
   },
   {
+    "title": "ngx-translate: Fix text flickering in 2 steps",
+    "description": "A guide on how to fix the flickering of ngx-translate translations when loading the website.",
+    "author": "Rico",
+    "image": "assets/images/ng-translate-thumbnail.avif",
+    "keywords": [
+      "ngx-translate",
+      "Prerendering",
+      "Angular Localisation",
+      "Hydration",
+      "Translations"
+    ],
+    "date": "2024-05-29T00:00:00.000Z",
+    "fileName": "ngx-translate-flickering"
+  },
+  {
     "title": "Linux Mint Cinnamon tested as a desktop",
     "author": "Rico",
     "image": "assets/images/linux-mint-desktop.avif",
@@ -33,7 +48,7 @@
     "fileName": "css-gallery"
   },
   {
-    "title": "Integrate CodePen into Your Angular Project",
+    "title": "Integrate CodePen into Angular (GDPR compliant)",
     "author": "Rico",
     "image": "assets/images/codepen-screenshot.avif",
     "keywords": [

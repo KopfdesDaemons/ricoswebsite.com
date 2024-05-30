@@ -1,6 +1,8 @@
 <main class="blogpostMain">
+
   <div class="hero gradient">
     <div class="sectionSpacer">
+
       <img *ngIf="post?.postMeta?.image" height="495" width="880" [src]="post?.postMeta?.image"
         alt="{{ post?.postMeta?.title }}" />
       <h1>{{ post?.postMeta?.title }}</h1>
@@ -8,8 +10,13 @@
         <p>{{ post?.postMeta?.description }}</p>
       </div>
       <time>{{ post?.postMeta?.localDateString }}</time>
-      <h1 *ngIf="postNotFound">404</h1>
-      <div *ngIf="postNotFound">{{'blogpost_not_found' | translate}}</div>
+
+      <ng-container *ngIf="postNotFound">
+        <h1>404</h1>
+        <p>{{'blogpost_not_found' | translate}}</p>
+        <p>{{'blogpost_not_found_text' | translate}}</p>
+      </ng-container>
+
     </div>
   </div>
   <section>

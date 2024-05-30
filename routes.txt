@@ -5,12 +5,6 @@ en
 en/privacy-policy
 en/blog
 
-en/blogpost/privacy-policy
-en/blogpost/linux-test
-en/blogpost/css-gallery
-en/blogpost/codepen-in-angular
-en/blogpost/blogtube
-en/blogpost/about-this-website
 de/blogpost/privacy-policy
 de/blogpost/ngx-translate-flickering
 de/blogpost/linux-test
@@ -18,3 +12,10 @@ de/blogpost/css-gallery
 de/blogpost/codepen-in-angular
 de/blogpost/blogtube
 de/blogpost/about-this-website
+en/blogpost/privacy-policy
+en/blogpost/ngx-translate-flickering
+en/blogpost/linux-test
+en/blogpost/css-gallery
+en/blogpost/codepen-in-angular
+en/blogpost/blogtube
+en/blogpost/about-this-website

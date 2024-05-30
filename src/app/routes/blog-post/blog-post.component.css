@@ -29,6 +29,7 @@
 .blogpostMain .hero .description {
   max-width: 80%;
   margin: 0 auto;
+  font-size: 1.3em;
 }
 @keyframes grow {
   0% {
@@ -82,6 +83,12 @@
 .blogpostMain .postContent a {
   color: #8888ff;
 }
+.blogpostMain .postContent h1,
+.blogpostMain .postContent h2,
+.blogpostMain .postContent h3,
+.blogpostMain .postContent h4 {
+  line-height: 1.4em;
+}
 .blogpostMain .postContent img {
   max-width: 100%;
   border-radius: 12px;
@@ -100,7 +107,8 @@
   border-radius: 12px;
   max-width: 100%;
   overflow-x: auto;
-  font-size: 0.9em;
+  font-size: 0.8em;
+  margin-bottom: 1em;
 }
 .blogpostMain .postContent pre + .toolbar {
   opacity: unset;
