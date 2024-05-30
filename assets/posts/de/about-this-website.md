@@ -2,8 +2,8 @@
 title: Über diese Webseite
 author: Rico
 keywords:
-  - angular
-  - markdown
+  - Angular
+  - Markdown
   - YAML
 description: Ein kleiner Einblick, wie diese Website funktioniert.
 date: 2024-05-12
@@ -32,8 +32,8 @@ Die Blogbeiträge werden aus Markdown-Dateien geladen, die alle Metadaten im Hea
 title: Über diese Webseite
 author: Rico
 keywords:
-  - angular
-  - markdown
+  - Angular
+  - Markdown
   - YAML
 description: Ein kleiner Einblick, wie diese Website funktioniert.
 date: 2024-05-12

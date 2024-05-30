@@ -1,5 +1,5 @@
 ---
-title: CodePen in Angular integrieren
+title: CodePen in Angular integrieren (DSGVO konform)
 author: Rico
 image: assets/images/codepen-screenshot.avif
 keywords:
@@ -13,7 +13,7 @@ date: 2024-05-18
 
 ## Was ist CodePen?
 
-CodePen ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.
+[CodePen](https://codepen.io/) ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.
 
 ## Schritt-für-Schritt-Anleitung: CodePen in einem Angular-Projekt integrieren
 

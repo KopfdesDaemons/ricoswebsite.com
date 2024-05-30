@@ -1,19 +1,19 @@
 ---
-title: Integrate CodePen into Your Angular Project
+title: Integrate CodePen into Angular (GDPR compliant)
 author: Rico
 image: assets/images/codepen-screenshot.avif
 keywords:
-  - integrate codepen
-  - angular codepen
-  - angular embed codepen
-  - codepen in angular
+  - Integrate codepen
+  - Angular codepen
+  - Angular embed codepen
+  - Codepen in angular
 description: Learn how to seamlessly integrate CodePen snippets into your Angular project with this step-by-step guide.
 date: 2024-05-18
 ---
 
 ## What is CodePen?
 
-CodePen is a popular online code editor and community platform that allows developers to write and share code snippets. It offers a convenient way to showcase interactive elements and test code functionalities.
+[CodePen](https://codepen.io/) is a popular online code editor and community platform that allows developers to write and share code snippets. It offers a convenient way to showcase interactive elements and test code functionalities.
 
 ## Step-by-Step Guide: Integrate CodePen into Your Angular Project
 

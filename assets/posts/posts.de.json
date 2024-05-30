@@ -5,12 +5,27 @@
     "fileName": "privacy-policy"
   },
   {
+    "title": "ngx-translate: Flackern der Texte beheben in 2 Schritten",
+    "description": "Eine Anleitung wie man das Flackern der Übersetzungen von ngx-translate beim Laden der Webseite beheben kann.",
+    "author": "Rico",
+    "image": "assets/images/ng-translate-thumbnail.avif",
+    "keywords": [
+      "ngx-translate",
+      "Prerendering",
+      "Angular Localisation",
+      "Hydration",
+      "Übersetzungen"
+    ],
+    "date": "2024-05-29T00:00:00.000Z",
+    "fileName": "ngx-translate-flickering"
+  },
+  {
     "title": "Linux Mint Cinnamon als Desktop getestet",
     "author": "Rico",
     "image": "assets/images/linux-mint-desktop.avif",
     "keywords": [
-      "linux",
-      "desktop"
+      "Linux",
+      "Desktop"
     ],
     "description": "Als Hobby-Webentwickler habe ich Linux Mint Cinnamon als Desktop getestet. Hier liste ich meine positiven Erfahrungen und Probleme auf.",
     "date": "2024-04-12T00:00:00.000Z",
@@ -33,7 +48,7 @@
     "fileName": "css-gallery"
   },
   {
-    "title": "CodePen in Angular integrieren",
+    "title": "CodePen in Angular integrieren (DSGVO konform)",
     "author": "Rico",
     "image": "assets/images/codepen-screenshot.avif",
     "keywords": [
@@ -63,8 +78,8 @@
     "title": "Über diese Webseite",
     "author": "Rico",
     "keywords": [
-      "angular",
-      "markdown",
+      "Angular",
+      "Markdown",
       "YAML"
     ],
     "description": "Ein kleiner Einblick, wie diese Website funktioniert.",
