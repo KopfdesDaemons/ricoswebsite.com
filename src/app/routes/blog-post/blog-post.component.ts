@@ -46,9 +46,10 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
         this.route.data.subscribe(async (data) => {
           if (data['fileName']) this.post = await this.postS.getPost(data['fileName']);
           if (this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;
+          this.postNotFound = !this.post;
         });
       }
-      if (!this.post) this.postNotFound = true;
+      this.postNotFound = !this.post;
       this.updateMetaTags();
     })
   }
