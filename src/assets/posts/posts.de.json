@@ -32,6 +32,20 @@
     "fileName": "linux-test"
   },
   {
+    "title": "Angular: Disqus manuell integrieren",
+    "author": "Rico",
+    "image": "assets/images/disqus-in-angular.avif",
+    "keywords": [
+      "Disqus integrieren",
+      "Angular Disqus",
+      "Angular Disqus manuell einbinden",
+      "Disqus in Angular"
+    ],
+    "description": "Eine Anleitung, wie man Disqus ohne weitere Abhängigkeiten in Angular einbetten kann.",
+    "date": "2024-05-30T00:00:00.000Z",
+    "fileName": "disqus-in-angular"
+  },
+  {
     "title": "Meine basic CSS Gallery",
     "author": "Rico",
     "hasCodePen": "true",

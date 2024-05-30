@@ -9,8 +9,9 @@ import { LanguageService } from './language.service';
 })
 export class DisqusService {
 
-  isLoaded: boolean = false;
   consent: boolean = false;
+  disqus: any;
+  shortname: string = 'ricoswebsite-com';
 
   constructor(
     public scriptS: ScriptService,
@@ -27,29 +28,23 @@ export class DisqusService {
   }
 
   loadDisqus(renderer: Renderer2, title: string): void {
-    const script = renderer.createElement('script');
-    script.type = 'text/javascript';
+    this.consent = this.consentS.checkConsent('Disqus');
+    this.disqus = (window as any)['DISQUS'];
     const lang = this.languageS.userLanguage;
-
-    if (!this.isLoaded) {
-      script.text = `
-      var disqus_config = function () {
-        this.page.identifier = '${title}';
-        this.language = '${lang}';
+    if (!this.disqus) {
+      (window as any).disqus_config = function () {
+        this.page.identifier = title;
+        this.language = lang;
       };
-    `;
-      this.isLoaded = true;
+      this.scriptS.addJsScript(renderer, 'https://' + this.shortname + '.disqus.com/embed.js');
     } else {
-      script.text = `
-      DISQUS.reset({
+      (window as any)['DISQUS'].reset({
         reload: true,
-        config: function () { 
-          this.page.identifier = '${title}';
-          this.language = '${lang}';
-        }})
-      `;
+        config: function () {
+          this.page.identifier = title;
+          this.language = lang;
+        }
+      });
     }
-    renderer.appendChild(this.document.body, script);
-    this.scriptS.addJsScript(renderer, 'https://ricoswebsite-com.disqus.com/embed.js');
   }
 }
