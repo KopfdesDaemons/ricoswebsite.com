@@ -98,6 +98,10 @@ Integrating Disqus with Angular works a little differently because Angular is a 
         this.observer.observe(this.elementRef.nativeElement);
       }
 
+      ngOnDestroy(): void {
+        this.observer?.disconnect();
+      }
+
       isVisible() {
         if (!this.identifier) return;
         if (this.disqusS.consent && this.identifier) {
