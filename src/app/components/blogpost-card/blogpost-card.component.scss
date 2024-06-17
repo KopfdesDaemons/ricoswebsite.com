@@ -41,9 +41,14 @@
 
     .content {
         flex: 1 0 45%;
-        min-width: 15em;
+        min-width: 19em;
         box-sizing: border-box;
         text-wrap: pretty;
+
+        @media only screen and (max-width: 800px) {
+            min-width: 0;
+            flex-basis: 100%;
+        }
 
         a:hover,
         a:visited:hover {
@@ -86,7 +91,7 @@
             li {
                 list-style: none;
                 background-color: rgb(133, 162, 172);
-                border-radius: 5em;
+                border-radius: 8px;
                 color: rgb(0, 0, 0);
                 padding: 0.7em;
             }

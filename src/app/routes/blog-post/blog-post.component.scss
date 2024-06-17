@@ -60,13 +60,10 @@
     }
 
     .postContent {
-        margin-top: 2em;
         min-height: 40em;
         line-height: 1.5em;
         margin-bottom: 4em;
-        background-color: #32384b75;
         padding: clamp(1em, 2vw, 2em);
-        border-radius: 12px;
         overflow: auto;
         width: 100%;
         box-sizing: border-box;
@@ -77,10 +74,6 @@
             ol {
                 padding-left: 1em;
             }
-        }
-
-        >* {
-            margin-top: 0;
         }
 
         ul {
@@ -97,7 +90,8 @@
         h2,
         h3,
         h4 {
-            line-height: 1.4em;
+            margin: 1em 0 0 0;
+            line-height: 1.2em;
         }
 
         img {
@@ -110,31 +104,34 @@
         }
 
         // Für einzelne Wörter in Absätzen
-        p>code {
+        p>code,
+        li>code {
             background-color: rgb(21, 39, 90);
             padding: 0.4em;
             border-radius: 4px;
         }
 
         pre {
-            background-color: black;
+            background-color: #1d2027;
             padding: 1em;
-            border-radius: 12px;
+            border-radius: 0 12px 12px 0;
             max-width: 100%;
             overflow-x: auto;
             font-size: 0.8em;
             margin-bottom: 1em;
+            border-left: 8px solid #3a3a75;
 
             +.toolbar {
                 opacity: unset;
 
                 button {
-                    padding: 0.5em;
-                    font-size: 1.1em;
+                    padding: 0.4em;
+                    border-radius: unset;
+                    font-size: 1em;
                     cursor: pointer;
 
                     &:hover {
-                        background-color: gray;
+                        background-color: rgb(50, 50, 66);
                     }
                 }
             }

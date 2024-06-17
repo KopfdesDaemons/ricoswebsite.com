@@ -1,5 +1,5 @@
 ---
-title: "Angular: Integrate Disqus manually"
+title: "Angular: Integrate Disqus manually with own service"
 author: Rico
 image: assets/images/disqus-in-angular.avif
 keywords:
@@ -96,6 +96,10 @@ Integrating Disqus with Angular works a little differently because Angular is a 
           });
         });
         this.observer.observe(this.elementRef.nativeElement);
+      }
+
+      ngOnDestroy(): void {
+        this.observer?.disconnect();
       }
 
       isVisible() {

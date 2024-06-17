@@ -76,7 +76,7 @@ Integrating CodePen snippets into your Angular project involves this main steps:
 
 3. **Integrate a Consent Service:**
 
-   So that the user's consent can be obtained in accordance with the GDPR before we load CodePen, we integrate a consent service.
+   So that the user's consent can be obtained in accordance with the GDPR before we load CodePen, we integrate a `ConsentService`.
 
    ```typescript
    import { isPlatformServer } from "@angular/common";

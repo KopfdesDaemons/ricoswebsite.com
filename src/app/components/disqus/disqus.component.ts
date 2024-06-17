@@ -31,6 +31,10 @@ export class DisqusComponent implements OnChanges {
     this.observer.observe(this.elementRef.nativeElement);
   }
 
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
+
   isVisible() {
     if (!this.identifier) return;
     if (this.disqusS.consent && this.identifier) {

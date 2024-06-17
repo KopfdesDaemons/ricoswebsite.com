@@ -32,19 +32,19 @@ BlogTube is available for free, open source and free software. The theme uses th
 
 ## BlogTube - Feed example
 
-![alt text](assets/images/blogtube-feed.avif "feed example")
+![feed example](assets/images/blogtube-feed.avif "feed example")
 
 ## BlogTube - Blog post example
 
-![alt text](assets/images/blogtube-post-screenshot.avif "blog post example")
+![blog post example](assets/images/blogtube-post-screenshot.avif "blog post example")
 
 ## BlogTube - Author page example
 
-![alt text](assets/images/blogtube-author-page.avif "author page example")
+![author page example](assets/images/blogtube-author-page.avif "author page example")
 
 ## BlogTube - Comment example
 
-![alt text](assets/images/blogtube-comment.avif "comment example")
+![comment example](assets/images/blogtube-comment.avif "comment example")
 
 ## BlogTube - Support Forum
 

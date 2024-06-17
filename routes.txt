@@ -5,6 +5,7 @@ en
 en/privacy-policy
 en/blog
 
+en/blogpost/steam-dropdown-bug
 en/blogpost/privacy-policy
 en/blogpost/ngx-translate-flickering
 en/blogpost/linux-test
@@ -13,6 +14,7 @@ en/blogpost/css-gallery
 en/blogpost/codepen-in-angular
 en/blogpost/blogtube
 en/blogpost/about-this-website
+de/blogpost/steam-dropdown-bug
 de/blogpost/privacy-policy
 de/blogpost/ngx-translate-flickering
 de/blogpost/linux-test

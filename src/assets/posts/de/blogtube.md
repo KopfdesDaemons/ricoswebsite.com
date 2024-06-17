@@ -32,19 +32,19 @@ BlogTube ist kostenlos verfügbar, Open Source und freie Software. Das Theme ver
 
 ## BlogTube - Feed Beispiel
 
-![alt text](assets/images/blogtube-feed.avif "Feed Beispiel")
+![Feed Beispiel](assets/images/blogtube-feed.avif "Feed Beispiel")
 
 ## BlogTube - Blogbeitrag Beispiel
 
-![alt text](assets/images/blogtube-post-screenshot.avif "Blogbeitrag Beispiel")
+![Blogbeitrag Beispiel](assets/images/blogtube-post-screenshot.avif "Blogbeitrag Beispiel")
 
 ## BlogTube - Autorenseite Beispiel
 
-![alt text](assets/images/blogtube-author-page.avif "Autorenseite Beispiel")
+![Autorenseite Beispiel](assets/images/blogtube-author-page.avif "Autorenseite Beispiel")
 
 ## BlogTube - Kommentar Beispiel
 
-![alt text](assets/images/blogtube-comment.avif "Kommentar Beispiel")
+![Kommentar Beispiel](assets/images/blogtube-comment.avif "Kommentar Beispiel")
 
 ## BlogTube - Support Forum
 

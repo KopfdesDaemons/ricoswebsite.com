@@ -55,13 +55,10 @@
   justify-content: center;
 }
 .blogpostMain .postContent {
-  margin-top: 2em;
   min-height: 40em;
   line-height: 1.5em;
   margin-bottom: 4em;
-  background-color: rgba(50, 56, 75, 0.4588235294);
   padding: clamp(1em, 2vw, 2em);
-  border-radius: 12px;
   overflow: auto;
   width: 100%;
   box-sizing: border-box;
@@ -71,9 +68,6 @@
   .blogpostMain .postContent ol {
     padding-left: 1em;
   }
-}
-.blogpostMain .postContent > * {
-  margin-top: 0;
 }
 .blogpostMain .postContent ul {
   padding-left: 1.5em;
@@ -87,7 +81,8 @@
 .blogpostMain .postContent h2,
 .blogpostMain .postContent h3,
 .blogpostMain .postContent h4 {
-  line-height: 1.4em;
+  margin: 1em 0 0 0;
+  line-height: 1.2em;
 }
 .blogpostMain .postContent img {
   max-width: 100%;
@@ -96,30 +91,33 @@
 .blogpostMain .postContent img:hover {
   filter: brightness(0.8);
 }
-.blogpostMain .postContent p > code {
+.blogpostMain .postContent p > code,
+.blogpostMain .postContent li > code {
   background-color: rgb(21, 39, 90);
   padding: 0.4em;
   border-radius: 4px;
 }
 .blogpostMain .postContent pre {
-  background-color: black;
+  background-color: #1d2027;
   padding: 1em;
-  border-radius: 12px;
+  border-radius: 0 12px 12px 0;
   max-width: 100%;
   overflow-x: auto;
   font-size: 0.8em;
   margin-bottom: 1em;
+  border-left: 8px solid #3a3a75;
 }
 .blogpostMain .postContent pre + .toolbar {
   opacity: unset;
 }
 .blogpostMain .postContent pre + .toolbar button {
-  padding: 0.5em;
-  font-size: 1.1em;
+  padding: 0.4em;
+  border-radius: unset;
+  font-size: 1em;
   cursor: pointer;
 }
 .blogpostMain .postContent pre + .toolbar button:hover {
-  background-color: gray;
+  background-color: rgb(50, 50, 66);
 }
 .blogpostMain .postContent .linkButton {
   font-size: 1.4em;
