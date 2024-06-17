@@ -1,5 +1,19 @@
 [
   {
+    "title": "Linux: Fix Steam Dropdown Bug",
+    "author": "Rico",
+    "image": "assets/images/steam-dropdown-bug.avif",
+    "keywords": [
+      "Steam Settings Bug",
+      "Steam Dropdown not selectable",
+      "Linux Steam Client Issue",
+      "Steam Settings Linux"
+    ],
+    "description": "Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.",
+    "date": "2024-06-17T00:00:00.000Z",
+    "fileName": "steam-dropdown-bug"
+  },
+  {
     "title": "Privacy policy",
     "hideInFeed": true,
     "fileName": "privacy-policy"
@@ -32,7 +46,7 @@
     "fileName": "linux-test"
   },
   {
-    "title": "Angular: Integrate Disqus manually",
+    "title": "Angular: Integrate Disqus manually with own service",
     "author": "Rico",
     "image": "assets/images/disqus-in-angular.avif",
     "keywords": [

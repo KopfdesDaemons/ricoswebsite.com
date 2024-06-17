@@ -1,5 +1,5 @@
 ---
-title: "Angular: Integrate Disqus manually"
+title: "Angular: Integrate Disqus manually with own service"
 author: Rico
 image: assets/images/disqus-in-angular.avif
 keywords:
