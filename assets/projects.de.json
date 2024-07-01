@@ -12,7 +12,7 @@
             ],
             "projectURL": "https://wordpress.org/themes/blogtube/",
             "githubURL": "https://github.com/KopfdesDaemons/blogtube",
-            "blogpostURL": "/blogpost/blogtube",
+            "blogpostURL": "/blogpost/blogtube/.",
             "technologies": [
                 "WordPress",
                 "PHP",
