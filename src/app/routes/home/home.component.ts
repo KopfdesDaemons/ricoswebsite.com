@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private meta: Meta,
+    private title: Title,
     public ps: ProjectService,
-    private router: Router,
     private location: Location,
     private languageS: LanguageService,
     private translate: TranslateService,
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
       // Load Language
       let lang = this.route.snapshot.paramMap.get('lang');
       if (!lang) {
-        this.location.go('/' + this.languageS.userAgendLanguage);
+        this.location.go('/' + this.languageS.userAgendLanguage + '/');
         lang = this.languageS.userAgendLanguage
       }
       this.languageS.updateLanguage(lang);
@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
       this.loadProjects(this.currentPage, this.activTechnologiesFilterOptions);
 
       const description = await lastValueFrom(this.translate.get('home_description'));
+      this.title.setTitle('Ricos Website');
       this.meta.addTags([
         { property: 'og:description', content: description },
         { name: 'description', content: description }

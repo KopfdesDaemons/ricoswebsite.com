@@ -40,7 +40,7 @@ function createPostsJSON(lang) {
 function generateRoutesTxt(lang) {
 
     lang.routes = lang.fileNames.map(fileName => {
-        return lang.lang + blogpostRoute + '/' + path.parse(fileName).name;
+        return lang.lang + blogpostRoute + '/' + path.parse(fileName).name + '/.';
     });
 
     const routesFilePath = path.join(__dirname, 'routes.txt');
@@ -74,7 +74,7 @@ function generateSitemapTxt(lang) {
 
     lang.URLs = lang.fileNames.filter(fileName =>
         fileName != 'privacy-policy.md').map(fileName => {
-            return DomainWithProtocol + '/' + lang.lang + blogpostRoute + '/' + path.parse(fileName).name;
+            return DomainWithProtocol + '/' + lang.lang + blogpostRoute + '/' + path.parse(fileName).name + '/';
         });
 
     fs.readFile(sitemapPath, 'utf8', (err, data) => {

@@ -1,10 +1,10 @@
 <div class="card">
     <a class="imageContainer" *ngIf="postMeta?.image"
-        [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">
+        [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName + '/.']">
         <img src="{{postMeta?.image}}" alt="{{postMeta?.title}}">
     </a>
     <div class="content">
-        <a class="titleLink" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">
+        <a class="titleLink" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName + '/.']">
             <h2>{{postMeta?.title}}</h2>
         </a>
         <span class="date" *ngIf="postMeta?.date">{{postMeta?.date}}</span>

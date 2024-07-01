@@ -28,9 +28,7 @@ The error lies in the focusing behavior of the windows in the desktop environmen
 To work around the error, the focusing behavior of the windows must be set so that they are only focused by a mouse click. In the Cinnamon desktop environment, this is done as follows:
 
 1. Search for _"Window"_ in the start menu
-
 2. Switch to the _"Behavior"_ tab
-
 3. Change _"Window focus behavior"_ to _"Click"_
 
 After this change, the problem should no longer occur.
@@ -40,9 +38,7 @@ After this change, the problem should no longer occur.
 If you do not want to change the window focus behavior, there is a workaround to still be able to select the settings:
 
 1. Hold down the right mouse button before opening the dropdown
-
 2. With the right mouse button still pressed, left-click on the dropdown
-
 3. Continue to hold down the right mouse button and select the desired option with the left mouse button
 
 Steam should now have adopted the selection.

@@ -9,13 +9,13 @@ import { BlogComponent } from './routes/blog/blog.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'legal-notice', component: LegalNoticeComponent },
-  { path: ':lang', component: HomeComponent },
-  { path: ':lang/blog', component: BlogComponent },
+  { path: 'legal-notice/.', component: LegalNoticeComponent },
+  { path: ':lang/.', component: HomeComponent },
+  { path: ':lang/blog/.', component: BlogComponent },
   { path: ':lang/blog/page/:page', component: BlogComponent },
   { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
-  { path: ':lang/blogpost/:fileName', component: BlogPostComponent },
-  { path: ':lang/privacy-policy', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
+  { path: ':lang/blogpost/:fileName/.', component: BlogPostComponent },
+  { path: ':lang/privacy-policy/.', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -42,7 +42,7 @@ export class AppRoutingModule {
 
   private removeMetaData(): void {
     // Entferne vorhandene Meta-Tags
-    this.meta.removeTag('property="og:keywords"');
+    this.meta.removeTag('name="keywords"');
     this.meta.removeTag('property="og:description"');
     this.meta.removeTag('property="og:author"');
     this.meta.removeTag('property="og:robots"');
@@ -50,7 +50,7 @@ export class AppRoutingModule {
     this.meta.removeTag('property="og:url"');
     this.meta.removeTag('property="og:title"');
     this.meta.removeTag('property="og:type"');
-    this.meta.removeTag('proberty="article:published_time"');
+    this.meta.removeTag('property="article:published_time"');
     this.meta.removeTag('name="description"');
   }
 }
