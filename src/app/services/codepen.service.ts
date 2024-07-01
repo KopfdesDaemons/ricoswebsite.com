@@ -47,7 +47,7 @@ export class CodepenService {
           renderer.appendChild(paragraph, paragraphText);
 
           const privacyPolicy = renderer.createElement('a');
-          renderer.setAttribute(privacyPolicy, 'href', this.languageS.userLanguage + '/privacy-policy');
+          renderer.setAttribute(privacyPolicy, 'href', this.languageS.userLanguage + '/privacy-policy/.');
           const privacyPolicyTranslation = await lastValueFrom(this.translate.get('privacy_policy'));
           const privacyPolicyText = renderer.createText(privacyPolicyTranslation);
           renderer.appendChild(privacyPolicy, privacyPolicyText);
