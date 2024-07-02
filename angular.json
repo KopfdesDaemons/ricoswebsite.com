@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ricoswebsite.com:build:production"
+              "buildTarget": "ricoswebsite.com:build:production"
             },
             "development": {
-              "browserTarget": "ricoswebsite.com:build:development"
+              "buildTarget": "ricoswebsite.com:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,8 +78,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ricoswebsite.com:build",
-            "outputPath": "src/assets/locales"
+            "outputPath": "src/assets/locales",
+            "buildTarget": "ricoswebsite.com:build"
           }
         },
         "test": {
@@ -100,11 +100,6 @@
             ],
             "scripts": []
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "cname": "ricoswebsite.com",
-          "silent": false
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
@@ -129,7 +124,7 @@
           "defaultConfiguration": "production"
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "configurations": {
             "development": {
               "browserTarget": "ricoswebsite.com:build:development",
@@ -143,7 +138,7 @@
           "defaultConfiguration": "development"
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "routesFile": "routes.txt",
             "routes": [

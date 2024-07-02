@@ -2,14 +2,6 @@ https://ricoswebsite.com/de/
 https://ricoswebsite.com/en/
 https://ricoswebsite.com/en/blog/
 https://ricoswebsite.com/de/blog/
-https://ricoswebsite.com/de/blogpost/steam-dropdown-bug/
-https://ricoswebsite.com/de/blogpost/ngx-translate-flickering/
-https://ricoswebsite.com/de/blogpost/linux-test/
-https://ricoswebsite.com/de/blogpost/disqus-in-angular/
-https://ricoswebsite.com/de/blogpost/css-gallery/
-https://ricoswebsite.com/de/blogpost/codepen-in-angular/
-https://ricoswebsite.com/de/blogpost/blogtube/
-https://ricoswebsite.com/de/blogpost/about-this-website/
 https://ricoswebsite.com/en/blogpost/steam-dropdown-bug/
 https://ricoswebsite.com/en/blogpost/ngx-translate-flickering/
 https://ricoswebsite.com/en/blogpost/linux-test/
@@ -18,3 +10,11 @@ https://ricoswebsite.com/en/blogpost/css-gallery/
 https://ricoswebsite.com/en/blogpost/codepen-in-angular/
 https://ricoswebsite.com/en/blogpost/blogtube/
 https://ricoswebsite.com/en/blogpost/about-this-website/
+https://ricoswebsite.com/de/blogpost/steam-dropdown-bug/
+https://ricoswebsite.com/de/blogpost/ngx-translate-flickering/
+https://ricoswebsite.com/de/blogpost/linux-test/
+https://ricoswebsite.com/de/blogpost/disqus-in-angular/
+https://ricoswebsite.com/de/blogpost/css-gallery/
+https://ricoswebsite.com/de/blogpost/codepen-in-angular/
+https://ricoswebsite.com/de/blogpost/blogtube/
+https://ricoswebsite.com/de/blogpost/about-this-website/
