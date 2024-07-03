@@ -15,112 +15,109 @@
         <img src="assets/images/profile.avif" alt="profile picture" class="profilePic" width="441" height="568">
       </div>
     </div>
+    <ng-adsense [display]="'inline-block'" [fullWidthResponsive]="true" [height]="100"></ng-adsense>
   </section>
   <section id="projectsSection" #projectsSection>
     @if (projects.length > 0) {
-      <div class="sectionSpacer">
-        <h2>{{'my_projects' | translate}}</h2>
-        <div class="filter">
-          <ul class="activTechnologiesFilterOptions">
-            @for (technologie of activTechnologiesFilterOptions; track technologie) {
-              <li>
-                <span>{{technologie}}</span>
-                <span class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</span>
-              </li>
-            }
-          </ul>
-          <div class="technologiesFilterOption">
-            <div>
-              @if (technologiesFilterOptions.length > 0) {
-                <span>{{'filter_options' | translate}}:</span>
-              }
-              <ul>
-                @for (technologie of technologiesFilterOptions; track technologie) {
-                  <li><button
-                  (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
-                }
-              </ul>
-            </div>
-          </div>
-        </div>
-        <ul class="projectCards">
-          @for (project of projects; track project) {
-            <li>
-              <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])">
-              </app-project-card>
-            </li>
+    <div class="sectionSpacer">
+      <h2>{{'my_projects' | translate}}</h2>
+      <div class="filter">
+        <ul class="activTechnologiesFilterOptions">
+          @for (technologie of activTechnologiesFilterOptions; track technologie) {
+          <li>
+            <span>{{technologie}}</span>
+            <span class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</span>
+          </li>
           }
         </ul>
-        @if (totalPages > 1) {
-          <div class="pagination">
-            @if ((currentPage - 1) > 0) {
-              <a class="navLink"
-                [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
-              [fragment]="'projectsSection'">&lt;</a>
+        <div class="technologiesFilterOption">
+          <div>
+            @if (technologiesFilterOptions.length > 0) {
+            <span>{{'filter_options' | translate}}:</span>
             }
             <ul>
-              @if (currentPage >= 4) {
-                <li>
-                  <a [routerLink]="['/projects/page', 1, getParamChain(activTechnologiesFilterOptions)]"
-                  [fragment]="'projectsSection'">1</a>
-                </li>
-              }
-              @if (currentPage >= 5) {
-                <li class="dots">
-                  <span>…</span>
-                </li>
-              }
-              @if ((currentPage - 2) > 0) {
-                <li>
-                  <a [routerLink]="['/projects/page', currentPage - 2, getParamChain(activTechnologiesFilterOptions)]"
-                    [fragment]="'projectsSection'">{{
-                  currentPage - 2 }}</a>
-                </li>
-              }
-              @if ((currentPage - 1) > 0) {
-                <li>
-                  <a [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
-                    [fragment]="'projectsSection'">{{
-                  currentPage - 1 }}</a>
-                </li>
-              }
-              <li class="current">
-                <span>{{currentPage}}</span>
-              </li>
-              @if ((currentPage + 1) < totalPages) {
-                <li>
-                  <a [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
-                    [fragment]="'projectsSection'">{{
-                  currentPage + 1 }}</a>
-                </li>
-              }
-              @if ((currentPage + 2) < totalPages) {
-                <li>
-                  <a [routerLink]="['/projects/page', currentPage + 2, getParamChain(activTechnologiesFilterOptions)]"
-                    [fragment]="'projectsSection'">{{
-                  currentPage + 2 }}</a>
-                </li>
-              }
-              @if ((totalPages - 4) >= currentPage) {
-                <li class="dots">
-                  <span>…</span>
-                </li>
-              }
-              @if ((totalPages - 3) >= currentPage) {
-                <li>
-                  <a [routerLink]="['/projects/page', totalPages, getParamChain(activTechnologiesFilterOptions)]"
-                  [fragment]="'projectsSection'">{{totalPages}}</a>
-                </li>
+              @for (technologie of technologiesFilterOptions; track technologie) {
+              <li><button (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
               }
             </ul>
-            @if ((currentPage + 1) < totalPages) {
-              <a class="navLink"
-                [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
-              [fragment]="'projectsSection'">&gt;</a>
-            }
           </div>
-        }
+        </div>
       </div>
+      <ul class="projectCards">
+        @for (project of projects; track project) {
+        <li>
+          <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])">
+          </app-project-card>
+        </li>
+        }
+      </ul>
+      @if (totalPages > 1) {
+      <div class="pagination">
+        @if ((currentPage - 1) > 0) {
+        <a class="navLink"
+          [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+          [fragment]="'projectsSection'">&lt;</a>
+        }
+        <ul>
+          @if (currentPage >= 4) {
+          <li>
+            <a [routerLink]="['/projects/page', 1, getParamChain(activTechnologiesFilterOptions)]"
+              [fragment]="'projectsSection'">1</a>
+          </li>
+          }
+          @if (currentPage >= 5) {
+          <li class="dots">
+            <span>…</span>
+          </li>
+          }
+          @if ((currentPage - 2) > 0) {
+          <li>
+            <a [routerLink]="['/projects/page', currentPage - 2, getParamChain(activTechnologiesFilterOptions)]"
+              [fragment]="'projectsSection'">{{
+              currentPage - 2 }}</a>
+          </li>
+          }
+          @if ((currentPage - 1) > 0) {
+          <li>
+            <a [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+              [fragment]="'projectsSection'">{{
+              currentPage - 1 }}</a>
+          </li>
+          }
+          <li class="current">
+            <span>{{currentPage}}</span>
+          </li>
+          @if ((currentPage + 1) < totalPages) { <li>
+            <a [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+              [fragment]="'projectsSection'">{{
+              currentPage + 1 }}</a>
+            </li>
+            }
+            @if ((currentPage + 2) < totalPages) { <li>
+              <a [routerLink]="['/projects/page', currentPage + 2, getParamChain(activTechnologiesFilterOptions)]"
+                [fragment]="'projectsSection'">{{
+                currentPage + 2 }}</a>
+              </li>
+              }
+              @if ((totalPages - 4) >= currentPage) {
+              <li class="dots">
+                <span>…</span>
+              </li>
+              }
+              @if ((totalPages - 3) >= currentPage) {
+              <li>
+                <a [routerLink]="['/projects/page', totalPages, getParamChain(activTechnologiesFilterOptions)]"
+                  [fragment]="'projectsSection'">{{totalPages}}</a>
+              </li>
+              }
+        </ul>
+        @if ((currentPage + 1) < totalPages) { <a class="navLink"
+          [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+          [fragment]="'projectsSection'">&gt;</a>
+          }
+      </div>
+      }
+    </div>
     }
   </section>
 </main>

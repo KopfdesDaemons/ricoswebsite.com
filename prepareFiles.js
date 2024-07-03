@@ -48,7 +48,7 @@ function generateRoutesTxt(lang) {
     // Lies den Inhalt der routes.txt Datei
     fs.readFile(routesFilePath, 'utf8', (err, data) => {
 
-        // Filtere die Zeilen, die '/blogpost/' enthalten
+        // Filtere die Zeilen, die nicht '/blogpost/' enthalten
         const filteredData = data.split('\n').filter(line => !line.includes('/blogpost/')).join('\n');
 
         fs.writeFile(routesFilePath, filteredData, 'utf8', (err) => {

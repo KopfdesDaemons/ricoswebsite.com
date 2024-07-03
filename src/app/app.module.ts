@@ -21,6 +21,7 @@ import { ConsentManagerComponent } from './components/consent-manager/consent-ma
 import { BlogComponent } from './routes/blog/blog.component';
 import { BlogpostCardComponent } from './components/blogpost-card/blogpost-card.component';
 import { TRANSLATE_PROVIDER } from './provider/translation.factory';
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
     declarations: [
@@ -39,15 +40,22 @@ import { TRANSLATE_PROVIDER } from './provider/translation.factory';
         BlogComponent,
         BlogpostCardComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
         FormsModule,
         AppRoutingModule,
         FontAwesomeModule,
-        TranslateModule.forRoot()], providers: [
-            provideClientHydration(),
-            HighlightService,
-            TRANSLATE_PROVIDER,
-            provideHttpClient(withFetch())
-        ]
+        TranslateModule.forRoot(),
+        AdsenseModule.forRoot({
+            adClient: 'ca-pub-1401067475120473',
+        }),
+    ],
+    providers: [
+        provideClientHydration(),
+        HighlightService,
+        TRANSLATE_PROVIDER,
+        provideHttpClient(withFetch())
+    ]
 })
 export class AppModule { }
