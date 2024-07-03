@@ -26,7 +26,9 @@ const routes: Routes = [
   { path: ':lang/blogpost/:fileName/.', component: BlogPostComponent },
   { path: ':lang/blogpost/:fileName', component: BlogPostComponent },
 
-  { path: ':lang/privacy-policy/', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
+  { path: ':lang/privacy-policy/.', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
+  { path: ':lang/privacy-policy', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
+
   { path: '**', component: HomeComponent },
 ];
 

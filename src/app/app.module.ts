@@ -8,7 +8,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { BlogPostComponent } from './routes/blog-post/blog-post.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
@@ -23,35 +23,31 @@ import { BlogpostCardComponent } from './components/blogpost-card/blogpost-card.
 import { TRANSLATE_PROVIDER } from './provider/translation.factory';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    ProjectCardComponent,
-    FooterComponent,
-    LegalNoticeComponent,
-    SidemenuComponent,
-    BlogPostComponent,
-    SafeHtmlPipe,
-    DisqusComponent,
-    LanguageSwitchOfferComponent,
-    ConsentManagerComponent,
-    BlogComponent,
-    BlogpostCardComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    TranslateModule.forRoot()
-  ],
-  providers: [
-    provideClientHydration(),
-    HighlightService,
-    TRANSLATE_PROVIDER
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        ProjectCardComponent,
+        FooterComponent,
+        LegalNoticeComponent,
+        SidemenuComponent,
+        BlogPostComponent,
+        SafeHtmlPipe,
+        DisqusComponent,
+        LanguageSwitchOfferComponent,
+        ConsentManagerComponent,
+        BlogComponent,
+        BlogpostCardComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        TranslateModule.forRoot()], providers: [
+            provideClientHydration(),
+            HighlightService,
+            TRANSLATE_PROVIDER,
+            provideHttpClient(withFetch())
+        ]
 })
 export class AppModule { }

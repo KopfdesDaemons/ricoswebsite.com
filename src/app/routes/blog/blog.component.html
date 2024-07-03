@@ -18,7 +18,7 @@
     </ul>
     @if (totalPages > 1) {
     <ul class="pagination">
-      @for (page of [].constructor(totalPages); track page; let i = $index) {
+      @for (page of [].constructor(totalPages); track $index; let i = $index) {
       <li>
         @if (currentPage != i +1) {
         <a [routerLink]="['/' + languageS.userLanguage + '/blog/page/' + (i + 1)] + '/.'">{{i + 1}}</a>

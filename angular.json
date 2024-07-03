@@ -15,13 +15,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ricoswebsite.com/browser",
+            "outputPath": {
+              "base": "dist/ricoswebsite.com"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -34,7 +36,25 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "prerender": {
+              "routesFile": "routes.txt"
+            },
+            "ssr": {
+              "entry": "server.ts"
+            },
+            "allowedCommonJsDependencies": [
+              "prismjs",
+              "prismjs/plugins/toolbar/prism-toolbar",
+              "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard",
+              "prismjs/components/prism-typescript",
+              "prismjs/components/prism-yaml",
+              "prismjs/components/prism-json",
+              "prismjs/components/prism-scss",
+              "yaml"
+            ]
           },
           "configurations": {
             "production": {
@@ -53,9 +73,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -74,13 +92,6 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "outputPath": "src/assets/locales",
-            "buildTarget": "ricoswebsite.com:build"
-          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -119,40 +130,6 @@
               "sourceMap": true,
               "extractLicenses": false,
               "vendorChunk": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "ricoswebsite.com:build:development",
-              "serverTarget": "ricoswebsite.com:server:development"
-            },
-            "production": {
-              "browserTarget": "ricoswebsite.com:build:production",
-              "serverTarget": "ricoswebsite.com:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "routesFile": "routes.txt",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ricoswebsite.com:build:production",
-              "serverTarget": "ricoswebsite.com:server:production"
-            },
-            "development": {
-              "browserTarget": "ricoswebsite.com:build:development",
-              "serverTarget": "ricoswebsite.com:server:development"
             }
           },
           "defaultConfiguration": "production"

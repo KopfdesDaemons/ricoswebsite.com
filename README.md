@@ -65,13 +65,13 @@ Portfolio project information is loaded dynamically from a JSON file.
 start angular live server and start development
 
 ```bash
-ng serve --host 0.0.0.0 --disable-host-check
+ng serve --host 0.0.0.0
 ```
 
 prerender website
 
 ```bash
-ng run ricoswebsite.com:prerender
+ng build
 ```
 
 start http-server to testing the prerendered website

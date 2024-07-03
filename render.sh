@@ -5,7 +5,7 @@ node prepareFiles.js
 
 
 # Rendere die Webseite vor
-ng run ricoswebsite.com:prerender
+ng build
 
 
 # Wechsle in das Verzeichnis

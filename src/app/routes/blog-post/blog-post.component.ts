@@ -34,9 +34,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
 
   async ngOnInit() {
 
-    console.log('blog');
-
-
     // when route changes 
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
