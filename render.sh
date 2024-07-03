@@ -19,6 +19,10 @@ cd dist/ricoswebsite.com/browser
 touch .nojekyll
 
 
+# Erstelle manuell eine 404.html, weil der Prerenderer das nicht mehr macht
+cp index.html 404.html
+
+
 PORT=8080
 
 # Prüfen, ob der Port bereits belegt ist

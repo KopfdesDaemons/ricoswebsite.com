@@ -10,13 +10,24 @@ import { BlogComponent } from './routes/blog/blog.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'legal-notice/.', component: LegalNoticeComponent },
+  { path: 'legal-notice', component: LegalNoticeComponent },
+
   { path: ':lang/.', component: HomeComponent },
+  { path: ':lang', component: HomeComponent },
+
   { path: ':lang/blog/.', component: BlogComponent },
+  { path: ':lang/blog', component: BlogComponent },
+
+  { path: ':lang/blog/page/:page/.', component: BlogComponent },
   { path: ':lang/blog/page/:page', component: BlogComponent },
+
   { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
+
   { path: ':lang/blogpost/:fileName/.', component: BlogPostComponent },
-  { path: ':lang/privacy-policy/.', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: ':lang/blogpost/:fileName', component: BlogPostComponent },
+
+  { path: ':lang/privacy-policy/', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({

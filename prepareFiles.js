@@ -40,7 +40,7 @@ function createPostsJSON(lang) {
 function generateRoutesTxt(lang) {
 
     lang.routes = lang.fileNames.map(fileName => {
-        return lang.lang + blogpostRoute + '/' + path.parse(fileName).name + '/.';
+        return '/' + lang.lang + blogpostRoute + '/' + path.parse(fileName).name;
     });
 
     const routesFilePath = path.join(__dirname, 'routes.txt');

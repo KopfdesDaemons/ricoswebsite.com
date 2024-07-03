@@ -1,94 +1,126 @@
 <main>
-    <section id="firstSection" class="gradient">
-        <div class="sectionSpacer">
-            <div class="sloganDiv">
-                <h1>{{'home_h1' | translate}}</h1>
-                <p>{{'home_subtitle' | translate}}</p>
-                <div class="logoDiv">
-                    <img src="assets/images/angularLogo.svg" alt="angular logo" width="80" height="80">
-                    <img src="assets/images/nodeLogo.svg" alt="nodeJS logo" width="80" height="80">
-                    <img src="assets/images/WordPress.svg" alt="nodeJS logo" width="80" height="80">
-                </div>
-            </div>
-            <div class="profilePicDiv">
-                <div class="shadowDiv"></div>
-                <img src="assets/images/profile.avif" alt="profile picture" class="profilePic" width="441" height="568">
-            </div>
+  <section id="firstSection" class="gradient">
+    <div class="sectionSpacer">
+      <div class="sloganDiv">
+        <h1>{{'home_h1' | translate}}</h1>
+        <p>{{'home_subtitle' | translate}}</p>
+        <div class="logoDiv">
+          <img src="assets/images/angularLogo.svg" alt="angular logo" width="80" height="80">
+          <img src="assets/images/nodeLogo.svg" alt="nodeJS logo" width="80" height="80">
+          <img src="assets/images/WordPress.svg" alt="nodeJS logo" width="80" height="80">
         </div>
-    </section>
-    <section id="projectsSection" #projectsSection>
-        <div class="sectionSpacer" *ngIf="projects.length > 0">
-            <h2>{{'my_projects' | translate}}</h2>
-            <div class="filter">
-                <ul class="activTechnologiesFilterOptions">
-                    <li *ngFor="let technologie of activTechnologiesFilterOptions">
-                        <span>{{technologie}}</span>
-                        <span class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</span>
-                    </li>
-                </ul>
-                <div class="technologiesFilterOption">
-                    <div>
-                        <span *ngIf="technologiesFilterOptions.length > 0">{{'filter_options' | translate}}:</span>
-                        <ul>
-                            <li *ngFor="let technologie of technologiesFilterOptions"><button
-                                    (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
-                        </ul>
-                    </div>
-                </div>
+      </div>
+      <div class="profilePicDiv">
+        <div class="shadowDiv"></div>
+        <img src="assets/images/profile.avif" alt="profile picture" class="profilePic" width="441" height="568">
+      </div>
+    </div>
+  </section>
+  <section id="projectsSection" #projectsSection>
+    @if (projects.length > 0) {
+      <div class="sectionSpacer">
+        <h2>{{'my_projects' | translate}}</h2>
+        <div class="filter">
+          <ul class="activTechnologiesFilterOptions">
+            @for (technologie of activTechnologiesFilterOptions; track technologie) {
+              <li>
+                <span>{{technologie}}</span>
+                <span class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</span>
+              </li>
+            }
+          </ul>
+          <div class="technologiesFilterOption">
+            <div>
+              @if (technologiesFilterOptions.length > 0) {
+                <span>{{'filter_options' | translate}}:</span>
+              }
+              <ul>
+                @for (technologie of technologiesFilterOptions; track technologie) {
+                  <li><button
+                  (click)="addTechnologieToFilter(technologie)">{{technologie}}</button></li>
+                }
+              </ul>
             </div>
-            <ul class="projectCards">
-                <li *ngFor="let project of projects">
-                    <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])">
-                    </app-project-card>
+          </div>
+        </div>
+        <ul class="projectCards">
+          @for (project of projects; track project) {
+            <li>
+              <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])">
+              </app-project-card>
+            </li>
+          }
+        </ul>
+        @if (totalPages > 1) {
+          <div class="pagination">
+            @if ((currentPage - 1) > 0) {
+              <a class="navLink"
+                [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+              [fragment]="'projectsSection'">&lt;</a>
+            }
+            <ul>
+              @if (currentPage >= 4) {
+                <li>
+                  <a [routerLink]="['/projects/page', 1, getParamChain(activTechnologiesFilterOptions)]"
+                  [fragment]="'projectsSection'">1</a>
                 </li>
+              }
+              @if (currentPage >= 5) {
+                <li class="dots">
+                  <span>…</span>
+                </li>
+              }
+              @if ((currentPage - 2) > 0) {
+                <li>
+                  <a [routerLink]="['/projects/page', currentPage - 2, getParamChain(activTechnologiesFilterOptions)]"
+                    [fragment]="'projectsSection'">{{
+                  currentPage - 2 }}</a>
+                </li>
+              }
+              @if ((currentPage - 1) > 0) {
+                <li>
+                  <a [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+                    [fragment]="'projectsSection'">{{
+                  currentPage - 1 }}</a>
+                </li>
+              }
+              <li class="current">
+                <span>{{currentPage}}</span>
+              </li>
+              @if ((currentPage + 1) < totalPages) {
+                <li>
+                  <a [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+                    [fragment]="'projectsSection'">{{
+                  currentPage + 1 }}</a>
+                </li>
+              }
+              @if ((currentPage + 2) < totalPages) {
+                <li>
+                  <a [routerLink]="['/projects/page', currentPage + 2, getParamChain(activTechnologiesFilterOptions)]"
+                    [fragment]="'projectsSection'">{{
+                  currentPage + 2 }}</a>
+                </li>
+              }
+              @if ((totalPages - 4) >= currentPage) {
+                <li class="dots">
+                  <span>…</span>
+                </li>
+              }
+              @if ((totalPages - 3) >= currentPage) {
+                <li>
+                  <a [routerLink]="['/projects/page', totalPages, getParamChain(activTechnologiesFilterOptions)]"
+                  [fragment]="'projectsSection'">{{totalPages}}</a>
+                </li>
+              }
             </ul>
-            <div class="pagination" *ngIf="totalPages > 1">
-                <a class="navLink" *ngIf="(currentPage - 1) > 0"
-                    [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
-                    [fragment]="'projectsSection'">&lt;</a>
-                <ul>
-                    <li *ngIf="currentPage >= 4">
-                        <a [routerLink]="['/projects/page', 1, getParamChain(activTechnologiesFilterOptions)]"
-                            [fragment]="'projectsSection'">1</a>
-                    </li>
-                    <li class="dots" *ngIf="currentPage >= 5">
-                        <span>…</span>
-                    </li>
-                    <li *ngIf="(currentPage - 2) > 0">
-                        <a [routerLink]="['/projects/page', currentPage - 2, getParamChain(activTechnologiesFilterOptions)]"
-                            [fragment]="'projectsSection'">{{
-                            currentPage - 2 }}</a>
-                    </li>
-                    <li *ngIf="(currentPage - 1) > 0">
-                        <a [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
-                            [fragment]="'projectsSection'">{{
-                            currentPage - 1 }}</a>
-                    </li>
-                    <li class="current">
-                        <span>{{currentPage}}</span>
-                    </li>
-                    <li *ngIf="(currentPage + 1) < totalPages">
-                        <a [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
-                            [fragment]="'projectsSection'">{{
-                            currentPage + 1 }}</a>
-                    </li>
-                    <li *ngIf="(currentPage + 2) < totalPages">
-                        <a [routerLink]="['/projects/page', currentPage + 2, getParamChain(activTechnologiesFilterOptions)]"
-                            [fragment]="'projectsSection'">{{
-                            currentPage + 2 }}</a>
-                    </li>
-                    <li class="dots" *ngIf="(totalPages - 4) >= currentPage">
-                        <span>…</span>
-                    </li>
-                    <li *ngIf="(totalPages - 3) >= currentPage">
-                        <a [routerLink]="['/projects/page', totalPages, getParamChain(activTechnologiesFilterOptions)]"
-                            [fragment]="'projectsSection'">{{totalPages}}</a>
-                    </li>
-                </ul>
-                <a class="navLink" *ngIf="(currentPage + 1) < totalPages"
-                    [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
-                    [fragment]="'projectsSection'">&gt;</a>
-            </div>
-        </div>
-    </section>
+            @if ((currentPage + 1) < totalPages) {
+              <a class="navLink"
+                [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+              [fragment]="'projectsSection'">&gt;</a>
+            }
+          </div>
+        }
+      </div>
+    }
+  </section>
 </main>
