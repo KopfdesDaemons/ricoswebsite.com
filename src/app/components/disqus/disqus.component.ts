@@ -24,8 +24,10 @@ export class DisqusComponent implements OnChanges {
   ) { }
 
   ngOnChanges(): void {
-    if (!this.disqusS.consent) return;
     if (!isPlatformBrowser(this.platformId)) return;
+    if (this.observer) this.observer.disconnect();
+    if (!this.identifier) return;
+    if (!this.disqusS.consent) return;
     this.observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) this.isVisible();
@@ -39,7 +41,6 @@ export class DisqusComponent implements OnChanges {
   }
 
   isVisible() {
-    if (!this.identifier) return;
     if (this.disqusS.consent && this.identifier) {
       this.disqusS.loadDisqus(this.renderer, this.identifier);
       this.observer?.disconnect();
