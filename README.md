@@ -86,3 +86,9 @@ deploy to github-pages
 ```bash
 npx angular-cli-ghpages --dir=dist/ricoswebsite.com/browser --cname=ricoswebsite.com
 ```
+
+helper bash script
+
+```bash
+./render.sh
+```

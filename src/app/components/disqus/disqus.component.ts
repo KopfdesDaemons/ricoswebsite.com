@@ -1,7 +1,8 @@
-import { Component, Input, ElementRef, Renderer2, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, ViewChild, OnChanges, Inject, PLATFORM_ID } from '@angular/core';
 import { DisqusService } from 'src/app/services/disqus.service';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { LanguageService } from 'src/app/services/language.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-disqus',
@@ -18,11 +19,13 @@ export class DisqusComponent implements OnChanges {
     public disqusS: DisqusService,
     public renderer: Renderer2,
     private elementRef: ElementRef,
-    public languageS: LanguageService
+    public languageS: LanguageService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (!this.disqusS.consent) return;
+    if (!isPlatformBrowser(this.platformId)) return;
     this.observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) this.isVisible();

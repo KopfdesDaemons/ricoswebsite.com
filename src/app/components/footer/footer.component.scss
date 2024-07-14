@@ -3,35 +3,36 @@ footer {
     padding: 4vw;
     background-color: var(--section);
     display: flex;
-}
+    flex-wrap: wrap;
+    gap: 2em;
 
-.linkGroup {
-    padding: 1em;
-    margin-right: 2em;
-}
+    .linkGroup {
+        padding: 1em;
 
-h2 {
-    font-size: 1.3em;
-    margin: 0;
-    color: rgb(206, 245, 245);
-}
+        h2 {
+            font-size: 1.3em;
+            margin: 0;
+            color: rgb(206, 245, 245);
+        }
 
-ul {
-    list-style: none;
-    padding-left: 0.8em;
-}
+        ul {
+            list-style: none;
+            padding-left: 0.8em;
 
-li {
-    display: flex;
-    margin-top: 0.5em;
-    padding: 0.2em 0;
+            li {
+                display: flex;
+                margin-top: 0.5em;
+                padding: 0.2em 0;
 
-    fa-icon {
-        margin-right: 0.5em;
-    }
+                fa-icon {
+                    margin-right: 0.5em;
+                }
 
-    span {
-        text-decoration: underline;
-        cursor: pointer;
+                span {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

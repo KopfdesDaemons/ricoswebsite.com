@@ -1,6 +1,5 @@
-import { Inject, Injectable, Renderer2 } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import { ScriptService } from './script.service';
-import { DOCUMENT } from '@angular/common';
 import { ConsentService } from './consent.service';
 import { LanguageService } from './language.service';
 
@@ -9,7 +8,7 @@ import { LanguageService } from './language.service';
 })
 export class DisqusService {
 
-  consent: boolean = false;
+  consent: boolean;
   disqus: any;
   shortname: string = 'ricoswebsite-com';
 
@@ -17,7 +16,6 @@ export class DisqusService {
     public scriptS: ScriptService,
     public consentS: ConsentService,
     public languageS: LanguageService,
-    @Inject(DOCUMENT) private document: Document,
   ) {
     this.consent = this.consentS.checkConsent('Disqus');
   }
