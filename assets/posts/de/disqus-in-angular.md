@@ -92,6 +92,8 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
 
       ngOnChanges(): void {
         if (!isPlatformBrowser(this.platformId)) return;
+        if (this.observer) this.observer.disconnect();
+        if (!this.identifier) return;
         this.observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) this.isVisible();
@@ -106,10 +108,8 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
 
       isVisible() {
         if (!this.identifier) return;
-        if (this.disqusS.consent && this.identifier) {
-          this.disqusS.loadDisqus(this.renderer, this.identifier);
-          this.observer?.disconnect();
-        }
+        this.disqusS.loadDisqus(this.renderer, this.identifier);
+        this.observer?.disconnect();
       }
     }
     ```
