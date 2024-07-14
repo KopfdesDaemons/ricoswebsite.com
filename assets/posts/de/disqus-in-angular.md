@@ -36,7 +36,7 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
     })
     export class DisqusService {
       disqus: any;
-      shortname: string = "ricoswebsite-com";
+      shortname: string = "your-disqus-shortname";
 
       constructor(@Inject(DOCUMENT) private document: Document) {}
 
@@ -75,7 +75,8 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
     `disqus.component.ts`:
 
     ```typescript
-    import { Component, Input, ElementRef, Renderer2, OnChanges, SimpleChanges } from "@angular/core";
+    import { Component, Input, ElementRef, Renderer2, OnChanges, Inject, PLATFORM_ID } from "@angular/core";
+    import { isPlatformBrowser } from "@angular/common";
     import { DisqusService } from "src/app/services/disqus.service";
 
     @Component({
@@ -87,9 +88,10 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
       @Input() identifier: string | undefined;
       private observer: IntersectionObserver | undefined;
 
-      constructor(public disqusS: DisqusService, public renderer: Renderer2, private elementRef: ElementRef) {}
+      constructor(public disqusS: DisqusService, public renderer: Renderer2, private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: Object) {}
 
-      ngOnChanges(changes: SimpleChanges): void {
+      ngOnChanges(): void {
+        if (!isPlatformBrowser(this.platformId)) return;
         this.observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) this.isVisible();
