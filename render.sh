@@ -12,13 +12,6 @@ ng build
 cd dist/ricoswebsite.com/browser
 
 
-# Erstelle die .nojekyll-Datei
-# Diese Datei weist GitHub an, keinen static site generator anzuwenden
-# Das ist erforderlich, weil sonst nicht alle per Http Request nachgeladenen Dateien
-# von GitHub Pages bereitsgestellt werden. Die JSON Dateien werden z.B. sonst nicht geladen
-touch .nojekyll
-
-
 # Erstelle manuell eine 404.html, weil der Prerenderer das nicht mehr macht
 cp index.html 404.html
 
