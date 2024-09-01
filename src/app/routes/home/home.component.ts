@@ -1,21 +1,37 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project';
 import { LanguageService } from 'src/app/services/language.service';
 import { Location } from '@angular/common';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
+import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [
+    ProjectCardComponent,
+    RouterLink,
+    TranslateModule,
+  ],
 })
 export class HomeComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private meta = inject(Meta);
+  private title = inject(Title);
+  ps = inject(ProjectService);
+  private location = inject(Location);
+  private languageS = inject(LanguageService);
+  private translate = inject(TranslateService);
+  sidemenuS = inject(SidemenuService);
+
   @ViewChild('projectsSection') projectsSection: ElementRef | undefined;
 
   projects: Project[] = [];
@@ -27,17 +43,6 @@ export class HomeComponent implements OnInit {
   projectsPerPage = 5;
   faCircleXmark = faCircleXmark;
   private routeParamsSubscription: Subscription | undefined;
-
-  constructor(
-    private route: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
-    public ps: ProjectService,
-    private location: Location,
-    private languageS: LanguageService,
-    private translate: TranslateService,
-    public sidemenuS: SidemenuService) {
-  }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {

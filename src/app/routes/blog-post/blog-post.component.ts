@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,29 +8,36 @@ import { HighlightService } from 'src/app/services/highlight.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
 import { environment } from 'src/environment/enviroment';
+import { DisqusComponent } from '../../components/disqus/disqus.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SafeHtmlPipe } from '../../safe-html.pipe';
 
 @Component({
   selector: 'app-blog-post',
   templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.css'],
+  styleUrls: ['./blog-post.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    DisqusComponent,
+    TranslateModule,
+    SafeHtmlPipe,
+  ],
 })
 export class BlogPostComponent implements OnInit, AfterViewChecked {
+  private route = inject(ActivatedRoute);
+  private postS = inject(PostService);
+  private renderer = inject(Renderer2);
+  private highlightS = inject(HighlightService);
+  private codePenS = inject(CodepenService);
+  private languageS = inject(LanguageService);
+  private router = inject(Router);
+  private metaS = inject(Meta);
+  private titleS = inject(Title);
+
   post: Post | undefined | null;
   private routeParamsSubscription: Subscription | undefined;
   postNotFound: boolean = false;
-
-  constructor(
-    private route: ActivatedRoute,
-    private postS: PostService,
-    private renderer: Renderer2,
-    private highlightS: HighlightService,
-    private codePenS: CodepenService,
-    private languageS: LanguageService,
-    private router: Router,
-    private metaS: Meta,
-    private titleS: Title
-  ) { }
 
   async ngOnInit() {
 

@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
@@ -8,6 +8,12 @@ import { Location } from '@angular/common';
   providedIn: 'root'
 })
 export class LanguageService {
+  private router = inject(Router);
+  // private translate = inject(TranslateService);
+  private location = inject(Location);
+  private platformId = inject<Object>(PLATFORM_ID);
+  private document = inject<Document>(DOCUMENT);
+
 
   userLanguage: string = 'en';
   userAgendLanguage: string;
@@ -15,13 +21,9 @@ export class LanguageService {
   private supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
 
-  constructor(
-    private router: Router,
-    private translate: TranslateService,
-    private location: Location,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(DOCUMENT) private document: Document
-  ) {
+  constructor() {
+    const platformId = this.platformId;
+
     if (isPlatformBrowser(platformId)) {
       this.askUserToSwitch = true;
       const storedLanguage = localStorage.getItem('Custom Language');
@@ -40,7 +42,7 @@ export class LanguageService {
     this.document.documentElement.lang = this.userLanguage;
     const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
     this.askUserToSwitch = ask;
-    this.translate.use(this.userLanguage);
+    // this.translate.use(this.userLanguage);
   }
 
   private replaceUnsupportedLangauge(lang: string): string {

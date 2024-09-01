@@ -1,14 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, Renderer2 } from '@angular/core';
+import { Injectable, Renderer2, inject } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScriptService {
+  private document = inject<Document>(DOCUMENT);
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document
-  ) { }
 
   addJsScript(renderer: Renderer2, src: string) {
     const existingScript = this.document.querySelector(`script[src="${src}"]`);

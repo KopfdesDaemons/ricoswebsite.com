@@ -1,22 +1,23 @@
 import { isPlatformServer } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ConsentService } from 'src/app/services/consent.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-consent-manager',
-  templateUrl: './consent-manager.component.html',
-  styleUrls: ['./consent-manager.component.scss']
+    selector: 'app-consent-manager',
+    templateUrl: './consent-manager.component.html',
+    styleUrls: ['./consent-manager.component.scss'],
+    standalone: true,
+    imports: [TranslateModule]
 })
 export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
+  consentS = inject(ConsentService);
+  private platformId = inject<Object>(PLATFORM_ID);
+
 
   @ViewChild('dialog') dialog: ElementRef | undefined;
   listenOpenStatusSub: Subscription | undefined;
-
-  constructor(
-    public consentS: ConsentService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
 
   ngAfterViewInit(): void {
     this.listenOpenStatus();

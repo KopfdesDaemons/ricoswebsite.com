@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { Injectable, PLATFORM_ID, Renderer2, inject } from '@angular/core';
 import { ConsentService } from './consent.service';
 import { ScriptService } from './script.service';
 import { isPlatformServer } from '@angular/common';
@@ -10,14 +10,12 @@ import { LanguageService } from './language.service';
   providedIn: 'root'
 })
 export class CodepenService {
+  private consentS = inject(ConsentService);
+  private scriptS = inject(ScriptService);
+  private translate = inject(TranslateService);
+  private languageS = inject(LanguageService);
+  private platformId = inject<Object>(PLATFORM_ID);
 
-  constructor(
-    private consentS: ConsentService,
-    private scriptS: ScriptService,
-    private translate: TranslateService,
-    private languageS: LanguageService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
 
   async loadCodePen(renderer: Renderer2) {
     if (isPlatformServer(this.platformId)) return;

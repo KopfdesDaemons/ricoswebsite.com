@@ -8,8 +8,8 @@ describe('DisqusComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DisqusComponent]
-    });
+    imports: [DisqusComponent]
+});
     fixture = TestBed.createComponent(DisqusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

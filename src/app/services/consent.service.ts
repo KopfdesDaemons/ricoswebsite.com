@@ -1,5 +1,5 @@
 import { isPlatformServer } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -7,6 +7,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ConsentService {
+  // translate = inject(TranslateService);
+  private platformId = inject<Object>(PLATFORM_ID);
+
 
   consentMangerIsVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -15,11 +18,6 @@ export class ConsentService {
     { name: 'CodePen', domains: ['codepen.io', 'cdpn.io'], descriptionTransString: 'codepen_descr' },
     { name: 'Custom Language', domains: [], descriptionTransString: 'custom_language' },
   ]
-
-  constructor(
-    public translate: TranslateService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
 
   giveConsent(serviceName: string) {
     if (isPlatformServer(this.platformId)) return;

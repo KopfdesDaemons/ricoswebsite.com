@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
@@ -9,13 +9,11 @@ import { LanguageService } from './language.service';
   providedIn: 'root'
 })
 export class ProjectService {
-  private projects: Project[] = [];
+  private http = inject(HttpClient);
+  private languageS = inject(LanguageService);
+  private platformId = inject<Object>(PLATFORM_ID);
 
-  constructor(
-    private http: HttpClient,
-    private languageS: LanguageService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  private projects: Project[] = [];
 
   private getProjectsUrl(): string {
     return `assets/projects.${this.languageS.userLanguage}.json`;

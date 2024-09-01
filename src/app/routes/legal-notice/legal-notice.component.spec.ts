@@ -8,8 +8,8 @@ describe('LegalNoticeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LegalNoticeComponent]
-    });
+    imports: [LegalNoticeComponent]
+});
     fixture = TestBed.createComponent(LegalNoticeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject, PLATFORM_ID, makeStateKey, TransferState } from '@angular/core';
+import { Injectable, PLATFORM_ID, makeStateKey, TransferState, inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
 import { Post } from '../models/post';
@@ -10,17 +10,15 @@ import { LanguageService } from './language.service';
   providedIn: 'root'
 })
 export class PostService {
+  private http = inject(HttpClient);
+  private transferState = inject(TransferState);
+  private markdownS = inject(MarkdownService);
+  private languageS = inject(LanguageService);
+  private platformId = inject<Object>(PLATFORM_ID);
+
 
   private post: Post | null | undefined;
   private baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
-
-  constructor(
-    private http: HttpClient,
-    private transferState: TransferState,
-    private markdownS: MarkdownService,
-    private languageS: LanguageService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
 
   async getPost(fileName: string): Promise<Post | null> {
     this.post = this.loadPostFromTransfareState(fileName);
@@ -56,7 +54,8 @@ export class PostService {
     } catch (error: any) {
       console.error(error);
       if (error.status === 404 && language !== 'en') {
-        return this.loadFromMarkdownFile(fileName, 'en'); // Versuche, den Inhalt auf Englisch zu laden
+        // Versuche, den Inhalt auf Englisch zu laden
+        return this.loadFromMarkdownFile(fileName, 'en');
       }
       return null;
     }
@@ -83,8 +82,6 @@ export class PostService {
         (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
         (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle)))
       );
-
-
 
       const postArray: Post[] = [];
       for (const post of visiblePosts) {
@@ -122,7 +119,8 @@ export class PostService {
     } catch (error: any) {
       console.error(error);
       if (error.status === 404 && language !== 'en') {
-        return this.loadPostList('en', page, pageSize, sortOrder, sortBy, filterTags, filterTitle); // Versuche, die Beiträge auf Englisch zu laden
+        // Versuche, die Beiträge auf Englisch zu laden
+        return this.loadPostList('en', page, pageSize, sortOrder, sortBy, filterTags, filterTitle);
       }
       return null;
     }

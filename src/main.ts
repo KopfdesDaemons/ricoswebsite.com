@@ -1,17 +1,12 @@
-/// <reference types="@angular/localize" />
-
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
-
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
-
 import { Location } from '@angular/common';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
+
+bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));
 
 
-// Ermöglicht Navigation mit TralingSlash
+// Ermöglicht Navigation mit TralingSlash ohne dass dieser entfernt wird
 const __stripTrailingSlash = (Location as any).stripTrailingSlash;
 (Location as any).stripTrailingSlash = function _stripTrailingSlash(url: string): string {
 

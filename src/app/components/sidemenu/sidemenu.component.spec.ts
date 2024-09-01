@@ -8,8 +8,8 @@ describe('SidemenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SidemenuComponent]
-    });
+    imports: [SidemenuComponent]
+});
     fixture = TestBed.createComponent(SidemenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

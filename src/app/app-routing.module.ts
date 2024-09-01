@@ -1,49 +1,29 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { NavigationStart, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './routes/home/home.component';
-import { LegalNoticeComponent } from './routes/legal-notice/legal-notice.component';
-import { BlogPostComponent } from './routes/blog-post/blog-post.component';
-import { Meta, Title } from '@angular/platform-browser';
+
+
+
+import { Meta } from '@angular/platform-browser';
 import { filter } from 'rxjs';
-import { BlogComponent } from './routes/blog/blog.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'legal-notice/.', component: LegalNoticeComponent },
-  { path: 'legal-notice', component: LegalNoticeComponent },
 
-  { path: ':lang/.', component: HomeComponent },
-  { path: ':lang', component: HomeComponent },
 
-  { path: ':lang/blog/.', component: BlogComponent },
-  { path: ':lang/blog', component: BlogComponent },
 
-  { path: ':lang/blog/page/:page/.', component: BlogComponent },
-  { path: ':lang/blog/page/:page', component: BlogComponent },
-
-  { path: ':lang/projects/page/:page/:technologies', component: HomeComponent },
-
-  { path: ':lang/blogpost/:fileName/.', component: BlogPostComponent },
-  { path: ':lang/blogpost/:fileName', component: BlogPostComponent },
-
-  { path: ':lang/privacy-policy/.', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
-  { path: ':lang/privacy-policy', component: BlogPostComponent, data: { fileName: 'privacy-policy' } },
-
-  { path: '**', component: HomeComponent },
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled',
-    preloadingStrategy: PreloadAllModules,
-    anchorScrolling: 'enabled',
-    onSameUrlNavigation: 'reload',
-    initialNavigation: 'enabledBlocking'
-  })],
-  exports: [RouterModule]
-})
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes, {
+//     scrollPositionRestoration: 'enabled',
+//     preloadingStrategy: PreloadAllModules,
+//     anchorScrolling: 'enabled',
+//     onSameUrlNavigation: 'reload',
+//     initialNavigation: 'enabledBlocking'
+//   })],
+//   exports: [RouterModule]
+// })
 export class AppRoutingModule {
-  constructor(private router: Router, private meta: Meta, private titleS: Title) {
+  private router = inject(Router);
+  private meta = inject(Meta);
+
+  constructor() {
 
     // Überwache das Router-Navigationsend-Ereignis, um Meta-Tags zu aktualisieren
     this.router.events.pipe(
