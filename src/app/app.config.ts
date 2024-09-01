@@ -5,7 +5,6 @@ import { BrowserModule, provideClientHydration } from "@angular/platform-browser
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { TranslateModule } from "@ngx-translate/core";
 import { AdsenseModule } from "ng2-adsense";
-import { AppRoutingModule } from "./app-routing.module";
 import { TRANSLATE_PROVIDER } from "./provider/translation.factory";
 import { HighlightService } from "./services/highlight.service";
 import { provideRouter } from "@angular/router";
@@ -18,7 +17,6 @@ export const appConfig: ApplicationConfig = {
             TranslateModule.forRoot(),
             BrowserModule,
             FormsModule,
-            AppRoutingModule,
             FontAwesomeModule,
             AdsenseModule.forRoot({
                 adClient: 'ca-pub-1401067475120473',

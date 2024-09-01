@@ -8,17 +8,19 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { RouterOutlet } from '@angular/router';
 import { ConsentManagerComponent } from './components/consent-manager/consent-manager.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MetaService } from './services/meta.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, ConsentManagerComponent, FooterComponent]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, ConsentManagerComponent, FooterComponent]
 })
 export class AppComponent {
   sidemenuS = inject(SidemenuService);
   langS = inject(LanguageService);
+  meta = inject(MetaService);
 
   title = 'ricoswebsite.com';
 }

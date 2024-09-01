@@ -1,31 +1,19 @@
-import { NgModule, inject } from '@angular/core';
-import { NavigationStart, PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
-
-
-
+import { inject, Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
+@Injectable({
+  providedIn: 'root'
+})
+export class MetaService {
 
-
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes, {
-//     scrollPositionRestoration: 'enabled',
-//     preloadingStrategy: PreloadAllModules,
-//     anchorScrolling: 'enabled',
-//     onSameUrlNavigation: 'reload',
-//     initialNavigation: 'enabledBlocking'
-//   })],
-//   exports: [RouterModule]
-// })
-export class AppRoutingModule {
   private router = inject(Router);
   private meta = inject(Meta);
 
   constructor() {
 
-    // Überwache das Router-Navigationsend-Ereignis, um Meta-Tags zu aktualisieren
+    // Abonniere das NavigationStart-Ereignis
     this.router.events.pipe(
       filter(event => event instanceof NavigationStart)
     ).subscribe(() => {
