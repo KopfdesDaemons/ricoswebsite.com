@@ -1,6 +1,5 @@
 import { isPlatformServer } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({

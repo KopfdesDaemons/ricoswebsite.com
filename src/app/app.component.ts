@@ -1,14 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SidemenuService } from './services/sidemenu.service';
 import { LanguageService } from './services/language.service';
 import { HeaderComponent } from './components/header/header.component';
 import { NgClass } from '@angular/common';
 import { LanguageSwitchOfferComponent } from './components/language-switch-offer/language-switch-offer.component';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
-import { RouterOutlet } from '@angular/router';
+import { ActivationStart, Router, RouterOutlet } from '@angular/router';
 import { ConsentManagerComponent } from './components/consent-manager/consent-manager.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MetaService } from './services/meta.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +16,17 @@ import { MetaService } from './services/meta.service';
   standalone: true,
   imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, ConsentManagerComponent, FooterComponent]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   sidemenuS = inject(SidemenuService);
   langS = inject(LanguageService);
-  meta = inject(MetaService);
+  private router = inject(Router);
 
-  title = 'ricoswebsite.com';
+  ngOnInit(): void {
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof ActivationStart && Object.keys(event.snapshot.params).length > 0) {
+    //     const lang = event.snapshot.params['lang'];
+    //     this.langS.updateLanguage(lang);
+    //   }
+    // });
+  }
 }

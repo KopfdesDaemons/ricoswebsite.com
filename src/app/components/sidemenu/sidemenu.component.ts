@@ -10,11 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-sidemenu',
-    templateUrl: './sidemenu.component.html',
-    styleUrls: ['./sidemenu.component.scss'],
-    standalone: true,
-    imports: [NgClass, RouterLink, FaIconComponent, FormsModule, TranslateModule]
+  selector: 'app-sidemenu',
+  templateUrl: './sidemenu.component.html',
+  styleUrls: ['./sidemenu.component.scss'],
+  standalone: true,
+  imports: [NgClass, RouterLink, FaIconComponent, FormsModule, TranslateModule]
 })
 export class SidemenuComponent implements AfterViewInit {
   sidemenuS = inject(SidemenuService);

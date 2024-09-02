@@ -1,16 +1,16 @@
 import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { HighlightService } from 'src/app/services/highlight.service';
-import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
-import { environment } from 'src/environment/enviroment';
 import { DisqusComponent } from '../../components/disqus/disqus.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SafeHtmlPipe } from '../../safe-html.pipe';
+import { MetaService } from 'src/app/services/meta.service';
+import { LanguageService } from 'src/app/services/language.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-blog-post',
@@ -30,22 +30,23 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   private renderer = inject(Renderer2);
   private highlightS = inject(HighlightService);
   private codePenS = inject(CodepenService);
+  private metaS = inject(MetaService);
   private languageS = inject(LanguageService);
-  private router = inject(Router);
-  private metaS = inject(Meta);
-  private titleS = inject(Title);
+  private location = inject(Location);
+
 
   post: Post | undefined | null;
   private routeParamsSubscription: Subscription | undefined;
   postNotFound: boolean = false;
 
-  async ngOnInit() {
-
+  ngOnInit() {
     // when route changes 
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
       this.postNotFound = false;
-      const lang = this.route.snapshot.paramMap.get('lang');
+
+      // Load Language
+      let lang = this.route.snapshot.paramMap.get('lang');
       this.languageS.updateLanguage(lang);
 
       const fileName = this.route.snapshot.paramMap.get('fileName');
@@ -58,7 +59,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
         });
       }
       this.postNotFound = !this.post;
-      this.updateMetaTags();
+      if (this.post?.postMeta) this.metaS.updateMetaTags(this.post.postMeta);
     })
   }
 
@@ -72,43 +73,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     if (this.post) {
       this.highlightS.highlightAll();
       if (this.post?.postMeta?.hasCodePen) this.codePenS.loadCodePen(this.renderer);
-    }
-  }
-
-  private updateMetaTags(): void {
-    if (this.post?.postMeta) {
-      const tagsToAdd: any = [
-        { property: 'og:title', content: this.post.postMeta.title },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:url', content: environment.baseUrl + this.router.url },
-      ];
-
-      if (this.post.postMeta.author) {
-        tagsToAdd.push({ property: 'og:author', content: this.post.postMeta.author });
-      }
-
-      if (this.post.postMeta.date) {
-        tagsToAdd.push({ property: 'article:published_time', content: this.post.postMeta.date });
-      }
-
-      if (this.post.postMeta.description) {
-        tagsToAdd.push({ property: 'og:description', content: this.post.postMeta.description });
-        tagsToAdd.push({ name: 'description', content: this.post.postMeta.description });
-      }
-
-      if (this.post.postMeta.keywords) {
-        tagsToAdd.push({ name: 'keywords', content: this.post.postMeta.keywords });
-      }
-
-      if (this.post.postMeta.image) {
-        tagsToAdd.push({
-          property: 'og:image',
-          content: environment.baseUrl + '/' + this.post.postMeta.image
-        });
-      }
-
-      this.metaS.addTags(tagsToAdd);
-      this.titleS.setTitle(this.post.postMeta.title ?? 'Ricos Website');
     }
   }
 }

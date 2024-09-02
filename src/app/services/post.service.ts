@@ -18,7 +18,7 @@ export class PostService {
 
 
   private post: Post | null | undefined;
-  private baseUrl = isPlatformServer(this.platformId) ? 'http://localhost:4200/' : '/';
+  private baseUrl = '/';
 
   async getPost(fileName: string): Promise<Post | null> {
     this.post = this.loadPostFromTransfareState(fileName);

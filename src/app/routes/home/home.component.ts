@@ -48,10 +48,9 @@ export class HomeComponent implements OnInit {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
 
       // Load Language
-      let lang = this.route.snapshot.paramMap.get('lang');
+      let lang = params['lang'];
       if (!lang) {
         this.location.go('/' + this.languageS.userAgendLanguage + '/');
-        lang = this.languageS.userAgendLanguage
       }
       this.languageS.updateLanguage(lang);
 

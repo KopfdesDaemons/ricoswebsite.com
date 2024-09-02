@@ -1,7 +1,6 @@
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { isPlatformServer } from '@angular/common';
 import { Project } from '../models/project';
 import { LanguageService } from './language.service';
 
@@ -11,20 +10,13 @@ import { LanguageService } from './language.service';
 export class ProjectService {
   private http = inject(HttpClient);
   private languageS = inject(LanguageService);
-  private platformId = inject<Object>(PLATFORM_ID);
 
   private projects: Project[] = [];
-
-  private getProjectsUrl(): string {
-    return `assets/projects.${this.languageS.userLanguage}.json`;
-  }
 
   // Projekte aus JSON laden
   private async loadProjectsFromJson(): Promise<void> {
     try {
-      const url = isPlatformServer(this.platformId)
-        ? `http://localhost:4200/${this.getProjectsUrl()}`
-        : this.getProjectsUrl();
+      const url = `assets/projects.${this.languageS.userLanguage}.json`;
       const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));
       this.projects = response.projects.map(this.createProjectFromData);
     } catch (error) {

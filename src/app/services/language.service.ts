@@ -1,18 +1,20 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
   private router = inject(Router);
-  // private translate = inject(TranslateService);
+  private translate = inject(TranslateService);
   private location = inject(Location);
   private platformId = inject<Object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
+  private route = inject(ActivatedRoute);
 
 
   userLanguage: string = 'en';
@@ -23,7 +25,10 @@ export class LanguageService {
 
   constructor() {
     const platformId = this.platformId;
+    this.translate.addLangs(this.supportedLanguages);
+    this.translate.setDefaultLang('en');
 
+    // Lade gespeicherte Sprache aus dem LocalStorage
     if (isPlatformBrowser(platformId)) {
       this.askUserToSwitch = true;
       const storedLanguage = localStorage.getItem('Custom Language');
@@ -35,14 +40,15 @@ export class LanguageService {
     this.userAgendLanguage = this.getLanguageFromUserAgent();
   }
 
-  updateLanguage(lang: string | null) {
+  async updateLanguage(lang: string | null) {
     const UserAgentLang = this.userAgendLanguage;
     if (!lang) lang = UserAgentLang;
     this.userLanguage = this.replaceUnsupportedLangauge(lang);
     this.document.documentElement.lang = this.userLanguage;
     const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
     this.askUserToSwitch = ask;
-    // this.translate.use(this.userLanguage);
+    await lastValueFrom(this.translate.use(this.userLanguage));
+    console.log(`Language changed to: ${this.userLanguage}`);
   }
 
   private replaceUnsupportedLangauge(lang: string): string {

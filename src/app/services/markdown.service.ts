@@ -7,8 +7,6 @@ import { parse } from 'yaml'
 })
 export class MarkdownService {
 
-  constructor() { }
-
   extractYamlHeader(markdown: string): any {
     const yamlRegex = /^---([\s\S]*?)---/gm;
     const matches = yamlRegex.exec(markdown);
