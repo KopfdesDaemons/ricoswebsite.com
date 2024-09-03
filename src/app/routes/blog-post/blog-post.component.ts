@@ -10,7 +10,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SafeHtmlPipe } from '../../safe-html.pipe';
 import { MetaService } from 'src/app/services/meta.service';
 import { LanguageService } from 'src/app/services/language.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-blog-post',
@@ -31,8 +30,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   private highlightS = inject(HighlightService);
   private codePenS = inject(CodepenService);
   private metaS = inject(MetaService);
-  private languageS = inject(LanguageService);
-  private location = inject(Location);
 
 
   post: Post | undefined | null;
@@ -44,10 +41,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
       this.postNotFound = false;
-
-      // Load Language
-      let lang = this.route.snapshot.paramMap.get('lang');
-      this.languageS.updateLanguage(lang);
 
       const fileName = this.route.snapshot.paramMap.get('fileName');
       if (fileName) this.post = await this.postS.getPost(fileName);

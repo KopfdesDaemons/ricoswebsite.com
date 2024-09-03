@@ -1,9 +1,8 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
-import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,6 @@ export class LanguageService {
   private location = inject(Location);
   private platformId = inject<Object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
-  private route = inject(ActivatedRoute);
 
 
   userLanguage: string = 'en';
@@ -24,37 +22,38 @@ export class LanguageService {
   private oldLanguage: string = '';
 
   constructor() {
-    const platformId = this.platformId;
+    // Setup ngx translate
     this.translate.addLangs(this.supportedLanguages);
     this.translate.setDefaultLang('en');
 
-    // Lade gespeicherte Sprache aus dem LocalStorage
-    if (isPlatformBrowser(platformId)) {
-      this.askUserToSwitch = true;
-      const storedLanguage = localStorage.getItem('Custom Language');
-      if (storedLanguage) {
-        this.userLanguage = storedLanguage;
-        this.askUserToSwitch = false;
-      }
-    }
+    this.loadLanguageFromLocalStorage();
     this.userAgendLanguage = this.getLanguageFromUserAgent();
   }
 
-  async updateLanguage(lang: string | null) {
-    const UserAgentLang = this.userAgendLanguage;
-    if (!lang) lang = UserAgentLang;
+  loadLanguageFromLocalStorage() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.askUserToSwitch = true;
+    const storedLanguage = localStorage.getItem('Custom Language');
+    if (storedLanguage) {
+      this.userLanguage = storedLanguage;
+      this.askUserToSwitch = false;
+    }
+  }
+
+  updateLanguage(lang: string | null) {
+    if (!lang) lang = this.userAgendLanguage;
     this.userLanguage = this.replaceUnsupportedLangauge(lang);
     this.document.documentElement.lang = this.userLanguage;
-    const ask = this.askUserToSwitch && this.userLanguage != UserAgentLang;
+    const ask = this.askUserToSwitch && this.userLanguage != this.userAgendLanguage;
     this.askUserToSwitch = ask;
-    await lastValueFrom(this.translate.use(this.userLanguage));
-    console.log(`Language changed to: ${this.userLanguage}`);
+    this.translate.use(this.userLanguage);
   }
 
   private replaceUnsupportedLangauge(lang: string): string {
     if (!this.supportedLanguages.includes(lang)) {
       const userLang = this.userAgendLanguage;
       const newUrl = this.router.url.replace(lang, userLang);
+      console.log('Language ' + lang + ' not supported. Switching to ' + userLang);
       this.router.navigateByUrl(newUrl);
       return userLang;
     }

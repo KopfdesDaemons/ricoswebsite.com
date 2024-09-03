@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class SidemenuService {
 
-  constructor() { }
-
   public MenuIsOpen = false;
 
   public toggleMenu() {

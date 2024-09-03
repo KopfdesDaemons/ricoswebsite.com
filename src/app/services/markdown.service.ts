@@ -22,7 +22,6 @@ export class MarkdownService {
     const yamlRegex = /^---([\s\S]*?)---/gm;
     const matches = yamlRegex.exec(markdown);
     if (matches && matches.length > 1) {
-      const yamlString = matches[1];
       return markdown.substring(matches[0].length).trim();
     } else {
       return markdown.trim();

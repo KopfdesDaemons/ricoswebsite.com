@@ -37,9 +37,6 @@ export class BlogComponent implements OnInit {
     // when route changes 
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
 
-      const lang = this.route.snapshot.paramMap.get('lang');
-      this.languageS.updateLanguage(lang);
-
       const page = this.route.snapshot.paramMap.get('page');
       if (page) this.currentPage = Number(page);
 

@@ -47,12 +47,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
 
-      // Load Language
+      // Switch to Route Language if not set
       let lang = params['lang'];
       if (!lang) {
         this.location.go('/' + this.languageS.userAgendLanguage + '/');
+        this.languageS.updateLanguage(lang);
       }
-      this.languageS.updateLanguage(lang);
 
       this.currentPage = +params['page'] || 1;
       if (params['technologies']) this.activTechnologiesFilterOptions = params['technologies'].split('&');
