@@ -81,21 +81,6 @@
     "fileName": "linux-test"
   },
   {
-    "title": "ngx-translate: Flackern der Texte beheben in 2 Schritten",
-    "description": "Eine Anleitung wie man das Flackern der Übersetzungen von ngx-translate beim Laden der Webseite beheben kann.",
-    "author": "Rico",
-    "image": "assets/images/ng-translate-thumbnail.avif",
-    "keywords": [
-      "ngx-translate",
-      "Prerendering",
-      "Angular Localisation",
-      "Hydration",
-      "Übersetzungen"
-    ],
-    "date": "2024-05-29T00:00:00.000Z",
-    "fileName": "ngx-translate-flickering"
-  },
-  {
     "title": "Datenschutzerklärung",
     "hideInFeed": true,
     "fileName": "privacy-policy"

@@ -81,21 +81,6 @@
     "fileName": "linux-test"
   },
   {
-    "title": "ngx-translate: Fix text flickering in 2 steps",
-    "description": "A guide on how to fix the flickering of ngx-translate translations when loading the website.",
-    "author": "Rico",
-    "image": "assets/images/ng-translate-thumbnail.avif",
-    "keywords": [
-      "ngx-translate",
-      "Prerendering",
-      "Angular Localisation",
-      "Hydration",
-      "Translations"
-    ],
-    "date": "2024-05-29T00:00:00.000Z",
-    "fileName": "ngx-translate-flickering"
-  },
-  {
     "title": "Privacy policy",
     "hideInFeed": true,
     "fileName": "privacy-policy"

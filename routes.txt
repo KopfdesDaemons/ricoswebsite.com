@@ -17,7 +17,6 @@
 /de/blogpost/css-gallery
 /de/blogpost/disqus-in-angular
 /de/blogpost/linux-test
-/de/blogpost/ngx-translate-flickering
 /de/blogpost/privacy-policy
 /de/blogpost/steam-dropdown-bug
 /en/blogpost/about-this-website
@@ -26,6 +25,5 @@
 /en/blogpost/css-gallery
 /en/blogpost/disqus-in-angular
 /en/blogpost/linux-test
-/en/blogpost/ngx-translate-flickering
 /en/blogpost/privacy-policy
 /en/blogpost/steam-dropdown-bug
