@@ -1,63 +1,42 @@
 [
   {
-    "title": "Linux: Fix Steam Dropdown Bug",
+    "title": "About this Website",
     "author": "Rico",
-    "image": "assets/images/steam-dropdown-bug.avif",
     "keywords": [
-      "Steam Settings Bug",
-      "Steam Dropdown not selectable",
-      "Linux Steam Client Issue",
-      "Steam Settings Linux"
+      "Angular",
+      "Markdown",
+      "YAML"
     ],
-    "description": "Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.",
-    "date": "2024-06-17T00:00:00.000Z",
-    "fileName": "steam-dropdown-bug"
+    "description": "A quick insight into how this website works.",
+    "date": "2024-05-12T00:00:00.000Z",
+    "fileName": "about-this-website"
   },
   {
-    "title": "Privacy policy",
-    "hideInFeed": true,
-    "fileName": "privacy-policy"
+    "title": "BlogTube - A WordPress YouTube clone",
+    "author": "Rico",
+    "image": "assets/images/blogtube-post-screenshot.avif",
+    "keywords": [
+      "YouTube",
+      "WordPress",
+      "WordPress Theme"
+    ],
+    "description": "BlogTube is a WordPress theme that is based on the design scheme of YouTube",
+    "date": "2024-05-18T00:00:00.000Z",
+    "fileName": "blogtube"
   },
   {
-    "title": "ngx-translate: Fix text flickering in 2 steps",
-    "description": "A guide on how to fix the flickering of ngx-translate translations when loading the website.",
+    "title": "Integrate CodePen into Angular (GDPR compliant)",
     "author": "Rico",
-    "image": "assets/images/ng-translate-thumbnail.avif",
+    "image": "assets/images/codepen-screenshot.avif",
     "keywords": [
-      "ngx-translate",
-      "Prerendering",
-      "Angular Localisation",
-      "Hydration",
-      "Translations"
+      "Integrate codepen",
+      "Angular codepen",
+      "Angular embed codepen",
+      "Codepen in angular"
     ],
-    "date": "2024-05-29T00:00:00.000Z",
-    "fileName": "ngx-translate-flickering"
-  },
-  {
-    "title": "Linux Mint Cinnamon tested as a desktop",
-    "author": "Rico",
-    "image": "assets/images/linux-mint-desktop.avif",
-    "keywords": [
-      "Linux",
-      "Desktop"
-    ],
-    "description": "As a hobby web developer, I tested Linux Mint Cinnamon as a desktop. Here I list my positive experiences and problems.",
-    "date": "2024-04-12T00:00:00.000Z",
-    "fileName": "linux-test"
-  },
-  {
-    "title": "Angular: Integrate Disqus manually with own service",
-    "author": "Rico",
-    "image": "assets/images/disqus-in-angular.avif",
-    "keywords": [
-      "Integrate Disqus",
-      "Angular Disqus",
-      "Manually integrate Angular Disqus",
-      "Disqus in Angular"
-    ],
-    "description": "A guide on how to embed Disqus in Angular without any additional dependencies.",
-    "date": "2024-05-30T00:00:00.000Z",
-    "fileName": "disqus-in-angular"
+    "description": "Learn how to seamlessly integrate CodePen snippets into your Angular project with this step-by-step guide.",
+    "date": "2024-05-18T00:00:00.000Z",
+    "fileName": "codepen-in-angular"
   },
   {
     "title": "My basic CSS gallery",
@@ -76,42 +55,63 @@
     "fileName": "css-gallery"
   },
   {
-    "title": "Integrate CodePen into Angular (GDPR compliant)",
+    "title": "Angular: Integrate Disqus manually with own service",
     "author": "Rico",
-    "image": "assets/images/codepen-screenshot.avif",
+    "image": "assets/images/disqus-in-angular.avif",
     "keywords": [
-      "Integrate codepen",
-      "Angular codepen",
-      "Angular embed codepen",
-      "Codepen in angular"
+      "Integrate Disqus",
+      "Angular Disqus",
+      "Manually integrate Angular Disqus",
+      "Disqus in Angular"
     ],
-    "description": "Learn how to seamlessly integrate CodePen snippets into your Angular project with this step-by-step guide.",
-    "date": "2024-05-18T00:00:00.000Z",
-    "fileName": "codepen-in-angular"
+    "description": "A guide on how to embed Disqus in Angular without any additional dependencies.",
+    "date": "2024-05-30T00:00:00.000Z",
+    "fileName": "disqus-in-angular"
   },
   {
-    "title": "BlogTube - A WordPress YouTube clone",
+    "title": "Linux Mint Cinnamon tested as a desktop",
     "author": "Rico",
-    "image": "assets/images/blogtube-post-screenshot.avif",
+    "image": "assets/images/linux-mint-desktop.avif",
     "keywords": [
-      "YouTube",
-      "WordPress",
-      "WordPress Theme"
+      "Linux",
+      "Desktop"
     ],
-    "description": "BlogTube is a WordPress theme that is based on the design scheme of YouTube",
-    "date": "2024-05-18T00:00:00.000Z",
-    "fileName": "blogtube"
+    "description": "As a hobby web developer, I tested Linux Mint Cinnamon as a desktop. Here I list my positive experiences and problems.",
+    "date": "2024-04-12T00:00:00.000Z",
+    "fileName": "linux-test"
   },
   {
-    "title": "About this Website",
+    "title": "ngx-translate: Fix text flickering in 2 steps",
+    "description": "A guide on how to fix the flickering of ngx-translate translations when loading the website.",
     "author": "Rico",
+    "image": "assets/images/ng-translate-thumbnail.avif",
     "keywords": [
-      "Angular",
-      "Markdown",
-      "YAML"
+      "ngx-translate",
+      "Prerendering",
+      "Angular Localisation",
+      "Hydration",
+      "Translations"
     ],
-    "description": "A quick insight into how this website works.",
-    "date": "2024-05-12T00:00:00.000Z",
-    "fileName": "about-this-website"
+    "date": "2024-05-29T00:00:00.000Z",
+    "fileName": "ngx-translate-flickering"
+  },
+  {
+    "title": "Privacy policy",
+    "hideInFeed": true,
+    "fileName": "privacy-policy"
+  },
+  {
+    "title": "Linux: Fix Steam Dropdown Bug",
+    "author": "Rico",
+    "image": "assets/images/steam-dropdown-bug.avif",
+    "keywords": [
+      "Steam Settings Bug",
+      "Steam Dropdown not selectable",
+      "Linux Steam Client Issue",
+      "Steam Settings Linux"
+    ],
+    "description": "Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.",
+    "date": "2024-06-17T00:00:00.000Z",
+    "fileName": "steam-dropdown-bug"
   }
 ]

@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Generiere alle Datein für den Blog: posts.json, sitemap.txt, routes.txt
-node prepareFiles.js
+ts-node prepareFiles.ts
 
 
 # Rendere die Webseite vor
+echo "Starte ng build..."
 ng build
 
 
