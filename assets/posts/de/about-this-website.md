@@ -11,9 +11,9 @@ date: 2024-05-12
 
 ## Rendering
 
-Diese Website wurde mit Angular erstellt und mit dem Angular Prerenderer vorgerendert.
+Diese Website wurde mit Angular erstellt und mit dem Angular Application Builder vorgerendert.
 Der initiale Seitenaufruf ist statisch und anschließend funktioniert die Website wie eine Single-Page-Application.
-Es wird Static Site Generation (SSG) mit Hydratation verwendet.
+Es wird Static Site Generation (SSG) mit Hydratation kombiniert.
 
 ## Hosting
 

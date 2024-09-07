@@ -11,7 +11,7 @@ date: 2024-05-12
 
 ## Rendering
 
-This website was built using Angular and pre-rendered using Angular Prerenderer.
+This website was built using Angular and pre-rendered using Angular Application Builder.
 The initial page view is static and then the website functions like a single-page application.
 Static Site Generation (SSG) with hydration is used.
 

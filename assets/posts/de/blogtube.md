@@ -52,7 +52,7 @@ Probleme, Bugs oder Funktionswünsche können im [Support-Forum](https://wordpre
 
 ## BlogTube - Free Download
 
-<div style="display: flex; gap: 0.5em; flex-wrap: wrap">
+<div style="display: flex; gap: 0.5em; flex-wrap: wrap; margin-top: 1em">
   <a class="linkButton" title="Download von WordPress" href="https://wordpress.org/themes/blogtube" target="_blank">
   WordPress</a>
   <a class="linkButton" title="Ansehen auf GitHub" href="https://github.com/KopfdesDaemons/blogtube" target="_blank">GitHub</a>

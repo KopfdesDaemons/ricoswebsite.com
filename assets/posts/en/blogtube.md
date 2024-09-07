@@ -52,7 +52,8 @@ Problems, bugs or feature requests can be shared in the [support forum](https://
 
 ## BlogTube - Free Download
 
-<div style="display: flex; gap: 0.5em; flex-wrap: wrap">
+<div style="display: flex; gap: 0.5em; flex-wrap: wrap; margin-top: 1em">
+<br>
   <a class="linkButton" title="download from WordPress" href="https://wordpress.org/themes/blogtube" target="_blank">WordPress</a>
   <a class="linkButton" title="view on GitHub" href="https://github.com/KopfdesDaemons/blogtube" target="_blank">GitHub</a>
   <a class="linkButton" title="direct download" href="https://github.com/KopfdesDaemons/blogtube/archive/refs/heads/main.zip">direct download</a>
