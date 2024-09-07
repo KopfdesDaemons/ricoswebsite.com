@@ -12,6 +12,19 @@
     "fileName": "about-this-website"
   },
   {
+    "title": "Angular: Vorrendern für ein Deployment auf GitHub Pages",
+    "author": "Rico",
+    "image": "assets/images/angular-github-pages.avif",
+    "keywords": [
+      "Angular",
+      "GitHub Pages",
+      "Prerendering"
+    ],
+    "description": "Eine Anleitung für das Deployment eines Angular Projekts auf GitHub Pages mit vorgerenderten Seiten.",
+    "date": "2024-09-07T00:00:00.000Z",
+    "fileName": "angular-gh-pages"
+  },
+  {
     "title": "BlogTube - Ein WordPress YouTube Klon",
     "author": "Rico",
     "image": "assets/images/blogtube-post-screenshot.avif",

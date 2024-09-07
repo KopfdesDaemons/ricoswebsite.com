@@ -8,7 +8,7 @@ hideInFeed: true
 Rico Angenvoort\
 Pommernstraße 48\
 34497 Korbach\
-DEUTSCHLAND
+GERMANY
 
 ## Drittanbieterdienste
 

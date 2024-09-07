@@ -1,15 +1,14 @@
 import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { HighlightService } from 'src/app/services/highlight.service';
 import { PostService } from 'src/app/services/post.service';
 import { DisqusComponent } from '../../components/disqus/disqus.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { SafeHtmlPipe } from '../../safe-html.pipe';
+import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { MetaService } from 'src/app/services/meta.service';
-import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -37,23 +36,37 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   postNotFound: boolean = false;
 
   ngOnInit() {
-    // when route changes 
-    this.routeParamsSubscription = this.route.params.subscribe(async () => {
-
+    // when route changes
+    this.routeParamsSubscription = this.route.params.subscribe(async (param) => {
       this.postNotFound = false;
 
-      const fileName = this.route.snapshot.paramMap.get('fileName');
-      if (fileName) this.post = await this.postS.getPost(fileName);
-      else {
-        this.route.data.subscribe(async (data) => {
-          if (data['fileName']) this.post = await this.postS.getPost(data['fileName']);
-          if (this.post?.postMeta) this.post!.postMeta!.commentsDisabled = true;
-          this.postNotFound = !this.post;
-        });
+      const fileName = param['fileName'];
+
+      if (fileName) {
+        // load post when fileName is param in route
+        this.post = await this.postS.getPost(fileName);
+      } else {
+
+        // read route data for non blog post routes (privacy policy)
+        const data = await firstValueFrom(this.route.data);
+
+        if (data['fileName']) {
+          this.post = await this.postS.getPost(data['fileName']);
+        }
+
+        // disable comments
+        if (this.post?.postMeta) {
+          this.post.postMeta.commentsDisabled = true;
+        }
       }
+
       this.postNotFound = !this.post;
-      if (this.post?.postMeta) this.metaS.updateMetaTags(this.post.postMeta);
-    })
+
+      // set meta tags
+      if (this.post?.postMeta) {
+        this.metaS.updateMetaTags(this.post.postMeta);
+      }
+    });
   }
 
   ngOnDestroy(): void {

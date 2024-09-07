@@ -12,6 +12,7 @@
 
 
 /de/blogpost/about-this-website
+/de/blogpost/angular-gh-pages
 /de/blogpost/blogtube
 /de/blogpost/codepen-in-angular
 /de/blogpost/css-gallery
@@ -20,6 +21,7 @@
 /de/blogpost/privacy-policy
 /de/blogpost/steam-dropdown-bug
 /en/blogpost/about-this-website
+/en/blogpost/angular-gh-pages
 /en/blogpost/blogtube
 /en/blogpost/codepen-in-angular
 /en/blogpost/css-gallery
