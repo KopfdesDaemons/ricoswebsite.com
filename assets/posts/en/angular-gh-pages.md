@@ -32,23 +32,23 @@ import { appConfig } from "./app/app.config";
 
 bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
 
-// Enables navigation with TralingSlash without removing it
+// Enables navigation with a trailing slash without removing it
 const __stripTrailingSlash = (Location as any).stripTrailingSlash;
 (Location as any).stripTrailingSlash = function _stripTrailingSlash(url: string): string {
-  // Split the URL into two parts: the path before the question mark and the query string after the question mark
-  const queryString$ = url.match(/([^?]*)?(.*)/);
+  // Split the URL into three parts: the path before the question mark, the query string, and the fragment
+  const urlParts = url.match(/([^?#]*)(\?[^#]*)?(#.*)?/);
 
-  if (queryString$ && queryString$[2].length > 0) {
-    // Check if the path (before the query string) ends with a slash
-    // If so, add a dot before the query string
-    // Otherwise, call the original stripTrailingSlash method
-    return /[^\/]\/$/.test(queryString$[1]) ? queryString$[1] + "." + queryString$[2] : __stripTrailingSlash(url);
+  const path = urlParts?.[1] || ""; // Path before query and fragment
+  const queryString = urlParts?.[2] || ""; // Query string (optional)
+  const fragment = urlParts?.[3] || ""; // Fragment (optional)
+
+  // If the path ends with a slash, add a dot before the query string or fragment
+  if (/[^\/]\/$/.test(path)) {
+    return path + "." + queryString + fragment;
   }
 
-  // If no query string exists or it is empty
-  // Check if URL ends with slash and add dot
-  // Otherwise, call the original stripTrailingSlash method
-  return /[^\/]\/$/.test(url) ? url + "." : __stripTrailingSlash(url);
+  // If the path does not end with a slash, call the original stripTrailingSlash method
+  return __stripTrailingSlash(url);
 };
 ```
 
