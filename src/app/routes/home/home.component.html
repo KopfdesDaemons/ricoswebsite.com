@@ -51,68 +51,84 @@
         </li>
         }
       </ul>
+
+
       @if (totalPages > 1) {
       <div class="pagination">
+
+        <!-- back button -->
         @if ((currentPage - 1) > 0) {
         <a class="navLink"
-          [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+          [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 1) + '/.' + getParamChain(activTechnologiesFilterOptions)"
           [fragment]="'projectsSection'">&lt;</a>
         }
         <ul>
+          <!-- jump to first page button -->
           @if (currentPage >= 4) {
           <li>
-            <a [routerLink]="['/projects/page', 1, getParamChain(activTechnologiesFilterOptions)]"
+            <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/1/.' + getParamChain(activTechnologiesFilterOptions)"
               [fragment]="'projectsSection'">1</a>
           </li>
           }
+          <!-- dots next to first page -->
           @if (currentPage >= 5) {
           <li class="dots">
             <span>…</span>
           </li>
           }
+          <!-- button to 2nd page before current -->
           @if ((currentPage - 2) > 0) {
           <li>
-            <a [routerLink]="['/projects/page', currentPage - 2, getParamChain(activTechnologiesFilterOptions)]"
+            <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 2) + '/.' + getParamChain(activTechnologiesFilterOptions)"
               [fragment]="'projectsSection'">{{
               currentPage - 2 }}</a>
           </li>
           }
+          <!-- button to 1st page before current -->
           @if ((currentPage - 1) > 0) {
           <li>
-            <a [routerLink]="['/projects/page', currentPage - 1, getParamChain(activTechnologiesFilterOptions)]"
+            <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 1) + '/.' + getParamChain(activTechnologiesFilterOptions)"
               [fragment]="'projectsSection'">{{
               currentPage - 1 }}</a>
           </li>
           }
+
           <li class="current">
             <span>{{currentPage}}</span>
           </li>
-          @if ((currentPage + 1) < totalPages) { <li>
-            <a [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
-              [fragment]="'projectsSection'">{{
+
+          <!-- button to next page after current -->
+          @if ((currentPage + 1) <= totalPages) { <li>
+            <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 1) + '/.' + getParamChain(activTechnologiesFilterOptions)"
+              fragment="projectsSection">{{
               currentPage + 1 }}</a>
             </li>
             }
-            @if ((currentPage + 2) < totalPages) { <li>
-              <a [routerLink]="['/projects/page', currentPage + 2, getParamChain(activTechnologiesFilterOptions)]"
+            <!-- button to 2nd page after current -->
+            @if ((currentPage + 2) <= totalPages) { <li>
+              <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 2) + '/.' + getParamChain(activTechnologiesFilterOptions)"
                 [fragment]="'projectsSection'">{{
                 currentPage + 2 }}</a>
               </li>
               }
+              <!-- dots next to last page -->
               @if ((totalPages - 4) >= currentPage) {
               <li class="dots">
                 <span>…</span>
               </li>
               }
+              <!-- jump to last page button -->
               @if ((totalPages - 3) >= currentPage) {
               <li>
-                <a [routerLink]="['/projects/page', totalPages, getParamChain(activTechnologiesFilterOptions)]"
+                <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + totalPages + '/.' + getParamChain(activTechnologiesFilterOptions)"
                   [fragment]="'projectsSection'">{{totalPages}}</a>
               </li>
               }
         </ul>
-        @if ((currentPage + 1) < totalPages) { <a class="navLink"
-          [routerLink]="['/projects/page', currentPage + 1, getParamChain(activTechnologiesFilterOptions)]"
+
+        <!-- forward button -->
+        @if ((currentPage + 1) <= totalPages) { <a class="navLink"
+          [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 1) + '/.' + getParamChain(activTechnologiesFilterOptions)"
           [fragment]="'projectsSection'">&gt;</a>
           }
       </div>

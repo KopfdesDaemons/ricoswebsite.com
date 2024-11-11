@@ -1,6 +1,23 @@
 {
     "projects": [
         {
+            "name": "System Temperature",
+            "description": "A desklet for the Cinnamon desktop that displays the temperature of a thermal zone of the system",
+            "image": "assets\\images\\system-temperature.avif",
+            "features": [
+                "thermal zone setting",
+                "dynamic color adjustment based on temperature",
+                "changing the temperature unit (Celsius or Fahrenheit)",
+                "font size settings",
+                "custom label text"
+            ],
+            "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/68",
+            "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemTemperature@KopfDesDaemons",
+            "technologies": [
+                "JavaScript"
+            ]
+        },
+        {
             "name": "BlogTube",
             "description": "A WordPress theme that is based on the design scheme of YouTube",
             "image": "assets\\images\\blogtube.avif",

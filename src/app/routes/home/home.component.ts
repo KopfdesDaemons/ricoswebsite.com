@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject, OnDestroy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -22,15 +22,16 @@ import { ProjectCardComponent } from '../../components/project-card/project-card
     TranslateModule,
   ],
 })
-export class HomeComponent implements OnInit {
-  private route = inject(ActivatedRoute);
+export class HomeComponent implements OnInit, OnDestroy {
   private meta = inject(Meta);
   private title = inject(Title);
+  languageS = inject(LanguageService);
   ps = inject(ProjectService);
   private location = inject(Location);
-  private languageS = inject(LanguageService);
   private translate = inject(TranslateService);
   sidemenuS = inject(SidemenuService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   @ViewChild('projectsSection') projectsSection: ElementRef | undefined;
 
@@ -49,16 +50,21 @@ export class HomeComponent implements OnInit {
 
       // Switch to Route Language if not set
       let lang = params['lang'];
-      if (!lang) {
-        this.location.go('/' + this.languageS.userAgendLanguage + '/');
-        this.languageS.updateLanguage(lang);
-      }
+      if (!lang) this.router.navigate(['/' + this.languageS.userAgendLanguage + '/projects/page/1/.']);
 
+      this.activTechnologiesFilterOptions = [];
       this.currentPage = +params['page'] || 1;
-      if (params['technologies']) this.activTechnologiesFilterOptions = params['technologies'].split('&');
 
+      // get technologies and remove first dot for the static sites (Trailing Slash Problem)
+      const technologieParams = params['technologies']?.replace(/^\./, '');
+
+      // load filter options
+      if (technologieParams) this.activTechnologiesFilterOptions = technologieParams.split('&');
+
+      // load projects
       this.loadProjects(this.currentPage, this.activTechnologiesFilterOptions);
 
+      // set Meta Data
       const description = await lastValueFrom(this.translate.get('home_description'));
       this.title.setTitle('Ricos Website');
       this.meta.addTags([
@@ -99,12 +105,14 @@ export class HomeComponent implements OnInit {
 
   applyFilter(filter: string[]) {
     this.activTechnologiesFilterOptions = filter;
-
-    const technologieString = this.getParamChain(this.activTechnologiesFilterOptions);
+    const filterString = this.getParamChain(this.activTechnologiesFilterOptions);
 
     // change route
-    if (!technologieString) this.location.go(this.languageS.userLanguage + '#projectsSection');
-    else this.location.go(this.languageS.userLanguage + '/projects/page/1/' + technologieString + '#projectsSection');
+    const lang = this.languageS.userLanguage;
+    const routePath = `/${lang}/projects/page/1/${filterString}`;
+    this.location.go(routePath + '#projectsSection');
+
+    if (this.currentPage != 1) this.router.navigate([routePath], { fragment: 'projectsSection' });
 
     this.loadProjects(1, this.activTechnologiesFilterOptions);
 

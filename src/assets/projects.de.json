@@ -1,6 +1,23 @@
 {
     "projects": [
         {
+            "name": "Systemtemperatur",
+            "description": "Ein Desklet für den Cinnamon Desktop, welches die Temperatur einer Thermalzone des Systems anzeigt",
+            "image": "assets\\images\\system-temperature.avif",
+            "features": [
+                "Einstellung der Thermalzone",
+                "dynamische Anpassung der Farbe basierend auf der Temperatur",
+                "Umstellung der Temperatureinheit (Celsius oder Fahrenheit)",
+                "Einstellungen für die Schriftgrößen",
+                "Benutzerdefinierter Labeltext"
+            ],
+            "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/68",
+            "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemTemperature@KopfDesDaemons",
+            "technologies": [
+                "JavaScript"
+            ]
+        },
+        {
             "name": "BlogTube",
             "description": "Ein WordPress-Theme, das auf dem Designschema von YouTube basiert",
             "image": "assets\\images\\blogtube.avif",

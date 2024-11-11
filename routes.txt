@@ -1,15 +1,16 @@
-/de
 /de/blog
 /de/privacy-policy
 /de/blog/page/1
 /de/blog/page/2
+/de/projects/page/1
+/de/projects/page/2
 
-/en
 /en/blog
 /en/privacy-policy
 /en/blog/page/1
 /en/blog/page/2
-
+/en/projects/page/1
+/en/projects/page/2
 
 /de/blogpost/about-this-website
 /de/blogpost/angular-gh-pages
