@@ -27,6 +27,7 @@ export class ProjectService {
 
   // Hilfsfunktion zum Erstellen eines Project-Objekts aus den Daten
   private createProjectFromData(data: any): Project {
+    data.technologies = data.technologies.sort();
     return new Project(
       data.name,
       data.description,

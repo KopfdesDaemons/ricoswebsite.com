@@ -1,6 +1,24 @@
 {
     "projects": [
         {
+            "name": "RSS Newsticker",
+            "description": "An applet for the Cinnamon desktop that displays a news ticker in the taskbar",
+            "image": "assets\\images\\rss-newsticker.avif",
+            "features": [
+                "Customizable RSS feed source",
+                "Customizable speed",
+                "Customizable refresh interval",
+                "Customizable width",
+                "Customizable separators"
+            ],
+            "projectURL": "https://cinnamon-spices.linuxmint.com/applets/view/402",
+            "githubURL": "https://github.com/linuxmint/cinnamon-spices-applets/tree/master/rssNewsticker@KopfDesDaemons",
+            "technologies": [
+                "JavaScript",
+                "Cinnamon"
+            ]
+        },
+        {
             "name": "System Temperature",
             "description": "A desklet for the Cinnamon desktop that displays the temperature of a thermal zone of the system",
             "image": "assets\\images\\system-temperature.avif",
@@ -14,7 +32,8 @@
             "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/68",
             "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemTemperature@KopfDesDaemons",
             "technologies": [
-                "JavaScript"
+                "JavaScript",
+                "Cinnamon"
             ]
         },
         {
@@ -72,6 +91,23 @@
             ]
         },
         {
+            "name": "tickturtle.com",
+            "description": "A website for time recording of work steps",
+            "image": "assets\\images\\tickturtle.com.avif",
+            "features": [
+                "time calculation / time pause / time resume",
+                "edit tasks / delete tasks",
+                "data storage in local storage",
+                "custom table design with several features"
+            ],
+            "projectURL": "https://tickturtle.com/",
+            "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
+            "technologies": [
+                "Angular",
+                "TypeScript"
+            ]
+        },
+        {
             "name": "grundbuch-musterantrag.de",
             "description": "A website about German land register law",
             "image": "assets\\images\\grundbuch-musterantrag.de.avif",
@@ -88,23 +124,6 @@
                 "Angular",
                 "TypeScript",
                 "Node.js"
-            ]
-        },
-        {
-            "name": "tickturtle.com",
-            "description": "A website for time recording of work steps",
-            "image": "assets\\images\\tickturtle.com.avif",
-            "features": [
-                "time calculation / time pause / time resume",
-                "edit tasks / delete tasks",
-                "data storage in local storage",
-                "custom table design with several features"
-            ],
-            "projectURL": "https://tickturtle.com/",
-            "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
-            "technologies": [
-                "Angular",
-                "TypeScript"
             ]
         }
     ]
