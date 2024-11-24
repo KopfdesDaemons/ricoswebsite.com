@@ -5,13 +5,14 @@ import { Project } from 'src/app/models/project';
 import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-project-card',
-    templateUrl: './project-card.component.html',
-    styleUrls: ['./project-card.component.scss'],
-    standalone: true,
-    imports: [RouterLink, FaIconComponent]
+  selector: 'app-project-card',
+  templateUrl: './project-card.component.html',
+  styleUrls: ['./project-card.component.scss'],
+  standalone: true,
+  imports: [RouterLink, FaIconComponent, TranslateModule]
 })
 export class ProjectCardComponent {
   languageS = inject(LanguageService);

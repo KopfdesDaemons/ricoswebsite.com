@@ -31,7 +31,7 @@
         @if (project?.projectURL) {
         <a href="{{project?.projectURL}}" target="_blank">
           <fa-icon [icon]="faUpRightFromSquare"></fa-icon>
-          <span>visit project</span>
+          <span>{{'visit_project' | translate}}</span>
         </a>
         }
         @if (project?.githubURL) {

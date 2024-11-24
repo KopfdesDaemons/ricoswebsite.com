@@ -1,6 +1,24 @@
 {
     "projects": [
         {
+            "name": "Days Countdown",
+            "description": "A desklet for the Cinnamon desktop that displays the remaining days until a date",
+            "image": "assets\\images\\days-countdown.avif",
+            "features": [
+                "Date setting",
+                "Adjustable refresh interval",
+                "Font color settings",
+                "Font size settings",
+                "Custom label text"
+            ],
+            "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/69",
+            "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/daysCountdown@KopfDesDaemons",
+            "technologies": [
+                "JavaScript",
+                "Cinnamon"
+            ]
+        },
+        {
             "name": "RSS Newsticker",
             "description": "An applet for the Cinnamon desktop that displays a news ticker in the taskbar",
             "image": "assets\\images\\rss-newsticker.avif",
