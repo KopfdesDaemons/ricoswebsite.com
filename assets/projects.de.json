@@ -1,6 +1,21 @@
 {
     "projects": [
         {
+            "name": "Systembetriebszeit",
+            "description": "Ein Desklet für den Cinnamon Desktop, welches die aktuelle Betriebszeit und die Startzeit des Systems anzeigt",
+            "image": "assets\\images\\system-uptime.avif",
+            "features": [
+                "Einstellung für die Labelfarbe",
+                "Einstellung für die Schriftgröße"
+            ],
+            "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/70",
+            "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemUptime@KopfDesDaemons",
+            "technologies": [
+                "JavaScript",
+                "Cinnamon"
+            ]
+        },
+        {
             "name": "Tages Countdown",
             "description": "Ein Desklet für den Cinnamon Desktop, welches die verbleibenden Tage bis zu einem Datum anzeigt",
             "image": "assets\\images\\days-countdown.avif",
