@@ -65,6 +65,7 @@ export class ProjectService {
       filteredProjects = filteredProjects.filter(project =>
         filterByTechnologies.some(tech => project.technologies.includes(tech))
       );
+      filteredProjects = filteredProjects.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     const startIndex = (page - 1) * itemsPerPage;
