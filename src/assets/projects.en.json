@@ -1,6 +1,22 @@
 {
     "projects": [
         {
+            "name": "Advent Candles",
+            "description": "A desklet for the Cinnamon Desktop that displays animated Advent candles on the desktop",
+            "image": "assets\\images\\advent-candles.avif",
+            "features": [
+                "Automatic adjustment of the number of candles based on the current date",
+                "Animation speed setting",
+                "Desklet size setting"
+            ],
+            "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/71",
+            "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/adventCandles@KopfdesDaemons",
+            "technologies": [
+                "JavaScript",
+                "Cinnamon"
+            ]
+        },
+        {
             "name": "System Uptime",
             "description": "A desklet for the Cinnamon desktop that displays the current uptime and the system start time",
             "image": "assets\\images\\system-uptime.avif",
