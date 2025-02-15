@@ -1,27 +1,24 @@
 <div class="card">
-  @if (postMeta?.image) {
-    <a class="imageContainer"
-      [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName + '/.']">
-      <img src="{{postMeta?.image}}" alt="{{postMeta?.title}}">
+    @if (postMeta().image) {
+    <a class="imageContainer" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta().fileName + '/.']">
+        <img src="{{ postMeta().image }}" alt="{{ postMeta().title }}" />
     </a>
-  }
-  <div class="content">
-    <a class="titleLink" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName + '/.']">
-      <h2>{{postMeta?.title}}</h2>
-    </a>
-    @if (postMeta?.date) {
-      <span class="date">{{postMeta?.date}}</span>
     }
-    <p>{{postMeta?.description}}</p>
-    @if (postMeta?.keywords) {
-      <ul class="keywords">
-        @for (keyword of postMeta?.keywords; track keyword) {
-          <li>{{keyword}}</li>
+    <div class="content">
+        <a class="titleLink" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta().fileName + '/.']">
+            <h2>{{ postMeta().title }}</h2>
+        </a>
+        @if (postMeta().date) {
+        <span class="date">{{ postMeta().date }}</span>
         }
-      </ul>
-    }
-    <a class="readMore"
-      [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta?.fileName]">{{'read_more' |
-    translate}}</a>
-  </div>
+        <p>{{ postMeta().description }}</p>
+        @if (postMeta().keywords) {
+        <ul class="keywords">
+            @for (keyword of postMeta().keywords; track keyword) {
+            <li>{{ keyword }}</li>
+            }
+        </ul>
+        }
+        <a class="readMore" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta().fileName]">{{ "read_more" | translate }}</a>
+    </div>
 </div>

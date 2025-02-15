@@ -1,53 +1,51 @@
-<div class="closingDiv" [ngClass]="{'sidemenuOpen': sidemenuS.MenuIsOpen}" (click)="sidemenuS.toggleMenu()"></div>
-<aside #sidemenu [ngClass]="{'sidemenuOpen': sidemenuS.MenuIsOpen}">
+<div class="closingDiv" [ngClass]="{ sidemenuOpen: sidemenuS.MenuIsOpen }" (click)="sidemenuS.toggleMenu()"></div>
+<aside (click)="toggleMenu()" side #sidemenu [ngClass]="{ sidemenuOpen: sidemenuS.MenuIsOpen }">
     <div class="sidemenuContent">
         <nav>
             <ul>
                 <li>
-                    <a [routerLink]="[languageS.userLanguage  + '/projects/page/1/.']">
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/projects/page/1/.']">
                         <fa-icon [icon]="faHome"></fa-icon>
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://github.com/KopfdesDaemons" target="_blank">
+                    <a (click)="toggleMenu()" href="https://github.com/KopfdesDaemons" target="_blank">
                         <fa-icon [icon]="faGithub"></fa-icon>
                         <span>GitHub</span>
                     </a>
                 </li>
                 <li>
-                    <hr>
-                    <a [routerLink]="[languageS.userLanguage + '/blog/.']">
-                        <span>{{'Blog' | translate}}</span>
+                    <hr />
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/blog/.']">
+                        <span>{{ "Blog" | translate }}</span>
                     </a>
                 </li>
                 <li>
-                    <hr>
-                    <a [routerLink]="[languageS.userLanguage  + '/.']" fragment="projectsSection">
+                    <hr />
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/.']" fragment="projectsSection">
                         <span>Portfolio</span>
                     </a>
-                    <hr>
+                    <hr />
                 </li>
                 <li>
-                    <a [routerLink]="[languageS.userLanguage + '/blogpost/css-gallery/.']">
-                        <span>{{'css_gallery_title' | translate}}</span>
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/blogpost/css-gallery/.']">
+                        <span>{{ "css_gallery_title" | translate }}</span>
                     </a>
                 </li>
                 <li>
-                    <a [routerLink]="[languageS.userLanguage + '/blogpost/about-this-website/.']">
-                        <span>{{'about_this_website_title' | translate}}</span>
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/blogpost/about-this-website/.']">
+                        <span>{{ "about_this_website_title" | translate }}</span>
                     </a>
                 </li>
             </ul>
         </nav>
         <fieldset class="languageSetter">
-            <legend>{{'language' | translate}}:</legend>
+            <legend>{{ "language" | translate }}:</legend>
             <div>
-                <input type="radio" id="german" name="language" value="de" checked [(ngModel)]="languageS.userLanguage"
-                    (click)="languageS.switchUserLanguage('de')" />
+                <input type="radio" id="german" name="language" value="de" checked [(ngModel)]="languageS.userLanguage" (click)="languageS.switchUserLanguage('de')" />
                 <label for="german">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img"
-                        aria-labelledby="german-flag">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img" aria-labelledby="german-flag">
                         <title id="german-flag">Flagge von Deutschland</title>
                         <path fill="#fc0" d="M0 320h640v160H0z" />
                         <path fill="#000001" d="M0 0h640v160H0z" />
@@ -57,21 +55,21 @@
                 </label>
             </div>
             <div>
-                <input type="radio" id="english" name="language" value="en" [(ngModel)]="languageS.userLanguage"
-                    (click)="languageS.switchUserLanguage('en')" />
+                <input type="radio" id="english" name="language" value="en" [(ngModel)]="languageS.userLanguage" (click)="languageS.switchUserLanguage('en')" />
                 <label for="english">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img"
-                        aria-labelledby="us-flag">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img" aria-labelledby="us-flag">
                         <title id="us-flag">Flagge der USA</title>
                         <path fill="#bd3d44" d="M0 0h640v480H0" />
-                        <path stroke="#fff" stroke-width="37"
-                            d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" />
+                        <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" />
                         <path fill="#192f5d" d="M0 0h364.8v258.5H0" />
                         <marker id="us-a" markerHeight="30" markerWidth="30">
                             <path fill="#fff" d="m14 0 9 27L0 10h28L5 27z" />
                         </marker>
-                        <path fill="none" marker-mid="url(#us-a)"
-                            d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z" />
+                        <path
+                            fill="none"
+                            marker-mid="url(#us-a)"
+                            d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"
+                        />
                     </svg>
                     <span>English</span>
                 </label>

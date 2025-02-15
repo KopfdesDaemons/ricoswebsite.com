@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject, input } from '@angular/core';
 import { DisqusService } from 'src/app/services/disqus.service';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { LanguageService } from 'src/app/services/language.service';
@@ -8,10 +8,10 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-disqus',
-    templateUrl: './disqus.component.html',
-    styleUrls: ['./disqus.component.scss'],
-    imports: [FaIconComponent, RouterLink, TranslateModule]
+  selector: 'app-disqus',
+  templateUrl: './disqus.component.html',
+  styleUrls: ['./disqus.component.scss'],
+  imports: [FaIconComponent, RouterLink, TranslateModule]
 })
 export class DisqusComponent implements OnChanges {
   disqusS = inject(DisqusService);
@@ -20,15 +20,15 @@ export class DisqusComponent implements OnChanges {
   languageS = inject(LanguageService);
   private platformId = inject<Object>(PLATFORM_ID);
 
-  @Input() identifier: string | undefined;
-  @ViewChild('disqusDiv') disqusDiv: ElementRef | undefined;
+  readonly identifier = input<string>();
+  disqusDiv = ViewChild('disqusDiv');
   private observer: IntersectionObserver | undefined;
   faComment = faComment;
 
   ngOnChanges(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     if (this.observer) this.observer.disconnect();
-    if (!this.identifier) return;
+    if (!this.identifier()) return;
     if (!this.disqusS.consent) return;
     this.observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -43,16 +43,18 @@ export class DisqusComponent implements OnChanges {
   }
 
   isVisible() {
-    if (this.disqusS.consent && this.identifier) {
-      this.disqusS.loadDisqus(this.renderer, this.identifier);
+    const identifier = this.identifier();
+    if (this.disqusS.consent && identifier) {
+      this.disqusS.loadDisqus(this.renderer, identifier);
       this.observer?.disconnect();
     }
   }
 
   giveConsent() {
-    if (!this.identifier) return;
+    const identifier = this.identifier();
+    if (!identifier) return;
     this.disqusS.giveConsent();
     this.observer?.disconnect();
-    this.disqusS.loadDisqus(this.renderer, this.identifier);
+    this.disqusS.loadDisqus(this.renderer, identifier);
   }
 }

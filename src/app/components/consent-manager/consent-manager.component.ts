@@ -1,5 +1,5 @@
 import { isPlatformServer } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnDestroy, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, PLATFORM_ID, inject, viewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ConsentService } from 'src/app/services/consent.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,7 +15,7 @@ export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
   private platformId = inject<Object>(PLATFORM_ID);
 
 
-  @ViewChild('dialog') dialog: ElementRef | undefined;
+  readonly dialog = viewChild<ElementRef>('dialog');
   listenOpenStatusSub: Subscription | undefined;
 
   ngAfterViewInit(): void {
@@ -31,8 +31,8 @@ export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
   listenOpenStatus() {
     if (isPlatformServer(this.platformId)) return;
     this.listenOpenStatusSub = this.consentS.consentMangerIsVisible.subscribe(value => {
-      if (value) this.dialog?.nativeElement.showModal();
-      else this.dialog?.nativeElement.close();
+      if (value) this.dialog()?.nativeElement.showModal();
+      else this.dialog()?.nativeElement.close();
     });
   }
 

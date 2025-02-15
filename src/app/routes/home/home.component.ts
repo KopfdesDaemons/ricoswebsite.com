@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -12,14 +12,10 @@ import { Subscription, lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    imports: [
-        ProjectCardComponent,
-        RouterLink,
-        TranslateModule,
-    ]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  imports: [ProjectCardComponent, RouterLink, TranslateModule]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private meta = inject(Meta);
@@ -32,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  @ViewChild('projectsSection') projectsSection: ElementRef | undefined;
+  readonly projectsSection = viewChild<ElementRef>('projectsSection');
 
   projects: Project[] = [];
   technologiesFilterOptions: string[] = [];
@@ -116,6 +112,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadProjects(1, this.activTechnologiesFilterOptions);
 
     // scroll to projects section
-    if (this.projectsSection) this.projectsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    const projectsSection = this.projectsSection();
+    if (projectsSection) projectsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }
