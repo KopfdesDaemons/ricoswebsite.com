@@ -11,7 +11,6 @@ import { TranslateModule } from '@ngx-translate/core';
     selector: 'app-disqus',
     templateUrl: './disqus.component.html',
     styleUrls: ['./disqus.component.scss'],
-    standalone: true,
     imports: [FaIconComponent, RouterLink, TranslateModule]
 })
 export class DisqusComponent implements OnChanges {

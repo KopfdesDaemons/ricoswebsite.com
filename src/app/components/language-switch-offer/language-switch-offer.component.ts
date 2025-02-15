@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
     selector: 'app-language-switch-offer',
     templateUrl: './language-switch-offer.component.html',
     styleUrls: ['./language-switch-offer.component.scss'],
-    standalone: true,
     imports: [NgClass]
 })
 export class LanguageSwitchOfferComponent {

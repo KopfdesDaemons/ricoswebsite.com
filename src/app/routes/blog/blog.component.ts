@@ -10,11 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { BlogpostCardComponent } from '../../components/blogpost-card/blogpost-card.component';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss'],
-  standalone: true,
-  imports: [FormsModule, BlogpostCardComponent, RouterLink, TranslateModule]
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.scss'],
+    imports: [FormsModule, BlogpostCardComponent, RouterLink, TranslateModule]
 })
 export class BlogComponent implements OnInit {
   private postS = inject(PostService);

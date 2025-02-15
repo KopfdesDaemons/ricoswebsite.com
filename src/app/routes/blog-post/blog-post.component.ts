@@ -11,16 +11,15 @@ import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { MetaService } from 'src/app/services/meta.service';
 
 @Component({
-  selector: 'app-blog-post',
-  templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [
-    DisqusComponent,
-    TranslateModule,
-    SafeHtmlPipe,
-  ],
+    selector: 'app-blog-post',
+    templateUrl: './blog-post.component.html',
+    styleUrls: ['./blog-post.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        DisqusComponent,
+        TranslateModule,
+        SafeHtmlPipe,
+    ]
 })
 export class BlogPostComponent implements OnInit, AfterViewChecked {
   private route = inject(ActivatedRoute);

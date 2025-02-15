@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
     selector: 'app-consent-manager',
     templateUrl: './consent-manager.component.html',
     styleUrls: ['./consent-manager.component.scss'],
-    standalone: true,
     imports: [TranslateModule]
 })
 export class ConsentManagerComponent implements AfterViewInit, OnDestroy {

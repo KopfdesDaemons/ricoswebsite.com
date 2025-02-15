@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
     selector: 'app-blogpost-card',
     templateUrl: './blogpost-card.component.html',
     styleUrls: ['./blogpost-card.component.scss'],
-    standalone: true,
     imports: [RouterLink, TranslateModule]
 })
 export class BlogpostCardComponent implements OnInit {

@@ -12,15 +12,14 @@ import { Subscription, lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  standalone: true,
-  imports: [
-    ProjectCardComponent,
-    RouterLink,
-    TranslateModule,
-  ],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    imports: [
+        ProjectCardComponent,
+        RouterLink,
+        TranslateModule,
+    ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private meta = inject(Meta);

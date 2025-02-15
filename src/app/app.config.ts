@@ -6,7 +6,6 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule, provideClientHydration } from "@angular/platform-browser";
 import { provideRouter, withInMemoryScrolling } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { AdsenseModule } from "ng2-adsense";
 import { routes } from "./app.routes";
 import { HighlightService } from "./services/highlight.service";
 
@@ -27,10 +26,7 @@ export const appConfig: ApplicationConfig = {
             }),
             BrowserModule,
             FormsModule,
-            FontAwesomeModule,
-            AdsenseModule.forRoot({
-                adClient: 'ca-pub-1401067475120473',
-            })
+            FontAwesomeModule
         ),
         HighlightService,
         provideHttpClient(withFetch()),

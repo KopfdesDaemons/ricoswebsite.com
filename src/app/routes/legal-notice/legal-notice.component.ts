@@ -5,7 +5,6 @@ import { TranslateModule } from '@ngx-translate/core';
     selector: 'app-legal-notice',
     templateUrl: './legal-notice.component.html',
     styleUrls: ['./legal-notice.component.scss'],
-    standalone: true,
     imports: [TranslateModule]
 })
 export class LegalNoticeComponent {
