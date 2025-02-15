@@ -10,10 +10,10 @@ import { ConsentManagerComponent } from './components/consent-manager/consent-ma
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, ConsentManagerComponent, FooterComponent]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, ConsentManagerComponent, FooterComponent],
 })
 export class AppComponent implements OnInit {
   sidemenuS = inject(SidemenuService);
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof ActivationStart && Object.keys(event.snapshot.params).length > 0) {
         const lang = event.snapshot.params['lang'];
         this.langS.updateLanguage(lang);

@@ -8,8 +8,8 @@ describe('ConsentManagerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [ConsentManagerComponent]
-});
+      imports: [ConsentManagerComponent],
+    });
     fixture = TestBed.createComponent(ConsentManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

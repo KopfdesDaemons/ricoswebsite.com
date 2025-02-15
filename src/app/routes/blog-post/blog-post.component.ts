@@ -11,15 +11,11 @@ import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { MetaService } from 'src/app/services/meta.service';
 
 @Component({
-    selector: 'app-blog-post',
-    templateUrl: './blog-post.component.html',
-    styleUrls: ['./blog-post.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        DisqusComponent,
-        TranslateModule,
-        SafeHtmlPipe,
-    ]
+  selector: 'app-blog-post',
+  templateUrl: './blog-post.component.html',
+  styleUrls: ['./blog-post.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  imports: [DisqusComponent, TranslateModule, SafeHtmlPipe],
 })
 export class BlogPostComponent implements OnInit, AfterViewChecked {
   private route = inject(ActivatedRoute);
@@ -28,7 +24,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   private highlightS = inject(HighlightService);
   private codePenS = inject(CodepenService);
   private metaS = inject(MetaService);
-
 
   post: Post | undefined | null;
   private routeParamsSubscription: Subscription | undefined;
@@ -45,7 +40,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
         // load post when fileName is param in route
         this.post = await this.postS.getPost(fileName);
       } else {
-
         // read route data for non blog post routes (privacy policy)
         const data = await firstValueFrom(this.route.data);
 

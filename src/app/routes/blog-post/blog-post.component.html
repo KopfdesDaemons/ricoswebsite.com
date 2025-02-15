@@ -1,34 +1,30 @@
 <main class="blogpostMain">
+    <div class="hero gradient">
+        <div class="sectionSpacer">
+            @if (post?.postMeta?.image) {
+                <img height="495" width="880" [src]="post?.postMeta?.image" alt="{{ post?.postMeta?.title }}" />
+            }
+            <h1>{{ post?.postMeta?.title }}</h1>
+            <div class="description">
+                <p>{{ post?.postMeta?.description }}</p>
+            </div>
+            <time>{{ post?.postMeta?.localDateString }}</time>
 
-  <div class="hero gradient">
-    <div class="sectionSpacer">
-
-      @if (post?.postMeta?.image) {
-        <img height="495" width="880" [src]="post?.postMeta?.image"
-          alt="{{ post?.postMeta?.title }}" />
-      }
-      <h1>{{ post?.postMeta?.title }}</h1>
-      <div class="description">
-        <p>{{ post?.postMeta?.description }}</p>
-      </div>
-      <time>{{ post?.postMeta?.localDateString }}</time>
-
-      @if (postNotFound) {
-        <h1>404</h1>
-        <p>{{'blogpost_not_found' | translate}}</p>
-        <p>{{'blogpost_not_found_text' | translate}}</p>
-      }
-
+            @if (postNotFound) {
+                <h1>404</h1>
+                <p>{{ "blogpost_not_found" | translate }}</p>
+                <p>{{ "blogpost_not_found_text" | translate }}</p>
+            }
+        </div>
     </div>
-  </div>
-  <section>
-    <div class="sectionSpacer">
-      @if (post?.postContent) {
-        <div class="postContent" [innerHTML]="post?.postContent ?? '' | safeHtml"></div>
-      }
-      @if (post && !post.postMeta.commentsDisabled) {
-        <app-disqus [identifier]="post.postMeta.fileName"></app-disqus>
-      }
-    </div>
-  </section>
+    <section>
+        <div class="sectionSpacer">
+            @if (post?.postContent) {
+                <div class="postContent" [innerHTML]="post?.postContent ?? '' | safeHtml"></div>
+            }
+            @if (post && !post.postMeta.commentsDisabled) {
+                <app-disqus [identifier]="post.postMeta.fileName"></app-disqus>
+            }
+        </div>
+    </section>
 </main>

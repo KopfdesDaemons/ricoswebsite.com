@@ -15,7 +15,7 @@ import { ProjectCardComponent } from '../../components/project-card/project-card
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [ProjectCardComponent, RouterLink, TranslateModule]
+  imports: [ProjectCardComponent, RouterLink, TranslateModule],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private meta = inject(Meta);
@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
-
       // Switch to Route Language if not set
       let lang = params['lang'];
       if (!lang) this.router.navigate(['/' + this.languageS.userAgendLanguage + '/projects/page/1/.']);
@@ -64,9 +63,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.title.setTitle('Ricos Website');
       this.meta.addTags([
         { property: 'og:description', content: description },
-        { name: 'description', content: description }
+        { name: 'description', content: description },
       ]);
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -79,7 +78,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.technologiesFilterOptions = await this.ps.getAllTechnologies();
 
     // remove filter chips for active filters
-    this.technologiesFilterOptions = this.technologiesFilterOptions.filter(t => !this.activTechnologiesFilterOptions.includes(t))
+    this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activTechnologiesFilterOptions.includes(t));
 
     this.projects = await this.ps.getProjects(filter, this.projectsPerPage, page);
     this.totalProjects = await this.ps.getTotalProjectCount(filter);
@@ -95,7 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   removeTechnologieFromFilter(technologie: string) {
-    this.applyFilter(this.activTechnologiesFilterOptions.filter(item => item !== technologie));
+    this.applyFilter(this.activTechnologiesFilterOptions.filter((item) => item !== technologie));
   }
 
   applyFilter(filter: string[]) {

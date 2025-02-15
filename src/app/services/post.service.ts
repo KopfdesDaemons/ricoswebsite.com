@@ -7,7 +7,7 @@ import { MarkdownService } from './markdown.service';
 import { LanguageService } from './language.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
   private http = inject(HttpClient);
@@ -15,7 +15,6 @@ export class PostService {
   private markdownS = inject(MarkdownService);
   private languageS = inject(LanguageService);
   private platformId = inject<Object>(PLATFORM_ID);
-
 
   private post: Post | null | undefined;
   private baseUrl = '/';
@@ -68,7 +67,7 @@ export class PostService {
     sortOrder: 'asc' | 'desc' = 'desc',
     sortBy: 'date' | 'title' = 'date',
     filterTags: string[] = [],
-    filterTitle: string = ''
+    filterTitle: string = '',
   ): Promise<any> {
     const postListURL = `${this.baseUrl}assets/posts/posts.${language}.json`;
 
@@ -77,16 +76,16 @@ export class PostService {
       const posts = JSON.parse(json);
 
       // Filter nach Sichtbarkeit, Tags und Titel
-      const visiblePosts = posts.filter((post: any) =>
-        !post.hideInFeed &&
-        (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
-        (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle)))
+      const visiblePosts = posts.filter(
+        (post: any) =>
+          !post.hideInFeed &&
+          (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
+          (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle))),
       );
 
       const postArray: Post[] = [];
       for (const post of visiblePosts) {
         postArray.push(new Post(post, post.fileName, this.languageS.userLanguage));
-
       }
       // Sortierung
       postArray.sort((a: Post, b: Post) => {
@@ -125,5 +124,4 @@ export class PostService {
       return null;
     }
   }
-
 }

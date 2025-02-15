@@ -1,22 +1,21 @@
 <footer>
     <div class="linkGroup">
-        <h2>{{'my_links' | translate}}</h2>
+        <h2>{{ "my_links" | translate }}</h2>
         <ul>
-            <li><fa-icon [icon]="faInstagram"></fa-icon><a target="_blank"
-                    href="https://www.instagram.com/KopfdesDaemons/">Instagram</a></li>
-            <li><fa-icon [icon]="faGithub"></fa-icon><a target="_blank"
-                    href="https://github.com/KopfdesDaemons">GitHub</a></li>
-            <li><fa-icon [icon]="faStackOverflow"></fa-icon><a target="_blank"
-                    href="https://stackoverflow.com/users/13802163/rico">StackOverflow</a></li>
-            <li><fa-icon [icon]="faWordpress"></fa-icon><a target="_blank"
-                    href="https://profiles.wordpress.org/ricosylvain/">WordPress</a></li>
+            <li><fa-icon [icon]="faInstagram"></fa-icon><a target="_blank" href="https://www.instagram.com/KopfdesDaemons/">Instagram</a></li>
+            <li><fa-icon [icon]="faGithub"></fa-icon><a target="_blank" href="https://github.com/KopfdesDaemons">GitHub</a></li>
+            <li><fa-icon [icon]="faStackOverflow"></fa-icon><a target="_blank" href="https://stackoverflow.com/users/13802163/rico">StackOverflow</a></li>
+            <li><fa-icon [icon]="faWordpress"></fa-icon><a target="_blank" href="https://profiles.wordpress.org/ricosylvain/">WordPress</a></li>
         </ul>
     </div>
     <div class="linkGroup">
         <h2>Page</h2>
         <ul>
-            <li><a routerLink="/legal-notice/.">{{'legal_notice' | translate}}</a></li>
-            <li><a routerLink="{{languageS.userLanguage + '/privacy-policy/.'}}">{{'privacy_policy' | translate}}</a>
+            <li>
+                <a routerLink="/legal-notice/.">{{ "legal_notice" | translate }}</a>
+            </li>
+            <li>
+                <a routerLink="{{ languageS.userLanguage + '/privacy-policy/.' }}">{{ "privacy_policy" | translate }}</a>
             </li>
             <li><span (click)="consentS.openConsentmanager()">Consent Manager</span></li>
         </ul>

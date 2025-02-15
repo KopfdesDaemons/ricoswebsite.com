@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
   private router = inject(Router);
@@ -13,7 +13,6 @@ export class LanguageService {
   private location = inject(Location);
   private platformId = inject<Object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
-
 
   userLanguage: string = 'en';
   userAgendLanguage: string;

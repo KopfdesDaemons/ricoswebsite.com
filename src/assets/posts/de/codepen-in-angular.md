@@ -114,7 +114,11 @@ Die Integration von CodePen-Snippets in ein Angular-Projekt umfasst folgende Sch
      providedIn: "root",
    })
    export class CodepenService {
-     constructor(private consentS: ConsentService, private scriptS: ScriptService, @Inject(PLATFORM_ID) private platformId: Object) {}
+     constructor(
+       private consentS: ConsentService,
+       private scriptS: ScriptService,
+       @Inject(PLATFORM_ID) private platformId: Object,
+     ) {}
 
      loadCodePen(renderer: Renderer2) {
        if (isPlatformServer(this.platformId)) return;
@@ -201,7 +205,10 @@ Die Integration von CodePen-Snippets in ein Angular-Projekt umfasst folgende Sch
      styleUrls: ["./blog-post.component.css"],
    })
    export class BlogPostComponent implements AfterViewChecked {
-     constructor(private renderer: Renderer2, private codePenS: CodepenService) {}
+     constructor(
+       private renderer: Renderer2,
+       private codePenS: CodepenService,
+     ) {}
 
      ngAfterViewChecked() {
        this.codePenS.loadCodePen(this.renderer);

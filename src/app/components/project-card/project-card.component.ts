@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss'],
-  imports: [RouterLink, FaIconComponent, TranslateModule]
+  imports: [RouterLink, FaIconComponent, TranslateModule],
 })
 export class ProjectCardComponent {
   languageS = inject(LanguageService);

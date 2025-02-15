@@ -2,11 +2,10 @@ import { DOCUMENT } from '@angular/common';
 import { Injectable, Renderer2, inject } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScriptService {
   private document = inject<Document>(DOCUMENT);
-
 
   addJsScript(renderer: Renderer2, src: string) {
     const existingScript = this.document.querySelector(`script[src="${src}"]`);
@@ -20,7 +19,7 @@ export class ScriptService {
 
   reloadJsScript(renderer: Renderer2, src: string) {
     this.removeJsScript(src);
-    this.addJsScript(renderer, src)
+    this.addJsScript(renderer, src);
   }
 
   private removeJsScript(src: string): void {

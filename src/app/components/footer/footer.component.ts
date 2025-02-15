@@ -7,10 +7,10 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss'],
-    imports: [FaIconComponent, RouterLink, TranslateModule]
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
+  imports: [FaIconComponent, RouterLink, TranslateModule],
 })
 export class FooterComponent {
   languageS = inject(LanguageService);

@@ -7,15 +7,14 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
-    imports: [NgClass, FaIconComponent, RouterLink]
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  imports: [NgClass, FaIconComponent, RouterLink],
 })
 export class HeaderComponent {
   sidemenuS = inject(SidemenuService);
   languageS = inject(LanguageService);
-
 
   faBars = faBars;
 

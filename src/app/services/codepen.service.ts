@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
 import { LanguageService } from './language.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CodepenService {
   private consentS = inject(ConsentService);
@@ -15,7 +15,6 @@ export class CodepenService {
   private translate = inject(TranslateService);
   private languageS = inject(LanguageService);
   private platformId = inject<Object>(PLATFORM_ID);
-
 
   async loadCodePen(renderer: Renderer2) {
     if (isPlatformServer(this.platformId)) return;

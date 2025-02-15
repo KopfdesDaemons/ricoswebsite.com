@@ -13,12 +13,11 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
   styleUrls: ['./sidemenu.component.scss'],
-  imports: [NgClass, RouterLink, FaIconComponent, FormsModule, TranslateModule]
+  imports: [NgClass, RouterLink, FaIconComponent, FormsModule, TranslateModule],
 })
 export class SidemenuComponent {
   sidemenuS = inject(SidemenuService);
   languageS = inject(LanguageService);
-
 
   faHome = faHome;
   faGithub = faGithub;

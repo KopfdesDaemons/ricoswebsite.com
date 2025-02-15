@@ -1,72 +1,71 @@
 #languageSwitchOffer {
-    position: fixed;
-    right: 2em;
-    top: 2em;
-    background-color: rgb(37, 44, 51);
-    border-radius: 12px;
-    padding: 1em;
-    z-index: 20;
-    box-shadow: 1px 1px 3px 1px black;
-    transform: translateX(110%);
-    border: solid 1px;
-    opacity: 0;
+  position: fixed;
+  right: 2em;
+  top: 2em;
+  background-color: rgb(37, 44, 51);
+  border-radius: 12px;
+  padding: 1em;
+  z-index: 20;
+  box-shadow: 1px 1px 3px 1px black;
+  transform: translateX(110%);
+  border: solid 1px;
+  opacity: 0;
 
-    @media only screen and (max-width:600px) {
-        right: 1em;
-        left: 1em;
-        top: unset;
-        bottom: 1em;
+  @media only screen and (max-width: 600px) {
+    right: 1em;
+    left: 1em;
+    top: unset;
+    bottom: 1em;
+  }
+
+  @keyframes moveIn {
+    from {
+      transform: translateX(110%);
+      opacity: 0;
     }
 
-    @keyframes moveIn {
-        from {
-            transform: translateX(110%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 100;
-        }
+    to {
+      transform: translateX(0);
+      opacity: 100;
     }
+  }
 
-    &.open {
-        animation: moveIn 500ms forwards ease-out;
-        transform: translateX(0);
+  &.open {
+    animation: moveIn 500ms forwards ease-out;
+    transform: translateX(0);
+  }
+
+  .closeButton {
+    border-radius: 4px;
+    height: 1.8em;
+    width: 1.8em;
+    float: right;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(206, 206, 206);
     }
+  }
 
+  .buttons {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 1em;
 
-    .closeButton {
-        border-radius: 4px;
-        height: 1.8em;
-        width: 1.8em;
-        float: right;
-        border: none;
-        cursor: pointer;
+    button {
+      background-color: rgb(69, 69, 187);
+      color: var(--font-color);
+      padding: 0.5em 1em;
+      border: none;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
 
-        &:hover {
-            background-color: rgb(206, 206, 206);
-        }
+      &:hover {
+        background-color: transparent;
+        border: 2px solid rgb(69, 69, 187);
+      }
     }
-
-    .buttons {
-        display: flex;
-        gap: 0.5em;
-        margin-top: 1em;
-
-        button {
-            background-color: rgb(69, 69, 187);
-            color: var(--font-color);
-            padding: 0.5em 1em;
-            border: none;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: transparent;
-                border: 2px solid rgb(69, 69, 187);
-            }
-        }
-    }
+  }
 }

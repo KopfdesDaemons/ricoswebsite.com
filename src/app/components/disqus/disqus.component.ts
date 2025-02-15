@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-disqus',
   templateUrl: './disqus.component.html',
   styleUrls: ['./disqus.component.scss'],
-  imports: [FaIconComponent, RouterLink, TranslateModule]
+  imports: [FaIconComponent, RouterLink, TranslateModule],
 })
 export class DisqusComponent implements OnChanges {
   disqusS = inject(DisqusService);
@@ -30,8 +30,8 @@ export class DisqusComponent implements OnChanges {
     if (this.observer) this.observer.disconnect();
     if (!this.identifier()) return;
     if (!this.disqusS.consent) return;
-    this.observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) this.isVisible();
       });
     });

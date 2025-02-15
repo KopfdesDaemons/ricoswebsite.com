@@ -16,7 +16,6 @@ declare var Prism: any;
 export class HighlightService {
   private platformId = inject<Object>(PLATFORM_ID);
 
-
   highlightAll() {
     if (isPlatformBrowser(this.platformId)) {
       Prism.highlightAll();

@@ -3,13 +3,11 @@ import path from 'path';
 import { environment } from './src/environment/enviroment';
 import { loadFront } from 'yaml-front-matter';
 
-
 prepareFiles();
 
-
-/* 
-* Prepares postss,json, routes.txt and sitemap.txt for each language
-*/
+/*
+ * Prepares postss,json, routes.txt and sitemap.txt for each language
+ */
 async function prepareFiles() {
   const langFileNamesList = await getLanguagesFileNamesList();
 
@@ -20,24 +18,21 @@ async function prepareFiles() {
   }
 }
 
-
-/** 
-* Gets the list of all posts for each language
-* @returns {Promise<{ lang: string, fileNames: string[] }[]>}
-**/
-async function getLanguagesFileNamesList(): Promise<{ lang: string, fileNames: string[] }[]> {
-
+/**
+ * Gets the list of all posts for each language
+ * @returns {Promise<{ lang: string, fileNames: string[] }[]>}
+ **/
+async function getLanguagesFileNamesList(): Promise<{ lang: string; fileNames: string[] }[]> {
   // Get language folders
   const postsFolderContent = await fs.promises.readdir(environment.postsDir);
   const languageFolders = postsFolderContent.filter((dir: string) => fs.statSync(path.join(environment.postsDir, dir)).isDirectory());
 
-
-  const langFileNames: { lang: string, fileNames: string[] }[] = [];
+  const langFileNames: { lang: string; fileNames: string[] }[] = [];
 
   // Get file names
   for (const langFolder of languageFolders) {
     const folderPath = path.join(environment.postsDir, langFolder);
-    const langFolderContent = await fs.promises.readdir(folderPath)
+    const langFolderContent = await fs.promises.readdir(folderPath);
     const markdownFiles = langFolderContent.filter((file: string) => path.extname(file) === '.md');
     langFileNames.push({ lang: langFolder, fileNames: markdownFiles });
   }
@@ -46,10 +41,10 @@ async function getLanguagesFileNamesList(): Promise<{ lang: string, fileNames: s
   return langFileNames;
 }
 
-/** 
-* Creates a JSON file with all posts for each language
-* @param {string} lang - The language to create the JSON file for
-**/
+/**
+ * Creates a JSON file with all posts for each language
+ * @param {string} lang - The language to create the JSON file for
+ **/
 async function createPostsJSON(lang: string, fileNames: string[]): Promise<void> {
   try {
     // Paths
@@ -79,15 +74,14 @@ async function createPostsJSON(lang: string, fileNames: string[]): Promise<void>
   }
 }
 
-
-/** 
-* Generates a routes.txt file with all blogpost routes for each language
-* This file is used by the angular pre-renderer to prerender the dynamic routes
-**/
+/**
+ * Generates a routes.txt file with all blogpost routes for each language
+ * This file is used by the angular pre-renderer to prerender the dynamic routes
+ **/
 async function generateRoutesTxt(lang: string, fileNames: string[]) {
   try {
     // Generiere relative Blogpost-Routen
-    const routes = fileNames.map(fileName => {
+    const routes = fileNames.map((fileName) => {
       return '/' + lang + environment.blogpostRoute + '/' + path.parse(fileName).name;
     });
 
@@ -97,7 +91,7 @@ async function generateRoutesTxt(lang: string, fileNames: string[]) {
     const data = await fs.readFile(routesFilePath, 'utf8');
 
     // Anderen Blogpost-Routen
-    const nonBlogPostRoutes = data.split('\n').filter(line => !line.includes(lang + '/blogpost/'));
+    const nonBlogPostRoutes = data.split('\n').filter((line) => !line.includes(lang + '/blogpost/'));
 
     // Zusammenführen der Blogpost-Routen mit den anderen Routen
     const combinedRoutes = nonBlogPostRoutes.concat(routes);
@@ -107,18 +101,18 @@ async function generateRoutesTxt(lang: string, fileNames: string[]) {
   } catch (err) {
     console.error('Fehler beim Bearbeiten der Routes.txt Datei:', err);
   }
-};
+}
 
-/** 
-* Generates a sitemap.txt file with all blogpost URLs for each language
-* This file is important for SEO
-**/
+/**
+ * Generates a sitemap.txt file with all blogpost URLs for each language
+ * This file is important for SEO
+ **/
 async function generateSitemapTxt(lang: string, fileNames: string[]) {
   try {
     // Generiere die URLs
     const urls = fileNames
-      .filter(fileName => fileName !== 'privacy-policy.md')
-      .map(fileName => environment.baseUrl + '/' + lang + environment.blogpostRoute + '/' + path.parse(fileName).name + '/');
+      .filter((fileName) => fileName !== 'privacy-policy.md')
+      .map((fileName) => environment.baseUrl + '/' + lang + environment.blogpostRoute + '/' + path.parse(fileName).name + '/');
 
     // Lese die bestehende Sitemap-Datei
     const data = await fs.readFile(environment.sitemapPath, 'utf8');
@@ -126,7 +120,7 @@ async function generateSitemapTxt(lang: string, fileNames: string[]) {
     // Filtere die Zeilen, die '/blogpost/' enthalten
     const filteredData = data
       .split('\n')
-      .filter(line => !line.includes(lang + '/blogpost/'))
+      .filter((line) => !line.includes(lang + '/blogpost/'))
       .join('\n');
 
     // Füge die neuen Routen hinzu
@@ -141,4 +135,3 @@ async function generateSitemapTxt(lang: string, fileNames: string[]) {
     console.error('Fehler beim Verarbeiten der Datei:', err);
   }
 }
-

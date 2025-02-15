@@ -1,131 +1,131 @@
 .projectDiv {
-    background-color: black;
-    border-radius: 12px;
-    padding: 1em 1em 0.5em 1em;
+  background-color: black;
+  border-radius: 12px;
+  padding: 1em 1em 0.5em 1em;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+  font-size: clamp(14px, 1vw, 18px);
+  align-items: center;
+  flex-direction: column;
+
+  .row1 {
     display: flex;
-    justify-content: center;
-    margin-bottom: 2em;
-    font-size: clamp(14px, 1vw, 18px);
-    align-items: center;
-    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 
-    .row1 {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
+  a {
+    text-decoration: none;
+  }
+
+  ul,
+  p {
+    font-size: 0.9em;
+  }
+
+  .imageDiv {
+    position: relative;
+    flex: 1 0 50%;
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 20em;
+      object-fit: contain;
+    }
+  }
+
+  .descriptionDiv {
+    flex: 1 0 50%;
+    min-width: 15em;
+    max-width: 100%;
+    padding: 0 2%;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+
+    h3 {
+      font-size: 24px;
+      color: #6464ff;
+      margin-top: 0;
     }
 
-    a {
-        text-decoration: none;
-    }
+    .links {
+      display: flex;
+      gap: 0.5em;
+      margin-top: 1em;
 
-    ul,
-    p {
-        font-size: 0.9em;
-    }
+      a {
+        border: 1px solid gray;
+        padding: 1em;
+        border-radius: 4px;
+        flex: 1;
 
-    .imageDiv {
-        position: relative;
-        flex: 1 0 50%;
-        height: auto;
-
-        img {
-            width: 100%;
-            height: auto;
-            max-height: 20em;
-            object-fit: contain;
+        fa-icon {
+          margin-right: 0.5em;
+          font-size: 1.4em;
         }
+      }
+
+      a:hover {
+        color: #5857ff;
+      }
     }
+  }
 
-    .descriptionDiv {
-        flex: 1 0 50%;
-        min-width: 15em;
-        max-width: 100%;
-        padding: 0 2%;
-        box-sizing: border-box;
-        margin: 0.5em 0;
+  ul {
+    padding-left: 2em;
 
-        h3 {
-            font-size: 24px;
-            color: #6464ff;
-            margin-top: 0;
-        }
-
-        .links {
-            display: flex;
-            gap: 0.5em;
-            margin-top: 1em;
-
-            a {
-                border: 1px solid gray;
-                padding: 1em;
-                border-radius: 4px;
-                flex: 1;
-
-                fa-icon {
-                    margin-right: 0.5em;
-                    font-size: 1.4em;
-                }
-            }
-
-            a:hover {
-                color: #5857FF;
-            }
-        }
+    li {
+      margin-top: 0.5em;
+      text-wrap: pretty;
     }
+  }
+
+  .technologiesDiv {
+    max-width: 100%;
+    overflow-y: auto;
+    padding-bottom: 0.5em;
 
     ul {
-        padding-left: 2em;
+      display: flex;
+      list-style: none;
+      gap: 0.4em;
+      padding: 0;
 
-        li {
-            margin-top: 0.5em;
-            text-wrap: pretty;
+      li {
+        border: 1px solid rgb(95, 95, 95);
+        padding: 0.5em;
+        border-radius: 4px;
+        background-color: rgb(48, 48, 48);
+        cursor: pointer;
+        gap: 0.5em;
+        display: flex;
+        align-items: center;
+
+        $iconSize: 1.3em;
+
+        fa-icon {
+          font-size: $iconSize;
         }
-    }
 
-    .technologiesDiv {
-        max-width: 100%;
-        overflow-y: auto;
-        padding-bottom: 0.5em;
-
-        ul {
-            display: flex;
-            list-style: none;
-            gap: 0.4em;
-            padding: 0;
-
-            li {
-                border: 1px solid rgb(95, 95, 95);
-                padding: 0.5em;
-                border-radius: 4px;
-                background-color: rgb(48, 48, 48);
-                cursor: pointer;
-                gap: 0.5em;
-                display: flex;
-                align-items: center;
-
-                $iconSize: 1.3em;
-
-                fa-icon {
-                    font-size: $iconSize;
-                }
-
-                svg {
-                    height: $iconSize;
-                    width: $iconSize;
-                }
-            }
+        svg {
+          height: $iconSize;
+          width: $iconSize;
         }
+      }
     }
+  }
 
-    &:hover {
-        transition: all 200ms;
-        box-shadow: 0px 0px 50px 10px #5857FF;
+  &:hover {
+    transition: all 200ms;
+    box-shadow: 0px 0px 50px 10px #5857ff;
 
-        .descriptionDiv {
-            h3 {
-                color: blue;
-            }
-        }
+    .descriptionDiv {
+      h3 {
+        color: blue;
+      }
     }
+  }
 }

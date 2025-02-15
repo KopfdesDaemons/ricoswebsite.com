@@ -88,7 +88,12 @@ Integrating Disqus with Angular works a little differently because Angular is a 
       @Input() identifier: string | undefined;
       private observer: IntersectionObserver | undefined;
 
-      constructor(public disqusS: DisqusService, public renderer: Renderer2, private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: Object) {}
+      constructor(
+        public disqusS: DisqusService,
+        public renderer: Renderer2,
+        private elementRef: ElementRef,
+        @Inject(PLATFORM_ID) private platformId: Object,
+      ) {}
 
       ngOnChanges(): void {
         if (!isPlatformBrowser(this.platformId)) return;

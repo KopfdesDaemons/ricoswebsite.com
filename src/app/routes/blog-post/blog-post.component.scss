@@ -1,191 +1,190 @@
 .blogpostMain {
-    padding-bottom: 3em;
-    text-wrap: pretty;
+  padding-bottom: 3em;
+  text-wrap: pretty;
 
-    .hero {
-        display: flex;
-        justify-content: center;
-        padding: 1em 4%;
-        text-align: center;
-        overflow: hidden;
+  .hero {
+    display: flex;
+    justify-content: center;
+    padding: 1em 4%;
+    text-align: center;
+    overflow: hidden;
 
-        img {
-            max-width: 100%;
-            height: auto;
-            animation: grow 500ms ease-out;
-            aspect-ratio: 16/9;
-            object-fit: contain;
-        }
-
-        @media only screen and (max-width: 1100px) {
-            padding-top: var(--header-height);
-        }
-
-        time {
-            float: right;
-            font-style: italic;
-            font-size: 0.8em;
-        }
-
-        .description {
-            max-width: 90%;
-            margin: 0 auto;
-            font-size: 1.2em;
-        }
-
-        @keyframes grow {
-            0% {
-                transform: scale(0);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
+    img {
+      max-width: 100%;
+      height: auto;
+      animation: grow 500ms ease-out;
+      aspect-ratio: 16/9;
+      object-fit: contain;
     }
 
-    .sectionSpacer {
-        max-width: 60em;
-        flex: 1;
-        width: 100%;
-        box-sizing: border-box;
-
-        @media only screen and (max-width: 800px) {
-            padding: 0;
-        }
+    @media only screen and (max-width: 1100px) {
+      padding-top: var(--header-height);
     }
 
-    section {
-        flex-direction: unset;
-        justify-content: center;
+    time {
+      float: right;
+      font-style: italic;
+      font-size: 0.8em;
     }
 
-    .postContent {
-        min-height: 40em;
-        line-height: 1.5em;
-        margin-bottom: 4em;
-        padding: clamp(1em, 2vw, 2em);
-        overflow: auto;
-        width: 100%;
-        box-sizing: border-box;
-
-        @media only screen and (max-width: 800px) {
-
-            ul,
-            ol {
-                padding-left: 1em;
-            }
-        }
-
-        ul {
-            padding-left: 1.5em;
-        }
-
-        h2,
-        h3,
-        a {
-            color: #8888ff;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            margin: 1em 0 0 0;
-            line-height: 1.2em;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 12px;
-
-            &:hover {
-                filter: brightness(0.8);
-            }
-        }
-
-        // Für einzelne Wörter in Absätzen
-        p>code,
-        li>code {
-            background-color: rgb(21, 39, 90);
-            padding: 0.4em;
-            border-radius: 4px;
-        }
-
-        pre {
-            background-color: #1d2027;
-            padding: 1em;
-            border-radius: 0 12px 12px 0;
-            max-width: 100%;
-            overflow-x: auto;
-            font-size: 0.8em;
-            margin-bottom: 1em;
-            border-left: 8px solid #3a3a75;
-
-            +.toolbar {
-                opacity: unset;
-
-                button {
-                    padding: 0.4em;
-                    border-radius: unset;
-                    font-size: 1em;
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: rgb(50, 50, 66);
-                    }
-                }
-            }
-        }
-
-        .linkButton {
-            font-size: 1.4em;
-            padding: 0.7em;
-            background-color: #1f1d57;
-            border-radius: 24px;
-            cursor: pointer;
-            text-decoration: none;
-            color: rgb(168, 168, 252);
-            transition: all 250ms;
-            display: inline-block;
-
-            &:hover {
-                background-color: #2d2b5f;
-            }
-        }
+    .description {
+      max-width: 90%;
+      margin: 0 auto;
+      font-size: 1.2em;
     }
 
-    #disqus_thread {
-        min-height: 500px;
+    @keyframes grow {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .sectionSpacer {
+    max-width: 60em;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media only screen and (max-width: 800px) {
+      padding: 0;
+    }
+  }
+
+  section {
+    flex-direction: unset;
+    justify-content: center;
+  }
+
+  .postContent {
+    min-height: 40em;
+    line-height: 1.5em;
+    margin-bottom: 4em;
+    padding: clamp(1em, 2vw, 2em);
+    overflow: auto;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media only screen and (max-width: 800px) {
+      ul,
+      ol {
+        padding-left: 1em;
+      }
     }
 
-    .codepen:has(.codePenConsentButton) {
-        flex-direction: column;
+    ul {
+      padding-left: 1.5em;
     }
 
-    .codePenConsentButton {
-        $color: rgb(193, 192, 255);
-        padding: 1em;
-        background-color: $color;
-        border-radius: 4px;
-        border: 3px solid transparent;
-        cursor: pointer;
-        display: flex;
-        gap: 0.5em;
-        font-size: 1.2em;
-        transition: all 250ms;
-        margin: 0 auto;
+    h2,
+    h3,
+    a {
+      color: #8888ff;
+    }
 
-        &:hover {
-            color: var(--font-color);
-            border-color: $color;
-            background-color: transparent;
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 1em 0 0 0;
+      line-height: 1.2em;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+
+    // Für einzelne Wörter in Absätzen
+    p > code,
+    li > code {
+      background-color: rgb(21, 39, 90);
+      padding: 0.4em;
+      border-radius: 4px;
+    }
+
+    pre {
+      background-color: #1d2027;
+      padding: 1em;
+      border-radius: 0 12px 12px 0;
+      max-width: 100%;
+      overflow-x: auto;
+      font-size: 0.8em;
+      margin-bottom: 1em;
+      border-left: 8px solid #3a3a75;
+
+      + .toolbar {
+        opacity: unset;
+
+        button {
+          padding: 0.4em;
+          border-radius: unset;
+          font-size: 1em;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(50, 50, 66);
+          }
         }
-
-        +p {
-            font-size: 0.8em;
-            text-wrap: balance;
-            text-align: center;
-        }
+      }
     }
+
+    .linkButton {
+      font-size: 1.4em;
+      padding: 0.7em;
+      background-color: #1f1d57;
+      border-radius: 24px;
+      cursor: pointer;
+      text-decoration: none;
+      color: rgb(168, 168, 252);
+      transition: all 250ms;
+      display: inline-block;
+
+      &:hover {
+        background-color: #2d2b5f;
+      }
+    }
+  }
+
+  #disqus_thread {
+    min-height: 500px;
+  }
+
+  .codepen:has(.codePenConsentButton) {
+    flex-direction: column;
+  }
+
+  .codePenConsentButton {
+    $color: rgb(193, 192, 255);
+    padding: 1em;
+    background-color: $color;
+    border-radius: 4px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5em;
+    font-size: 1.2em;
+    transition: all 250ms;
+    margin: 0 auto;
+
+    &:hover {
+      color: var(--font-color);
+      border-color: $color;
+      background-color: transparent;
+    }
+
+    + p {
+      font-size: 0.8em;
+      text-wrap: balance;
+      text-align: center;
+    }
+  }
 }

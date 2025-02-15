@@ -4,13 +4,12 @@ import { ConsentService } from './consent.service';
 import { LanguageService } from './language.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DisqusService {
   scriptS = inject(ScriptService);
   consentS = inject(ConsentService);
   languageS = inject(LanguageService);
-
 
   consent: boolean;
   disqus: any;
@@ -41,7 +40,7 @@ export class DisqusService {
         config: function () {
           this.page.identifier = title;
           this.language = lang;
-        }
+        },
       });
     }
   }

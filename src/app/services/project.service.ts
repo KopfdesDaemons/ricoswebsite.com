@@ -5,7 +5,7 @@ import { Project } from '../models/project';
 import { LanguageService } from './language.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
   private http = inject(HttpClient);
@@ -28,16 +28,7 @@ export class ProjectService {
   // Hilfsfunktion zum Erstellen eines Project-Objekts aus den Daten
   private createProjectFromData(data: any): Project {
     data.technologies = data.technologies.sort();
-    return new Project(
-      data.name,
-      data.description,
-      data.image,
-      data.features,
-      data.projectURL,
-      data.githubURL,
-      data.blogpostURL,
-      data.technologies
-    );
+    return new Project(data.name, data.description, data.image, data.features, data.projectURL, data.githubURL, data.blogpostURL, data.technologies);
   }
 
   // Abragen der Anzahl der Projekte für Paginierung
@@ -48,9 +39,7 @@ export class ProjectService {
       return this.projects.length;
     }
 
-    const filteredProjects = this.projects.filter(project =>
-      filterByTechnologies.some(tech => project.technologies.includes(tech))
-    );
+    const filteredProjects = this.projects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
 
     return filteredProjects.length;
   }
@@ -62,9 +51,7 @@ export class ProjectService {
     let filteredProjects = this.projects;
 
     if (filterByTechnologies.length > 0) {
-      filteredProjects = filteredProjects.filter(project =>
-        filterByTechnologies.some(tech => project.technologies.includes(tech))
-      );
+      filteredProjects = filteredProjects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
       filteredProjects = filteredProjects.sort((a, b) => a.name.localeCompare(b.name));
     }
 
@@ -78,7 +65,7 @@ export class ProjectService {
   async getAllTechnologies(): Promise<string[]> {
     await this.loadProjectsFromJson();
 
-    const allTechnologies = this.projects.flatMap(project => project.technologies);
+    const allTechnologies = this.projects.flatMap((project) => project.technologies);
     const uniqueTechnologies = Array.from(new Set(allTechnologies));
 
     return uniqueTechnologies.sort();

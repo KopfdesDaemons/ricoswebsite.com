@@ -10,10 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { BlogpostCardComponent } from '../../components/blogpost-card/blogpost-card.component';
 
 @Component({
-    selector: 'app-blog',
-    templateUrl: './blog.component.html',
-    styleUrls: ['./blog.component.scss'],
-    imports: [FormsModule, BlogpostCardComponent, RouterLink, TranslateModule]
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.scss'],
+  imports: [FormsModule, BlogpostCardComponent, RouterLink, TranslateModule],
 })
 export class BlogComponent implements OnInit {
   private postS = inject(PostService);
@@ -22,7 +22,6 @@ export class BlogComponent implements OnInit {
   private title = inject(Title);
   private meta = inject(Meta);
   private translate = inject(TranslateService);
-
 
   postsList: Post[] = [];
   currentPage: number = 1;
@@ -33,15 +32,14 @@ export class BlogComponent implements OnInit {
   private routeParamsSubscription: Subscription | undefined;
 
   ngOnInit(): void {
-    // when route changes 
+    // when route changes
     this.routeParamsSubscription = this.route.params.subscribe(async () => {
-
       const page = this.route.snapshot.paramMap.get('page');
       if (page) this.currentPage = Number(page);
 
       this.loadPostsList();
       this.setMetaTags();
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -53,17 +51,11 @@ export class BlogComponent implements OnInit {
   async setMetaTags() {
     const title = await lastValueFrom(this.translate.get('blog_h1'));
     this.title.setTitle(title);
-    this.meta.addTag({ name: 'description', content: title })
+    this.meta.addTag({ name: 'description', content: title });
   }
 
   async loadPostsList() {
-    const { posts, totalPages } = await this.postS.loadPostList(
-      this.languageS.userLanguage,
-      this.currentPage,
-      this.pageSize,
-      this.sortOrder,
-      this.sortBy
-    );
+    const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage, this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
 
     this.postsList = posts;
     this.totalPages = totalPages;

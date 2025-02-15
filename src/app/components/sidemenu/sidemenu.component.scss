@@ -1,115 +1,115 @@
 .closingDiv {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 1;
-    display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  display: none;
 
-    @media only screen and (max-width:1100px) {
-        &.sidemenuOpen {
-            display: block;
-        }
+  @media only screen and (max-width: 1100px) {
+    &.sidemenuOpen {
+      display: block;
     }
+  }
 }
 
 aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    z-index: 1;
-    width: var(--sidemenu-width);
-    transition: transform 100ms ease-in-out;
-    box-sizing: border-box;
-    background-color: var(--section);
-    display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  z-index: 1;
+  width: var(--sidemenu-width);
+  transition: transform 100ms ease-in-out;
+  box-sizing: border-box;
+  background-color: var(--section);
+  display: flex;
+
+  &.sidemenuOpen {
+    transform: translateX(calc(-1 * var(--sidemenu-width)));
+  }
+
+  @media only screen and (max-width: 1100px) {
+    transform: translateX(calc(-1 * var(--sidemenu-width)));
 
     &.sidemenuOpen {
-        transform: translateX(calc(-1 * var(--sidemenu-width)));
+      transform: translateX(0);
     }
+  }
 
-    @media only screen and (max-width:1100px) {
-        transform: translateX(calc(-1 * var(--sidemenu-width)));
+  .sidemenuContent {
+    margin-top: 5em;
+    padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
 
-        &.sidemenuOpen {
-            transform: translateX(0);
-        }
-    }
+    ul {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
 
-    .sidemenuContent {
-        margin-top: 5em;
-        padding: 0 1em;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
+      li {
+        list-style: none;
+      }
+
+      hr {
         width: 100%;
+      }
 
-        ul {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
+      a {
+        border-radius: 10px;
+        padding: 1em 0.5em;
+        flex: 1 1 auto;
+        text-decoration: none;
+        display: flex;
+        gap: 1em;
+        align-items: center;
+        font-size: 1.2em;
+        justify-content: center;
+        transition: all 100ms;
+        text-align: center;
+        text-wrap: balance;
 
-            li {
-                list-style: none;
-            }
-
-            hr {
-                width: 100%;
-            }
-
-            a {
-                border-radius: 10px;
-                padding: 1em 0.5em;
-                flex: 1 1 auto;
-                text-decoration: none;
-                display: flex;
-                gap: 1em;
-                align-items: center;
-                font-size: 1.2em;
-                justify-content: center;
-                transition: all 100ms;
-                text-align: center;
-                text-wrap: balance;
-
-                &:hover {
-                    background-color: #1c2e64;
-                }
-            }
+        &:hover {
+          background-color: #1c2e64;
         }
-
-        .languageSetter {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;
-            margin-top: auto;
-            margin-bottom: 1em;
-
-            input {
-                display: none;
-
-                &:checked+label {
-                    border: solid 1px rgb(109, 109, 109);
-                }
-            }
-
-            label {
-                display: flex;
-                align-items: center;
-                gap: 0.5em;
-                user-select: none;
-                border: solid 1px transparent;
-                padding: 0.2em;
-                cursor: pointer;
-
-                svg {
-                    height: 2em;
-                }
-
-                &:hover {
-                    background-color: rgb(3, 3, 24);
-                }
-            }
-        }
+      }
     }
+
+    .languageSetter {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      margin-top: auto;
+      margin-bottom: 1em;
+
+      input {
+        display: none;
+
+        &:checked + label {
+          border: solid 1px rgb(109, 109, 109);
+        }
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        user-select: none;
+        border: solid 1px transparent;
+        padding: 0.2em;
+        cursor: pointer;
+
+        svg {
+          height: 2em;
+        }
+
+        &:hover {
+          background-color: rgb(3, 3, 24);
+        }
+      }
+    }
+  }
 }

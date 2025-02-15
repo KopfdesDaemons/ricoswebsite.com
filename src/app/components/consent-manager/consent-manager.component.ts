@@ -5,15 +5,14 @@ import { ConsentService } from 'src/app/services/consent.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-consent-manager',
-    templateUrl: './consent-manager.component.html',
-    styleUrls: ['./consent-manager.component.scss'],
-    imports: [TranslateModule]
+  selector: 'app-consent-manager',
+  templateUrl: './consent-manager.component.html',
+  styleUrls: ['./consent-manager.component.scss'],
+  imports: [TranslateModule],
 })
 export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
   consentS = inject(ConsentService);
   private platformId = inject<Object>(PLATFORM_ID);
-
 
   readonly dialog = viewChild<ElementRef>('dialog');
   listenOpenStatusSub: Subscription | undefined;
@@ -30,7 +29,7 @@ export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
 
   listenOpenStatus() {
     if (isPlatformServer(this.platformId)) return;
-    this.listenOpenStatusSub = this.consentS.consentMangerIsVisible.subscribe(value => {
+    this.listenOpenStatusSub = this.consentS.consentMangerIsVisible.subscribe((value) => {
       if (value) this.dialog()?.nativeElement.showModal();
       else this.dialog()?.nativeElement.close();
     });

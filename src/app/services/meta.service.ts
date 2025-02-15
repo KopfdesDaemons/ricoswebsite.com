@@ -6,7 +6,7 @@ import { PostMeta } from '../models/post';
 import { environment } from 'src/environment/enviroment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MetaService {
   private router = inject(Router);
@@ -14,11 +14,8 @@ export class MetaService {
   private title = inject(Title);
 
   constructor() {
-
     // Abonniere das NavigationStart-Ereignis
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationStart)
-    ).subscribe(() => {
+    this.router.events.pipe(filter((event) => event instanceof NavigationStart)).subscribe(() => {
       this.removeMetaData();
     });
   }
@@ -49,11 +46,17 @@ export class MetaService {
     }
 
     if (postMeta.date) {
-      tagsToAdd.push({ property: 'article:published_time', content: postMeta.date });
+      tagsToAdd.push({
+        property: 'article:published_time',
+        content: postMeta.date,
+      });
     }
 
     if (postMeta.description) {
-      tagsToAdd.push({ property: 'og:description', content: postMeta.description });
+      tagsToAdd.push({
+        property: 'og:description',
+        content: postMeta.description,
+      });
       tagsToAdd.push({ name: 'description', content: postMeta.description });
     }
 
@@ -64,7 +67,7 @@ export class MetaService {
     if (postMeta.image) {
       tagsToAdd.push({
         property: 'og:image',
-        content: environment.baseUrl + '/' + postMeta.image
+        content: environment.baseUrl + '/' + postMeta.image,
       });
     }
 

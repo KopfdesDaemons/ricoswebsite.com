@@ -8,8 +8,8 @@ describe('BlogPostComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [BlogPostComponent]
-});
+      imports: [BlogPostComponent],
+    });
     fixture = TestBed.createComponent(BlogPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { marked } from 'marked';
-import { parse } from 'yaml'
+import { parse } from 'yaml';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MarkdownService {
-
   extractYamlHeader(markdown: string): any {
     const yamlRegex = /^---([\s\S]*?)---/gm;
     const matches = yamlRegex.exec(markdown);
