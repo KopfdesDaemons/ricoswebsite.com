@@ -44,7 +44,7 @@ Portfolio project information is loaded dynamically from a JSON file.
     {
         "name": "BlogTube",
         "description": "A WordPress theme that is based on the design scheme of YouTube",
-        "image": "assets\\images\\blogtube.avif",
+        "image": "\\images\\blogtube.avif",
         "features": [
             "infinite scroll feed",
             "custom sidemenu",
@@ -62,11 +62,13 @@ Portfolio project information is loaded dynamically from a JSON file.
 
 ## Development
 
-start angular live server and start development
+start angular dev server and start development
 
 ```bash
-ng serve --host 0.0.0.0
+ng serve
 ```
+
+## Deployment
 
 prerender website
 
@@ -74,21 +76,8 @@ prerender website
 ng build
 ```
 
-start http-server to testing the prerendered website
-
-```bash
-cd ricoswebsite.com/browser/
-http-server
-```
-
-deploy to github-pages
+deploy prerendered website
 
 ```bash
 npx angular-cli-ghpages --dir=dist/ricoswebsite.com/browser --cname=ricoswebsite.com
-```
-
-helper bash script
-
-```bash
-./render.sh
 ```

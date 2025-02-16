@@ -14,14 +14,16 @@ export class ProjectService {
   private projects: Project[] = [];
 
   // Projekte aus JSON laden
-  private async loadProjectsFromJson(): Promise<void> {
+  async loadProjectsFromJson(lang: string = this.languageS.userLanguage): Promise<Project[]> {
     try {
-      const url = `assets/projects.${this.languageS.userLanguage}.json`;
+      const url = `/projects.${lang}.json`;
       const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));
       this.projects = response.projects.map(this.createProjectFromData);
+      return this.projects;
     } catch (error) {
       console.error('Fehler beim Laden der Projekte:', error);
       this.projects = [];
+      return [];
     }
   }
 

@@ -3,7 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { PostMeta } from '../models/post';
-import { environment } from 'src/environment/enviroment';
+import { environment } from 'src/app/environment/enviroment';
 
 @Injectable({
   providedIn: 'root',

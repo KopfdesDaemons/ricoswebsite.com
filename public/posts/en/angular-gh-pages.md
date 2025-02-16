@@ -1,7 +1,7 @@
 ---
 title: "Angular: Pre-rendering for deployment on GitHub Pages"
 author: Rico
-image: assets/images/angular-github-pages.avif
+image: /images/angular-github-pages.avif
 keywords:
   - Angular
   - GitHub Pages
@@ -18,7 +18,7 @@ The project is pre-rendered with the `ng build` command. The pre-rendered files 
 
 Without further adjustments, you will encounter a problem in the network tab of the developer tools: When you call up the page, a redirect occurs. The request is made without a slash at the end of the URL and is then redirected to the URL with a trailing slash.
 
-![302 Redirect](assets/images/302.avif "302 Redirect")
+![302 Redirect](/images/302.avif "302 Redirect")
 
 The reason for this is that the HTTP server is looking for a file but finds a directory. When requesting `domain.de/legal-notice`, the HTTP server tries to find the file `domain.de/legal-notice.html`. Since this file does not exist, the redirection to `domain.de/legal-notice/index.html` occurs. To prevent the redirection, the URL `domain.de/legal-notice/` should be called directly.
 

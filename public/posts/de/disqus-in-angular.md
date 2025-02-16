@@ -1,7 +1,7 @@
 ---
 title: "Angular: Disqus manuell integrieren mit eigenem Service"
 author: Rico
-image: assets/images/disqus-in-angular.avif
+image: /images/disqus-in-angular.avif
 keywords:
   - Disqus integrieren
   - Angular Disqus
@@ -88,12 +88,7 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
       @Input() identifier: string | undefined;
       private observer: IntersectionObserver | undefined;
 
-      constructor(
-        public disqusS: DisqusService,
-        public renderer: Renderer2,
-        private elementRef: ElementRef,
-        @Inject(PLATFORM_ID) private platformId: Object,
-      ) {}
+      constructor(public disqusS: DisqusService, public renderer: Renderer2, private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: Object) {}
 
       ngOnChanges(): void {
         if (!isPlatformBrowser(this.platformId)) return;

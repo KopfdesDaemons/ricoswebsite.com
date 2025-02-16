@@ -1,29 +1,29 @@
 ---
-title: Integrate CodePen into Angular (GDPR compliant)
+title: CodePen in Angular integrieren (DSGVO konform)
 author: Rico
-image: assets/images/codepen-screenshot.avif
+image: /images/codepen-screenshot.avif
 keywords:
-  - Integrate codepen
-  - Angular codepen
-  - Angular embed codepen
-  - Codepen in angular
-description: Learn how to seamlessly integrate CodePen snippets into your Angular project with this step-by-step guide.
+  - CodePen integrieren
+  - Angular CodePen
+  - Angular CodePen einbetten
+  - CodePen in Angular
+description: Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.
 date: 2024-05-18
 ---
 
-## What is CodePen?
+## Was ist CodePen?
 
-[CodePen](https://codepen.io/) is a popular online code editor and community platform that allows developers to write and share code snippets. It offers a convenient way to showcase interactive elements and test code functionalities.
+[CodePen](https://codepen.io/) ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.
 
-## Step-by-Step Guide: Integrate CodePen into Your Angular Project
+## Schritt-für-Schritt-Anleitung: CodePen in einem Angular-Projekt integrieren
 
-Integrating CodePen snippets into your Angular project involves this main steps:
+Die Integration von CodePen-Snippets in ein Angular-Projekt umfasst folgende Schritte:
 
-1. **Embed the HTML Code:**
+1. **HTML-Code einbetten:**
 
-   - Open your desired CodePen snippet
-   - Click on "Embed" located at the bottom
-   - Copy the HTML code provided **(Do not include the script tag)**
+   - Öffne das gewünschtes CodePen-Snippet
+   - Klicke unten auf "Embed"
+   - Kopiere den bereitgestellten HTML-Code **(Ohne das Script-Tag)**
 
    ```html
    <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="NWOQYqz" data-editable="true" data-user="Rico-the-bold" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
@@ -31,10 +31,10 @@ Integrating CodePen snippets into your Angular project involves this main steps:
    </p>
    ```
 
-2. **Integrate a Script Service:**
+2. **Ein Skript-Service integrieren:**
 
-   - Create a new service named `ScriptService` to handle script loading dynamically.
-   - This service will ensure the CodePen script is loaded only once and reloaded if needed.
+   - Erstelle einen neuen Service namens `ScriptService`, um die Skriptladung dynamisch zu handhaben.
+   - Dieser Service stellt sicher, dass das CodePen-Skript nur einmal geladen und bei Bedarf neu geladen wird.
 
    ```typescript
    import { DOCUMENT } from "@angular/common";
@@ -74,9 +74,9 @@ Integrating CodePen snippets into your Angular project involves this main steps:
    }
    ```
 
-3. **Integrate a Consent Service:**
+3. **Einen Consent-Service integrieren:**
 
-   So that the user's consent can be obtained in accordance with the GDPR before we load CodePen, we integrate a `ConsentService`.
+   Um die Zustimmung des Nutzers gemäß der DSGVO einzuholen, bevor wir CodePen laden, integrieren wir einen `ConsentService`.
 
    ```typescript
    import { isPlatformServer } from "@angular/common";
@@ -100,9 +100,9 @@ Integrating CodePen snippets into your Angular project involves this main steps:
    }
    ```
 
-4. **Integrate a CodePen Service:**
+4. **Einen CodePen-Service integrieren:**
 
-   Now we integrate a `CodepenService`.
+   Nun integrieren wir einen `CodepenService`.
 
    ```typescript
    import { Inject, Injectable, PLATFORM_ID, Renderer2 } from "@angular/core";
@@ -114,16 +114,12 @@ Integrating CodePen snippets into your Angular project involves this main steps:
      providedIn: "root",
    })
    export class CodepenService {
-     constructor(
-       private consentS: ConsentService,
-       private scriptS: ScriptService,
-       @Inject(PLATFORM_ID) private platformId: Object,
-     ) {}
+     constructor(private consentS: ConsentService, private scriptS: ScriptService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
      loadCodePen(renderer: Renderer2) {
        if (isPlatformServer(this.platformId)) return;
        if (this.consentS.checkConsent("CodePen")) {
-         this.scriptS.reloadJsScript(renderer, "https://cpwebassets.codepen.io/assets/embed/ei.js");
+         this.scriptS.reloadJsScript(renderer, "https://cpwebassets.codepen.io//embed/ei.js");
        } else {
          const CodePenDemos = Array.from(document.querySelectorAll(".codepen"));
          for (const demo of CodePenDemos) {
@@ -157,7 +153,7 @@ Integrating CodePen snippets into your Angular project involves this main steps:
    }
    ```
 
-   For a nicer consent button, a bit of scss:
+   Für einen schöneren Zustimmungs-Button ein wenig SCSS:
 
    ```scss
    .codepen:has(.codePenConsentButton) {
@@ -191,9 +187,9 @@ Integrating CodePen snippets into your Angular project involves this main steps:
    }
    ```
 
-5. **Load CodePen in your component:**
+5. **CodePen in der Komponente laden:**
 
-   Finally, we load CodePen in the component:
+   Zuletzt laden wir CodePen in der Komponente:
 
    ```typescript
    import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from "@angular/core";
@@ -205,10 +201,7 @@ Integrating CodePen snippets into your Angular project involves this main steps:
      styleUrls: ["./blog-post.component.css"],
    })
    export class BlogPostComponent implements AfterViewChecked {
-     constructor(
-       private renderer: Renderer2,
-       private codePenS: CodepenService,
-     ) {}
+     constructor(private renderer: Renderer2, private codePenS: CodepenService) {}
 
      ngAfterViewChecked() {
        this.codePenS.loadCodePen(this.renderer);

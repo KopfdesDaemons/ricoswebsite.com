@@ -1,7 +1,7 @@
 ---
 title: "Linux: Fix Steam Dropdown Bug"
 author: Rico
-image: assets/images/steam-dropdown-bug.avif
+image: /images/steam-dropdown-bug.avif
 keywords:
   - Steam Settings Bug
   - Steam Dropdown nicht auswählbar

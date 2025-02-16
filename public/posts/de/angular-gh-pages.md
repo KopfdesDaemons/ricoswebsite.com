@@ -1,7 +1,7 @@
 ---
 title: "Angular: Vorrendern für ein Deployment auf GitHub Pages"
 author: Rico
-image: assets/images/angular-github-pages.avif
+image: /images/angular-github-pages.avif
 keywords:
   - Angular
   - GitHub Pages
@@ -18,7 +18,7 @@ Mit dem Befehl `ng build` wird das Projekt bereits vorgerendert. Die vorgerender
 
 Ohne weitere Anpassugen stößt man in den Entwicklertools im Netzwerktab auf ein Problem: Beim Aufruf der Seite erfolgt ein Redirect. Die Anfrage erfolgt ohne Slash am Ende der URL und daraufhin folgt eine Weiterleitung zu der URL mit Trailing Slash.
 
-![302 Redirect](assets/images/302.avif "302 Redirect")
+![302 Redirect](/images/302.avif "302 Redirect")
 
 Die Ursache dafür ist, dass der HTTP-Server nach einer Datei sucht, aber ein Verzeichnis vorfindet. Bei der Anfrage `domain.de/legal-notice` versucht der HTTP-Server die Datei `domain.de/legal-notice.html` zu finden. Da es diese Datei nicht gibt, erflogt die Weiterleitung zu `domain.de/legal-notice/index.html`. Um die Weiterleitung zu verhindern, sollte direkt die URL `domain.de/legal-notice/` aufgerufen werden.
 

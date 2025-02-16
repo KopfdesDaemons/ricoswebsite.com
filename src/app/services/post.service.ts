@@ -14,7 +14,7 @@ export class PostService {
   private transferState = inject(TransferState);
   private markdownS = inject(MarkdownService);
   private languageS = inject(LanguageService);
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
 
   private post: Post | null | undefined;
   private baseUrl = '/';
@@ -41,7 +41,7 @@ export class PostService {
   }
 
   private async loadFromMarkdownFile(fileName: string, language: string): Promise<Post | null> {
-    const contentUrl = `${this.baseUrl}assets/posts/${language}/${fileName}.md`;
+    const contentUrl = `${this.baseUrl}posts/${language}/${fileName}.md`;
 
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
@@ -67,9 +67,9 @@ export class PostService {
     sortOrder: 'asc' | 'desc' = 'desc',
     sortBy: 'date' | 'title' = 'date',
     filterTags: string[] = [],
-    filterTitle: string = '',
+    filterTitle: string = ''
   ): Promise<any> {
-    const postListURL = `${this.baseUrl}assets/posts/posts.${language}.json`;
+    const postListURL = `${this.baseUrl}posts/posts.${language}.json`;
 
     try {
       const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
@@ -80,7 +80,7 @@ export class PostService {
         (post: any) =>
           !post.hideInFeed &&
           (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
-          (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle))),
+          (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle)))
       );
 
       const postArray: Post[] = [];

@@ -3,7 +3,7 @@
     {
       "name": "Adventskerzen",
       "description": "Ein Desklet für den Cinnamon Desktop, welches animierte Adventskerzen auf dem Desktop anzeigt",
-      "image": "assets\\images\\advent-candles.avif",
+      "image": "\\images\\advent-candles.avif",
       "features": [
         "Automatische Anpassung der Kerzenanzahl anhand des aktuellen Datums",
         "Einstellung für die Animationsgeschwindigkeit",
@@ -16,7 +16,7 @@
     {
       "name": "Systembetriebszeit",
       "description": "Ein Desklet für den Cinnamon Desktop, welches die aktuelle Betriebszeit und die Startzeit des Systems anzeigt",
-      "image": "assets\\images\\system-uptime.avif",
+      "image": "\\images\\system-uptime.avif",
       "features": [
         "Einstellung für die Labelfarbe",
         "Einstellung für die Schriftgröße"
@@ -28,7 +28,7 @@
     {
       "name": "Tages Countdown",
       "description": "Ein Desklet für den Cinnamon Desktop, welches die verbleibenden Tage bis zu einem Datum anzeigt",
-      "image": "assets\\images\\days-countdown.avif",
+      "image": "\\images\\days-countdown.avif",
       "features": [
         "Einstellung des Datums",
         "Anpassbarer Aktualisierungsintervall",
@@ -43,7 +43,7 @@
     {
       "name": "RSS Newsticker",
       "description": "Ein Applet für den Cinnamon Desktop, welches einen Newsticker in der Taskleiste anzeigt",
-      "image": "assets\\images\\rss-newsticker.avif",
+      "image": "\\images\\rss-newsticker.avif",
       "features": [
         "Anpassbare Quelle des RSS-Feeds",
         "Anpassbare Geschwindigkeit",
@@ -58,7 +58,7 @@
     {
       "name": "Systemtemperatur",
       "description": "Ein Desklet für den Cinnamon Desktop, welches die Temperatur einer Thermalzone des Systems anzeigt",
-      "image": "assets\\images\\system-temperature.avif",
+      "image": "\\images\\system-temperature.avif",
       "features": [
         "Einstellung der Thermalzone",
         "dynamische Anpassung der Farbe basierend auf der Temperatur",
@@ -73,7 +73,7 @@
     {
       "name": "BlogTube",
       "description": "Ein WordPress-Theme, das auf dem Designschema von YouTube basiert",
-      "image": "assets\\images\\blogtube.avif",
+      "image": "\\images\\blogtube.avif",
       "features": [
         "unendlicher Scroll-Feed",
         "benutzerdefiniertes Sidemenu",
@@ -88,7 +88,7 @@
     {
       "name": "Blog Layouts",
       "description": "Ein WordPress-Theme, dessen Kernfunktion der Layoutwechsel ist",
-      "image": "assets\\images\\blog-layouts.avif",
+      "image": "\\images\\blog-layouts.avif",
       "features": [
         "Layoutwechsel",
         "bekannte Desings wie Material Design 2 und 3",
@@ -102,7 +102,7 @@
     {
       "name": "Neo Blog",
       "description": "WordPress-Theme",
-      "image": "assets\\images\\neo-blog.avif",
+      "image": "\\images\\neo-blog.avif",
       "features": [
         "Darkmode / Lightmode",
         "viele Anpassungsoptionen",
@@ -115,7 +115,7 @@
     {
       "name": "tickturtle.com",
       "description": "Eine Website zur Zeiterfassung von Arbeitsschritten",
-      "image": "assets\\images\\tickturtle.com.avif",
+      "image": "\\images\\tickturtle.com.avif",
       "features": [
         "Zeiterfassung / Zeitpausierung / Zeitfortsetzung",
         "Aufgaben bearbeiten / Aufgaben löschen",
@@ -129,7 +129,7 @@
     {
       "name": "grundbuch-musterantrag.de",
       "description": "Eine Website über das deutsche Grundbuchrecht",
-      "image": "assets\\images\\grundbuch-musterantrag.de.avif",
+      "image": "\\images\\grundbuch-musterantrag.de.avif",
       "features": [
         "Darkmode / Lightmode",
         "benutzerdefinierte Primärfarbe",

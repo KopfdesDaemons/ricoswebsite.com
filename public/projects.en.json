@@ -3,7 +3,7 @@
     {
       "name": "Advent Candles",
       "description": "A desklet for the Cinnamon Desktop that displays animated Advent candles on the desktop",
-      "image": "assets\\images\\advent-candles.avif",
+      "image": "\\images\\advent-candles.avif",
       "features": [
         "Automatic adjustment of the number of candles based on the current date",
         "Animation speed setting",
@@ -16,7 +16,7 @@
     {
       "name": "System Uptime",
       "description": "A desklet for the Cinnamon desktop that displays the current uptime and the system start time",
-      "image": "assets\\images\\system-uptime.avif",
+      "image": "\\images\\system-uptime.avif",
       "features": ["Setting for the label color", "Setting for the font size"],
       "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/70",
       "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemUptime@KopfDesDaemons",
@@ -25,7 +25,7 @@
     {
       "name": "Days Countdown",
       "description": "A desklet for the Cinnamon desktop that displays the remaining days until a date",
-      "image": "assets\\images\\days-countdown.avif",
+      "image": "\\images\\days-countdown.avif",
       "features": [
         "Date setting",
         "Adjustable refresh interval",
@@ -40,7 +40,7 @@
     {
       "name": "RSS Newsticker",
       "description": "An applet for the Cinnamon desktop that displays a news ticker in the taskbar",
-      "image": "assets\\images\\rss-newsticker.avif",
+      "image": "\\images\\rss-newsticker.avif",
       "features": [
         "Customizable RSS feed source",
         "Customizable speed",
@@ -55,7 +55,7 @@
     {
       "name": "System Temperature",
       "description": "A desklet for the Cinnamon desktop that displays the temperature of a thermal zone of the system",
-      "image": "assets\\images\\system-temperature.avif",
+      "image": "\\images\\system-temperature.avif",
       "features": [
         "thermal zone setting",
         "dynamic color adjustment based on temperature",
@@ -70,7 +70,7 @@
     {
       "name": "BlogTube",
       "description": "A WordPress theme that is based on the design scheme of YouTube",
-      "image": "assets\\images\\blogtube.avif",
+      "image": "\\images\\blogtube.avif",
       "features": [
         "infinite scroll feed",
         "custom sidemenu",
@@ -85,7 +85,7 @@
     {
       "name": "Blog Layouts",
       "description": "A WordPress theme that has the swapping of layouts as a core feature",
-      "image": "assets\\images\\blog-layouts.avif",
+      "image": "\\images\\blog-layouts.avif",
       "features": [
         "swapping layouts",
         "well-known designs such as Material Design 2 and 3",
@@ -99,7 +99,7 @@
     {
       "name": "Neo Blog",
       "description": "WordPress Theme",
-      "image": "assets\\images\\neo-blog.avif",
+      "image": "\\images\\neo-blog.avif",
       "features": [
         "dark mode / light mode",
         "lots of customization options",
@@ -112,7 +112,7 @@
     {
       "name": "tickturtle.com",
       "description": "A website for time recording of work steps",
-      "image": "assets\\images\\tickturtle.com.avif",
+      "image": "\\images\\tickturtle.com.avif",
       "features": [
         "time calculation / time pause / time resume",
         "edit tasks / delete tasks",
@@ -126,7 +126,7 @@
     {
       "name": "grundbuch-musterantrag.de",
       "description": "A website about German land register law",
-      "image": "assets\\images\\grundbuch-musterantrag.de.avif",
+      "image": "\\images\\grundbuch-musterantrag.de.avif",
       "features": [
         "dark mode / light mode",
         "custom primary theme color",

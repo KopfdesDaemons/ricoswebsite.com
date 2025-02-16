@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { routes } from './app.routes';
+import { routes } from './routes/app.routes';
 import { HighlightService } from './services/highlight.service';
 
 export const appConfig: ApplicationConfig = {
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
-      }),
+      })
     ),
     importProvidersFrom(
       TranslateModule.forRoot({
@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
       }),
       BrowserModule,
       FormsModule,
-      FontAwesomeModule,
+      FontAwesomeModule
     ),
     HighlightService,
     provideHttpClient(withFetch()),

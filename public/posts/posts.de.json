@@ -14,7 +14,7 @@
   {
     "title": "Angular: Vorrendern für ein Deployment auf GitHub Pages",
     "author": "Rico",
-    "image": "assets/images/angular-github-pages.avif",
+    "image": "/images/angular-github-pages.avif",
     "keywords": [
       "Angular",
       "GitHub Pages",
@@ -27,7 +27,7 @@
   {
     "title": "BlogTube - Ein WordPress YouTube Klon",
     "author": "Rico",
-    "image": "assets/images/blogtube-post-screenshot.avif",
+    "image": "/images/blogtube-post-screenshot.avif",
     "keywords": [
       "YouTube",
       "WordPress",
@@ -40,7 +40,7 @@
   {
     "title": "CodePen in Angular integrieren (DSGVO konform)",
     "author": "Rico",
-    "image": "assets/images/codepen-screenshot.avif",
+    "image": "/images/codepen-screenshot.avif",
     "keywords": [
       "CodePen integrieren",
       "Angular CodePen",
@@ -70,7 +70,7 @@
   {
     "title": "Angular: Disqus manuell integrieren mit eigenem Service",
     "author": "Rico",
-    "image": "assets/images/disqus-in-angular.avif",
+    "image": "/images/disqus-in-angular.avif",
     "keywords": [
       "Disqus integrieren",
       "Angular Disqus",
@@ -84,7 +84,7 @@
   {
     "title": "Linux Mint Cinnamon als Desktop getestet",
     "author": "Rico",
-    "image": "assets/images/linux-mint-desktop.avif",
+    "image": "/images/linux-mint-desktop.avif",
     "keywords": [
       "Linux",
       "Desktop"
@@ -101,7 +101,7 @@
   {
     "title": "Linux: Fix Steam Dropdown Bug",
     "author": "Rico",
-    "image": "assets/images/steam-dropdown-bug.avif",
+    "image": "/images/steam-dropdown-bug.avif",
     "keywords": [
       "Steam Settings Bug",
       "Steam Dropdown nicht auswählbar",

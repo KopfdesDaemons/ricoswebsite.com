@@ -51,7 +51,7 @@ Die Projektinformationen für das Portfolio werden dynamisch aus einer JSON-Date
 {
     "name": "BlogTube",
     "description": "A WordPress theme that is based on the design scheme of YouTube",
-    "image": "assets\\images\\blogtube.avif",
+    "image": "\\images\\blogtube.avif",
     "features": [
         "infinite scroll feed",
         "custom sidemenu",

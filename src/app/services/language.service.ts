@@ -11,13 +11,13 @@ export class LanguageService {
   private router = inject(Router);
   private translate = inject(TranslateService);
   private location = inject(Location);
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
 
   userLanguage: string = 'en';
   userAgendLanguage: string;
   askUserToSwitch: boolean = false;
-  private supportedLanguages: string[] = ['de', 'en'];
+  supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
 
   constructor() {

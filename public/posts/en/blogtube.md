@@ -1,7 +1,7 @@
 ---
 title: BlogTube - A WordPress YouTube clone
 author: Rico
-image: assets/images/blogtube-post-screenshot.avif
+image: /images/blogtube-post-screenshot.avif
 keywords:
   - YouTube
   - WordPress
@@ -32,19 +32,19 @@ BlogTube is available for free, open source and free software. The theme uses th
 
 ## BlogTube - Feed example
 
-![feed example](assets/images/blogtube-feed.avif "feed example")
+![feed example](/images/blogtube-feed.avif "feed example")
 
 ## BlogTube - Blog post example
 
-![blog post example](assets/images/blogtube-post-screenshot.avif "blog post example")
+![blog post example](/images/blogtube-post-screenshot.avif "blog post example")
 
 ## BlogTube - Author page example
 
-![author page example](assets/images/blogtube-author-page.avif "author page example")
+![author page example](/images/blogtube-author-page.avif "author page example")
 
 ## BlogTube - Comment example
 
-![comment example](assets/images/blogtube-comment.avif "comment example")
+![comment example](/images/blogtube-comment.avif "comment example")
 
 ## BlogTube - Support Forum
 
