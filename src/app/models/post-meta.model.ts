@@ -1,23 +1,12 @@
-export class Post {
-  postMeta: PostMeta;
-  postContent?: string;
-
-  constructor(metaObject: Partial<PostMeta>, fileName: string, lang: string, postContent?: string) {
-    this.postMeta = new PostMeta(fileName);
-    this.postMeta.initFromObject(metaObject, lang);
-    this.postContent = postContent;
-  }
-}
-
 export class PostMeta {
   fileName: string;
   title?: string;
   postURL?: string;
   author?: string;
   image?: string;
-  keywords?: string[];
+  keywords: string[] = [];
   description?: string;
-  date?: string;
+  date?: Date;
   localDateString?: string;
   commentsDisabled: boolean = false;
   hasCodePen: boolean = false;
@@ -29,6 +18,7 @@ export class PostMeta {
 
   initFromObject(object: Partial<PostMeta>, lang: string) {
     Object.assign(this, object);
+    if (object.date) this.date = new Date(object.date);
     if (this.date) this.localDateString = new Date(this.date).toLocaleDateString(lang);
   }
 }

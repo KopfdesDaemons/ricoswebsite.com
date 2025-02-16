@@ -1,13 +1,12 @@
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { YamlLanguageLoader } from './utilities/yamlLanguageLoader';
+import { YamlLanguageLoader } from './utilities/yam-language-loader';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { routes } from './routes/app.routes';
-import { HighlightService } from './services/highlight.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,15 +22,14 @@ export const appConfig: ApplicationConfig = {
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
-          useFactory: (http: HttpClient) => new YamlLanguageLoader(http),
-          deps: [HttpClient],
+          useFactory: () => new YamlLanguageLoader(),
         },
       }),
       BrowserModule,
       FormsModule,
       FontAwesomeModule
     ),
-    HighlightService,
+    // HighlightService,
     provideHttpClient(withFetch()),
   ],
 };

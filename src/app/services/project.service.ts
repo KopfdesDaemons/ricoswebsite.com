@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Project } from '../models/project';
+import { Project } from '../models/project.model';
 import { LanguageService } from './language.service';
 
 @Injectable({

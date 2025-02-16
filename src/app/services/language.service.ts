@@ -39,32 +39,32 @@ export class LanguageService {
     }
   }
 
-  updateLanguage(lang: string | null) {
+  async updateLanguage(lang: string | null) {
     if (!lang) lang = this.userAgendLanguage;
-    this.userLanguage = this.replaceUnsupportedLangauge(lang);
+    this.userLanguage = await this.replaceUnsupportedLangauge(lang);
     this.document.documentElement.lang = this.userLanguage;
     const ask = this.askUserToSwitch && this.userLanguage != this.userAgendLanguage;
     this.askUserToSwitch = ask;
     this.translate.use(this.userLanguage);
   }
 
-  private replaceUnsupportedLangauge(lang: string): string {
+  private async replaceUnsupportedLangauge(lang: string): Promise<string> {
     if (!this.supportedLanguages.includes(lang)) {
       const userLang = this.userAgendLanguage;
       const newUrl = this.router.url.replace(lang, userLang);
       console.log('Language ' + lang + ' not supported. Switching to ' + userLang);
-      this.router.navigateByUrl(newUrl);
+      await this.router.navigateByUrl(newUrl);
       return userLang;
     }
     return lang;
   }
 
-  switchUserLanguage(lang: string) {
+  async switchUserLanguage(lang: string) {
     this.oldLanguage = this.userLanguage;
     this.userLanguage = lang;
     const newUrl = this.location.path().replace(this.oldLanguage, lang);
     console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
-    this.router.navigateByUrl(newUrl);
+    await this.router.navigateByUrl(newUrl);
     localStorage.setItem('Custom Language', this.userLanguage.toString());
     this.askUserToSwitch = false;
   }

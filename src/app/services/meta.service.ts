@@ -1,9 +1,9 @@
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { PostMeta } from '../models/post';
 import { environment } from 'src/app/environment/enviroment';
+import { PostMeta } from '../models/post-meta.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +14,14 @@ export class MetaService {
   private title = inject(Title);
 
   constructor() {
-    // Abonniere das NavigationStart-Ereignis
+    // subscribe to router navigation events
     this.router.events.pipe(filter((event) => event instanceof NavigationStart)).subscribe(() => {
       this.removeMetaData();
     });
   }
 
   private removeMetaData(): void {
-    // Entferne vorhandene Meta-Tags
+    // remove all meta tags
     this.meta.removeTag('name="keywords"');
     this.meta.removeTag('property="og:description"');
     this.meta.removeTag('property="og:author"');
@@ -35,8 +35,8 @@ export class MetaService {
   }
 
   updateMetaTags(postMeta: PostMeta): void {
-    const tagsToAdd: any = [
-      { property: 'og:title', content: postMeta.title },
+    const tagsToAdd: { property?: string; name?: string; content: string }[] = [
+      { property: 'og:title', content: postMeta.title ?? 'Ricos Website' },
       { property: 'og:type', content: 'article' },
       { property: 'og:url', content: environment.baseUrl + this.router.url },
     ];
@@ -48,7 +48,7 @@ export class MetaService {
     if (postMeta.date) {
       tagsToAdd.push({
         property: 'article:published_time',
-        content: postMeta.date,
+        content: postMeta.date.toISOString(),
       });
     }
 
@@ -61,7 +61,7 @@ export class MetaService {
     }
 
     if (postMeta.keywords) {
-      tagsToAdd.push({ name: 'keywords', content: postMeta.keywords });
+      tagsToAdd.push({ name: 'keywords', content: postMeta.keywords.join(', ') });
     }
 
     if (postMeta.image) {

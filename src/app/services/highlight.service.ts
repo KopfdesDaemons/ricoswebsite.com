@@ -10,15 +10,21 @@ import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-scss';
 
-declare var Prism: any;
-
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class HighlightService {
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
+
+  private prism: any;
+
+  constructor() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.prism = (window as any).Prism;
+  }
 
   highlightAll() {
-    if (isPlatformBrowser(this.platformId)) {
-      Prism.highlightAll();
-    }
+    if (!this.prism) return;
+    this.prism.highlightAll();
   }
 }

@@ -1,7 +1,7 @@
 import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom, Subscription } from 'rxjs';
-import { Post } from 'src/app/models/post';
+import { Post } from 'src/app/models/post.model';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { HighlightService } from 'src/app/services/highlight.service';
 import { PostService } from 'src/app/services/post.service';
@@ -68,10 +68,10 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  ngAfterViewChecked() {
+  async ngAfterViewChecked() {
     if (this.post) {
       this.highlightS.highlightAll();
-      if (this.post?.postMeta?.hasCodePen) this.codePenS.loadCodePen(this.renderer);
+      if (this.post?.postMeta?.hasCodePen) await this.codePenS.loadCodePen(this.renderer);
     }
   }
 }

@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, inject, input } from '@angular/core';
-import { PostMeta } from 'src/app/models/post';
+import { Component, inject, input } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { PostMeta } from 'src/app/models/post-meta.model';
 
 @Component({
   selector: 'app-blogpost-card',
@@ -10,14 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./blogpost-card.component.scss'],
   imports: [RouterLink, TranslateModule],
 })
-export class BlogpostCardComponent implements OnInit {
+export class BlogpostCardComponent {
   languageS = inject(LanguageService);
-
   postMeta = input.required<PostMeta>();
-
-  ngOnInit(): void {
-    if (this.postMeta && this.postMeta().date) {
-      this.postMeta().date = new Date(this.postMeta().date ?? '').toLocaleDateString(this.languageS.userLanguage);
-    }
-  }
 }

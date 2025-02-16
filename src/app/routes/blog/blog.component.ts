@@ -3,7 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
-import { Post } from 'src/app/models/post';
+import { Post } from 'src/app/models/post.model';
 import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
 import { FormsModule } from '@angular/forms';
@@ -37,8 +37,8 @@ export class BlogComponent implements OnInit {
       const page = this.route.snapshot.paramMap.get('page');
       if (page) this.currentPage = Number(page);
 
-      this.loadPostsList();
-      this.setMetaTags();
+      await this.loadPostsList();
+      await this.setMetaTags();
     });
   }
 
@@ -61,10 +61,10 @@ export class BlogComponent implements OnInit {
     this.totalPages = totalPages;
   }
 
-  public sort(event: any) {
+  public async sort(event: any) {
     const [sortBy, sortOrder] = event.target.value.split(' ');
     this.sortBy = sortBy;
     this.sortOrder = sortOrder;
-    this.loadPostsList();
+    await this.loadPostsList();
   }
 }

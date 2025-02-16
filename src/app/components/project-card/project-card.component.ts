@@ -1,7 +1,7 @@
 import { Component, Input, inject, input, output } from '@angular/core';
 import { faGithub, faWordpress, faPhp, faAngular, faNodeJs, faJs } from '@fortawesome/free-brands-svg-icons';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { Project } from 'src/app/models/project';
+import { Project } from 'src/app/models/project.model';
 import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';

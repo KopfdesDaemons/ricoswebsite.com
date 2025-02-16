@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { Project } from 'src/app/models/project';
+import { Project } from 'src/app/models/project.model';
 import { LanguageService } from 'src/app/services/language.service';
 import { Location } from '@angular/common';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -43,8 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
       // Switch to Route Language if not set
-      let lang = params['lang'];
-      if (!lang) this.router.navigate(['/' + this.languageS.userAgendLanguage + '/projects/page/1/.']);
+      const lang = params['lang'];
+      if (!lang) await this.router.navigate(['/' + this.languageS.userAgendLanguage + '/projects/page/1/.']);
 
       this.activTechnologiesFilterOptions = [];
       this.currentPage = +params['page'] || 1;
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (technologieParams) this.activTechnologiesFilterOptions = technologieParams.split('&');
 
       // load projects
-      this.loadProjects(this.currentPage, this.activTechnologiesFilterOptions);
+      await this.loadProjects(this.currentPage, this.activTechnologiesFilterOptions);
 
       // set Meta Data
       const description = await lastValueFrom(this.translate.get('home_description'));
@@ -89,15 +89,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     return params.join('&');
   }
 
-  addTechnologieToFilter(technologie: string) {
-    this.applyFilter([...this.activTechnologiesFilterOptions, technologie]);
+  async addTechnologieToFilter(technologie: string) {
+    await this.applyFilter([...this.activTechnologiesFilterOptions, technologie]);
   }
 
-  removeTechnologieFromFilter(technologie: string) {
-    this.applyFilter(this.activTechnologiesFilterOptions.filter((item) => item !== technologie));
+  async removeTechnologieFromFilter(technologie: string) {
+    await this.applyFilter(this.activTechnologiesFilterOptions.filter((item) => item !== technologie));
   }
 
-  applyFilter(filter: string[]) {
+  async applyFilter(filter: string[]) {
     this.activTechnologiesFilterOptions = filter;
     const filterString = this.getParamChain(this.activTechnologiesFilterOptions);
 
@@ -106,9 +106,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     const routePath = `/${lang}/projects/page/1/${filterString}`;
     this.location.go(routePath + '#projectsSection');
 
-    if (this.currentPage != 1) this.router.navigate([routePath], { fragment: 'projectsSection' });
+    if (this.currentPage != 1) await this.router.navigate([routePath], { fragment: 'projectsSection' });
 
-    this.loadProjects(1, this.activTechnologiesFilterOptions);
+    await this.loadProjects(1, this.activTechnologiesFilterOptions);
 
     // scroll to projects section
     const projectsSection = this.projectsSection();

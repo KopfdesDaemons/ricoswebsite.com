@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, PLATFORM_ID, makeStateKey, TransferState, inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
-import { Post } from '../models/post';
+import { Post } from '../models/post.model';
 import { MarkdownService } from './markdown.service';
 import { LanguageService } from './language.service';
+import { PostMeta } from '../models/post-meta.model';
 
 @Injectable({
   providedIn: 'root',
@@ -50,12 +51,13 @@ export class PostService {
       const postContent = await this.markdownS.parseMarkdown(markdownBody);
 
       return new Post(markdownHeader, fileName, this.languageS.userLanguage, postContent);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
-      if (error.status === 404 && language !== 'en') {
-        // Versuche, den Inhalt auf Englisch zu laden
-        return this.loadFromMarkdownFile(fileName, 'en');
-      }
+      if (error instanceof HttpErrorResponse)
+        if (error.status === 404 && language !== 'en') {
+          // Versuche, den Inhalt auf Englisch zu laden
+          return this.loadFromMarkdownFile(fileName, 'en');
+        }
       return null;
     }
   }
@@ -73,14 +75,14 @@ export class PostService {
 
     try {
       const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
-      const posts = JSON.parse(json);
+      const posts = JSON.parse(json) as PostMeta[];
 
       // Filter nach Sichtbarkeit, Tags und Titel
       const visiblePosts = posts.filter(
-        (post: any) =>
+        (post: PostMeta) =>
           !post.hideInFeed &&
           (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
-          (filterTitle === '' || (post.postMeta.title && post.postMeta.title.includes(filterTitle)))
+          (filterTitle === '' || (post.title && post.title.includes(filterTitle)))
       );
 
       const postArray: Post[] = [];
