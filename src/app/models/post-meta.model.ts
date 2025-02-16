@@ -18,6 +18,7 @@ export class PostMeta {
 
   initFromObject(object: Partial<PostMeta>, lang: string) {
     Object.assign(this, object);
+
     if (object.date) this.date = new Date(object.date);
     if (this.date) this.localDateString = new Date(this.date).toLocaleDateString(lang);
   }

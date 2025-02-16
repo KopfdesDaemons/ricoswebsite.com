@@ -1,14 +1,15 @@
-import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation, inject } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { CodepenService } from 'src/app/services/codepen.service';
-import { HighlightService } from 'src/app/services/highlight.service';
+import { HighlightHelper } from 'src/app/helpers/highlight.helper';
 import { PostService } from 'src/app/services/post.service';
 import { DisqusComponent } from '../../components/disqus/disqus.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
 import { MetaService } from 'src/app/services/meta.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-blog-post',
@@ -21,9 +22,10 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   private route = inject(ActivatedRoute);
   private postS = inject(PostService);
   private renderer = inject(Renderer2);
-  private highlightS = inject(HighlightService);
+  private highlightHelper = HighlightHelper;
   private codePenS = inject(CodepenService);
   private metaS = inject(MetaService);
+  private platformId = inject<object>(PLATFORM_ID);
 
   post: Post | undefined | null;
   private routeParamsSubscription: Subscription | undefined;
@@ -69,8 +71,9 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   }
 
   async ngAfterViewChecked() {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (this.post) {
-      this.highlightS.highlightAll();
+      this.highlightHelper.highlightAll();
       if (this.post?.postMeta?.hasCodePen) await this.codePenS.loadCodePen(this.renderer);
     }
   }

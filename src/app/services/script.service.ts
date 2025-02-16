@@ -7,22 +7,29 @@ import { Injectable, Renderer2, inject } from '@angular/core';
 export class ScriptService {
   private document = inject<Document>(DOCUMENT);
 
-  addJsScript(renderer: Renderer2, src: string) {
-    const existingScript = this.document.querySelector(`script[src="${src}"]`);
-    if (existingScript) return;
+  addJsScript(renderer: Renderer2, src: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const existingScript = this.document.querySelector(`script[src="${src}"]`);
+      if (existingScript) {
+        resolve();
+        return;
+      }
 
-    const script = renderer.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    renderer.appendChild(this.document.body, script);
+      const script = renderer.createElement('script');
+      script.type = 'text/javascript';
+      script.src = src;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Error loading script: ${src}`));
+      renderer.appendChild(this.document.body, script);
+    });
   }
 
-  reloadJsScript(renderer: Renderer2, src: string) {
+  async reloadJsScript(renderer: Renderer2, src: string) {
     this.removeJsScript(src);
-    this.addJsScript(renderer, src);
+    await this.addJsScript(renderer, src);
   }
 
-  private removeJsScript(src: string): void {
+  removeJsScript(src: string): void {
     const existingScript = this.document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
       existingScript.remove();

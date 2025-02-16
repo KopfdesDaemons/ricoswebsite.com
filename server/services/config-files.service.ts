@@ -1,8 +1,8 @@
 import path from 'path';
-import { environment } from 'src/app/environment/enviroment';
 import * as fs from 'fs-extra';
 import { getLanguagesFileNamesList } from './posts.service';
 import { BLOGPOST_ROUTE, PUBLIC_FOLDER_PATH } from 'server/config/paths.config';
+import { BASE_URL } from 'src/app/environment/enviroment';
 
 /**
  * Generates routes.txt and sitemap.txt for each language
@@ -22,7 +22,7 @@ export const generateConfigFiles = async () => {
 const generateSitemapTxt = async (lang: string, fileNames: string[]) => {
   try {
     // Generiere die URLs
-    const urls = fileNames.filter((fileName) => fileName !== 'privacy-policy.md').map((fileName) => environment.baseUrl + '/' + lang + BLOGPOST_ROUTE + '/' + path.parse(fileName).name + '/');
+    const urls = fileNames.filter((fileName) => fileName !== 'privacy-policy.md').map((fileName) => BASE_URL + '/' + lang + BLOGPOST_ROUTE + '/' + path.parse(fileName).name + '/');
     const sitemapFilePath = path.join(PUBLIC_FOLDER_PATH, 'sitemap.txt');
     // Lese die bestehende Sitemap-Datei
     const data = await fs.readFile(sitemapFilePath, 'utf8');

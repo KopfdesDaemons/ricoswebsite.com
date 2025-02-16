@@ -1,16 +1,19 @@
 import { isPlatformServer } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { DISQUS_SHORTNAME } from '../environment/enviroment';
+import { ScriptService } from './script.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsentService {
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
+  private scriptS = inject(ScriptService);
 
   consentMangerIsVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  possibleConsents: {name: string; domains: string[] | undefined; descriptionTransString: string;}[] = [
+  possibleConsents: { name: string; domains: string[] | undefined; descriptionTransString: string }[] = [
     {
       name: 'Disqus',
       domains: ['disqus.com'],
@@ -49,6 +52,11 @@ export class ConsentService {
       consent.domains.forEach((domain) => {
         this.deleteCookiesForDomain(domain);
       });
+    }
+
+    if (serviceName === 'Disqus') {
+      this.scriptS.removeJsScript('https://' + DISQUS_SHORTNAME + '.disqus.com/embed.js');
+      (window as any)['DISQUS'] = undefined;
     }
   }
 

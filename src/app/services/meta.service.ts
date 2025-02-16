@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { environment } from 'src/app/environment/enviroment';
 import { PostMeta } from '../models/post-meta.model';
+import { BASE_URL } from '../environment/enviroment';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,7 @@ export class MetaService {
     const tagsToAdd: { property?: string; name?: string; content: string }[] = [
       { property: 'og:title', content: postMeta.title ?? 'Ricos Website' },
       { property: 'og:type', content: 'article' },
-      { property: 'og:url', content: environment.baseUrl + this.router.url },
+      { property: 'og:url', content: BASE_URL + this.router.url },
     ];
 
     if (postMeta.author) {
@@ -67,7 +67,7 @@ export class MetaService {
     if (postMeta.image) {
       tagsToAdd.push({
         property: 'og:image',
-        content: environment.baseUrl + '/' + postMeta.image,
+        content: BASE_URL + '/' + postMeta.image,
       });
     }
 

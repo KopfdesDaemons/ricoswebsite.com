@@ -18,7 +18,7 @@ export class DisqusComponent implements OnChanges {
   renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
   languageS = inject(LanguageService);
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
 
   readonly identifier = input<string>();
   disqusDiv = ViewChild('disqusDiv');
@@ -31,8 +31,8 @@ export class DisqusComponent implements OnChanges {
     if (!this.identifier()) return;
     if (!this.disqusS.consent) return;
     this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) this.isVisible();
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) await this.isVisible();
       });
     });
     this.observer.observe(this.elementRef.nativeElement);
@@ -42,19 +42,19 @@ export class DisqusComponent implements OnChanges {
     this.observer?.disconnect();
   }
 
-  isVisible() {
+  async isVisible() {
     const identifier = this.identifier();
-    if (this.disqusS.consent && identifier) {
-      this.disqusS.loadDisqus(this.renderer, identifier);
+    if (this.disqusS.consent() && identifier) {
+      await this.disqusS.loadDisqus(this.renderer, identifier);
       this.observer?.disconnect();
     }
   }
 
-  giveConsent() {
+  async giveConsent() {
     const identifier = this.identifier();
     if (!identifier) return;
     this.disqusS.giveConsent();
     this.observer?.disconnect();
-    this.disqusS.loadDisqus(this.renderer, identifier);
+    await this.disqusS.loadDisqus(this.renderer, identifier);
   }
 }

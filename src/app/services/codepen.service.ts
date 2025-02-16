@@ -1,7 +1,6 @@
-import { Injectable, PLATFORM_ID, Renderer2, inject } from '@angular/core';
+import { Injectable, Renderer2, inject } from '@angular/core';
 import { ConsentService } from './consent.service';
 import { ScriptService } from './script.service';
-import { isPlatformServer } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { lastValueFrom } from 'rxjs';
 import { LanguageService } from './language.service';
@@ -14,12 +13,10 @@ export class CodepenService {
   private scriptS = inject(ScriptService);
   private translate = inject(TranslateService);
   private languageS = inject(LanguageService);
-  private platformId = inject<Object>(PLATFORM_ID);
 
   async loadCodePen(renderer: Renderer2) {
-    if (isPlatformServer(this.platformId)) return;
     if (this.consentS.checkConsent('CodePen')) {
-      this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
+      await this.scriptS.reloadJsScript(renderer, 'https://cpwebassets.codepen.io/assets/embed/ei.js');
     } else {
       const CodePenDemos = Array.from(document.querySelectorAll('.codepen'));
       for (const demo of CodePenDemos) {

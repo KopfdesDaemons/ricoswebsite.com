@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, PLATFORM_ID, makeStateKey, TransferState, inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Post } from '../models/post.model';
-import { MarkdownService } from './markdown.service';
+import { MarkdownHelper } from '../helpers/markdown.helper';
 import { LanguageService } from './language.service';
 import { PostMeta } from '../models/post-meta.model';
 
@@ -13,7 +13,7 @@ import { PostMeta } from '../models/post-meta.model';
 export class PostService {
   private http = inject(HttpClient);
   private transferState = inject(TransferState);
-  private markdownS = inject(MarkdownService);
+  private markdownHelper = MarkdownHelper;
   private languageS = inject(LanguageService);
   private platformId = inject<object>(PLATFORM_ID);
 
@@ -36,9 +36,13 @@ export class PostService {
   }
 
   private loadPostFromTransfareState(title: string): Post | null {
-    if (isPlatformServer(this.platformId)) return null;
+    if (!isPlatformBrowser(this.platformId)) return null;
     const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
-    return this.transferState.get(key, null);
+    const postFromState = this.transferState.get(key, null);
+    if (!postFromState) return null;
+    const post = new Post(postFromState?.postMeta ?? {}, title, this.languageS.userLanguage);
+    post.postContent = postFromState?.postContent;
+    return post;
   }
 
   private async loadFromMarkdownFile(fileName: string, language: string): Promise<Post | null> {
@@ -46,9 +50,9 @@ export class PostService {
 
     try {
       const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
-      const markdownHeader = this.markdownS.extractYamlHeader(markdownFile);
-      const markdownBody = this.markdownS.extractBody(markdownFile);
-      const postContent = await this.markdownS.parseMarkdown(markdownBody);
+      const markdownHeader = this.markdownHelper.extractYamlHeader(markdownFile);
+      const markdownBody = this.markdownHelper.extractBody(markdownFile);
+      const postContent = await this.markdownHelper.parseMarkdown(markdownBody);
 
       return new Post(markdownHeader, fileName, this.languageS.userLanguage, postContent);
     } catch (error) {
