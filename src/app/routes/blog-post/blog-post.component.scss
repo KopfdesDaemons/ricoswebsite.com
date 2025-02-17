@@ -96,7 +96,6 @@
 
     img {
       max-width: 100%;
-      border-radius: 12px;
 
       &:hover {
         filter: brightness(0.8);
@@ -114,26 +113,34 @@
     pre {
       background-color: #1d2027;
       padding: 1em;
-      border-radius: 0 12px 12px 0;
+      border-radius: 12px;
       max-width: 100%;
       overflow-x: auto;
       font-size: 0.8em;
+      font-size: 1em;
       margin-bottom: 1em;
-      border-left: 8px solid #3a3a75;
+      border: 8px solid #3a3a75;
 
       + .toolbar {
         opacity: unset;
+        right: 0.8em;
+        top: 0.8em;
 
         button {
-          padding: 0.4em;
+          padding: 0.5em;
           border-radius: unset;
           font-size: 1em;
           cursor: pointer;
+          border-radius: 6px;
 
           &:hover {
             background-color: rgb(50, 50, 66);
           }
         }
+      }
+
+      &:hover {
+        border-color: #1f1f9e;
       }
     }
 
