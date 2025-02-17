@@ -1,6 +1,6 @@
-@if (disqusS.consent()) {
+@if (consentS.checkConsent("Disqus")) {
 <div #disqusDiv id="disqus_thread"></div>
-} @if (!disqusS.consent()) {
+} @else {
 <div class="consentBanner">
     <button (click)="giveConsent()">
         <fa-icon [icon]="faComment"></fa-icon>

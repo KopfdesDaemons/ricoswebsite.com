@@ -3,6 +3,7 @@ import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { DISQUS_SHORTNAME } from '../environment/enviroment';
 import { ScriptService } from './script.service';
+import { DisqusService } from './disqus.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import { ScriptService } from './script.service';
 export class ConsentService {
   private platformId = inject<object>(PLATFORM_ID);
   private scriptS = inject(ScriptService);
+  private disqusS = inject(DisqusService);
 
   consentMangerIsVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -57,6 +59,7 @@ export class ConsentService {
     if (serviceName === 'Disqus') {
       this.scriptS.removeJsScript('https://' + DISQUS_SHORTNAME + '.disqus.com/embed.js');
       (window as any)['DISQUS'] = undefined;
+      this.disqusS.removeDisqus();
     }
   }
 

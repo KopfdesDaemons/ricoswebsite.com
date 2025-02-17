@@ -24,22 +24,20 @@ export class CodepenService {
         for (const span of spans) {
           const button = renderer.createElement('button');
           renderer.addClass(button, 'codePenConsentButton');
-          button.addEventListener('click', () => this.consentS.giveConsent('CodePen'));
-
+          button.addEventListener('click', async () => {
+            this.consentS.giveConsent('CodePen');
+            await this.loadCodePen(renderer);
+          });
           const buttonTextTranslation = await lastValueFrom(this.translate.get('codepen_button'));
           const buttonText = renderer.createText(buttonTextTranslation);
           renderer.appendChild(button, buttonText);
-
           const parent = span.parentNode;
           renderer.insertBefore(parent, button, span);
           renderer.removeChild(parent, span);
-
           const paragraph = renderer.createElement('p');
-
           const pTextTranslation = await lastValueFrom(this.translate.get('codepen_privacy_notice'));
           const paragraphText = renderer.createText(pTextTranslation + ' ');
           renderer.appendChild(paragraph, paragraphText);
-
           const privacyPolicy = renderer.createElement('a');
           renderer.setAttribute(privacyPolicy, 'href', this.languageS.userLanguage + '/privacy-policy/.');
           const privacyPolicyTranslation = await lastValueFrom(this.translate.get('privacy_policy'));

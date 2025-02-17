@@ -27,6 +27,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   private metaS = inject(MetaService);
   private platformId = inject<object>(PLATFORM_ID);
 
+  codePenHasLoaded: boolean = false;
   post: Post | undefined | null;
   private routeParamsSubscription: Subscription | undefined;
   postNotFound: boolean = false;
@@ -34,6 +35,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     // when route changes
     this.routeParamsSubscription = this.route.params.subscribe(async (param) => {
+      this.codePenHasLoaded = false;
       this.postNotFound = false;
 
       const fileName = param['fileName'];
@@ -74,7 +76,9 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
     if (!isPlatformBrowser(this.platformId)) return;
     if (this.post) {
       this.highlightHelper.highlightAll();
+      if (this.codePenHasLoaded) return;
       if (this.post?.postMeta?.hasCodePen) await this.codePenS.loadCodePen(this.renderer);
+      this.codePenHasLoaded = true;
     }
   }
 }

@@ -6,6 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ConsentService } from 'src/app/services/consent.service';
 
 @Component({
   selector: 'app-disqus',
@@ -19,6 +20,7 @@ export class DisqusComponent implements OnChanges {
   private elementRef = inject(ElementRef);
   languageS = inject(LanguageService);
   private platformId = inject<object>(PLATFORM_ID);
+  consentS = inject(ConsentService);
 
   readonly identifier = input<string>();
   disqusDiv = ViewChild('disqusDiv');
@@ -29,7 +31,7 @@ export class DisqusComponent implements OnChanges {
     if (!isPlatformBrowser(this.platformId)) return;
     if (this.observer) this.observer.disconnect();
     if (!this.identifier()) return;
-    if (!this.disqusS.consent) return;
+    if (!this.consentS.checkConsent('Disqus')) return;
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(async (entry) => {
         if (entry.isIntersecting) await this.isVisible();
@@ -44,7 +46,7 @@ export class DisqusComponent implements OnChanges {
 
   async isVisible() {
     const identifier = this.identifier();
-    if (this.disqusS.consent() && identifier) {
+    if (this.consentS.checkConsent('Disqus') && identifier) {
       await this.disqusS.loadDisqus(this.renderer, identifier);
       this.observer?.disconnect();
     }
@@ -53,7 +55,7 @@ export class DisqusComponent implements OnChanges {
   async giveConsent() {
     const identifier = this.identifier();
     if (!identifier) return;
-    this.disqusS.giveConsent();
+    this.consentS.giveConsent('Disqus');
     this.observer?.disconnect();
     await this.disqusS.loadDisqus(this.renderer, identifier);
   }
