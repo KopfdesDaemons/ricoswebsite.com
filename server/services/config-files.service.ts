@@ -1,5 +1,5 @@
 import path from 'path';
-import * as fs from 'fs-extra';
+import fs from 'fs';
 import { getLanguagesFileNamesList } from './posts.service';
 import { BLOGPOST_ROUTE, PUBLIC_FOLDER_PATH } from 'server/config/paths.config';
 import { BASE_URL } from 'src/app/environment/enviroment';
@@ -22,23 +22,31 @@ export const generateConfigFiles = async () => {
 const generateSitemapTxt = async (lang: string, fileNames: string[]) => {
   try {
     // Generiere die URLs
-    const urls = fileNames.filter((fileName) => fileName !== 'privacy-policy.md').map((fileName) => BASE_URL + '/' + lang + BLOGPOST_ROUTE + '/' + path.parse(fileName).name + '/');
+    const urls = fileNames.filter((fileName) => fileName !== 'privacy-policy.md').map((fileName) => `${BASE_URL}/${lang}${BLOGPOST_ROUTE}/${path.parse(fileName).name}/`);
+
     const sitemapFilePath = path.join(PUBLIC_FOLDER_PATH, 'sitemap.txt');
+
     // Lese die bestehende Sitemap-Datei
-    const data = await fs.readFile(sitemapFilePath, 'utf8');
+    let data = '';
+    try {
+      data = await fs.promises.readFile(sitemapFilePath, 'utf8');
+    } catch (readError: any) {
+      if (readError.code !== 'ENOENT') {
+        throw readError; // Andere Fehler weiterwerfen
+      }
+    }
 
     // Filtere die Zeilen, die '/blogpost/' enthalten
     const filteredData = data
       .split('\n')
-      .filter((line) => !line.includes(lang + '/blogpost/'))
+      .filter((line) => !line.includes(`${lang}/blogpost/`))
       .join('\n');
 
     // Füge die neuen Routen hinzu
-    const routesString = urls.join('\n');
-    const newContent = filteredData + '\n' + routesString;
+    const newContent = filteredData + '\n' + urls.join('\n');
 
     // Schreibe den gesamten neuen Inhalt in die Datei
-    await fs.writeFile(sitemapFilePath, newContent, 'utf8');
+    await fs.promises.writeFile(sitemapFilePath, newContent.trim() + '\n', 'utf8');
 
     console.log(`sitemap.txt erfolgreich für die Sprache ${lang} aktualisiert.`);
   } catch (err) {

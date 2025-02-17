@@ -1,5 +1,5 @@
 import path from 'path';
-import * as fs from 'fs-extra';
+import * as fs from 'fs';
 import { POSTS_FOLDER_PATH } from 'server/config/paths.config';
 import { MarkdownHelper } from 'src/app/helpers/markdown.helper';
 
