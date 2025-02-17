@@ -9,6 +9,7 @@ https://ricoswebsite.com/de/blogpost/css-gallery/
 https://ricoswebsite.com/de/blogpost/disqus-in-angular/
 https://ricoswebsite.com/de/blogpost/linux-test/
 https://ricoswebsite.com/de/blogpost/steam-dropdown-bug/
+
 https://ricoswebsite.com/en/blogpost/about-this-website/
 https://ricoswebsite.com/en/blogpost/angular-gh-pages/
 https://ricoswebsite.com/en/blogpost/blogtube/
