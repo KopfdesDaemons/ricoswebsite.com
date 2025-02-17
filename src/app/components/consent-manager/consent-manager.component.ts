@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
   consentS = inject(ConsentService);
-  private platformId = inject<Object>(PLATFORM_ID);
+  private platformId = inject<object>(PLATFORM_ID);
 
   readonly dialog = viewChild<ElementRef>('dialog');
   listenOpenStatusSub: Subscription | undefined;

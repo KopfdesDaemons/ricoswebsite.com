@@ -8,6 +8,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { PostService } from 'src/app/services/post.service';
 import { FormsModule } from '@angular/forms';
 import { BlogpostCardComponent } from '../../components/blogpost-card/blogpost-card.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-blog',
@@ -55,10 +56,19 @@ export class BlogComponent implements OnInit {
   }
 
   async loadPostsList() {
-    const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage, this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
-
-    this.postsList = posts;
-    this.totalPages = totalPages;
+    try {
+      const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage, this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
+      this.postsList = posts;
+      this.totalPages = totalPages;
+    } catch (error) {
+      console.error(error);
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 404 && this.languageS.userLanguage !== 'en') {
+          // try to load posts in english
+          await this.postS.loadPostList('en', this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
+        }
+      }
+    }
   }
 
   public async sort(event: any) {

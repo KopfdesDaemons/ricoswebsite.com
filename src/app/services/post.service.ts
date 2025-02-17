@@ -74,60 +74,51 @@ export class PostService {
     sortBy: 'date' | 'title' = 'date',
     filterTags: string[] = [],
     filterTitle: string = ''
-  ): Promise<any> {
+  ): Promise<{ posts: Post[]; totalPages: number }> {
     const postListURL = `${this.baseUrl}posts/posts.${language}.json`;
 
-    try {
-      const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
-      const posts = JSON.parse(json) as PostMeta[];
+    const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
+    const posts = JSON.parse(json) as PostMeta[];
 
-      // Filter nach Sichtbarkeit, Tags und Titel
-      const visiblePosts = posts.filter(
-        (post: PostMeta) =>
-          !post.hideInFeed &&
-          (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
-          (filterTitle === '' || (post.title && post.title.includes(filterTitle)))
-      );
+    // Filter nach Sichtbarkeit, Tags und Titel
+    const visiblePosts = posts.filter(
+      (post: PostMeta) =>
+        !post.hideInFeed &&
+        (filterTags.length === 0 || filterTags.some((keyword: string) => post.keywords.some((postTag: string) => postTag.includes(keyword)))) &&
+        (filterTitle === '' || (post.title && post.title.includes(filterTitle)))
+    );
 
-      const postArray: Post[] = [];
-      for (const post of visiblePosts) {
-        postArray.push(new Post(post, post.fileName, this.languageS.userLanguage));
-      }
-      // Sortierung
-      postArray.sort((a: Post, b: Post) => {
-        let compareA: number | string, compareB: number | string;
-
-        if (sortBy === 'date') {
-          compareA = new Date(a.postMeta?.date ?? 0).getTime();
-          compareB = new Date(b.postMeta?.date ?? 0).getTime();
-        } else if (sortBy === 'title') {
-          compareA = a.postMeta?.title?.toLowerCase() ?? '';
-          compareB = b.postMeta?.title?.toLowerCase() ?? '';
-        } else {
-          // Default-Fall, wenn sortBy weder 'date' noch 'name' ist
-          compareA = '';
-          compareB = '';
-        }
-
-        if (compareA < compareB) return sortOrder === 'asc' ? -1 : 1;
-        if (compareA > compareB) return sortOrder === 'asc' ? 1 : -1;
-        return 0;
-      });
-
-      // Paginierung
-      const startIndex = (page - 1) * pageSize;
-      const paginatedPosts = postArray.slice(startIndex, startIndex + pageSize);
-
-      const totalPages = Math.ceil(postArray.length / pageSize);
-
-      return { posts: paginatedPosts, totalPages: totalPages };
-    } catch (error: any) {
-      console.error(error);
-      if (error.status === 404 && language !== 'en') {
-        // Versuche, die Beiträge auf Englisch zu laden
-        return this.loadPostList('en', page, pageSize, sortOrder, sortBy, filterTags, filterTitle);
-      }
-      return null;
+    const postArray: Post[] = [];
+    for (const post of visiblePosts) {
+      postArray.push(new Post(post, post.fileName, this.languageS.userLanguage));
     }
+    // Sortierung
+    postArray.sort((a: Post, b: Post) => {
+      let compareA: number | string, compareB: number | string;
+
+      if (sortBy === 'date') {
+        compareA = new Date(a.postMeta?.date ?? 0).getTime();
+        compareB = new Date(b.postMeta?.date ?? 0).getTime();
+      } else if (sortBy === 'title') {
+        compareA = a.postMeta?.title?.toLowerCase() ?? '';
+        compareB = b.postMeta?.title?.toLowerCase() ?? '';
+      } else {
+        // Default-Fall, wenn sortBy weder 'date' noch 'name' ist
+        compareA = '';
+        compareB = '';
+      }
+
+      if (compareA < compareB) return sortOrder === 'asc' ? -1 : 1;
+      if (compareA > compareB) return sortOrder === 'asc' ? 1 : -1;
+      return 0;
+    });
+
+    // Paginierung
+    const startIndex = (page - 1) * pageSize;
+    const paginatedPosts = postArray.slice(startIndex, startIndex + pageSize);
+
+    const totalPages = Math.ceil(postArray.length / pageSize);
+
+    return { posts: paginatedPosts, totalPages: totalPages };
   }
 }

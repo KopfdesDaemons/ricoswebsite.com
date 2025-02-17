@@ -1,7 +1,7 @@
 import path from 'path';
 import * as fs from 'fs-extra';
-import { loadFront } from 'yaml-front-matter';
 import { POSTS_FOLDER_PATH } from 'server/config/paths.config';
+import { MarkdownHelper } from 'src/app/helpers/markdown.helper';
 
 let languageFileNameList: { lang: string; fileNames: string[] }[] | undefined = undefined;
 const postsPerPage = 5;
@@ -66,8 +66,7 @@ const createPostsJSON = async (lang: string, fileNames: string[]): Promise<void>
     // Read metadata from markdownfiles
     const metadataPromises = fileNames.map(async (markdownFile) => {
       const content = await fs.promises.readFile(path.join(langFolderPath, markdownFile), 'utf8');
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-      const { __content, ...metadata } = loadFront(content);
+      const metadata = MarkdownHelper.extractYamlHeader(content);
       const modifiedMetadata = {
         ...metadata,
         fileName: path.parse(markdownFile).name,

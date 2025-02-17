@@ -8,7 +8,7 @@
       "YAML"
     ],
     "description": "Ein kleiner Einblick, wie diese Website funktioniert.",
-    "date": "2024-05-12T00:00:00.000Z",
+    "date": "2024-05-12",
     "fileName": "about-this-website"
   },
   {
@@ -21,7 +21,7 @@
       "Prerendering"
     ],
     "description": "Eine Anleitung für das Deployment eines Angular Projekts auf GitHub Pages mit vorgerenderten Seiten.",
-    "date": "2024-09-07T00:00:00.000Z",
+    "date": "2024-09-07",
     "fileName": "angular-gh-pages"
   },
   {
@@ -34,7 +34,7 @@
       "WordPress Theme"
     ],
     "description": "BlogTube ist ein WordPress-Theme, das auf dem Designschema von YouTube basiert",
-    "date": "2024-05-18T00:00:00.000Z",
+    "date": "2024-05-18",
     "fileName": "blogtube"
   },
   {
@@ -48,7 +48,7 @@
       "CodePen in Angular"
     ],
     "description": "Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.",
-    "date": "2024-05-18T00:00:00.000Z",
+    "date": "2024-05-18",
     "fileName": "codepen-in-angular"
   },
   {
@@ -64,7 +64,7 @@
       "Table"
     ],
     "description": "Mein Design ist 🌟inspiriert🌟 von Googles Material Design. Es ist minimalistisch, clean und nicht überladen.",
-    "date": "2023-03-06T00:00:00.000Z",
+    "date": "2023-03-06",
     "fileName": "css-gallery"
   },
   {
@@ -78,7 +78,7 @@
       "Disqus in Angular"
     ],
     "description": "Eine Anleitung, wie man Disqus ohne weitere Abhängigkeiten in Angular einbetten kann.",
-    "date": "2024-05-30T00:00:00.000Z",
+    "date": "2024-05-30",
     "fileName": "disqus-in-angular"
   },
   {
@@ -90,7 +90,7 @@
       "Desktop"
     ],
     "description": "Als Hobby-Webentwickler habe ich Linux Mint Cinnamon als Desktop getestet. Hier liste ich meine positiven Erfahrungen und Probleme auf.",
-    "date": "2024-04-12T00:00:00.000Z",
+    "date": "2024-04-12",
     "fileName": "linux-test"
   },
   {
@@ -109,7 +109,7 @@
       "Steam Einstellungen Linux"
     ],
     "description": "Unter Linux können die Einstellungen des Steam Clients verbugt sein und Einstellungen in Dropdowns lassen sich nicht auswählen. Hier erfährst du, wie du den Bug beheben kannst.",
-    "date": "2024-06-17T00:00:00.000Z",
+    "date": "2024-06-17",
     "fileName": "steam-dropdown-bug"
   }
 ]

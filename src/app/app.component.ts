@@ -21,10 +21,10 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(async (event) => {
       if (event instanceof ActivationStart && Object.keys(event.snapshot.params).length > 0) {
         const lang = event.snapshot.params['lang'];
-        this.langS.updateLanguage(lang);
+        await this.langS.updateLanguage(lang);
       }
     });
   }
