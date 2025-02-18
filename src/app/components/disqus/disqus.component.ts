@@ -15,11 +15,11 @@ import { ConsentService } from 'src/app/services/consent.service';
   imports: [FaIconComponent, RouterLink, TranslateModule],
 })
 export class DisqusComponent implements OnChanges {
-  disqusS = inject(DisqusService);
-  renderer = inject(Renderer2);
+  private disqusS = inject(DisqusService);
+  private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
-  languageS = inject(LanguageService);
   private platformId = inject<object>(PLATFORM_ID);
+  languageS = inject(LanguageService);
   consentS = inject(ConsentService);
 
   readonly identifier = input<string>();
