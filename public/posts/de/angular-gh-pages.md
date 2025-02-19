@@ -14,7 +14,7 @@ Der Angular Application Builder rendert ein Angular Projekt bereits vor, ist jed
 
 Mit dem Befehl `ng build` wird das Projekt bereits vorgerendert. Die vorgerenderten Dateien sind im Verzeichnis `dist/projektname/browser/` zufinden. Für jede Route hat der Application Builder ein eigenes Verzeichnis angelegt, welches den Namen der Route trägt und eine `index.html` beinhaltet. Startet man einen HTTP-Server in diesem Verzeichnis, kann man die vorgerenderte Seite bereits testen.
 
-### Das Trailing Slash Problem
+## Das Trailing Slash Problem
 
 Ohne weitere Anpassugen stößt man in den Entwicklertools im Netzwerktab auf ein Problem: Beim Aufruf der Seite erfolgt ein Redirect. Die Anfrage erfolgt ohne Slash am Ende der URL und daraufhin folgt eine Weiterleitung zu der URL mit Trailing Slash.
 

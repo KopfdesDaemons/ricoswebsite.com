@@ -73,6 +73,8 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   }
 
   async ngAfterViewChecked() {
+    console.log(this.post);
+
     if (!isPlatformBrowser(this.platformId)) return;
     if (this.post) {
       this.highlightHelper.highlightAll();

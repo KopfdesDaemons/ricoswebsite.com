@@ -62,7 +62,7 @@
 
   .postContent {
     min-height: 40em;
-    line-height: 1.5em;
+    line-height: 1.9em;
     margin-bottom: 4em;
     padding: clamp(1em, 2vw, 2em);
     overflow: auto;
@@ -92,6 +92,10 @@
     h4 {
       margin: 1em 0 0 0;
       line-height: 1.2em;
+    }
+
+    h2 {
+      font-size: 1.6em;
     }
 
     img {
