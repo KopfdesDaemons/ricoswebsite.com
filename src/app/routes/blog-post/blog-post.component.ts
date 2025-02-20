@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation, inject, signal, viewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
@@ -18,7 +18,7 @@ import { isPlatformBrowser } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   imports: [DisqusComponent, TranslateModule, SafeHtmlPipe],
 })
-export class BlogPostComponent implements OnInit, AfterViewChecked {
+export class BlogPostComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private postS = inject(PostService);
   private renderer = inject(Renderer2);
@@ -26,61 +26,41 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
   private codePenS = inject(CodepenService);
   private metaS = inject(MetaService);
   private platformId = inject<object>(PLATFORM_ID);
+  postContent = viewChild.required<ElementRef>('postContent');
 
-  codePenHasLoaded: boolean = false;
-  post: Post | undefined | null;
+  post = signal<Post | undefined | null>(undefined);
   private routeParamsSubscription: Subscription | undefined;
   postNotFound: boolean = false;
 
   ngOnInit() {
-    // when route changes
     this.routeParamsSubscription = this.route.params.subscribe(async (param) => {
-      this.codePenHasLoaded = false;
       this.postNotFound = false;
 
-      const fileName = param['fileName'];
-
-      if (fileName) {
-        // load post when fileName is param in route
-        this.post = await this.postS.getPost(fileName);
-      } else {
-        // read route data for non blog post routes (privacy policy)
-        const data = await firstValueFrom(this.route.data);
-
-        if (data['fileName']) {
-          this.post = await this.postS.getPost(data['fileName']);
-        }
-
-        // disable comments
-        if (this.post?.postMeta) {
-          this.post.postMeta.commentsDisabled = true;
-        }
-      }
-
-      this.postNotFound = !this.post;
+      const fileName = param['fileName'] || (await firstValueFrom(this.route.data))?.['fileName'];
+      if (fileName) this.post.set(await this.postS.getPost(fileName));
 
       // set meta tags
-      if (this.post?.postMeta) {
-        this.metaS.updateMetaTags(this.post.postMeta);
+      if (this.post()?.postMeta) {
+        this.metaS.updateMetaTags(this.post()!.postMeta);
+        this.loadEmbededContent();
       }
+      this.postNotFound = !this.post();
     });
   }
 
   ngOnDestroy(): void {
-    if (this.routeParamsSubscription) {
-      this.routeParamsSubscription.unsubscribe();
-    }
+    this.routeParamsSubscription?.unsubscribe();
   }
 
-  async ngAfterViewChecked() {
-    console.log(this.post);
-
+  private loadEmbededContent() {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (this.post) {
+
+    // timer is needed to wait for the view to be initialized
+    setTimeout(async () => {
       this.highlightHelper.highlightAll();
-      if (this.codePenHasLoaded) return;
-      if (this.post?.postMeta?.hasCodePen) await this.codePenS.loadCodePen(this.renderer);
-      this.codePenHasLoaded = true;
-    }
+      if (this.post()?.postMeta?.hasCodePen) {
+        await this.codePenS.loadCodePen(this.renderer);
+      }
+    });
   }
 }

@@ -49,7 +49,19 @@ export class PostService {
     const contentUrl = `${this.baseUrl}posts/${language}/${fileName}.md`;
 
     try {
-      const markdownFile = await lastValueFrom(this.http.get(contentUrl, { responseType: 'text' }));
+      const response = await lastValueFrom(
+        this.http.get(contentUrl, {
+          responseType: 'text',
+          observe: 'response',
+          headers: { Accept: 'text/plain' },
+          transferCache: { includeHeaders: ['Content-Type'] },
+        })
+      );
+
+      // 404
+      if (response.headers.get('Content-Type')?.includes('text/html')) return null;
+
+      const markdownFile = response.body as string;
       const markdownHeader = this.markdownHelper.extractYamlHeader(markdownFile);
       const markdownBody = this.markdownHelper.extractBody(markdownFile);
       const postContent = await this.markdownHelper.parseMarkdown(markdownBody);
@@ -59,7 +71,7 @@ export class PostService {
       console.error(error);
       if (error instanceof HttpErrorResponse)
         if (error.status === 404 && language !== 'en') {
-          // Versuche, den Inhalt auf Englisch zu laden
+          // try to load post in english
           return this.loadFromMarkdownFile(fileName, 'en');
         }
       return null;
