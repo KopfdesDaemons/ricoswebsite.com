@@ -21,32 +21,33 @@ export const generateConfigFiles = async () => {
  **/
 const generateSitemapTxt = async (lang: string, fileNames: string[]) => {
   try {
-    // Generiere die URLs
+    // generate blogpost routes
     const urls = fileNames.filter((fileName) => fileName !== 'privacy-policy.md').map((fileName) => `${BASE_URL}/${lang}${BLOGPOST_ROUTE}/${path.parse(fileName).name}/`);
 
     const sitemapFilePath = path.join(PUBLIC_FOLDER_PATH, 'sitemap.txt');
 
-    // Lese die bestehende Sitemap-Datei
+    // read existing content
     let data = '';
     try {
       data = await fs.promises.readFile(sitemapFilePath, 'utf8');
     } catch (readError: any) {
       if (readError.code !== 'ENOENT') {
-        throw readError; // Andere Fehler weiterwerfen
+        throw readError;
       }
     }
 
-    // Filtere die Zeilen, die '/blogpost/' enthalten
+    // remove all existing /blogpost routes
     const filteredData = data
       .split('\n')
-      .filter((line) => !line.includes(`${lang}/blogpost/`))
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0 && !line.includes(`${lang}/blogpost/`))
       .join('\n');
 
-    // Füge die neuen Routen hinzu
-    const newContent = filteredData + '\n' + urls.join('\n');
+    // add new blogpost routes
+    const newContent = [filteredData, ...urls].filter(Boolean).join('\n');
 
     // Schreibe den gesamten neuen Inhalt in die Datei
-    await fs.promises.writeFile(sitemapFilePath, newContent.trim() + '\n', 'utf8');
+    await fs.promises.writeFile(sitemapFilePath, newContent + '\n', 'utf8');
 
     console.log(`sitemap.txt erfolgreich für die Sprache ${lang} aktualisiert.`);
   } catch (err) {
