@@ -139,7 +139,7 @@
       ],
       "projectURL": "https://www.grundbuch-musterantrag.de/",
       "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de",
-      "technologies": ["Angular", "TypeScript", "Node.js"]
+      "technologies": ["Angular", "TypeScript", "Node.js", "MySQL"]
     }
   ]
 }

@@ -96,6 +96,7 @@
   {
     "title": "Datenschutzerklärung",
     "hideInFeed": true,
+    "commentsDisabled": true,
     "fileName": "privacy-policy"
   },
   {
