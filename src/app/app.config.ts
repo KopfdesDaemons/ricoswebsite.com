@@ -3,14 +3,14 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { YamlLanguageLoader } from './utilities/yam-language-loader';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withIncrementalHydration } from '@angular/platform-browser';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { routes } from './routes/app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideClientHydration(),
+    provideClientHydration(withIncrementalHydration()),
     provideRouter(
       routes,
       withInMemoryScrolling({
@@ -29,7 +29,6 @@ export const appConfig: ApplicationConfig = {
       FormsModule,
       FontAwesomeModule
     ),
-    // HighlightService,
     provideHttpClient(withFetch()),
   ],
 };

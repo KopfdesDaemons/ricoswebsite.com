@@ -21,9 +21,11 @@
         <div class="sectionSpacer">
             @if (post()?.postContent) {
             <div class="post-content" #postContent [innerHTML]="post()?.postContent ?? '' | safeHtml"></div>
-            } @if (post() && !post()?.postMeta?.commentsDisabled) {
+            } @if (post() && !post()?.postMeta?.commentsDisabled) { @defer (on viewport) {
             <app-disqus [identifier]="post()?.postMeta?.fileName"></app-disqus>
-            }
+            }@placeholder {
+            <p>{{ "loading_comments" | translate }}</p>
+            } }
         </div>
     </section>
 </main>

@@ -6,14 +6,13 @@ import { NgClass } from '@angular/common';
 import { LanguageSwitchOfferComponent } from './components/language-switch-offer/language-switch-offer.component';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { ActivationStart, Router, RouterOutlet } from '@angular/router';
-import { ConsentManagerComponent } from './components/consent-manager/consent-manager.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, ConsentManagerComponent, FooterComponent],
+  imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, FooterComponent],
 })
 export class AppComponent implements OnInit {
   sidemenuS = inject(SidemenuService);

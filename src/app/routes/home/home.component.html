@@ -47,7 +47,9 @@
             <ul class="projectCards">
                 @for (project of projects; track project.name) {
                 <li>
+                    @defer (hydrate on interaction) {
                     <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])"> </app-project-card>
+                    }
                 </li>
                 }
             </ul>

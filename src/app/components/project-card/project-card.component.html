@@ -22,7 +22,7 @@
             }
             <p>{{ project().description }}</p>
             <ul>
-                @for (f of project().features; track f) {
+                @for (f of project().features; track $index) {
                 <li>{{ f }}</li>
                 }
             </ul>
