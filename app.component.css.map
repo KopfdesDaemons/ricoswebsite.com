@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/app.component.scss"],
-  "sourcesContent": [".menuIsOpen {\n  padding-left: 0;\n}\n\n.content {\n  transition: padding-left 100ms ease-in-out;\n}\n\n@media only screen and (min-width: 1100px) {\n  .content {\n    padding-left: var(--sidemenu-width);\n    padding-top: 0;\n  }\n  .menuIsOpen {\n    padding-left: 0;\n  }\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,gBAAA;;AAGF,CAAA;AACE,cAAA,aAAA,MAAA;;AAGF,OAAA,KAAA,OAAA,IAAA,CAAA,SAAA,EAAA;AACE,GALF;AAMI,kBAAA,IAAA;AACA,iBAAA;;AAEF,GAbF;AAcI,kBAAA;;;",
-  "names": []
-}
