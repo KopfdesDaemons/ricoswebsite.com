@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="utf-8">
-        <title>CodePen in Angular integrieren (DSGVO konform)</title>
+        <title>CodePen in Angular integrieren</title>
         <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css" id="fa-auto-css">:root, :host {
@@ -968,9 +968,9 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
   flex-direction: unset;
   justify-content: center;
 }
-.blogpostMain .postContent {
+.blogpostMain .post-content {
   min-height: 40em;
-  line-height: 1.5em;
+  line-height: 1.9em;
   margin-bottom: 4em;
   padding: clamp(1em, 2vw, 2em);
   overflow: auto;
@@ -978,39 +978,42 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
   box-sizing: border-box;
 }
 @media only screen and (max-width: 800px) {
-  .blogpostMain .postContent ul,
-  .blogpostMain .postContent ol {
+  .blogpostMain .post-content ul,
+  .blogpostMain .post-content ol {
     padding-left: 1em;
   }
 }
-.blogpostMain .postContent ul {
+.blogpostMain .post-content ul {
   padding-left: 1.5em;
 }
-.blogpostMain .postContent h2,
-.blogpostMain .postContent h3,
-.blogpostMain .postContent a {
+.blogpostMain .post-content h2,
+.blogpostMain .post-content h3,
+.blogpostMain .post-content a {
   color: #8888ff;
 }
-.blogpostMain .postContent h1,
-.blogpostMain .postContent h2,
-.blogpostMain .postContent h3,
-.blogpostMain .postContent h4 {
+.blogpostMain .post-content h1,
+.blogpostMain .post-content h2,
+.blogpostMain .post-content h3,
+.blogpostMain .post-content h4 {
   margin: 1em 0 0 0;
   line-height: 1.2em;
 }
-.blogpostMain .postContent img {
+.blogpostMain .post-content h2 {
+  font-size: 1.6em;
+}
+.blogpostMain .post-content img {
   max-width: 100%;
 }
-.blogpostMain .postContent img:hover {
+.blogpostMain .post-content img:hover {
   filter: brightness(0.8);
 }
-.blogpostMain .postContent p > code,
-.blogpostMain .postContent li > code {
+.blogpostMain .post-content p > code,
+.blogpostMain .post-content li > code {
   background-color: rgb(21, 39, 90);
   padding: 0.4em;
   border-radius: 4px;
 }
-.blogpostMain .postContent pre {
+.blogpostMain .post-content pre {
   background-color: #1d2027;
   padding: 1em;
   border-radius: 12px;
@@ -1021,25 +1024,25 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
   margin-bottom: 1em;
   border: 8px solid #3a3a75;
 }
-.blogpostMain .postContent pre + .toolbar {
+.blogpostMain .post-content pre + .toolbar {
   opacity: unset;
   right: 0.8em;
   top: 0.8em;
 }
-.blogpostMain .postContent pre + .toolbar button {
+.blogpostMain .post-content pre + .toolbar button {
   padding: 0.5em;
   border-radius: unset;
   font-size: 1em;
   cursor: pointer;
   border-radius: 6px;
 }
-.blogpostMain .postContent pre + .toolbar button:hover {
+.blogpostMain .post-content pre + .toolbar button:hover {
   background-color: rgb(50, 50, 66);
 }
-.blogpostMain .postContent pre:hover {
+.blogpostMain .post-content pre:hover {
   border-color: #1f1f9e;
 }
-.blogpostMain .postContent .linkButton {
+.blogpostMain .post-content .linkButton {
   font-size: 1.4em;
   padding: 0.7em;
   background-color: #1f1d57;
@@ -1050,7 +1053,7 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
   transition: all 250ms;
   display: inline-block;
 }
-.blogpostMain .postContent .linkButton:hover {
+.blogpostMain .post-content .linkButton:hover {
   background-color: #2d2b5f;
 }
 .blogpostMain #disqus_thread {
@@ -1082,7 +1085,7 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
   text-align: center;
 }
 /*# sourceMappingURL=/blog-post.component.css.map */
-</style><meta property="og:title" content="CodePen in Angular integrieren (DSGVO konform)"><meta property="og:type" content="article"><meta property="og:url" content="https://ricoswebsite.com/de/blogpost/codepen-in-angular"><meta property="og:author" content="Rico"><meta property="article:published_time" content="2024-05-18T00:00:00.000Z"><meta property="og:description" content="Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann."><meta name="description" content="Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann."><meta name="keywords" content="CodePen integrieren, Angular CodePen, Angular CodePen einbetten, CodePen in Angular"><meta property="og:image" content="https://ricoswebsite.com//images/codepen-screenshot.avif"><style ng-app-id="ng">
+</style><meta property="og:title" content="CodePen in Angular integrieren"><meta property="og:type" content="article"><meta property="og:url" content="https://ricoswebsite.com/de/blogpost/codepen-in-angular"><meta property="og:author" content="Rico"><meta property="article:published_time" content="2024-05-18T00:00:00.000Z"><meta property="og:description" content="Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann."><meta name="description" content="Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann."><meta name="keywords" content="CodePen integrieren, Angular CodePen, Angular CodePen einbetten, CodePen in Angular"><meta property="og:image" content="https://ricoswebsite.com//images/codepen-screenshot.avif"><style ng-app-id="ng">
 
 #disqus_thread[_ngcontent-ng-c1934723076] {
   padding: 0 0.5em;
@@ -1117,14 +1120,78 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
 /*# sourceMappingURL=/disqus.component.css.map */</style></head>
 
     <body><!--nghm-->
-        <app-root ng-version="19.1.6" _nghost-ng-c292575549="" ngh="4" ng-server-context="ssg"><app-header _ngcontent-ng-c292575549="" _nghost-ng-c1730771519="" ngh="0"><header _ngcontent-ng-c1730771519="" ng-reflect-ng-class="[object Object]" class=""><button _ngcontent-ng-c1730771519="" aria-label="toggle sidemenu" class="toggle_sidemenu_button"><fa-icon _ngcontent-ng-c1730771519="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path></svg></fa-icon></button><a _ngcontent-ng-c1730771519="" class="websiteName" ng-reflect-router-link="de/projects/page/1/." href="/de/projects/page/1/."><span _ngcontent-ng-c1730771519="">Ricos</span><span _ngcontent-ng-c1730771519=""> Website</span></a></header></app-header><div _ngcontent-ng-c292575549="" class="content" ng-reflect-ng-class="[object Object]"><app-language-switch-offer _ngcontent-ng-c292575549="" _nghost-ng-c2349498990="" ngh="0"><div _ngcontent-ng-c2349498990="" id="languageSwitchOffer" ng-reflect-ng-class="[object Object]" class=""><button _ngcontent-ng-c2349498990="" class="closeButton">✕</button><p _ngcontent-ng-c2349498990=""> Do you want to change the language to english? </p><div _ngcontent-ng-c2349498990="" class="buttons"><button _ngcontent-ng-c2349498990="">Yes</button><button _ngcontent-ng-c2349498990="">No</button></div></div></app-language-switch-offer><app-sidemenu _ngcontent-ng-c292575549="" _nghost-ng-c1032176811="" ngh="0"><div _ngcontent-ng-c1032176811="" class="closingDiv" ng-reflect-ng-class="[object Object]"></div><aside _ngcontent-ng-c1032176811="" side="" ng-reflect-ng-class="[object Object]" class=""><div _ngcontent-ng-c1032176811="" class="sidemenuContent"><nav _ngcontent-ng-c1032176811=""><ul _ngcontent-ng-c1032176811=""><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/projects/page/1/." href="/de/projects/page/1/."><fa-icon _ngcontent-ng-c1032176811="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" class="svg-inline--fa fa-house" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg></fa-icon><span _ngcontent-ng-c1032176811="">Home</span></a></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" href="https://github.com/KopfdesDaemons" target="_blank"><fa-icon _ngcontent-ng-c1032176811="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></fa-icon><span _ngcontent-ng-c1032176811="">GitHub</span></a></li><li _ngcontent-ng-c1032176811=""><hr _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/blog/." href="/de/blog/."><span _ngcontent-ng-c1032176811="">Blog</span></a></li><li _ngcontent-ng-c1032176811=""><hr _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" fragment="projectsSection" ng-reflect-fragment="projectsSection" ng-reflect-router-link="de/." href="/de/.#projectsSection"><span _ngcontent-ng-c1032176811="">Portfolio</span></a><hr _ngcontent-ng-c1032176811=""></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/blogpost/css-gallery/." href="/de/blogpost/css-gallery/."><span _ngcontent-ng-c1032176811="">CSS Gallery</span></a></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/blogpost/about-this-website" href="/de/blogpost/about-this-website/."><span _ngcontent-ng-c1032176811="">Über diese Webseite</span></a></li></ul></nav><fieldset _ngcontent-ng-c1032176811="" class="languageSetter"><legend _ngcontent-ng-c1032176811="">Sprache:</legend><div _ngcontent-ng-c1032176811=""><input _ngcontent-ng-c1032176811="" type="radio" id="german" name="language" value="de" ng-reflect-name="language" ng-reflect-value="de" ng-reflect-model="de" class="ng-untouched ng-pristine ng-valid" checked=""><label _ngcontent-ng-c1032176811="" for="german"><svg _ngcontent-ng-c1032176811="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img" aria-labelledby="german-flag"><title _ngcontent-ng-c1032176811="" id="german-flag">Flagge von Deutschland</title><path _ngcontent-ng-c1032176811="" fill="#fc0" d="M0 320h640v160H0z"></path><path _ngcontent-ng-c1032176811="" fill="#000001" d="M0 0h640v160H0z"></path><path _ngcontent-ng-c1032176811="" fill="red" d="M0 160h640v160H0z"></path></svg><span _ngcontent-ng-c1032176811="">German</span></label></div><div _ngcontent-ng-c1032176811=""><input _ngcontent-ng-c1032176811="" type="radio" id="english" name="language" value="en" ng-reflect-name="language" ng-reflect-value="en" ng-reflect-model="de" class="ng-untouched ng-pristine ng-valid"><label _ngcontent-ng-c1032176811="" for="english"><svg _ngcontent-ng-c1032176811="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img" aria-labelledby="us-flag"><title _ngcontent-ng-c1032176811="" id="us-flag">Flagge der USA</title><path _ngcontent-ng-c1032176811="" fill="#bd3d44" d="M0 0h640v480H0"></path><path _ngcontent-ng-c1032176811="" stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"></path><path _ngcontent-ng-c1032176811="" fill="#192f5d" d="M0 0h364.8v258.5H0"></path><marker _ngcontent-ng-c1032176811="" id="us-a" markerHeight="30" markerWidth="30"><path _ngcontent-ng-c1032176811="" fill="#fff" d="m14 0 9 27L0 10h28L5 27z"></path></marker><path _ngcontent-ng-c1032176811="" fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"></path></svg><span _ngcontent-ng-c1032176811="">English</span></label></div></fieldset></div></aside></app-sidemenu><router-outlet _ngcontent-ng-c292575549=""></router-outlet><app-blog-post ngh="2"><main class="blogpostMain"><div class="hero gradient"><div class="sectionSpacer"><img height="495" width="880" alt="CodePen in Angular integrieren (DSGVO konform)" src="/images/codepen-screenshot.avif"><!--container--><h1>CodePen in Angular integrieren (DSGVO konform)</h1><div class="description"><p>Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.</p></div><time>18.5.2024</time><!--container--></div></div><section><div class="sectionSpacer"><div class="postContent"><h2>Was ist CodePen?</h2>
+        <app-root ng-version="19.1.6" _nghost-ng-c292575549="" ngh="4" ng-server-context="ssg"><app-header _ngcontent-ng-c292575549="" _nghost-ng-c1730771519="" ngh="0"><header _ngcontent-ng-c1730771519="" ng-reflect-ng-class="[object Object]" class=""><button _ngcontent-ng-c1730771519="" aria-label="toggle sidemenu" class="toggle_sidemenu_button"><fa-icon _ngcontent-ng-c1730771519="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path></svg></fa-icon></button><a _ngcontent-ng-c1730771519="" class="websiteName" ng-reflect-router-link="de/projects/page/1/." href="/de/projects/page/1/."><span _ngcontent-ng-c1730771519="">Ricos</span><span _ngcontent-ng-c1730771519=""> Website</span></a></header></app-header><div _ngcontent-ng-c292575549="" class="content" ng-reflect-ng-class="[object Object]"><app-language-switch-offer _ngcontent-ng-c292575549="" _nghost-ng-c2349498990="" ngh="0"><div _ngcontent-ng-c2349498990="" id="languageSwitchOffer" ng-reflect-ng-class="[object Object]" class=""><button _ngcontent-ng-c2349498990="" class="closeButton">✕</button><p _ngcontent-ng-c2349498990=""> Do you want to change the language to english? </p><div _ngcontent-ng-c2349498990="" class="buttons"><button _ngcontent-ng-c2349498990="">Yes</button><button _ngcontent-ng-c2349498990="">No</button></div></div></app-language-switch-offer><app-sidemenu _ngcontent-ng-c292575549="" _nghost-ng-c1032176811="" ngh="0"><div _ngcontent-ng-c1032176811="" class="closingDiv" ng-reflect-ng-class="[object Object]"></div><aside _ngcontent-ng-c1032176811="" side="" ng-reflect-ng-class="[object Object]" class=""><div _ngcontent-ng-c1032176811="" class="sidemenuContent"><nav _ngcontent-ng-c1032176811=""><ul _ngcontent-ng-c1032176811=""><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/projects/page/1/." href="/de/projects/page/1/."><fa-icon _ngcontent-ng-c1032176811="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" class="svg-inline--fa fa-house" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg></fa-icon><span _ngcontent-ng-c1032176811="">Home</span></a></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" href="https://github.com/KopfdesDaemons" target="_blank"><fa-icon _ngcontent-ng-c1032176811="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></fa-icon><span _ngcontent-ng-c1032176811="">GitHub</span></a></li><li _ngcontent-ng-c1032176811=""><hr _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/blog/." href="/de/blog/."><span _ngcontent-ng-c1032176811="">Blog</span></a></li><li _ngcontent-ng-c1032176811=""><hr _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" fragment="projectsSection" ng-reflect-fragment="projectsSection" ng-reflect-router-link="de/projects/page/1/." href="/de/projects/page/1/.#projectsSection"><span _ngcontent-ng-c1032176811="">Portfolio</span></a><hr _ngcontent-ng-c1032176811=""></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/blogpost/css-gallery/." href="/de/blogpost/css-gallery/."><span _ngcontent-ng-c1032176811="">CSS Gallery</span></a></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="de/blogpost/about-this-website" href="/de/blogpost/about-this-website/."><span _ngcontent-ng-c1032176811="">Über diese Webseite</span></a></li></ul></nav><fieldset _ngcontent-ng-c1032176811="" class="languageSetter"><legend _ngcontent-ng-c1032176811="">Sprache:</legend><div _ngcontent-ng-c1032176811=""><input _ngcontent-ng-c1032176811="" type="radio" id="german" name="language" value="de" ng-reflect-name="language" ng-reflect-value="de" ng-reflect-model="de" class="ng-untouched ng-pristine ng-valid" checked=""><label _ngcontent-ng-c1032176811="" for="german"><svg _ngcontent-ng-c1032176811="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img" aria-labelledby="german-flag"><title _ngcontent-ng-c1032176811="" id="german-flag">Flagge von Deutschland</title><path _ngcontent-ng-c1032176811="" fill="#fc0" d="M0 320h640v160H0z"></path><path _ngcontent-ng-c1032176811="" fill="#000001" d="M0 0h640v160H0z"></path><path _ngcontent-ng-c1032176811="" fill="red" d="M0 160h640v160H0z"></path></svg><span _ngcontent-ng-c1032176811="">German</span></label></div><div _ngcontent-ng-c1032176811=""><input _ngcontent-ng-c1032176811="" type="radio" id="english" name="language" value="en" ng-reflect-name="language" ng-reflect-value="en" ng-reflect-model="de" class="ng-untouched ng-pristine ng-valid"><label _ngcontent-ng-c1032176811="" for="english"><svg _ngcontent-ng-c1032176811="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img" aria-labelledby="us-flag"><title _ngcontent-ng-c1032176811="" id="us-flag">Flagge der USA</title><path _ngcontent-ng-c1032176811="" fill="#bd3d44" d="M0 0h640v480H0"></path><path _ngcontent-ng-c1032176811="" stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"></path><path _ngcontent-ng-c1032176811="" fill="#192f5d" d="M0 0h364.8v258.5H0"></path><marker _ngcontent-ng-c1032176811="" id="us-a" markerHeight="30" markerWidth="30"><path _ngcontent-ng-c1032176811="" fill="#fff" d="m14 0 9 27L0 10h28L5 27z"></path></marker><path _ngcontent-ng-c1032176811="" fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"></path></svg><span _ngcontent-ng-c1032176811="">English</span></label></div></fieldset></div></aside></app-sidemenu><router-outlet _ngcontent-ng-c292575549=""></router-outlet><app-blog-post ngh="2"><main class="blogpostMain"><div class="hero gradient"><div class="sectionSpacer"><img height="495" width="880" alt="CodePen in Angular integrieren" src="/images/codepen-screenshot.avif"><!--container--><h1>CodePen in Angular integrieren</h1><div class="description"><p>Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.</p></div><time>18.5.2024</time><!--container--></div></div><section><div class="sectionSpacer"><div class="post-content"><h2>Was ist CodePen?</h2>
 <p><a href="https://codepen.io/" title="" target="_blank">CodePen</a> ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.</p>
-<h2>Schritt-für-Schritt-Anleitung: CodePen in einem Angular-Projekt integrieren</h2>
-<p>Die Integration von CodePen-Snippets in ein Angular-Projekt umfasst folgende Schritte:</p>
+<h2>Anleitung: CodePen manuell in Angular integrieren</h2>
 <ol>
-<li><p><strong>HTML-Code einbetten:</strong></p>
+<li><p><strong>Skript-Service erstellen:</strong></p>
+<p>Erstelle einen neuen Service namens <code>ScriptService</code>, um die Skriptladung dynamisch zu handhaben.</p>
+<pre><code class="language-typescript">import { DOCUMENT } from "@angular/common";
+import { Injectable, Renderer2, inject } from "@angular/core";
+
+@Injectable({
+  providedIn: "root",
+})
+export class ScriptService {
+  private document = inject&lt;Document&gt;(DOCUMENT);
+
+  addJsScript(renderer: Renderer2, src: string): Promise&lt;void&gt; {
+    return new Promise&lt;void&gt;((resolve, reject) =&gt; {
+      const existingScript = this.document.querySelector(`script[src="${src}"]`);
+      if (existingScript) {
+        resolve();
+        return;
+      }
+
+      const script = renderer.createElement("script");
+      script.type = "text/javascript";
+      script.src = src;
+      script.onload = () =&gt; resolve();
+      script.onerror = () =&gt; reject(new Error(`Error loading script: ${src}`));
+      renderer.appendChild(this.document.body, script);
+    });
+  }
+
+  async reloadJsScript(renderer: Renderer2, src: string) {
+    this.removeJsScript(src);
+    await this.addJsScript(renderer, src);
+  }
+
+  removeJsScript(src: string): void {
+    const existingScript = this.document.querySelector(`script[src="${src}"]`);
+    if (existingScript) {
+      existingScript.remove();
+    }
+  }
+}
+</code></pre>
+</li>
+<li><p><strong>CodePen in der Komponente laden:</strong></p>
+<p>Nun laden wir CodePen in der Komponente:</p>
+<pre><code class="language-typescript">import { Component, inject, OnInit, Renderer2 } from "@angular/core";
+import { ScriptService } from "../../services/script.service";
+
+@Component({
+  selector: "app-codepen",
+  templateUrl: "./codepen.component.html",
+  styleUrl: "./codepen.component.scss",
+})
+export class CodepenComponent implements OnInit {
+  private scriptS = inject(ScriptService);
+  private renderer = inject(Renderer2);
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    await this.scriptS.reloadJsScript(this.renderer, "https://cpwebassets.codepen.io/assets/embed/ei.js");
+  }
+}
+</code></pre>
+<p>Das HTML der Komponente sieht wie folgt aus:</p>
+<pre><code class="language-html">&lt;ng-content&gt;&lt;/ng-content&gt;
+</code></pre>
+</li>
+<li><p><strong>CodePen Komponente benutzen:</strong></p>
 <ul>
-<li>Öffne das gewünschtes CodePen-Snippet</li>
+<li>Öffne das gewünschtes CodePen-Snippet auf der CodePen Webseite</li>
 <li>Klicke unten auf "Embed"</li>
 <li>Kopiere den bereitgestellten HTML-Code <strong>(Ohne das Script-Tag)</strong></li>
 </ul>
@@ -1132,177 +1199,21 @@ footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ng
   &lt;span&gt;See the Pen &lt;a href="https://codepen.io/Rico-the-bold/pen/NWOQYqz"&gt; Material Buttons&lt;/a&gt; by Rico (&lt;a href="https://codepen.io/Rico-the-bold"&gt;@Rico-the-bold&lt;/a&gt;) on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
 &lt;/p&gt;
 </code></pre>
-</li>
-<li><p><strong>Ein Skript-Service integrieren:</strong></p>
 <ul>
-<li>Erstelle einen neuen Service namens <code>ScriptService</code>, um die Skriptladung dynamisch zu handhaben.</li>
-<li>Dieser Service stellt sicher, dass das CodePen-Skript nur einmal geladen und bei Bedarf neu geladen wird.</li>
+<li>Füge das HTML von CodePen in das HTML-Tag der Komponente ein:</li>
 </ul>
-<pre><code class="language-typescript">import { DOCUMENT } from "@angular/common";
-import { Inject, Injectable, Renderer2 } from "@angular/core";
-
-@Injectable({
-  providedIn: "root",
-})
-export class ScriptService {
-  constructor(@Inject(DOCUMENT) private document: Document) {}
-
-  addJsScript(renderer: Renderer2, src: string) {
-    const existingScript = this.document.querySelector(`script[src="${src}"]`);
-    if (existingScript) return;
-
-    const script = renderer.createElement("script");
-    script.type = "text/javascript";
-    script.src = src;
-    renderer.appendChild(this.document.body, script);
-  }
-
-  reloadJsScript(renderer: Renderer2, src: string) {
-    this.removeJsScript(src);
-    this.addJsScript(renderer, src);
-  }
-
-  private removeJsScript(src: string): void {
-    const existingScript = this.document.querySelector(`script[src="${src}"]`);
-    if (existingScript) {
-      existingScript.remove();
-    }
-  }
-
-  ceckIfJsScriptExist(src: string): boolean {
-    return !!this.document.querySelector(`script[src="${src}"]`);
-  }
-}
-</code></pre>
-</li>
-<li><p><strong>Einen Consent-Service integrieren:</strong></p>
-<p>Um die Zustimmung des Nutzers gemäß der DSGVO einzuholen, bevor wir CodePen laden, integrieren wir einen <code>ConsentService</code>.</p>
-<pre><code class="language-typescript">import { isPlatformServer } from "@angular/common";
-import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
-
-@Injectable({
-  providedIn: "root",
-})
-export class ConsentService {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
-  giveConsent(serviceName: string) {
-    if (isPlatformServer(this.platformId)) return;
-    localStorage.setItem(serviceName + "Consent", "true");
-  }
-
-  checkConsent(serviceName: string): boolean {
-    if (isPlatformServer(this.platformId)) return false;
-    return localStorage.getItem(serviceName + "Consent") === "true";
-  }
-}
-</code></pre>
-</li>
-<li><p><strong>Einen CodePen-Service integrieren:</strong></p>
-<p>Nun integrieren wir einen <code>CodepenService</code>.</p>
-<pre><code class="language-typescript">import { Inject, Injectable, PLATFORM_ID, Renderer2 } from "@angular/core";
-import { ConsentService } from "./consent.service";
-import { ScriptService } from "./script.service";
-import { isPlatformServer } from "@angular/common";
-
-@Injectable({
-  providedIn: "root",
-})
-export class CodepenService {
-  constructor(private consentS: ConsentService, private scriptS: ScriptService, @Inject(PLATFORM_ID) private platformId: Object) {}
-
-  loadCodePen(renderer: Renderer2) {
-    if (isPlatformServer(this.platformId)) return;
-    if (this.consentS.checkConsent("CodePen")) {
-      this.scriptS.reloadJsScript(renderer, "https://cpwebassets.codepen.io//embed/ei.js");
-    } else {
-      const CodePenDemos = Array.from(document.querySelectorAll(".codepen"));
-      for (const demo of CodePenDemos) {
-        const spans = Array.from(demo.querySelectorAll("span"));
-        for (const span of spans) {
-          const button = renderer.createElement("button");
-          renderer.addClass(button, "codePenConsentButton");
-          button.addEventListener("click", () =&gt; this.consentS.giveConsent("CodePen"));
-
-          const buttonText = renderer.createText("Load content from CodePen");
-          renderer.appendChild(button, buttonText);
-
-          const parent = span.parentNode;
-          renderer.insertBefore(parent, button, span);
-          renderer.removeChild(parent, span);
-
-          const paragraph = renderer.createElement("p");
-          const paragraphText = renderer.createText("The code is loaded by the third-party provider CodePen. For more details see ");
-          renderer.appendChild(paragraph, paragraphText);
-
-          const privacyPolicy = renderer.createElement("a");
-          renderer.setAttribute(privacyPolicy, "href", "/privacy-policy");
-          const privacyPolicyText = renderer.createText("Privacy Policy");
-          renderer.appendChild(privacyPolicy, privacyPolicyText);
-          renderer.appendChild(paragraph, privacyPolicy);
-          renderer.appendChild(parent, paragraph);
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<p>Für einen schöneren Zustimmungs-Button ein wenig SCSS:</p>
-<pre><code class="language-scss">.codepen:has(.codePenConsentButton) {
-  flex-direction: column;
-}
-
-.codePenConsentButton {
-  $color: rgb(193, 192, 255);
-  padding: 1em;
-  background-color: $color;
-  border-radius: 4px;
-  border: 3px solid transparent;
-  cursor: pointer;
-  display: flex;
-  gap: 0.5em;
-  font-size: 1.2em;
-  transition: all 250ms;
-  margin: 0 auto;
-
-  &amp;:hover {
-    color: rgb(238, 238, 238);
-    border-color: $color;
-    background-color: transparent;
-  }
-
-  + p {
-    font-size: 0.8em;
-    text-wrap: balance;
-    text-align: center;
-  }
-}
-</code></pre>
-</li>
-<li><p><strong>CodePen in der Komponente laden:</strong></p>
-<p>Zuletzt laden wir CodePen in der Komponente:</p>
-<pre><code class="language-typescript">import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from "@angular/core";
-import { CodepenService } from "src/app/services/codepen.service";
-
-@Component({
-  selector: "app-blog-post",
-  templateUrl: "./blog-post.component.html",
-  styleUrls: ["./blog-post.component.css"],
-})
-export class BlogPostComponent implements AfterViewChecked {
-  constructor(private renderer: Renderer2, private codePenS: CodepenService) {}
-
-  ngAfterViewChecked() {
-    this.codePenS.loadCodePen(this.renderer);
-  }
-}
+<pre><code class="language-html">&lt;app-codepen&gt;
+  &lt;p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="NWOQYqz" data-editable="true" data-user="Rico-the-bold" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em"&gt;
+    &lt;span&gt;See the Pen &lt;a href="https://codepen.io/Rico-the-bold/pen/NWOQYqz"&gt;Material Buttons&lt;/a&gt; by Rico (&lt;a href="https://codepen.io/Rico-the-bold"&gt;Rico-the-bold&lt;/a&gt;)on &lt;a href="https://codepen.io"&gt;CodePen&lt;/a&gt;.&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/app-codepen&gt;
 </code></pre>
 </li>
 </ol>
 </div><!--container--><app-disqus _nghost-ng-c1934723076="" ng-reflect-identifier="codepen-in-angular" ngh="1"><!--container--><div _ngcontent-ng-c1934723076="" class="consentBanner"><button _ngcontent-ng-c1934723076=""><fa-icon _ngcontent-ng-c1934723076="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment" class="svg-inline--fa fa-comment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9l.3-.5z"></path></svg></fa-icon><span _ngcontent-ng-c1934723076="">Lade Kommentare</span></button><span _ngcontent-ng-c1934723076="" class="disclaimer">Die Kommentare werden geladen vom Drittanbieter <a _ngcontent-ng-c1934723076="" href="https://disqus.com/" target="_blank">Disqus</a>. Für mehr Details siehe <a _ngcontent-ng-c1934723076="" ng-reflect-router-link="/de/privacy-policy/." href="/de/privacy-policy/.">Datenschutzerklärung</a>.</span></div><!--container--></app-disqus><!--container--></div></section></main></app-blog-post><!--container--><app-consent-manager _ngcontent-ng-c292575549="" _nghost-ng-c98833692="" ngh="3"><dialog _ngcontent-ng-c98833692="" id="consentManager"><div _ngcontent-ng-c98833692="" class="headlineDiv"><h2 _ngcontent-ng-c98833692="">Consent&nbsp;Manager</h2><button _ngcontent-ng-c98833692="" class="closeButton">✕</button></div><ul _ngcontent-ng-c98833692=""><li _ngcontent-ng-c98833692=""><div _ngcontent-ng-c98833692=""><span _ngcontent-ng-c98833692="">Disqus</span><input _ngcontent-ng-c98833692="" type="checkbox"></div><p _ngcontent-ng-c98833692="">Stellt die Kommentarfunktion bereit.</p></li><li _ngcontent-ng-c98833692=""><div _ngcontent-ng-c98833692=""><span _ngcontent-ng-c98833692="">CodePen</span><input _ngcontent-ng-c98833692="" type="checkbox"></div><p _ngcontent-ng-c98833692="">Stellt die Codeausschnitte bereit.</p></li><li _ngcontent-ng-c98833692=""><div _ngcontent-ng-c98833692=""><span _ngcontent-ng-c98833692="">Custom Language</span><input _ngcontent-ng-c98833692="" type="checkbox"></div><p _ngcontent-ng-c98833692="">Speicherung der gewählten Sprache.</p></li><!--container--></ul></dialog><!--container--></app-consent-manager><app-footer _ngcontent-ng-c292575549="" _nghost-ng-c317472653="" ngh="0"><footer _ngcontent-ng-c317472653=""><div _ngcontent-ng-c317472653="" class="linkGroup"><h2 _ngcontent-ng-c317472653="">Meine Links</h2><ul _ngcontent-ng-c317472653=""><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="svg-inline--fa fa-instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://www.instagram.com/KopfdesDaemons/">Instagram</a></li><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://github.com/KopfdesDaemons">GitHub</a></li><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="stack-overflow" class="svg-inline--fa fa-stack-overflow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M290.7 311L95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://stackoverflow.com/users/13802163/rico">StackOverflow</a></li><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="wordpress" class="svg-inline--fa fa-wordpress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M61.7 169.4l101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6zm337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7zm-139.9 29.3l-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9l-65.4-179.2zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1zM504 256c0 136.8-111.3 248-248 248C119.2 504 8 392.7 8 256 8 119.2 119.2 8 256 8c136.7 0 248 111.2 248 248zm-11.4 0c0-130.5-106.2-236.6-236.6-236.6C125.5 19.4 19.4 125.5 19.4 256S125.6 492.6 256 492.6c130.5 0 236.6-106.1 236.6-236.6z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://profiles.wordpress.org/ricosylvain/">WordPress</a></li></ul></div><div _ngcontent-ng-c317472653="" class="linkGroup"><h2 _ngcontent-ng-c317472653="">Page</h2><ul _ngcontent-ng-c317472653=""><li _ngcontent-ng-c317472653=""><a _ngcontent-ng-c317472653="" routerlink="/legal-notice/." ng-reflect-router-link="/legal-notice/." href="/legal-notice/.">Impressum</a></li><li _ngcontent-ng-c317472653=""><a _ngcontent-ng-c317472653="" ng-reflect-router-link="de/privacy-policy/." href="/de/privacy-policy/.">Datenschutzerklärung</a></li><li _ngcontent-ng-c317472653=""><span _ngcontent-ng-c317472653="">Consent Manager</span></li></ul></div></footer></app-footer></div></app-root>
     <link rel="modulepreload" href="chunk-D45IXOGT.js"><link rel="modulepreload" href="chunk-7JADWIHW.js"><link rel="modulepreload" href="chunk-UNCXCIG4.js"><link rel="modulepreload" href="chunk-C4FMDJ5B.js"><link rel="modulepreload" href="chunk-QTWOLS27.js"><link rel="modulepreload" href="chunk-S6YPVKVZ.js"><link rel="modulepreload" href="chunk-YQ2WRJ7O.js"><script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
-<link rel="modulepreload" href="blog-post.component-5PBMDAZT.js">
-<link rel="modulepreload" href="chunk-ZUMQFM6H.js">
+<link rel="modulepreload" href="blog-post.component-X3W5VVZ3.js">
+<link rel="modulepreload" href="chunk-ZJPKXGUJ.js">
 
 
-<script id="ng-state" type="application/json">{"680623262":{"b":"---\ntitle: CodePen in Angular integrieren (DSGVO konform)\nauthor: Rico\nimage: /images/codepen-screenshot.avif\nkeywords:\n  - CodePen integrieren\n  - Angular CodePen\n  - Angular CodePen einbetten\n  - CodePen in Angular\ndescription: Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.\ndate: 2024-05-18\n---\n\n## Was ist CodePen?\n\n[CodePen](https://codepen.io/) ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.\n\n## Schritt-für-Schritt-Anleitung: CodePen in einem Angular-Projekt integrieren\n\nDie Integration von CodePen-Snippets in ein Angular-Projekt umfasst folgende Schritte:\n\n1. **HTML-Code einbetten:**\n\n   - Öffne das gewünschtes CodePen-Snippet\n   - Klicke unten auf \"Embed\"\n   - Kopiere den bereitgestellten HTML-Code **(Ohne das Script-Tag)**\n\n   ```html\n   \u003Cp class=\"codepen\" data-height=\"300\" data-theme-id=\"dark\" data-default-tab=\"result\" data-slug-hash=\"NWOQYqz\" data-editable=\"true\" data-user=\"Rico-the-bold\" style=\"height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;\">\n     \u003Cspan>See the Pen \u003Ca href=\"https://codepen.io/Rico-the-bold/pen/NWOQYqz\"> Material Buttons\u003C/a> by Rico (\u003Ca href=\"https://codepen.io/Rico-the-bold\">@Rico-the-bold\u003C/a>) on \u003Ca href=\"https://codepen.io\">CodePen\u003C/a>.\u003C/span>\n   \u003C/p>\n   ```\n\n2. **Ein Skript-Service integrieren:**\n\n   - Erstelle einen neuen Service namens `ScriptService`, um die Skriptladung dynamisch zu handhaben.\n   - Dieser Service stellt sicher, dass das CodePen-Skript nur einmal geladen und bei Bedarf neu geladen wird.\n\n   ```typescript\n   import { DOCUMENT } from \"@angular/common\";\n   import { Inject, Injectable, Renderer2 } from \"@angular/core\";\n\n   @Injectable({\n     providedIn: \"root\",\n   })\n   export class ScriptService {\n     constructor(@Inject(DOCUMENT) private document: Document) {}\n\n     addJsScript(renderer: Renderer2, src: string) {\n       const existingScript = this.document.querySelector(`script[src=\"${src}\"]`);\n       if (existingScript) return;\n\n       const script = renderer.createElement(\"script\");\n       script.type = \"text/javascript\";\n       script.src = src;\n       renderer.appendChild(this.document.body, script);\n     }\n\n     reloadJsScript(renderer: Renderer2, src: string) {\n       this.removeJsScript(src);\n       this.addJsScript(renderer, src);\n     }\n\n     private removeJsScript(src: string): void {\n       const existingScript = this.document.querySelector(`script[src=\"${src}\"]`);\n       if (existingScript) {\n         existingScript.remove();\n       }\n     }\n\n     ceckIfJsScriptExist(src: string): boolean {\n       return !!this.document.querySelector(`script[src=\"${src}\"]`);\n     }\n   }\n   ```\n\n3. **Einen Consent-Service integrieren:**\n\n   Um die Zustimmung des Nutzers gemäß der DSGVO einzuholen, bevor wir CodePen laden, integrieren wir einen `ConsentService`.\n\n   ```typescript\n   import { isPlatformServer } from \"@angular/common\";\n   import { Inject, Injectable, PLATFORM_ID } from \"@angular/core\";\n\n   @Injectable({\n     providedIn: \"root\",\n   })\n   export class ConsentService {\n     constructor(@Inject(PLATFORM_ID) private platformId: Object) {}\n\n     giveConsent(serviceName: string) {\n       if (isPlatformServer(this.platformId)) return;\n       localStorage.setItem(serviceName + \"Consent\", \"true\");\n     }\n\n     checkConsent(serviceName: string): boolean {\n       if (isPlatformServer(this.platformId)) return false;\n       return localStorage.getItem(serviceName + \"Consent\") === \"true\";\n     }\n   }\n   ```\n\n4. **Einen CodePen-Service integrieren:**\n\n   Nun integrieren wir einen `CodepenService`.\n\n   ```typescript\n   import { Inject, Injectable, PLATFORM_ID, Renderer2 } from \"@angular/core\";\n   import { ConsentService } from \"./consent.service\";\n   import { ScriptService } from \"./script.service\";\n   import { isPlatformServer } from \"@angular/common\";\n\n   @Injectable({\n     providedIn: \"root\",\n   })\n   export class CodepenService {\n     constructor(private consentS: ConsentService, private scriptS: ScriptService, @Inject(PLATFORM_ID) private platformId: Object) {}\n\n     loadCodePen(renderer: Renderer2) {\n       if (isPlatformServer(this.platformId)) return;\n       if (this.consentS.checkConsent(\"CodePen\")) {\n         this.scriptS.reloadJsScript(renderer, \"https://cpwebassets.codepen.io//embed/ei.js\");\n       } else {\n         const CodePenDemos = Array.from(document.querySelectorAll(\".codepen\"));\n         for (const demo of CodePenDemos) {\n           const spans = Array.from(demo.querySelectorAll(\"span\"));\n           for (const span of spans) {\n             const button = renderer.createElement(\"button\");\n             renderer.addClass(button, \"codePenConsentButton\");\n             button.addEventListener(\"click\", () => this.consentS.giveConsent(\"CodePen\"));\n\n             const buttonText = renderer.createText(\"Load content from CodePen\");\n             renderer.appendChild(button, buttonText);\n\n             const parent = span.parentNode;\n             renderer.insertBefore(parent, button, span);\n             renderer.removeChild(parent, span);\n\n             const paragraph = renderer.createElement(\"p\");\n             const paragraphText = renderer.createText(\"The code is loaded by the third-party provider CodePen. For more details see \");\n             renderer.appendChild(paragraph, paragraphText);\n\n             const privacyPolicy = renderer.createElement(\"a\");\n             renderer.setAttribute(privacyPolicy, \"href\", \"/privacy-policy\");\n             const privacyPolicyText = renderer.createText(\"Privacy Policy\");\n             renderer.appendChild(privacyPolicy, privacyPolicyText);\n             renderer.appendChild(paragraph, privacyPolicy);\n             renderer.appendChild(parent, paragraph);\n           }\n         }\n       }\n     }\n   }\n   ```\n\n   Für einen schöneren Zustimmungs-Button ein wenig SCSS:\n\n   ```scss\n   .codepen:has(.codePenConsentButton) {\n     flex-direction: column;\n   }\n\n   .codePenConsentButton {\n     $color: rgb(193, 192, 255);\n     padding: 1em;\n     background-color: $color;\n     border-radius: 4px;\n     border: 3px solid transparent;\n     cursor: pointer;\n     display: flex;\n     gap: 0.5em;\n     font-size: 1.2em;\n     transition: all 250ms;\n     margin: 0 auto;\n\n     &:hover {\n       color: rgb(238, 238, 238);\n       border-color: $color;\n       background-color: transparent;\n     }\n\n     + p {\n       font-size: 0.8em;\n       text-wrap: balance;\n       text-align: center;\n     }\n   }\n   ```\n\n5. **CodePen in der Komponente laden:**\n\n   Zuletzt laden wir CodePen in der Komponente:\n\n   ```typescript\n   import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from \"@angular/core\";\n   import { CodepenService } from \"src/app/services/codepen.service\";\n\n   @Component({\n     selector: \"app-blog-post\",\n     templateUrl: \"./blog-post.component.html\",\n     styleUrls: [\"./blog-post.component.css\"],\n   })\n   export class BlogPostComponent implements AfterViewChecked {\n     constructor(private renderer: Renderer2, private codePenS: CodepenService) {}\n\n     ngAfterViewChecked() {\n       this.codePenS.loadCodePen(this.renderer);\n     }\n   }\n   ```\n","h":{},"s":200,"st":"OK","u":"/posts/de/codepen-in-angular.md","rt":"text"},"943406569":{"b":"---\nhome_h1: Webentwicklung ist mein größtes Hobby\nhome_subtitle: Ich habe mir alle Fähigkeiten aus Interesse selber beigebracht.\nmy_projects: Meine Projekte\nfilter_options: Filter Optionen\nlegal_notice: Impressum\nprivacy_policy: Datenschutzerklärung\nmy_links: Meine Links\ncss_gallery_title: CSS Gallery\nabout_this_website_title: Über diese Webseite\nload_comments: Lade Kommentare\ndisqus_privacy_notice: Die Kommentare werden geladen vom Drittanbieter\nfor_more_details_see: Für mehr Details siehe\ncodepen_button: Lade Code Snippet von CodePen\ncodepen_privacy_notice: Der Inhalt wird vom Drittanbieter CodePen geladen. Für mehr Details siehe\nlanguage: Sprache\nhome_description: Meine Portfolio-Website als Hobby-Webentwickler.\ndisqus_descr: Stellt die Kommentarfunktion bereit.\ncodepen_descr: Stellt die Codeausschnitte bereit.\ncustom_language: Speicherung der gewählten Sprache.\nblog_h1: Meine Blogbeiträge\nread_more: mehr lesen\ndate_desc: Datum absteigend\ndate_asc: Datum aufsteigend\ntitle_desc: Titel aufsteigend\ntitle_asc: Titel absteigend\nblogpost_not_found: Dieser Beitrag konnte nicht gefunden werden\nblogpost_not_found_text: Der Beitrag ist nicht vorhanden. Vielleicht gibt es den Beitrag nicht in dieser Sprache.\nvisit_project: Projekt ansehen\n","h":{},"s":200,"st":"OK","u":"/i18n/de.yaml","rt":"text"},"1936343233":{"b":"---\nhome_h1: Web development is my biggest hobby\nhome_subtitle: I taught myself all skills out of interest.\nmy_projects: My Projects\nfilter_options: Filter options\nlegal_notice: Legal notice\nprivacy_policy: Privacy policy\nmy_links: My Links\ncss_gallery_title: CSS gallery\nabout_this_website_title: About this website\nload_comments: Load Comments\ndisqus_privacy_notice: The comments are loaded by the third-party provider\nfor_more_details_see: For more details see\ncodepen_button: Load code snippet from CodePen\ncodepen_privacy_notice: The code is loaded by the third-party provider CodePen. For more details see\nlanguage: Language\nhome_description: My portfolio website as a hobby web developer.\ndisqus_descr: Provides the comment function.\ncodepen_descr: Provides the code snippets.\ncustom_language: Storage of the selected language.\nblog_h1: My blogposts\nread_more: read more\ndate_desc: Date descending\ndate_asc: Date ascending\ntitle_desc: Title ascending\ntitle_asc: Title descending\nblogpost_not_found: This post could not be found\nblogpost_not_found_text: The article does not exist. Perhaps the article does not exist in this language.\nvisit_project: visit project\n","h":{},"s":200,"st":"OK","u":"/i18n/en.yaml","rt":"text"},"post-de-codepen-in-angular":{"postMeta":{"keywords":["CodePen integrieren","Angular CodePen","Angular CodePen einbetten","CodePen in Angular"],"commentsDisabled":false,"hasCodePen":false,"hideInFeed":false,"fileName":"codepen-in-angular","title":"CodePen in Angular integrieren (DSGVO konform)","author":"Rico","image":"/images/codepen-screenshot.avif","description":"Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.","date":"2024-05-18T00:00:00.000Z","localDateString":"18.5.2024"},"postContent":"\u003Ch2>Was ist CodePen?\u003C/h2>\n\u003Cp>\u003Ca href=\"https://codepen.io/\" title=\"\" target=\"_blank\">CodePen\u003C/a> ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.\u003C/p>\n\u003Ch2>Schritt-für-Schritt-Anleitung: CodePen in einem Angular-Projekt integrieren\u003C/h2>\n\u003Cp>Die Integration von CodePen-Snippets in ein Angular-Projekt umfasst folgende Schritte:\u003C/p>\n\u003Col>\n\u003Cli>\u003Cp>\u003Cstrong>HTML-Code einbetten:\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>Öffne das gewünschtes CodePen-Snippet\u003C/li>\n\u003Cli>Klicke unten auf &quot;Embed&quot;\u003C/li>\n\u003Cli>Kopiere den bereitgestellten HTML-Code \u003Cstrong>(Ohne das Script-Tag)\u003C/strong>\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-html\">&lt;p class=&quot;codepen&quot; data-height=&quot;300&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;result&quot; data-slug-hash=&quot;NWOQYqz&quot; data-editable=&quot;true&quot; data-user=&quot;Rico-the-bold&quot; style=&quot;height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot;&gt;\n  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/Rico-the-bold/pen/NWOQYqz&quot;&gt; Material Buttons&lt;/a&gt; by Rico (&lt;a href=&quot;https://codepen.io/Rico-the-bold&quot;&gt;@Rico-the-bold&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;\n&lt;/p&gt;\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Ein Skript-Service integrieren:\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>Erstelle einen neuen Service namens \u003Ccode>ScriptService\u003C/code>, um die Skriptladung dynamisch zu handhaben.\u003C/li>\n\u003Cli>Dieser Service stellt sicher, dass das CodePen-Skript nur einmal geladen und bei Bedarf neu geladen wird.\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-typescript\">import { DOCUMENT } from &quot;@angular/common&quot;;\nimport { Inject, Injectable, Renderer2 } from &quot;@angular/core&quot;;\n\n@Injectable({\n  providedIn: &quot;root&quot;,\n})\nexport class ScriptService {\n  constructor(@Inject(DOCUMENT) private document: Document) {}\n\n  addJsScript(renderer: Renderer2, src: string) {\n    const existingScript = this.document.querySelector(`script[src=&quot;${src}&quot;]`);\n    if (existingScript) return;\n\n    const script = renderer.createElement(&quot;script&quot;);\n    script.type = &quot;text/javascript&quot;;\n    script.src = src;\n    renderer.appendChild(this.document.body, script);\n  }\n\n  reloadJsScript(renderer: Renderer2, src: string) {\n    this.removeJsScript(src);\n    this.addJsScript(renderer, src);\n  }\n\n  private removeJsScript(src: string): void {\n    const existingScript = this.document.querySelector(`script[src=&quot;${src}&quot;]`);\n    if (existingScript) {\n      existingScript.remove();\n    }\n  }\n\n  ceckIfJsScriptExist(src: string): boolean {\n    return !!this.document.querySelector(`script[src=&quot;${src}&quot;]`);\n  }\n}\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Einen Consent-Service integrieren:\u003C/strong>\u003C/p>\n\u003Cp>Um die Zustimmung des Nutzers gemäß der DSGVO einzuholen, bevor wir CodePen laden, integrieren wir einen \u003Ccode>ConsentService\u003C/code>.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-typescript\">import { isPlatformServer } from &quot;@angular/common&quot;;\nimport { Inject, Injectable, PLATFORM_ID } from &quot;@angular/core&quot;;\n\n@Injectable({\n  providedIn: &quot;root&quot;,\n})\nexport class ConsentService {\n  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}\n\n  giveConsent(serviceName: string) {\n    if (isPlatformServer(this.platformId)) return;\n    localStorage.setItem(serviceName + &quot;Consent&quot;, &quot;true&quot;);\n  }\n\n  checkConsent(serviceName: string): boolean {\n    if (isPlatformServer(this.platformId)) return false;\n    return localStorage.getItem(serviceName + &quot;Consent&quot;) === &quot;true&quot;;\n  }\n}\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>Einen CodePen-Service integrieren:\u003C/strong>\u003C/p>\n\u003Cp>Nun integrieren wir einen \u003Ccode>CodepenService\u003C/code>.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-typescript\">import { Inject, Injectable, PLATFORM_ID, Renderer2 } from &quot;@angular/core&quot;;\nimport { ConsentService } from &quot;./consent.service&quot;;\nimport { ScriptService } from &quot;./script.service&quot;;\nimport { isPlatformServer } from &quot;@angular/common&quot;;\n\n@Injectable({\n  providedIn: &quot;root&quot;,\n})\nexport class CodepenService {\n  constructor(private consentS: ConsentService, private scriptS: ScriptService, @Inject(PLATFORM_ID) private platformId: Object) {}\n\n  loadCodePen(renderer: Renderer2) {\n    if (isPlatformServer(this.platformId)) return;\n    if (this.consentS.checkConsent(&quot;CodePen&quot;)) {\n      this.scriptS.reloadJsScript(renderer, &quot;https://cpwebassets.codepen.io//embed/ei.js&quot;);\n    } else {\n      const CodePenDemos = Array.from(document.querySelectorAll(&quot;.codepen&quot;));\n      for (const demo of CodePenDemos) {\n        const spans = Array.from(demo.querySelectorAll(&quot;span&quot;));\n        for (const span of spans) {\n          const button = renderer.createElement(&quot;button&quot;);\n          renderer.addClass(button, &quot;codePenConsentButton&quot;);\n          button.addEventListener(&quot;click&quot;, () =&gt; this.consentS.giveConsent(&quot;CodePen&quot;));\n\n          const buttonText = renderer.createText(&quot;Load content from CodePen&quot;);\n          renderer.appendChild(button, buttonText);\n\n          const parent = span.parentNode;\n          renderer.insertBefore(parent, button, span);\n          renderer.removeChild(parent, span);\n\n          const paragraph = renderer.createElement(&quot;p&quot;);\n          const paragraphText = renderer.createText(&quot;The code is loaded by the third-party provider CodePen. For more details see &quot;);\n          renderer.appendChild(paragraph, paragraphText);\n\n          const privacyPolicy = renderer.createElement(&quot;a&quot;);\n          renderer.setAttribute(privacyPolicy, &quot;href&quot;, &quot;/privacy-policy&quot;);\n          const privacyPolicyText = renderer.createText(&quot;Privacy Policy&quot;);\n          renderer.appendChild(privacyPolicy, privacyPolicyText);\n          renderer.appendChild(paragraph, privacyPolicy);\n          renderer.appendChild(parent, paragraph);\n        }\n      }\n    }\n  }\n}\n\u003C/code>\u003C/pre>\n\u003Cp>Für einen schöneren Zustimmungs-Button ein wenig SCSS:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-scss\">.codepen:has(.codePenConsentButton) {\n  flex-direction: column;\n}\n\n.codePenConsentButton {\n  $color: rgb(193, 192, 255);\n  padding: 1em;\n  background-color: $color;\n  border-radius: 4px;\n  border: 3px solid transparent;\n  cursor: pointer;\n  display: flex;\n  gap: 0.5em;\n  font-size: 1.2em;\n  transition: all 250ms;\n  margin: 0 auto;\n\n  &amp;:hover {\n    color: rgb(238, 238, 238);\n    border-color: $color;\n    background-color: transparent;\n  }\n\n  + p {\n    font-size: 0.8em;\n    text-wrap: balance;\n    text-align: center;\n  }\n}\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>CodePen in der Komponente laden:\u003C/strong>\u003C/p>\n\u003Cp>Zuletzt laden wir CodePen in der Komponente:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-typescript\">import { AfterViewChecked, Component, OnInit, Renderer2, ViewEncapsulation } from &quot;@angular/core&quot;;\nimport { CodepenService } from &quot;src/app/services/codepen.service&quot;;\n\n@Component({\n  selector: &quot;app-blog-post&quot;,\n  templateUrl: &quot;./blog-post.component.html&quot;,\n  styleUrls: [&quot;./blog-post.component.css&quot;],\n})\nexport class BlogPostComponent implements AfterViewChecked {\n  constructor(private renderer: Renderer2, private codePenS: CodepenService) {}\n\n  ngAfterViewChecked() {\n    this.codePenS.loadCodePen(this.renderer);\n  }\n}\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003C/ol>\n"},"__nghData__":[{},{"t":{"0":"t48","1":"t49"},"c":{"0":[],"1":[{"i":"t49","r":1}]}},{"t":{"3":"t44","11":"t45","14":"t46","15":"t47"},"c":{"3":[{"i":"t44","r":1}],"11":[],"14":[{"i":"t46","r":1}],"15":[{"i":"t47","r":1}]}},{"t":{"0":"t33"},"c":{"0":[{"i":"t33","r":1,"t":{"9":"t34"},"c":{"9":[{"i":"t34","r":1,"x":3}]}}]}},{"c":{"4":[{"i":"c4025851534","r":1}]}}]}</script></body></html>
+<script id="ng-state" type="application/json">{"680623262":{"b":"---\ntitle: CodePen in Angular integrieren\nauthor: Rico\nimage: /images/codepen-screenshot.avif\nkeywords:\n  - CodePen integrieren\n  - Angular CodePen\n  - Angular CodePen einbetten\n  - CodePen in Angular\ndescription: Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.\ndate: 2024-05-18\n---\n\n## Was ist CodePen?\n\n[CodePen](https://codepen.io/) ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.\n\n## Anleitung: CodePen manuell in Angular integrieren\n\n1. **Skript-Service erstellen:**\n\n   Erstelle einen neuen Service namens `ScriptService`, um die Skriptladung dynamisch zu handhaben.\n\n   ```typescript\n   import { DOCUMENT } from \"@angular/common\";\n   import { Injectable, Renderer2, inject } from \"@angular/core\";\n\n   @Injectable({\n     providedIn: \"root\",\n   })\n   export class ScriptService {\n     private document = inject\u003CDocument>(DOCUMENT);\n\n     addJsScript(renderer: Renderer2, src: string): Promise\u003Cvoid> {\n       return new Promise\u003Cvoid>((resolve, reject) => {\n         const existingScript = this.document.querySelector(`script[src=\"${src}\"]`);\n         if (existingScript) {\n           resolve();\n           return;\n         }\n\n         const script = renderer.createElement(\"script\");\n         script.type = \"text/javascript\";\n         script.src = src;\n         script.onload = () => resolve();\n         script.onerror = () => reject(new Error(`Error loading script: ${src}`));\n         renderer.appendChild(this.document.body, script);\n       });\n     }\n\n     async reloadJsScript(renderer: Renderer2, src: string) {\n       this.removeJsScript(src);\n       await this.addJsScript(renderer, src);\n     }\n\n     removeJsScript(src: string): void {\n       const existingScript = this.document.querySelector(`script[src=\"${src}\"]`);\n       if (existingScript) {\n         existingScript.remove();\n       }\n     }\n   }\n   ```\n\n2. **CodePen in der Komponente laden:**\n\n   Nun laden wir CodePen in der Komponente:\n\n   ```typescript\n   import { Component, inject, OnInit, Renderer2 } from \"@angular/core\";\n   import { ScriptService } from \"../../services/script.service\";\n\n   @Component({\n     selector: \"app-codepen\",\n     templateUrl: \"./codepen.component.html\",\n     styleUrl: \"./codepen.component.scss\",\n   })\n   export class CodepenComponent implements OnInit {\n     private scriptS = inject(ScriptService);\n     private renderer = inject(Renderer2);\n\n     async ngOnInit(): Promise\u003Cvoid> {\n       await this.scriptS.reloadJsScript(this.renderer, \"https://cpwebassets.codepen.io/assets/embed/ei.js\");\n     }\n   }\n   ```\n\n   Das HTML der Komponente sieht wie folgt aus:\n\n   ```html\n   \u003Cng-content>\u003C/ng-content>\n   ```\n\n3. **CodePen Komponente benutzen:**\n\n   - Öffne das gewünschtes CodePen-Snippet auf der CodePen Webseite\n   - Klicke unten auf \"Embed\"\n   - Kopiere den bereitgestellten HTML-Code **(Ohne das Script-Tag)**\n\n   ```html\n   \u003Cp class=\"codepen\" data-height=\"300\" data-theme-id=\"dark\" data-default-tab=\"result\" data-slug-hash=\"NWOQYqz\" data-editable=\"true\" data-user=\"Rico-the-bold\" style=\"height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;\">\n     \u003Cspan>See the Pen \u003Ca href=\"https://codepen.io/Rico-the-bold/pen/NWOQYqz\"> Material Buttons\u003C/a> by Rico (\u003Ca href=\"https://codepen.io/Rico-the-bold\">@Rico-the-bold\u003C/a>) on \u003Ca href=\"https://codepen.io\">CodePen\u003C/a>.\u003C/span>\n   \u003C/p>\n   ```\n\n   - Füge das HTML von CodePen in das HTML-Tag der Komponente ein:\n\n   ```html\n   \u003Capp-codepen>\n     \u003Cp class=\"codepen\" data-height=\"300\" data-theme-id=\"dark\" data-default-tab=\"result\" data-slug-hash=\"NWOQYqz\" data-editable=\"true\" data-user=\"Rico-the-bold\" style=\"height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em\">\n       \u003Cspan>See the Pen \u003Ca href=\"https://codepen.io/Rico-the-bold/pen/NWOQYqz\">Material Buttons\u003C/a> by Rico (\u003Ca href=\"https://codepen.io/Rico-the-bold\">Rico-the-bold\u003C/a>)on \u003Ca href=\"https://codepen.io\">CodePen\u003C/a>.\u003C/span>\n     \u003C/p>\n   \u003C/app-codepen>\n   ```\n","h":{"Content-Type":["text/markdown"]},"s":200,"st":"OK","u":"/posts/de/codepen-in-angular.md","rt":"text"},"943406569":{"b":"---\nhome_h1: Webentwicklung ist mein größtes Hobby\nhome_subtitle: Ich habe mir alle Fähigkeiten aus Interesse selber beigebracht.\nmy_projects: Meine Projekte\nfilter_options: Filter Optionen\nlegal_notice: Impressum\nprivacy_policy: Datenschutzerklärung\nmy_links: Meine Links\ncss_gallery_title: CSS Gallery\nabout_this_website_title: Über diese Webseite\nload_comments: Lade Kommentare\ndisqus_privacy_notice: Die Kommentare werden geladen vom Drittanbieter\nfor_more_details_see: Für mehr Details siehe\ncodepen_button: Lade Code Snippet von CodePen\ncodepen_privacy_notice: Der Inhalt wird vom Drittanbieter CodePen geladen. Für mehr Details siehe\nlanguage: Sprache\nhome_description: Meine Portfolio-Website als Hobby-Webentwickler.\ndisqus_descr: Stellt die Kommentarfunktion bereit.\ncodepen_descr: Stellt die Codeausschnitte bereit.\ncustom_language: Speicherung der gewählten Sprache.\nblog_h1: Meine Blogbeiträge\nread_more: mehr lesen\ndate_desc: Datum absteigend\ndate_asc: Datum aufsteigend\ntitle_desc: Titel aufsteigend\ntitle_asc: Titel absteigend\nblogpost_not_found: Dieser Beitrag konnte nicht gefunden werden\nblogpost_not_found_text: Der Beitrag ist nicht vorhanden. Vielleicht gibt es den Beitrag nicht in dieser Sprache.\nvisit_project: Projekt ansehen\n","h":{},"s":200,"st":"OK","u":"/i18n/de.yaml","rt":"text"},"1936343233":{"b":"---\nhome_h1: Web development is my biggest hobby\nhome_subtitle: I taught myself all skills out of interest.\nmy_projects: My Projects\nfilter_options: Filter options\nlegal_notice: Legal notice\nprivacy_policy: Privacy policy\nmy_links: My Links\ncss_gallery_title: CSS gallery\nabout_this_website_title: About this website\nload_comments: Load Comments\ndisqus_privacy_notice: The comments are loaded by the third-party provider\nfor_more_details_see: For more details see\ncodepen_button: Load code snippet from CodePen\ncodepen_privacy_notice: The code is loaded by the third-party provider CodePen. For more details see\nlanguage: Language\nhome_description: My portfolio website as a hobby web developer.\ndisqus_descr: Provides the comment function.\ncodepen_descr: Provides the code snippets.\ncustom_language: Storage of the selected language.\nblog_h1: My blogposts\nread_more: read more\ndate_desc: Date descending\ndate_asc: Date ascending\ntitle_desc: Title ascending\ntitle_asc: Title descending\nblogpost_not_found: This post could not be found\nblogpost_not_found_text: The article does not exist. Perhaps the article does not exist in this language.\nvisit_project: visit project\n","h":{},"s":200,"st":"OK","u":"/i18n/en.yaml","rt":"text"},"post-de-codepen-in-angular":{"postMeta":{"keywords":["CodePen integrieren","Angular CodePen","Angular CodePen einbetten","CodePen in Angular"],"commentsDisabled":false,"hasCodePen":false,"hideInFeed":false,"fileName":"codepen-in-angular","title":"CodePen in Angular integrieren","author":"Rico","image":"/images/codepen-screenshot.avif","description":"Lerne, wie man mit dieser Schritt-für-Schritt-Anleitung CodePen-Snippets in einem Angular-Projekt integrieren kann.","date":"2024-05-18T00:00:00.000Z","localDateString":"18.5.2024"},"postContent":"\u003Ch2>Was ist CodePen?\u003C/h2>\n\u003Cp>\u003Ca href=\"https://codepen.io/\" title=\"\" target=\"_blank\">CodePen\u003C/a> ist ein beliebter Online-Code-Editor und Community-Plattform, die es Entwicklern ermöglicht, Code-Snippets zu schreiben und zu teilen. Es bietet eine bequeme Möglichkeit, interaktive Elemente zu präsentieren und Code-Funktionalitäten zu testen.\u003C/p>\n\u003Ch2>Anleitung: CodePen manuell in Angular integrieren\u003C/h2>\n\u003Col>\n\u003Cli>\u003Cp>\u003Cstrong>Skript-Service erstellen:\u003C/strong>\u003C/p>\n\u003Cp>Erstelle einen neuen Service namens \u003Ccode>ScriptService\u003C/code>, um die Skriptladung dynamisch zu handhaben.\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-typescript\">import { DOCUMENT } from &quot;@angular/common&quot;;\nimport { Injectable, Renderer2, inject } from &quot;@angular/core&quot;;\n\n@Injectable({\n  providedIn: &quot;root&quot;,\n})\nexport class ScriptService {\n  private document = inject&lt;Document&gt;(DOCUMENT);\n\n  addJsScript(renderer: Renderer2, src: string): Promise&lt;void&gt; {\n    return new Promise&lt;void&gt;((resolve, reject) =&gt; {\n      const existingScript = this.document.querySelector(`script[src=&quot;${src}&quot;]`);\n      if (existingScript) {\n        resolve();\n        return;\n      }\n\n      const script = renderer.createElement(&quot;script&quot;);\n      script.type = &quot;text/javascript&quot;;\n      script.src = src;\n      script.onload = () =&gt; resolve();\n      script.onerror = () =&gt; reject(new Error(`Error loading script: ${src}`));\n      renderer.appendChild(this.document.body, script);\n    });\n  }\n\n  async reloadJsScript(renderer: Renderer2, src: string) {\n    this.removeJsScript(src);\n    await this.addJsScript(renderer, src);\n  }\n\n  removeJsScript(src: string): void {\n    const existingScript = this.document.querySelector(`script[src=&quot;${src}&quot;]`);\n    if (existingScript) {\n      existingScript.remove();\n    }\n  }\n}\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>CodePen in der Komponente laden:\u003C/strong>\u003C/p>\n\u003Cp>Nun laden wir CodePen in der Komponente:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-typescript\">import { Component, inject, OnInit, Renderer2 } from &quot;@angular/core&quot;;\nimport { ScriptService } from &quot;../../services/script.service&quot;;\n\n@Component({\n  selector: &quot;app-codepen&quot;,\n  templateUrl: &quot;./codepen.component.html&quot;,\n  styleUrl: &quot;./codepen.component.scss&quot;,\n})\nexport class CodepenComponent implements OnInit {\n  private scriptS = inject(ScriptService);\n  private renderer = inject(Renderer2);\n\n  async ngOnInit(): Promise&lt;void&gt; {\n    await this.scriptS.reloadJsScript(this.renderer, &quot;https://cpwebassets.codepen.io/assets/embed/ei.js&quot;);\n  }\n}\n\u003C/code>\u003C/pre>\n\u003Cp>Das HTML der Komponente sieht wie folgt aus:\u003C/p>\n\u003Cpre>\u003Ccode class=\"language-html\">&lt;ng-content&gt;&lt;/ng-content&gt;\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003Cli>\u003Cp>\u003Cstrong>CodePen Komponente benutzen:\u003C/strong>\u003C/p>\n\u003Cul>\n\u003Cli>Öffne das gewünschtes CodePen-Snippet auf der CodePen Webseite\u003C/li>\n\u003Cli>Klicke unten auf &quot;Embed&quot;\u003C/li>\n\u003Cli>Kopiere den bereitgestellten HTML-Code \u003Cstrong>(Ohne das Script-Tag)\u003C/strong>\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-html\">&lt;p class=&quot;codepen&quot; data-height=&quot;300&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;result&quot; data-slug-hash=&quot;NWOQYqz&quot; data-editable=&quot;true&quot; data-user=&quot;Rico-the-bold&quot; style=&quot;height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;&quot;&gt;\n  &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/Rico-the-bold/pen/NWOQYqz&quot;&gt; Material Buttons&lt;/a&gt; by Rico (&lt;a href=&quot;https://codepen.io/Rico-the-bold&quot;&gt;@Rico-the-bold&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;\n&lt;/p&gt;\n\u003C/code>\u003C/pre>\n\u003Cul>\n\u003Cli>Füge das HTML von CodePen in das HTML-Tag der Komponente ein:\u003C/li>\n\u003C/ul>\n\u003Cpre>\u003Ccode class=\"language-html\">&lt;app-codepen&gt;\n  &lt;p class=&quot;codepen&quot; data-height=&quot;300&quot; data-theme-id=&quot;dark&quot; data-default-tab=&quot;result&quot; data-slug-hash=&quot;NWOQYqz&quot; data-editable=&quot;true&quot; data-user=&quot;Rico-the-bold&quot; style=&quot;height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em&quot;&gt;\n    &lt;span&gt;See the Pen &lt;a href=&quot;https://codepen.io/Rico-the-bold/pen/NWOQYqz&quot;&gt;Material Buttons&lt;/a&gt; by Rico (&lt;a href=&quot;https://codepen.io/Rico-the-bold&quot;&gt;Rico-the-bold&lt;/a&gt;)on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/span&gt;\n  &lt;/p&gt;\n&lt;/app-codepen&gt;\n\u003C/code>\u003C/pre>\n\u003C/li>\n\u003C/ol>\n"},"__nghData__":[{},{"t":{"0":"t49","1":"t50"},"c":{"0":[],"1":[{"i":"t50","r":1}]}},{"t":{"3":"t45","11":"t46","14":"t47","15":"t48"},"c":{"3":[{"i":"t45","r":1}],"11":[],"14":[{"i":"t47","r":1}],"15":[{"i":"t48","r":1}]}},{"t":{"0":"t9"},"c":{"0":[{"i":"t9","r":1,"t":{"9":"t10"},"c":{"9":[{"i":"t10","r":1,"x":3}]}}]}},{"c":{"4":[{"i":"c1317776247","r":1}]}}]}</script></body></html>

@@ -14,7 +14,7 @@ The Angular Application Builder pre-renders an Angular project, but is designed 
 
 The project is pre-rendered with the `ng build` command. The pre-rendered files can be found in the `dist/projectname/browser/` directory. The Application Builder has created a separate directory for each route, which has the name of the route and contains an `index.html`. If you start an HTTP server in this directory, you can already test the pre-rendered page.
 
-### The trailing slash problem
+## The trailing slash problem
 
 Without further adjustments, you will encounter a problem in the network tab of the developer tools: When you call up the page, a redirect occurs. The request is made without a slash at the end of the URL and is then redirected to the URL with a trailing slash.
 
@@ -32,23 +32,18 @@ import { appConfig } from "./app/app.config";
 
 bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
 
+const __stripTrailingSlash = Location.stripTrailingSlash;
+
 // Enables navigation with a trailing slash without removing it
-const __stripTrailingSlash = (Location as any).stripTrailingSlash;
-(Location as any).stripTrailingSlash = function _stripTrailingSlash(url: string): string {
-  // Split the URL into three parts: the path before the question mark, the query string, and the fragment
+Location.stripTrailingSlash = function _stripTrailingSlash(url: string): string {
   const urlParts = url.match(/([^?#]*)(\?[^#]*)?(#.*)?/);
 
-  const path = urlParts?.[1] || ""; // Path before query and fragment
-  const queryString = urlParts?.[2] || ""; // Query string (optional)
-  const fragment = urlParts?.[3] || ""; // Fragment (optional)
+  const path = urlParts?.[1] || "";
+  const query = urlParts?.[2] || "";
+  const fragment = urlParts?.[3] || "";
 
-  // If the path ends with a slash, add a dot before the query string or fragment
-  if (/[^\/]\/$/.test(path)) {
-    return path + "." + queryString + fragment;
-  }
-
-  // If the path does not end with a slash, call the original stripTrailingSlash method
-  return __stripTrailingSlash(url);
+  // If the path ends with a slash, add a dot
+  return /[^\\/]\/$/.test(path) ? path + "." + query + fragment : __stripTrailingSlash(url);
 };
 ```
 
@@ -56,9 +51,18 @@ All route paths in Angular must have a trailing slash, followed by a dot.
 
 ```typescript
 export const routes: Routes = [
-  { path: "", loadComponent: () => import("./routes/home/home.component").then((m) => m.HomeComponent) },
-  { path: "legal-notice/.", loadComponent: () => import("./routes/legal-notice/legal-notice.component").then((m) => m.LegalNoticeComponent) },
-  { path: "legal-notice", loadComponent: () => import("./routes/legal-notice/legal-notice.component").then((m) => m.LegalNoticeComponent) },
+  {
+    path: "",
+    loadComponent: () => import("./home/home.component").then((m) => m.HomeComponent),
+  },
+  {
+    path: "legal-notice/.",
+    loadComponent: () => import("./legal-notice/legal-notice.component").then((m) => m.LegalNoticeComponent),
+  },
+  {
+    path: "legal-notice",
+    loadComponent: () => import("./legal-notice/legal-notice.component").then((m) => m.LegalNoticeComponent),
+  },
 ];
 ```
 

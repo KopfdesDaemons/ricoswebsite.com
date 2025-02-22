@@ -11,19 +11,19 @@ description: Unter Linux können die Einstellungen des Steam Clients verbugt sei
 date: 2024-06-17
 ---
 
-## Das Problem: Der Steam Client übernimmt keine Einstellungen aus Dropdowns
+## Der Steam Client übernimmt keine Einstellungen aus Dropdowns
 
 Unter Linux kann es nach der Installation von Steam schnell zu Frustration führen, wenn man beispielsweise die Sprache in den Einstellungen ändern möchte. Die Dropdown-Menüs reagieren nicht auf Auswahlversuche und die getroffene Auswahl bleibt unverändert. Dieses Problem betrifft alle Dropdown-Felder im Steam Client.
 
-## Valve ist das Problem der nicht auswählbaren Dropdowns bekannt
+## Valve ist das Problem bekannt
 
 Eine kurze Internetrecherche zeigt schnell, dass viele Nutzer das gleiche Problem haben. Auf [GitHub](https://github.com/ValveSoftware/steam-for-linux/issues/9273) gibt es zahlreiche Meldungen zu diesem Fehler. Der Status dieses Issues ist weiterhin "open", was bedeutet, dass Valve noch keine offizielle Lösung angeboten hat. Das Problem wurde bereits im März 2023 gemeldet.
 
-## Die Ursache: Warum sich die Dropdowns in Steam nicht auswählen lassen
+## Die Ursache
 
 Der Fehler liegt im Fokussierungsverhalten der Fenster der Desktopumgebung. Unter Cinnamon beispielsweise gibt es verschiedene Optionen für das Fokussierungsverhalten. Wenn der Fensterfokus der Maus folgen soll, tritt dieses Problem auf.
 
-## Lösung: Problem der nicht auswählbaren Dropdowns beheben
+## Die Lösung
 
 Um den Fehler zu umgehen, muss das Fokussierungsverhalten der Fenster so eingestellt werden, dass sie erst durch einen Mausklick fokussiert werden. Unter der Desktopumgebung Cinnamon geht das wie folgt:
 
@@ -33,7 +33,7 @@ Um den Fehler zu umgehen, muss das Fokussierungsverhalten der Fenster so eingest
 
 Nach dieser Änderung sollte das Problem nicht mehr auftreten.
 
-## Steam: Nicht auswählbare Dropdowns umgehen
+## Das Problem umgehen
 
 Falls du das Fokussierungsverhalten der Fenster nicht ändern möchtest, gibt es einen Workaround, um die Einstellungen dennoch auswählen zu können:
 

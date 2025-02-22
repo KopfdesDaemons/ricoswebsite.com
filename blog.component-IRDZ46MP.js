@@ -5,7 +5,7 @@ import {
 } from "./chunk-7JADWIHW.js";
 import {
   PostService
-} from "./chunk-ZUMQFM6H.js";
+} from "./chunk-ZJPKXGUJ.js";
 import "./chunk-QTWOLS27.js";
 import {
   ActivatedRoute,
@@ -344,4 +344,4 @@ var BlogComponent = class _BlogComponent {
 export {
   BlogComponent
 };
-//# sourceMappingURL=blog.component-KUEJKQR6.js.map
+//# sourceMappingURL=blog.component-IRDZ46MP.js.map

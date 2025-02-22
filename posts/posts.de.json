@@ -38,7 +38,7 @@
     "fileName": "blogtube"
   },
   {
-    "title": "CodePen in Angular integrieren (DSGVO konform)",
+    "title": "CodePen in Angular integrieren",
     "author": "Rico",
     "image": "/images/codepen-screenshot.avif",
     "keywords": [
@@ -96,6 +96,7 @@
   {
     "title": "Datenschutzerklärung",
     "hideInFeed": true,
+    "commentsDisabled": true,
     "fileName": "privacy-policy"
   },
   {

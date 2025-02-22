@@ -2137,7 +2137,15 @@ var PostService = class _PostService {
     return __async(this, null, function* () {
       const contentUrl = `${this.baseUrl}posts/${language}/${fileName}.md`;
       try {
-        const markdownFile = yield lastValueFrom(this.http.get(contentUrl, { responseType: "text" }));
+        const response = yield lastValueFrom(this.http.get(contentUrl, {
+          responseType: "text",
+          observe: "response",
+          headers: { Accept: "text/plain" },
+          transferCache: { includeHeaders: ["Content-Type"] }
+        }));
+        if (response.headers.get("Content-Type")?.includes("text/html"))
+          return null;
+        const markdownFile = response.body;
         const markdownHeader = this.markdownHelper.extractYamlHeader(markdownFile);
         const markdownBody = this.markdownHelper.extractBody(markdownFile);
         const postContent = yield this.markdownHelper.parseMarkdown(markdownBody);
@@ -2200,4 +2208,4 @@ var PostService = class _PostService {
 export {
   PostService
 };
-//# sourceMappingURL=chunk-ZUMQFM6H.js.map
+//# sourceMappingURL=chunk-ZJPKXGUJ.js.map

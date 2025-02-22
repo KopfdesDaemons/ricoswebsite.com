@@ -1,6 +1,7 @@
 ---
 title: Privacy policy
 hideInFeed: true
+commentsDisabled: true
 ---
 
 ## Controller

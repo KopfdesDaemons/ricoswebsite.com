@@ -9,7 +9,7 @@ import {
 } from "./chunk-C4FMDJ5B.js";
 import {
   PostService
-} from "./chunk-ZUMQFM6H.js";
+} from "./chunk-ZJPKXGUJ.js";
 import "./chunk-QTWOLS27.js";
 import {
   ActivatedRoute,
@@ -38,6 +38,8 @@ import {
   inject,
   input,
   lastValueFrom,
+  signal,
+  viewChild,
   ɵsetClassDebugInfo,
   ɵɵNgOnChangesFeature,
   ɵɵadvance,
@@ -56,6 +58,7 @@ import {
   ɵɵproperty,
   ɵɵpropertyInterpolate,
   ɵɵpureFunction1,
+  ɵɵqueryAdvance,
   ɵɵresetView,
   ɵɵrestoreView,
   ɵɵsanitizeHtml,
@@ -63,7 +66,8 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate,
-  ɵɵtextInterpolate1
+  ɵɵtextInterpolate1,
+  ɵɵviewQuerySignal
 } from "./chunk-YQ2WRJ7O.js";
 
 // node_modules/prismjs/prism.js
@@ -2082,8 +2086,8 @@ var DisqusComponent = class _DisqusComponent {
     this.disqusS = inject(DisqusService);
     this.renderer = inject(Renderer2);
     this.elementRef = inject(ElementRef);
-    this.languageS = inject(LanguageService);
     this.platformId = inject(PLATFORM_ID);
+    this.languageS = inject(LanguageService);
     this.consentS = inject(ConsentService);
     this.identifier = input();
     this.disqusDiv = ViewChild("disqusDiv");
@@ -2233,14 +2237,17 @@ var MetaService = class _MetaService {
 };
 
 // src/app/routes/blog-post/blog-post.component.ts
+var _c02 = ["postContent"];
 function BlogPostComponent_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "img", 3);
+    \u0275\u0275element(0, "img", 4);
   }
   if (rf & 2) {
+    let tmp_1_0;
+    let tmp_2_0;
     const ctx_r0 = \u0275\u0275nextContext();
-    \u0275\u0275propertyInterpolate("alt", ctx_r0.post == null ? null : ctx_r0.post.postMeta == null ? null : ctx_r0.post.postMeta.title);
-    \u0275\u0275property("src", ctx_r0.post == null ? null : ctx_r0.post.postMeta == null ? null : ctx_r0.post.postMeta.image, \u0275\u0275sanitizeUrl);
+    \u0275\u0275propertyInterpolate("alt", (tmp_1_0 = ctx_r0.post()) == null ? null : tmp_1_0.postMeta == null ? null : tmp_1_0.postMeta.title);
+    \u0275\u0275property("src", (tmp_2_0 = ctx_r0.post()) == null ? null : tmp_2_0.postMeta == null ? null : tmp_2_0.postMeta.image, \u0275\u0275sanitizeUrl);
   }
 }
 function BlogPostComponent_Conditional_11_Template(rf, ctx) {
@@ -2266,22 +2273,23 @@ function BlogPostComponent_Conditional_11_Template(rf, ctx) {
 }
 function BlogPostComponent_Conditional_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "div", 5);
-    \u0275\u0275pipe(1, "safeHtml");
+    \u0275\u0275element(0, "div", 6, 0);
+    \u0275\u0275pipe(2, "safeHtml");
   }
   if (rf & 2) {
-    let tmp_1_0;
+    let tmp_2_0;
     const ctx_r0 = \u0275\u0275nextContext();
-    \u0275\u0275property("innerHTML", \u0275\u0275pipeBind1(1, 1, (tmp_1_0 = ctx_r0.post == null ? null : ctx_r0.post.postContent) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : ""), \u0275\u0275sanitizeHtml);
+    \u0275\u0275property("innerHTML", \u0275\u0275pipeBind1(2, 1, (tmp_2_0 = (tmp_2_0 = ctx_r0.post()) == null ? null : tmp_2_0.postContent) !== null && tmp_2_0 !== void 0 ? tmp_2_0 : ""), \u0275\u0275sanitizeHtml);
   }
 }
 function BlogPostComponent_Conditional_15_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "app-disqus", 6);
+    \u0275\u0275element(0, "app-disqus", 7);
   }
   if (rf & 2) {
+    let tmp_1_0;
     const ctx_r0 = \u0275\u0275nextContext();
-    \u0275\u0275property("identifier", ctx_r0.post.postMeta.fileName);
+    \u0275\u0275property("identifier", (tmp_1_0 = ctx_r0.post()) == null ? null : tmp_1_0.postMeta == null ? null : tmp_1_0.postMeta.fileName);
   }
 }
 var BlogPostComponent = class _BlogPostComponent {
@@ -2293,49 +2301,35 @@ var BlogPostComponent = class _BlogPostComponent {
     this.codePenS = inject(CodepenService);
     this.metaS = inject(MetaService);
     this.platformId = inject(PLATFORM_ID);
-    this.codePenHasLoaded = false;
+    this.postContent = viewChild.required("postContent");
+    this.post = signal(void 0);
     this.postNotFound = false;
   }
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe((param) => __async(this, null, function* () {
-      this.codePenHasLoaded = false;
       this.postNotFound = false;
-      const fileName = param["fileName"];
-      if (fileName) {
-        this.post = yield this.postS.getPost(fileName);
-      } else {
-        const data = yield firstValueFrom(this.route.data);
-        if (data["fileName"]) {
-          this.post = yield this.postS.getPost(data["fileName"]);
-        }
-        if (this.post?.postMeta) {
-          this.post.postMeta.commentsDisabled = true;
-        }
+      const fileName = param["fileName"] || (yield firstValueFrom(this.route.data))?.["fileName"];
+      if (fileName)
+        this.post.set(yield this.postS.getPost(fileName));
+      if (this.post()?.postMeta) {
+        this.metaS.updateMetaTags(this.post().postMeta);
+        this.loadEmbededContent();
       }
-      this.postNotFound = !this.post;
-      if (this.post?.postMeta) {
-        this.metaS.updateMetaTags(this.post.postMeta);
-      }
+      this.postNotFound = !this.post();
     }));
   }
   ngOnDestroy() {
-    if (this.routeParamsSubscription) {
-      this.routeParamsSubscription.unsubscribe();
-    }
+    this.routeParamsSubscription?.unsubscribe();
   }
-  ngAfterViewChecked() {
-    return __async(this, null, function* () {
-      if (!isPlatformBrowser(this.platformId))
-        return;
-      if (this.post) {
-        this.highlightHelper.highlightAll();
-        if (this.codePenHasLoaded)
-          return;
-        if (this.post?.postMeta?.hasCodePen)
-          yield this.codePenS.loadCodePen(this.renderer);
-        this.codePenHasLoaded = true;
+  loadEmbededContent() {
+    if (!isPlatformBrowser(this.platformId))
+      return;
+    setTimeout(() => __async(this, null, function* () {
+      this.highlightHelper.highlightAll();
+      if (this.post()?.postMeta?.hasCodePen) {
+        yield this.codePenS.loadCodePen(this.renderer);
       }
-    });
+    }));
   }
   static {
     this.\u0275fac = function BlogPostComponent_Factory(__ngFactoryType__) {
@@ -2343,14 +2337,21 @@ var BlogPostComponent = class _BlogPostComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BlogPostComponent, selectors: [["app-blog-post"]], decls: 16, vars: 7, consts: [[1, "blogpostMain"], [1, "hero", "gradient"], [1, "sectionSpacer"], ["height", "495", "width", "880", 3, "src", "alt"], [1, "description"], [1, "postContent", 3, "innerHTML"], [3, "identifier"]], template: function BlogPostComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BlogPostComponent, selectors: [["app-blog-post"]], viewQuery: function BlogPostComponent_Query(rf, ctx) {
       if (rf & 1) {
-        \u0275\u0275elementStart(0, "main", 0)(1, "div", 1)(2, "div", 2);
-        \u0275\u0275template(3, BlogPostComponent_Conditional_3_Template, 1, 2, "img", 3);
+        \u0275\u0275viewQuerySignal(ctx.postContent, _c02, 5);
+      }
+      if (rf & 2) {
+        \u0275\u0275queryAdvance();
+      }
+    }, decls: 16, vars: 7, consts: [["postContent", ""], [1, "blogpostMain"], [1, "hero", "gradient"], [1, "sectionSpacer"], ["height", "495", "width", "880", 3, "src", "alt"], [1, "description"], [1, "post-content", 3, "innerHTML"], [3, "identifier"]], template: function BlogPostComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "main", 1)(1, "div", 2)(2, "div", 3);
+        \u0275\u0275template(3, BlogPostComponent_Conditional_3_Template, 1, 2, "img", 4);
         \u0275\u0275elementStart(4, "h1");
         \u0275\u0275text(5);
         \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(6, "div", 4)(7, "p");
+        \u0275\u0275elementStart(6, "div", 5)(7, "p");
         \u0275\u0275text(8);
         \u0275\u0275elementEnd()();
         \u0275\u0275elementStart(9, "time");
@@ -2358,27 +2359,33 @@ var BlogPostComponent = class _BlogPostComponent {
         \u0275\u0275elementEnd();
         \u0275\u0275template(11, BlogPostComponent_Conditional_11_Template, 8, 6);
         \u0275\u0275elementEnd()();
-        \u0275\u0275elementStart(12, "section")(13, "div", 2);
-        \u0275\u0275template(14, BlogPostComponent_Conditional_14_Template, 2, 3, "div", 5)(15, BlogPostComponent_Conditional_15_Template, 1, 1, "app-disqus", 6);
+        \u0275\u0275elementStart(12, "section")(13, "div", 3);
+        \u0275\u0275template(14, BlogPostComponent_Conditional_14_Template, 3, 3, "div", 6)(15, BlogPostComponent_Conditional_15_Template, 1, 1, "app-disqus", 7);
         \u0275\u0275elementEnd()()();
       }
       if (rf & 2) {
+        let tmp_0_0;
+        let tmp_1_0;
+        let tmp_2_0;
+        let tmp_3_0;
+        let tmp_5_0;
+        let tmp_6_0;
         \u0275\u0275advance(3);
-        \u0275\u0275conditional((ctx.post == null ? null : ctx.post.postMeta == null ? null : ctx.post.postMeta.image) ? 3 : -1);
+        \u0275\u0275conditional(((tmp_0_0 = ctx.post()) == null ? null : tmp_0_0.postMeta == null ? null : tmp_0_0.postMeta.image) ? 3 : -1);
         \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate(ctx.post == null ? null : ctx.post.postMeta == null ? null : ctx.post.postMeta.title);
+        \u0275\u0275textInterpolate((tmp_1_0 = ctx.post()) == null ? null : tmp_1_0.postMeta == null ? null : tmp_1_0.postMeta.title);
         \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate(ctx.post == null ? null : ctx.post.postMeta == null ? null : ctx.post.postMeta.description);
+        \u0275\u0275textInterpolate((tmp_2_0 = ctx.post()) == null ? null : tmp_2_0.postMeta == null ? null : tmp_2_0.postMeta.description);
         \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate(ctx.post == null ? null : ctx.post.postMeta == null ? null : ctx.post.postMeta.localDateString);
+        \u0275\u0275textInterpolate((tmp_3_0 = ctx.post()) == null ? null : tmp_3_0.postMeta == null ? null : tmp_3_0.postMeta.localDateString);
         \u0275\u0275advance();
         \u0275\u0275conditional(ctx.postNotFound ? 11 : -1);
         \u0275\u0275advance(3);
-        \u0275\u0275conditional((ctx.post == null ? null : ctx.post.postContent) ? 14 : -1);
+        \u0275\u0275conditional(((tmp_5_0 = ctx.post()) == null ? null : tmp_5_0.postContent) ? 14 : -1);
         \u0275\u0275advance();
-        \u0275\u0275conditional(ctx.post && !ctx.post.postMeta.commentsDisabled ? 15 : -1);
+        \u0275\u0275conditional(ctx.post() && !((tmp_6_0 = ctx.post()) == null ? null : tmp_6_0.postMeta == null ? null : tmp_6_0.postMeta.commentsDisabled) ? 15 : -1);
       }
-    }, dependencies: [DisqusComponent, TranslateModule, TranslatePipe, SafeHtmlPipe], styles: ["/* src/app/routes/blog-post/blog-post.component.scss */\n.blogpostMain {\n  padding-bottom: 3em;\n  text-wrap: pretty;\n}\n.blogpostMain .hero {\n  display: flex;\n  justify-content: center;\n  padding: 1em 4%;\n  text-align: center;\n  overflow: hidden;\n}\n.blogpostMain .hero img {\n  max-width: 100%;\n  height: auto;\n  animation: grow 500ms ease-out;\n  aspect-ratio: 16/9;\n  object-fit: contain;\n}\n@media only screen and (max-width: 1100px) {\n  .blogpostMain .hero {\n    padding-top: var(--header-height);\n  }\n}\n.blogpostMain .hero time {\n  float: right;\n  font-style: italic;\n  font-size: 0.8em;\n}\n.blogpostMain .hero .description {\n  max-width: 90%;\n  margin: 0 auto;\n  font-size: 1.2em;\n}\n@keyframes grow {\n  0% {\n    transform: scale(0);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n.blogpostMain .sectionSpacer {\n  max-width: 60em;\n  flex: 1;\n  width: 100%;\n  box-sizing: border-box;\n}\n@media only screen and (max-width: 800px) {\n  .blogpostMain .sectionSpacer {\n    padding: 0;\n  }\n}\n.blogpostMain section {\n  flex-direction: unset;\n  justify-content: center;\n}\n.blogpostMain .postContent {\n  min-height: 40em;\n  line-height: 1.5em;\n  margin-bottom: 4em;\n  padding: clamp(1em, 2vw, 2em);\n  overflow: auto;\n  width: 100%;\n  box-sizing: border-box;\n}\n@media only screen and (max-width: 800px) {\n  .blogpostMain .postContent ul,\n  .blogpostMain .postContent ol {\n    padding-left: 1em;\n  }\n}\n.blogpostMain .postContent ul {\n  padding-left: 1.5em;\n}\n.blogpostMain .postContent h2,\n.blogpostMain .postContent h3,\n.blogpostMain .postContent a {\n  color: #8888ff;\n}\n.blogpostMain .postContent h1,\n.blogpostMain .postContent h2,\n.blogpostMain .postContent h3,\n.blogpostMain .postContent h4 {\n  margin: 1em 0 0 0;\n  line-height: 1.2em;\n}\n.blogpostMain .postContent img {\n  max-width: 100%;\n}\n.blogpostMain .postContent img:hover {\n  filter: brightness(0.8);\n}\n.blogpostMain .postContent p > code,\n.blogpostMain .postContent li > code {\n  background-color: rgb(21, 39, 90);\n  padding: 0.4em;\n  border-radius: 4px;\n}\n.blogpostMain .postContent pre {\n  background-color: #1d2027;\n  padding: 1em;\n  border-radius: 12px;\n  max-width: 100%;\n  overflow-x: auto;\n  font-size: 0.8em;\n  font-size: 1em;\n  margin-bottom: 1em;\n  border: 8px solid #3a3a75;\n}\n.blogpostMain .postContent pre + .toolbar {\n  opacity: unset;\n  right: 0.8em;\n  top: 0.8em;\n}\n.blogpostMain .postContent pre + .toolbar button {\n  padding: 0.5em;\n  border-radius: unset;\n  font-size: 1em;\n  cursor: pointer;\n  border-radius: 6px;\n}\n.blogpostMain .postContent pre + .toolbar button:hover {\n  background-color: rgb(50, 50, 66);\n}\n.blogpostMain .postContent pre:hover {\n  border-color: #1f1f9e;\n}\n.blogpostMain .postContent .linkButton {\n  font-size: 1.4em;\n  padding: 0.7em;\n  background-color: #1f1d57;\n  border-radius: 24px;\n  cursor: pointer;\n  text-decoration: none;\n  color: rgb(168, 168, 252);\n  transition: all 250ms;\n  display: inline-block;\n}\n.blogpostMain .postContent .linkButton:hover {\n  background-color: #2d2b5f;\n}\n.blogpostMain #disqus_thread {\n  min-height: 500px;\n}\n.blogpostMain .codepen:has(.codePenConsentButton) {\n  flex-direction: column;\n}\n.blogpostMain .codePenConsentButton {\n  padding: 1em;\n  background-color: rgb(193, 192, 255);\n  border-radius: 4px;\n  border: 3px solid transparent;\n  cursor: pointer;\n  display: flex;\n  gap: 0.5em;\n  font-size: 1.2em;\n  transition: all 250ms;\n  margin: 0 auto;\n}\n.blogpostMain .codePenConsentButton:hover {\n  color: var(--font-color);\n  border-color: rgb(193, 192, 255);\n  background-color: transparent;\n}\n.blogpostMain .codePenConsentButton + p {\n  font-size: 0.8em;\n  text-wrap: balance;\n  text-align: center;\n}\n/*# sourceMappingURL=blog-post.component.css.map */\n"], encapsulation: 2 });
+    }, dependencies: [DisqusComponent, TranslateModule, TranslatePipe, SafeHtmlPipe], styles: ["/* src/app/routes/blog-post/blog-post.component.scss */\n.blogpostMain {\n  padding-bottom: 3em;\n  text-wrap: pretty;\n}\n.blogpostMain .hero {\n  display: flex;\n  justify-content: center;\n  padding: 1em 4%;\n  text-align: center;\n  overflow: hidden;\n}\n.blogpostMain .hero img {\n  max-width: 100%;\n  height: auto;\n  animation: grow 500ms ease-out;\n  aspect-ratio: 16/9;\n  object-fit: contain;\n}\n@media only screen and (max-width: 1100px) {\n  .blogpostMain .hero {\n    padding-top: var(--header-height);\n  }\n}\n.blogpostMain .hero time {\n  float: right;\n  font-style: italic;\n  font-size: 0.8em;\n}\n.blogpostMain .hero .description {\n  max-width: 90%;\n  margin: 0 auto;\n  font-size: 1.2em;\n}\n@keyframes grow {\n  0% {\n    transform: scale(0);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n.blogpostMain .sectionSpacer {\n  max-width: 60em;\n  flex: 1;\n  width: 100%;\n  box-sizing: border-box;\n}\n@media only screen and (max-width: 800px) {\n  .blogpostMain .sectionSpacer {\n    padding: 0;\n  }\n}\n.blogpostMain section {\n  flex-direction: unset;\n  justify-content: center;\n}\n.blogpostMain .post-content {\n  min-height: 40em;\n  line-height: 1.9em;\n  margin-bottom: 4em;\n  padding: clamp(1em, 2vw, 2em);\n  overflow: auto;\n  width: 100%;\n  box-sizing: border-box;\n}\n@media only screen and (max-width: 800px) {\n  .blogpostMain .post-content ul,\n  .blogpostMain .post-content ol {\n    padding-left: 1em;\n  }\n}\n.blogpostMain .post-content ul {\n  padding-left: 1.5em;\n}\n.blogpostMain .post-content h2,\n.blogpostMain .post-content h3,\n.blogpostMain .post-content a {\n  color: #8888ff;\n}\n.blogpostMain .post-content h1,\n.blogpostMain .post-content h2,\n.blogpostMain .post-content h3,\n.blogpostMain .post-content h4 {\n  margin: 1em 0 0 0;\n  line-height: 1.2em;\n}\n.blogpostMain .post-content h2 {\n  font-size: 1.6em;\n}\n.blogpostMain .post-content img {\n  max-width: 100%;\n}\n.blogpostMain .post-content img:hover {\n  filter: brightness(0.8);\n}\n.blogpostMain .post-content p > code,\n.blogpostMain .post-content li > code {\n  background-color: rgb(21, 39, 90);\n  padding: 0.4em;\n  border-radius: 4px;\n}\n.blogpostMain .post-content pre {\n  background-color: #1d2027;\n  padding: 1em;\n  border-radius: 12px;\n  max-width: 100%;\n  overflow-x: auto;\n  font-size: 0.8em;\n  font-size: 1em;\n  margin-bottom: 1em;\n  border: 8px solid #3a3a75;\n}\n.blogpostMain .post-content pre + .toolbar {\n  opacity: unset;\n  right: 0.8em;\n  top: 0.8em;\n}\n.blogpostMain .post-content pre + .toolbar button {\n  padding: 0.5em;\n  border-radius: unset;\n  font-size: 1em;\n  cursor: pointer;\n  border-radius: 6px;\n}\n.blogpostMain .post-content pre + .toolbar button:hover {\n  background-color: rgb(50, 50, 66);\n}\n.blogpostMain .post-content pre:hover {\n  border-color: #1f1f9e;\n}\n.blogpostMain .post-content .linkButton {\n  font-size: 1.4em;\n  padding: 0.7em;\n  background-color: #1f1d57;\n  border-radius: 24px;\n  cursor: pointer;\n  text-decoration: none;\n  color: rgb(168, 168, 252);\n  transition: all 250ms;\n  display: inline-block;\n}\n.blogpostMain .post-content .linkButton:hover {\n  background-color: #2d2b5f;\n}\n.blogpostMain #disqus_thread {\n  min-height: 500px;\n}\n.blogpostMain .codepen:has(.codePenConsentButton) {\n  flex-direction: column;\n}\n.blogpostMain .codePenConsentButton {\n  padding: 1em;\n  background-color: rgb(193, 192, 255);\n  border-radius: 4px;\n  border: 3px solid transparent;\n  cursor: pointer;\n  display: flex;\n  gap: 0.5em;\n  font-size: 1.2em;\n  transition: all 250ms;\n  margin: 0 auto;\n}\n.blogpostMain .codePenConsentButton:hover {\n  color: var(--font-color);\n  border-color: rgb(193, 192, 255);\n  background-color: transparent;\n}\n.blogpostMain .codePenConsentButton + p {\n  font-size: 0.8em;\n  text-wrap: balance;\n  text-align: center;\n}\n/*# sourceMappingURL=blog-post.component.css.map */\n"], encapsulation: 2 });
   }
 };
 (() => {
@@ -2406,4 +2413,4 @@ prismjs/prism.js:
    * Copyright 2024 Fonticons, Inc.
    *)
 */
-//# sourceMappingURL=blog-post.component-5PBMDAZT.js.map
+//# sourceMappingURL=blog-post.component-X3W5VVZ3.js.map

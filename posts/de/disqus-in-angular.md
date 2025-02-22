@@ -28,17 +28,16 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
     Zuerst wird ein Service benötigt, der Disqus laden kann:
 
     ```typescript
-    import { Inject, Injectable, Renderer2 } from "@angular/core";
+    import { inject, Injectable, Renderer2 } from "@angular/core";
     import { DOCUMENT } from "@angular/common";
 
     @Injectable({
       providedIn: "root",
     })
     export class DisqusService {
-      disqus: any;
-      shortname: string = "your-disqus-shortname";
-
-      constructor(@Inject(DOCUMENT) private document: Document) {}
+      private disqus: any;
+      private readonly shortname: string = "your-disqus-shortname";
+      private readonly document = inject(DOCUMENT);
 
       loadDisqus(renderer: Renderer2, id: string): void {
         this.disqus = (window as any)["DISQUS"];
@@ -75,28 +74,38 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
     `disqus.component.ts`:
 
     ```typescript
-    import { Component, Input, ElementRef, Renderer2, OnChanges, Inject, PLATFORM_ID } from "@angular/core";
-    import { isPlatformBrowser } from "@angular/common";
+    import { Component, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject, input } from "@angular/core";
     import { DisqusService } from "src/app/services/disqus.service";
+    import { faComment } from "@fortawesome/free-regular-svg-icons";
+    import { isPlatformBrowser } from "@angular/common";
+    import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+    import { RouterLink } from "@angular/router";
+    import { TranslateModule } from "@ngx-translate/core";
 
     @Component({
       selector: "app-disqus",
       templateUrl: "./disqus.component.html",
       styleUrls: ["./disqus.component.scss"],
+      imports: [FaIconComponent, RouterLink, TranslateModule],
     })
     export class DisqusComponent implements OnChanges {
-      @Input() identifier: string | undefined;
-      private observer: IntersectionObserver | undefined;
+      private disqusS = inject(DisqusService);
+      private renderer = inject(Renderer2);
+      private elementRef = inject(ElementRef);
+      private platformId = inject<object>(PLATFORM_ID);
 
-      constructor(public disqusS: DisqusService, public renderer: Renderer2, private elementRef: ElementRef, @Inject(PLATFORM_ID) private platformId: Object) {}
+      readonly identifier = input<string>();
+      disqusDiv = ViewChild("disqusDiv");
+      private observer: IntersectionObserver | undefined;
+      faComment = faComment;
 
       ngOnChanges(): void {
         if (!isPlatformBrowser(this.platformId)) return;
         if (this.observer) this.observer.disconnect();
-        if (!this.identifier) return;
+        if (!this.identifier()) return;
         this.observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) this.isVisible();
+          entries.forEach(async (entry) => {
+            if (entry.isIntersecting) await this.isVisible();
           });
         });
         this.observer.observe(this.elementRef.nativeElement);
@@ -106,10 +115,12 @@ Die Integration von Disqus in Angular funktioniert etwas anders, da Angular eine
         this.observer?.disconnect();
       }
 
-      isVisible() {
-        if (!this.identifier) return;
-        this.disqusS.loadDisqus(this.renderer, this.identifier);
-        this.observer?.disconnect();
+      async isVisible() {
+        const identifier = this.identifier();
+        if (identifier) {
+          await this.disqusS.loadDisqus(this.renderer, identifier);
+          this.observer?.disconnect();
+        }
       }
     }
     ```

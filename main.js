@@ -348,7 +348,7 @@ var SidemenuComponent = class _SidemenuComponent {
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate(\u0275\u0275pipeBind1(21, 15, "Blog"));
         \u0275\u0275advance(4);
-        \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(31, _c12, ctx.languageS.userLanguage + "/."));
+        \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(31, _c12, ctx.languageS.userLanguage + "/projects/page/1/."));
         \u0275\u0275advance(5);
         \u0275\u0275property("routerLink", \u0275\u0275pureFunction1(33, _c12, ctx.languageS.userLanguage + "/blogpost/css-gallery/."));
         \u0275\u0275advance(2);
@@ -624,56 +624,56 @@ var YamlLanguageLoader = class {
 var routes = [
   __spreadValues({
     path: "",
-    loadComponent: () => import("./home.component-CSPPU4V2.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./home.component-P3AMKAYA.js").then((m) => m.HomeComponent)
   }, false ? { \u0275entryName: "src/app/routes/home/home.component.ts" } : {}),
   __spreadValues({
     path: ":lang/blog/.",
-    loadComponent: () => import("./blog.component-KUEJKQR6.js").then((m) => m.BlogComponent)
+    loadComponent: () => import("./blog.component-IRDZ46MP.js").then((m) => m.BlogComponent)
   }, false ? { \u0275entryName: "src/app/routes/blog/blog.component.ts" } : {}),
   __spreadValues({
     path: ":lang/blog",
-    loadComponent: () => import("./blog.component-KUEJKQR6.js").then((m) => m.BlogComponent)
+    loadComponent: () => import("./blog.component-IRDZ46MP.js").then((m) => m.BlogComponent)
   }, false ? { \u0275entryName: "src/app/routes/blog/blog.component.ts" } : {}),
   __spreadValues({
     path: ":lang/blog/page/:page/.",
-    loadComponent: () => import("./blog.component-KUEJKQR6.js").then((m) => m.BlogComponent)
+    loadComponent: () => import("./blog.component-IRDZ46MP.js").then((m) => m.BlogComponent)
   }, false ? { \u0275entryName: "src/app/routes/blog/blog.component.ts" } : {}),
   __spreadValues({
     path: ":lang/blog/page/:page",
-    loadComponent: () => import("./blog.component-KUEJKQR6.js").then((m) => m.BlogComponent)
+    loadComponent: () => import("./blog.component-IRDZ46MP.js").then((m) => m.BlogComponent)
   }, false ? { \u0275entryName: "src/app/routes/blog/blog.component.ts" } : {}),
   __spreadValues({
     path: ":lang/projects/page/:page/.:technologies",
-    loadComponent: () => import("./home.component-CSPPU4V2.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./home.component-P3AMKAYA.js").then((m) => m.HomeComponent)
   }, false ? { \u0275entryName: "src/app/routes/home/home.component.ts" } : {}),
   __spreadValues({
     path: ":lang/projects/page/:page/:technologies",
-    loadComponent: () => import("./home.component-CSPPU4V2.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./home.component-P3AMKAYA.js").then((m) => m.HomeComponent)
   }, false ? { \u0275entryName: "src/app/routes/home/home.component.ts" } : {}),
   __spreadValues({
     path: ":lang/projects/page/:page/.",
-    loadComponent: () => import("./home.component-CSPPU4V2.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./home.component-P3AMKAYA.js").then((m) => m.HomeComponent)
   }, false ? { \u0275entryName: "src/app/routes/home/home.component.ts" } : {}),
   __spreadValues({
     path: ":lang/projects/page/:page",
-    loadComponent: () => import("./home.component-CSPPU4V2.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./home.component-P3AMKAYA.js").then((m) => m.HomeComponent)
   }, false ? { \u0275entryName: "src/app/routes/home/home.component.ts" } : {}),
   __spreadValues({
     path: ":lang/blogpost/:fileName/.",
-    loadComponent: () => import("./blog-post.component-5PBMDAZT.js").then((m) => m.BlogPostComponent)
+    loadComponent: () => import("./blog-post.component-X3W5VVZ3.js").then((m) => m.BlogPostComponent)
   }, false ? { \u0275entryName: "src/app/routes/blog-post/blog-post.component.ts" } : {}),
   __spreadValues({
     path: ":lang/blogpost/:fileName",
-    loadComponent: () => import("./blog-post.component-5PBMDAZT.js").then((m) => m.BlogPostComponent)
+    loadComponent: () => import("./blog-post.component-X3W5VVZ3.js").then((m) => m.BlogPostComponent)
   }, false ? { \u0275entryName: "src/app/routes/blog-post/blog-post.component.ts" } : {}),
   __spreadValues({
     path: ":lang/privacy-policy/.",
-    loadComponent: () => import("./blog-post.component-5PBMDAZT.js").then((m) => m.BlogPostComponent),
+    loadComponent: () => import("./blog-post.component-X3W5VVZ3.js").then((m) => m.BlogPostComponent),
     data: { fileName: "privacy-policy" }
   }, false ? { \u0275entryName: "src/app/routes/blog-post/blog-post.component.ts" } : {}),
   __spreadValues({
     path: ":lang/privacy-policy",
-    loadComponent: () => import("./blog-post.component-5PBMDAZT.js").then((m) => m.BlogPostComponent),
+    loadComponent: () => import("./blog-post.component-X3W5VVZ3.js").then((m) => m.BlogPostComponent),
     data: { fileName: "privacy-policy" }
   }, false ? { \u0275entryName: "src/app/routes/blog-post/blog-post.component.ts" } : {}),
   __spreadValues({
@@ -686,7 +686,7 @@ var routes = [
   }, false ? { \u0275entryName: "src/app/routes/legal-notice/legal-notice.component.ts" } : {}),
   __spreadValues({
     path: "**",
-    loadComponent: () => import("./home.component-CSPPU4V2.js").then((m) => m.HomeComponent)
+    loadComponent: () => import("./home.component-P3AMKAYA.js").then((m) => m.HomeComponent)
   }, false ? { \u0275entryName: "src/app/routes/home/home.component.ts" } : {})
 ];
 
@@ -715,11 +715,8 @@ var __stripTrailingSlash = Location.stripTrailingSlash;
 Location.stripTrailingSlash = function _stripTrailingSlash(url) {
   const urlParts = url.match(/([^?#]*)(\?[^#]*)?(#.*)?/);
   const path = urlParts?.[1] || "";
-  const queryString = urlParts?.[2] || "";
+  const query = urlParts?.[2] || "";
   const fragment = urlParts?.[3] || "";
-  if (/[^\/]\/$/.test(path)) {
-    return path + "." + queryString + fragment;
-  }
-  return __stripTrailingSlash(url);
+  return /[^\\/]\/$/.test(path) ? path + "." + query + fragment : __stripTrailingSlash(url);
 };
 //# sourceMappingURL=main.js.map

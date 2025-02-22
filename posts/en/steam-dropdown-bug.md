@@ -11,19 +11,19 @@ description: Under Linux, the settings of the Steam Client can be bugged and set
 date: 2024-06-17
 ---
 
-## The problem: The Steam Client does not adopt settings from dropdowns
+## The Steam Client does not adopt settings from dropdowns
 
 Under Linux, after installing Steam, it can quickly lead to frustration if, for example, you want to change the language in the settings. The dropdown menus do not respond to selection attempts and the selection made remains unchanged. This problem affects all dropdown fields in the Steam Client.
 
-## Valve is aware of the problem of unselectable dropdowns
+## Valve is aware of the problem
 
 A quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on [GitHub](https://github.com/ValveSoftware/steam-for-linux/issues/9273). The status of this issue is still "open", which means that Valve has not yet offered an official solution. The problem was reported in March 2023.
 
-## The cause: Why the dropdowns in Steam cannot be selected
+## The cause
 
 The error lies in the focusing behavior of the windows in the desktop environment. In Cinnamon, for example, there are various options for the focusing behavior. If the window focus is supposed to follow the mouse, this problem occurs.
 
-## Solution: Fix the problem of unselectable dropdowns
+## Solution
 
 To work around the error, the focusing behavior of the windows must be set so that they are only focused by a mouse click. In the Cinnamon desktop environment, this is done as follows:
 
@@ -33,7 +33,7 @@ To work around the error, the focusing behavior of the windows must be set so th
 
 After this change, the problem should no longer occur.
 
-## Steam: Bypass unselectable dropdowns
+## Bypass the problem
 
 If you do not want to change the window focus behavior, there is a workaround to still be able to select the settings:
 
