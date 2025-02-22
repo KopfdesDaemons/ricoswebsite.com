@@ -1,19 +1,17 @@
-@if (consentS.consentMangerIsVisible) {
-    <dialog #dialog id="consentManager">
-        <div class="headlineDiv">
-            <h2>Consent&nbsp;Manager</h2>
-            <button class="closeButton" (click)="consentS.closeConsentmanager()">&#10005;</button>
-        </div>
-        <ul>
-            @for (service of consentS.possibleConsents; track service) {
-                <li>
-                    <div>
-                        <span>{{ service.name }}</span>
-                        <input (change)="switchConsent($event, service.name)" type="checkbox" [checked]="consentS.checkConsent(service.name)" />
-                    </div>
-                    <p>{{ service.descriptionTransString | translate }}</p>
-                </li>
-            }
-        </ul>
-    </dialog>
-}
+<dialog #dialog id="consentManager">
+    <div class="headlineDiv">
+        <h2>Consent&nbsp;Manager</h2>
+        <button class="closeButton" (click)="consentS.closeConsentManager()">&#10005;</button>
+    </div>
+    <ul>
+        @for (service of consentS.possibleConsents; track service) {
+        <li>
+            <div>
+                <span>{{ service.name }}</span>
+                <input (change)="switchConsent($event, service.name)" type="checkbox" [checked]="consentS.checkConsent(service.name)" />
+            </div>
+            <p>{{ service.descriptionTransString | translate }}</p>
+        </li>
+        }
+    </ul>
+</dialog>

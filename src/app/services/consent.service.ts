@@ -1,19 +1,17 @@
-import { isPlatformServer } from '@angular/common';
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { DISQUS_SHORTNAME } from '../environment/enviroment';
 import { ScriptService } from './script.service';
 import { DisqusService } from './disqus.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsentService {
-  private platformId = inject<object>(PLATFORM_ID);
   private scriptS = inject(ScriptService);
   private disqusS = inject(DisqusService);
-
-  consentMangerIsVisible: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private platformId = inject<object>(PLATFORM_ID);
+  consentManagerIsOpen = signal<boolean>(false);
 
   possibleConsents: { name: string; domains: string[] | undefined; descriptionTransString: string }[] = [
     {
@@ -34,18 +32,15 @@ export class ConsentService {
   ];
 
   giveConsent(serviceName: string) {
-    if (isPlatformServer(this.platformId)) return;
     localStorage.setItem(serviceName, '');
   }
 
   checkConsent(serviceName: string): boolean {
-    if (isPlatformServer(this.platformId)) return false;
+    if (!isPlatformBrowser(this.platformId)) return false;
     return localStorage.getItem(serviceName) != null;
   }
 
   revokeConsent(serviceName: string) {
-    if (isPlatformServer(this.platformId)) return;
-
     localStorage.removeItem(serviceName);
 
     // delete cookies
@@ -73,11 +68,11 @@ export class ConsentService {
     });
   }
 
-  openConsentmanager() {
-    this.consentMangerIsVisible.next(true);
+  openConsentManager() {
+    this.consentManagerIsOpen.set(true);
   }
 
-  closeConsentmanager() {
-    this.consentMangerIsVisible.next(false);
+  closeConsentManager() {
+    this.consentManagerIsOpen.set(false);
   }
 }

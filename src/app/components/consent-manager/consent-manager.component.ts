@@ -1,8 +1,7 @@
-import { isPlatformServer } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnDestroy, PLATFORM_ID, inject, viewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, effect, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
 import { ConsentService } from 'src/app/services/consent.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-consent-manager',
@@ -10,34 +9,32 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./consent-manager.component.scss'],
   imports: [TranslateModule],
 })
-export class ConsentManagerComponent implements AfterViewInit, OnDestroy {
+export class ConsentManagerComponent {
   consentS = inject(ConsentService);
-  private platformId = inject<object>(PLATFORM_ID);
+  platformId = inject(PLATFORM_ID);
 
   readonly dialog = viewChild<ElementRef>('dialog');
-  listenOpenStatusSub: Subscription | undefined;
 
-  ngAfterViewInit(): void {
-    this.listenOpenStatus();
+  constructor() {
+    effect(() => {
+      if (!isPlatformBrowser(this.platformId)) return;
+      const isOpen = this.consentS.consentManagerIsOpen();
+      if (isOpen) this.open();
+      else this.close();
+    });
+  }
+
+  open() {
+    this.dialog()?.nativeElement.showModal();
+  }
+
+  close() {
+    this.dialog()?.nativeElement.close();
   }
 
   switchConsent(event: any, serviceName: string) {
     const value = event.target.checked;
     if (value) this.consentS.giveConsent(serviceName);
     else this.consentS.revokeConsent(serviceName);
-  }
-
-  listenOpenStatus() {
-    if (isPlatformServer(this.platformId)) return;
-    this.listenOpenStatusSub = this.consentS.consentMangerIsVisible.subscribe((value) => {
-      if (value) this.dialog()?.nativeElement.showModal();
-      else this.dialog()?.nativeElement.close();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.listenOpenStatusSub) {
-      this.listenOpenStatusSub.unsubscribe();
-    }
   }
 }
