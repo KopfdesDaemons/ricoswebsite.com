@@ -1,20 +1,26 @@
-<!DOCTYPE html><html lang="en" data-critters-container><head>
-  <meta charset="utf-8">
-  <title>Linux: Fix Steam Dropdown Bug</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style type="text/css" id="fa-auto-css">:root, :host {
+<!DOCTYPE html><html lang="en"><head>
+        <meta charset="utf-8">
+        <title>Linux: Fix Steam Dropdown Bug</title>
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css" id="fa-auto-css">:root, :host {
   --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
   --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
   --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
   --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
   --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 6 Duotone";
   --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
   --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
   --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
   --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
   --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
   --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 6 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 6 Sharp Duotone";
 }
 
 svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
@@ -550,22 +556,571 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 .svg-inline--fa mask .fa-primary,
 .svg-inline--fa mask .fa-secondary {
   fill: black;
-}
-
-.fad.fa-inverse,
-.fa-duotone.fa-inverse {
-  color: var(--fa-inverse, #fff);
 }</style><link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- <script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script> -->
-<style>:root{--border-color: rgb(49, 49, 150);--body: rgb(22, 22, 24);--section: rgb(26, 25, 46);--font-color: rgb(238, 238, 238);--gradient: linear-gradient(90deg, #1a192e 0%, rgba(49, 49, 150, 1) 75%, rgba(26, 25, 46, 1) 100%);--sidemenu-width: 16em;--header-height: 5rem}body{background-color:var(--body);margin:0;font-family:sans-serif}a,body{color:var(--font-color)}html,body{margin:0;height:100%;min-height:100%;scrollbar-color:rgb(117,117,117) transparent}h1{font-size:clamp(34px,4vw,40px)}main{display:flex;flex-direction:column;justify-content:flex-start;min-height:100vh}section{display:flex;flex-direction:column;justify-content:flex-start;align-items:center}.sectionSpacer{padding:0 2%;max-width:80em}.gradient{background:var(--gradient)}
-</style><link rel="stylesheet" href="styles-4XKGW2RH.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-4XKGW2RH.css"></noscript><style ng-app-id="ng">.menuIsOpen[_ngcontent-ng-c292575549]{padding-left:0}.content[_ngcontent-ng-c292575549]{transition:padding-left .1s ease-in-out}@media only screen and (min-width: 1100px){.content[_ngcontent-ng-c292575549]{padding-left:var(--sidemenu-width);padding-top:0}.menuIsOpen[_ngcontent-ng-c292575549]{padding-left:0}}</style><style ng-app-id="ng">.websiteName[_ngcontent-ng-c1730771519]   [_ngcontent-ng-c1730771519]:nth-child(2){background:-webkit-linear-gradient(#eee,#2525d9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}header[_ngcontent-ng-c1730771519]{font-size:clamp(14px,5vw,24px);box-sizing:border-box;display:flex;vertical-align:middle;height:var(--header-height);position:absolute;z-index:2}header.menuIsOpen[_ngcontent-ng-c1730771519]{position:fixed}@media only screen and (min-width: 1100px){header[_ngcontent-ng-c1730771519]{position:fixed}header.menuIsOpen[_ngcontent-ng-c1730771519]{position:absolute}}@media only screen and (min-width: 1900px){header.menuIsOpen[_ngcontent-ng-c1730771519]{position:fixed}}header[_ngcontent-ng-c1730771519]   a[_ngcontent-ng-c1730771519]{text-decoration:none}header[_ngcontent-ng-c1730771519]   .websiteName[_ngcontent-ng-c1730771519]{display:flex;align-items:center}header[_ngcontent-ng-c1730771519]   .toggle_sidemenu_button[_ngcontent-ng-c1730771519]{all:unset;color:var(--font-color);cursor:pointer;transition:all .1s;width:var(--header-height);display:flex;justify-content:center;align-items:center}header[_ngcontent-ng-c1730771519]   .toggle_sidemenu_button[_ngcontent-ng-c1730771519]:hover{transform:scale(1.3)}</style><style ng-app-id="ng">#languageSwitchOffer[_ngcontent-ng-c2349498990]{position:fixed;right:2em;top:2em;background-color:#252c33;border-radius:12px;padding:1em;z-index:20;box-shadow:1px 1px 3px 1px #000;transform:translate(110%);border:solid 1px;opacity:0}@media only screen and (max-width: 600px){#languageSwitchOffer[_ngcontent-ng-c2349498990]{right:1em;left:1em;top:unset;bottom:1em}}@keyframes _ngcontent-ng-c2349498990_moveIn{0%{transform:translate(110%);opacity:0}to{transform:translate(0);opacity:100}}#languageSwitchOffer.open[_ngcontent-ng-c2349498990]{animation:_ngcontent-ng-c2349498990_moveIn .5s forwards ease-out;transform:translate(0)}#languageSwitchOffer[_ngcontent-ng-c2349498990]   .closeButton[_ngcontent-ng-c2349498990]{border-radius:4px;height:1.8em;width:1.8em;float:right;border:none;cursor:pointer}#languageSwitchOffer[_ngcontent-ng-c2349498990]   .closeButton[_ngcontent-ng-c2349498990]:hover{background-color:#cecece}#languageSwitchOffer[_ngcontent-ng-c2349498990]   .buttons[_ngcontent-ng-c2349498990]{display:flex;gap:.5em;margin-top:1em}#languageSwitchOffer[_ngcontent-ng-c2349498990]   .buttons[_ngcontent-ng-c2349498990]   button[_ngcontent-ng-c2349498990]{background-color:#4545bb;color:var(--font-color);padding:.5em 1em;border:none;border:2px solid transparent;border-radius:6px;cursor:pointer}#languageSwitchOffer[_ngcontent-ng-c2349498990]   .buttons[_ngcontent-ng-c2349498990]   button[_ngcontent-ng-c2349498990]:hover{background-color:transparent;border:2px solid rgb(69,69,187)}</style><style ng-app-id="ng">.closingDiv[_ngcontent-ng-c2812047323]{width:100vw;height:100vh;position:fixed;z-index:1;display:none}@media only screen and (max-width: 1100px){.closingDiv.sidemenuOpen[_ngcontent-ng-c2812047323]{display:block}}aside[_ngcontent-ng-c2812047323]{position:fixed;top:0;left:0;height:100dvh;z-index:1;width:var(--sidemenu-width);transition:transform .1s ease-in-out;box-sizing:border-box;background-color:var(--section);display:flex}aside.sidemenuOpen[_ngcontent-ng-c2812047323]{transform:translate(calc(-1 * var(--sidemenu-width)))}@media only screen and (max-width: 1100px){aside[_ngcontent-ng-c2812047323]{transform:translate(calc(-1 * var(--sidemenu-width)))}aside.sidemenuOpen[_ngcontent-ng-c2812047323]{transform:translate(0)}}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]{margin-top:5em;padding:0 1em;display:flex;flex-direction:column;overflow-y:auto;width:100%}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   ul[_ngcontent-ng-c2812047323]{padding:0;margin:0;display:flex;flex-direction:column}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   ul[_ngcontent-ng-c2812047323]   li[_ngcontent-ng-c2812047323]{list-style:none}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   ul[_ngcontent-ng-c2812047323]   hr[_ngcontent-ng-c2812047323]{width:100%}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   ul[_ngcontent-ng-c2812047323]   a[_ngcontent-ng-c2812047323]{border-radius:10px;padding:1em .5em;flex:1 1 auto;text-decoration:none;display:flex;gap:1em;align-items:center;font-size:1.2em;justify-content:center;transition:all .1s;text-align:center;text-wrap:balance}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   ul[_ngcontent-ng-c2812047323]   a[_ngcontent-ng-c2812047323]:hover{background-color:#1c2e64}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   .languageSetter[_ngcontent-ng-c2812047323]{display:flex;flex-direction:column;gap:.5em;margin-top:auto;margin-bottom:1em}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   .languageSetter[_ngcontent-ng-c2812047323]   input[_ngcontent-ng-c2812047323]{display:none}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   .languageSetter[_ngcontent-ng-c2812047323]   input[_ngcontent-ng-c2812047323]:checked + label[_ngcontent-ng-c2812047323]{border:solid 1px rgb(109,109,109)}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   .languageSetter[_ngcontent-ng-c2812047323]   label[_ngcontent-ng-c2812047323]{display:flex;align-items:center;gap:.5em;-webkit-user-select:none;user-select:none;border:solid 1px transparent;padding:.2em;cursor:pointer}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   .languageSetter[_ngcontent-ng-c2812047323]   label[_ngcontent-ng-c2812047323]   svg[_ngcontent-ng-c2812047323]{height:2em}aside[_ngcontent-ng-c2812047323]   .sidemenuContent[_ngcontent-ng-c2812047323]   .languageSetter[_ngcontent-ng-c2812047323]   label[_ngcontent-ng-c2812047323]:hover{background-color:#030318}</style><style ng-app-id="ng">#consentManager[_ngcontent-ng-c98833692]{background-color:#252c33;padding:1em;position:fixed;top:-10%;box-shadow:1px 1px 3px 1px #000;border-radius:12px;border:1px solid;color:var(--font-color);font-size:1em}#consentManager[_ngcontent-ng-c98833692]::backdrop{-webkit-backdrop-filter:blur(1px);backdrop-filter:blur(1px)}#consentManager[_ngcontent-ng-c98833692]   .closeButton[_ngcontent-ng-c98833692]{border-radius:4px;height:2em;width:2em;border:none;cursor:pointer}#consentManager[_ngcontent-ng-c98833692]   .closeButton[_ngcontent-ng-c98833692]:hover{background-color:#cecece}#consentManager[_ngcontent-ng-c98833692]   .headlineDiv[_ngcontent-ng-c98833692]{display:flex;gap:1em;justify-content:space-between}#consentManager[_ngcontent-ng-c98833692]   .headlineDiv[_ngcontent-ng-c98833692]   h2[_ngcontent-ng-c98833692]{margin-top:0}#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]{padding:0;display:flex;flex-direction:column;gap:.5em}#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]{list-style:none}#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]   div[_ngcontent-ng-c98833692]{display:flex;justify-content:space-between}#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]   div[_ngcontent-ng-c98833692]   span[_ngcontent-ng-c98833692]{font-weight:700}#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]   p[_ngcontent-ng-c98833692]{margin-top:.3em}#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]{font-size:1em;appearance:none;width:3em;height:1.5em;background:#ddd;border-radius:3em;position:relative;cursor:pointer;outline:none}#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]:checked{background:#295869}#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]:after{position:absolute;content:"";width:1.5em;height:1.5em;border-radius:50%;background:#fff;box-shadow:0 0 .25em #0000004d;left:0;transition:all .15s ease-in-out}#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]:checked:after{left:calc(100% - 1.5em)}</style><style ng-app-id="ng">footer[_ngcontent-ng-c317472653]{font-size:clamp(12px,5vw,14px);padding:4vw;background-color:var(--section);display:flex;flex-wrap:wrap;gap:2em}footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]{padding:1em}footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   h2[_ngcontent-ng-c317472653]{font-size:1.3em;margin:0;color:#cef5f5}footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]{list-style:none;padding-left:.8em}footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]   li[_ngcontent-ng-c317472653]{display:flex;margin-top:.5em;padding:.2em 0}footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]   li[_ngcontent-ng-c317472653]   fa-icon[_ngcontent-ng-c317472653]{margin-right:.5em}footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]   li[_ngcontent-ng-c317472653]   span[_ngcontent-ng-c317472653]{text-decoration:underline;cursor:pointer}</style><style ng-app-id="ng">.blogpostMain{padding-bottom:3em;text-wrap:pretty}.blogpostMain .hero{display:flex;justify-content:center;padding:1em 4%;text-align:center;overflow:hidden}.blogpostMain .hero img{max-width:100%;height:auto;animation:grow .5s ease-out;aspect-ratio:16/9;object-fit:contain}@media only screen and (max-width: 1100px){.blogpostMain .hero{padding-top:var(--header-height)}}.blogpostMain .hero time{float:right;font-style:italic;font-size:.8em}.blogpostMain .hero .description{max-width:90%;margin:0 auto;font-size:1.2em}@keyframes grow{0%{transform:scale(0)}to{transform:scale(1)}}.blogpostMain .sectionSpacer{max-width:60em;flex:1;width:100%;box-sizing:border-box}@media only screen and (max-width: 800px){.blogpostMain .sectionSpacer{padding:0}}.blogpostMain section{flex-direction:unset;justify-content:center}.blogpostMain .postContent{min-height:40em;line-height:1.5em;margin-bottom:4em;padding:clamp(1em,2vw,2em);overflow:auto;width:100%;box-sizing:border-box}@media only screen and (max-width: 800px){.blogpostMain .postContent ul,.blogpostMain .postContent ol{padding-left:1em}}.blogpostMain .postContent ul{padding-left:1.5em}.blogpostMain .postContent h2,.blogpostMain .postContent h3,.blogpostMain .postContent a{color:#88f}.blogpostMain .postContent h1,.blogpostMain .postContent h2,.blogpostMain .postContent h3,.blogpostMain .postContent h4{margin:1em 0 0;line-height:1.2em}.blogpostMain .postContent img{max-width:100%;border-radius:12px}.blogpostMain .postContent img:hover{filter:brightness(.8)}.blogpostMain .postContent p>code,.blogpostMain .postContent li>code{background-color:#15275a;padding:.4em;border-radius:4px}.blogpostMain .postContent pre{background-color:#1d2027;padding:1em;border-radius:0 12px 12px 0;max-width:100%;overflow-x:auto;font-size:.8em;margin-bottom:1em;border-left:8px solid #3a3a75}.blogpostMain .postContent pre+.toolbar{opacity:unset}.blogpostMain .postContent pre+.toolbar button{padding:.4em;border-radius:unset;font-size:1em;cursor:pointer}.blogpostMain .postContent pre+.toolbar button:hover{background-color:#323242}.blogpostMain .postContent .linkButton{font-size:1.4em;padding:.7em;background-color:#1f1d57;border-radius:24px;cursor:pointer;text-decoration:none;color:#a8a8fc;transition:all .25s;display:inline-block}.blogpostMain .postContent .linkButton:hover{background-color:#2d2b5f}.blogpostMain #disqus_thread{min-height:500px}.blogpostMain .codepen:has(.codePenConsentButton){flex-direction:column}.blogpostMain .codePenConsentButton{padding:1em;background-color:#c1c0ff;border-radius:4px;border:3px solid transparent;cursor:pointer;display:flex;gap:.5em;font-size:1.2em;transition:all .25s;margin:0 auto}.blogpostMain .codePenConsentButton:hover{color:var(--font-color);border-color:#c1c0ff;background-color:transparent}.blogpostMain .codePenConsentButton+p{font-size:.8em;text-wrap:balance;text-align:center}
-</style><meta property="og:title" content="Linux: Fix Steam Dropdown Bug"><meta property="og:type" content="article"><meta property="og:url" content="https://ricoswebsite.com/en/blogpost/steam-dropdown-bug"><meta property="og:author" content="Rico"><meta property="article:published_time" content="2024-06-17"><meta property="og:description" content="Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug."><meta name="description" content="Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug."><meta name="keywords" content="Steam Settings Bug,Steam Dropdown not selectable,Linux Steam Client Issue,Steam Settings Linux"><meta property="og:image" content="https://ricoswebsite.com/assets/images/steam-dropdown-bug.avif"><style ng-app-id="ng">#disqus_thread[_ngcontent-ng-c1181359517]{padding:0 .5em}.consentBanner[_ngcontent-ng-c1181359517]{display:flex;flex-direction:column;align-items:center;gap:.5em}.consentBanner[_ngcontent-ng-c1181359517]   button[_ngcontent-ng-c1181359517]{padding:1em;background-color:#c1c0ff;border-radius:4px;border:3px solid transparent;cursor:pointer;display:flex;gap:.5em;font-size:1.2em;transition:all .25s}.consentBanner[_ngcontent-ng-c1181359517]   button[_ngcontent-ng-c1181359517]:hover{color:var(--font-color);border-color:#c1c0ff;background-color:transparent}.consentBanner[_ngcontent-ng-c1181359517]   .disclaimer[_ngcontent-ng-c1181359517]{font-size:.8em;text-wrap:balance;text-align:center}</style></head>
+        <!-- <script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script> -->
+    <link rel="stylesheet" href="styles.css"><style ng-app-id="ng">
 
-<body><!--nghm-->
-  <app-root _nghost-ng-c292575549 ng-version="18.2.3" ngh="4" ng-server-context="ssg"><app-header _ngcontent-ng-c292575549 _nghost-ng-c1730771519 ngh="0"><header _ngcontent-ng-c1730771519 class><button _ngcontent-ng-c1730771519 aria-label="toggle sidemenu" class="toggle_sidemenu_button"><fa-icon _ngcontent-ng-c1730771519 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></fa-icon></button><a _ngcontent-ng-c1730771519 class="websiteName" href="/en/projects/page/1/."><span _ngcontent-ng-c1730771519>Ricos</span><span _ngcontent-ng-c1730771519> Website</span></a></header></app-header><div _ngcontent-ng-c292575549 class="content"><app-language-switch-offer _ngcontent-ng-c292575549 _nghost-ng-c2349498990 ngh="0"><div _ngcontent-ng-c2349498990 id="languageSwitchOffer" class><button _ngcontent-ng-c2349498990 class="closeButton">✕</button><p _ngcontent-ng-c2349498990> Do you want to change the language to english?</p><div _ngcontent-ng-c2349498990 class="buttons"><button _ngcontent-ng-c2349498990>Yes</button><button _ngcontent-ng-c2349498990>No</button></div></div></app-language-switch-offer><app-sidemenu _ngcontent-ng-c292575549 _nghost-ng-c2812047323 ngh="0"><div _ngcontent-ng-c2812047323 class="closingDiv"></div><aside _ngcontent-ng-c2812047323 class><div _ngcontent-ng-c2812047323 class="sidemenuContent"><nav _ngcontent-ng-c2812047323><ul _ngcontent-ng-c2812047323><li _ngcontent-ng-c2812047323><a _ngcontent-ng-c2812047323 href="/en/projects/page/1/."><fa-icon _ngcontent-ng-c2812047323 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" class="svg-inline--fa fa-house" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg></fa-icon><span _ngcontent-ng-c2812047323>Home</span></a></li><li _ngcontent-ng-c2812047323><a _ngcontent-ng-c2812047323 href="https://github.com/KopfdesDaemons" target="_blank"><fa-icon _ngcontent-ng-c2812047323 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></fa-icon><span _ngcontent-ng-c2812047323>GitHub</span></a></li><li _ngcontent-ng-c2812047323><hr _ngcontent-ng-c2812047323><a _ngcontent-ng-c2812047323 href="/en/blog/."><span _ngcontent-ng-c2812047323>Blog</span></a></li><li _ngcontent-ng-c2812047323><hr _ngcontent-ng-c2812047323><a _ngcontent-ng-c2812047323 fragment="projectsSection" href="/en/.#projectsSection"><span _ngcontent-ng-c2812047323>Portfolio</span></a><hr _ngcontent-ng-c2812047323></li><li _ngcontent-ng-c2812047323><a _ngcontent-ng-c2812047323 href="/en/blogpost/css-gallery/."><span _ngcontent-ng-c2812047323>CSS gallery</span></a></li><li _ngcontent-ng-c2812047323><a _ngcontent-ng-c2812047323 href="/en/blogpost/about-this-website/."><span _ngcontent-ng-c2812047323>About this website</span></a></li></ul></nav><fieldset _ngcontent-ng-c2812047323 class="languageSetter"><legend _ngcontent-ng-c2812047323>Language:</legend><div _ngcontent-ng-c2812047323><input _ngcontent-ng-c2812047323 type="radio" id="german" name="language" value="de" class="ng-untouched ng-pristine ng-valid"><label _ngcontent-ng-c2812047323 for="german"><svg _ngcontent-ng-c2812047323="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img" aria-labelledby="german-flag"><title _ngcontent-ng-c2812047323="" id="german-flag">Flagge von Deutschland</title><path _ngcontent-ng-c2812047323="" fill="#fc0" d="M0 320h640v160H0z"/><path _ngcontent-ng-c2812047323="" fill="#000001" d="M0 0h640v160H0z"/><path _ngcontent-ng-c2812047323="" fill="red" d="M0 160h640v160H0z"/></svg><span _ngcontent-ng-c2812047323>German</span></label></div><div _ngcontent-ng-c2812047323><input _ngcontent-ng-c2812047323 type="radio" id="english" name="language" value="en" class="ng-untouched ng-pristine ng-valid" checked><label _ngcontent-ng-c2812047323 for="english"><svg _ngcontent-ng-c2812047323="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img" aria-labelledby="us-flag"><title _ngcontent-ng-c2812047323="" id="us-flag">Flagge der USA</title><path _ngcontent-ng-c2812047323="" fill="#bd3d44" d="M0 0h640v480H0"/><path _ngcontent-ng-c2812047323="" stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path _ngcontent-ng-c2812047323="" fill="#192f5d" d="M0 0h364.8v258.5H0"/><marker _ngcontent-ng-c2812047323="" id="us-a" markerHeight="30" markerWidth="30"><path _ngcontent-ng-c2812047323="" fill="#fff" d="m14 0 9 27L0 10h28L5 27z"/></marker><path _ngcontent-ng-c2812047323="" fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"/></svg><span _ngcontent-ng-c2812047323>English</span></label></div></fieldset></div></aside></app-sidemenu><router-outlet _ngcontent-ng-c292575549></router-outlet><app-blog-post ngh="2"><main class="blogpostMain"><div class="hero gradient"><div class="sectionSpacer"><img height="495" width="880" alt="Linux: Fix Steam Dropdown Bug" src="assets/images/steam-dropdown-bug.avif"><!----><h1>Linux: Fix Steam Dropdown Bug</h1><div class="description"><p>Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.</p></div><time>6/17/2024</time><!----></div></div><section><div class="sectionSpacer"><div class="postContent"><h2>The problem: The Steam Client does not adopt settings from dropdowns</h2>
+.menuIsOpen[_ngcontent-ng-c292575549] {
+  padding-left: 0;
+}
+.content[_ngcontent-ng-c292575549] {
+  transition: padding-left 100ms ease-in-out;
+}
+@media only screen and (min-width: 1100px) {
+  .content[_ngcontent-ng-c292575549] {
+    padding-left: var(--sidemenu-width);
+    padding-top: 0;
+  }
+  .menuIsOpen[_ngcontent-ng-c292575549] {
+    padding-left: 0;
+  }
+}
+/*# sourceMappingURL=/app.component.css.map */</style><style ng-app-id="ng">
+
+.websiteName[_ngcontent-ng-c1730771519]   [_ngcontent-ng-c1730771519]:nth-child(2) {
+  background: -webkit-linear-gradient(#eee, #2525d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+header[_ngcontent-ng-c1730771519] {
+  font-size: clamp(14px, 5vw, 24px);
+  box-sizing: border-box;
+  display: flex;
+  vertical-align: middle;
+  height: var(--header-height);
+  position: absolute;
+  z-index: 2;
+}
+header.menuIsOpen[_ngcontent-ng-c1730771519] {
+  position: fixed;
+}
+@media only screen and (min-width: 1100px) {
+  header[_ngcontent-ng-c1730771519] {
+    position: fixed;
+  }
+  header.menuIsOpen[_ngcontent-ng-c1730771519] {
+    position: absolute;
+  }
+}
+@media only screen and (min-width: 1900px) {
+  header.menuIsOpen[_ngcontent-ng-c1730771519] {
+    position: fixed;
+  }
+}
+header[_ngcontent-ng-c1730771519]   a[_ngcontent-ng-c1730771519] {
+  text-decoration: none;
+}
+header[_ngcontent-ng-c1730771519]   .websiteName[_ngcontent-ng-c1730771519] {
+  display: flex;
+  align-items: center;
+}
+header[_ngcontent-ng-c1730771519]   .toggle_sidemenu_button[_ngcontent-ng-c1730771519] {
+  all: unset;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: all 100ms;
+  width: var(--header-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header[_ngcontent-ng-c1730771519]   .toggle_sidemenu_button[_ngcontent-ng-c1730771519]:hover {
+  transform: scale(1.3);
+}
+/*# sourceMappingURL=/header.component.css.map */</style><style ng-app-id="ng">
+
+#languageSwitchOffer[_ngcontent-ng-c2349498990] {
+  position: fixed;
+  right: 2em;
+  top: 2em;
+  background-color: rgb(37, 44, 51);
+  border-radius: 12px;
+  padding: 1em;
+  z-index: 20;
+  box-shadow: 1px 1px 3px 1px black;
+  transform: translateX(110%);
+  border: solid 1px;
+  opacity: 0;
+}
+@media only screen and (max-width: 600px) {
+  #languageSwitchOffer[_ngcontent-ng-c2349498990] {
+    right: 1em;
+    left: 1em;
+    top: unset;
+    bottom: 1em;
+  }
+}
+@keyframes _ngcontent-ng-c2349498990_moveIn {
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 100;
+  }
+}
+#languageSwitchOffer.open[_ngcontent-ng-c2349498990] {
+  animation: _ngcontent-ng-c2349498990_moveIn 500ms forwards ease-out;
+  transform: translateX(0);
+}
+#languageSwitchOffer[_ngcontent-ng-c2349498990]   .closeButton[_ngcontent-ng-c2349498990] {
+  border-radius: 4px;
+  height: 1.8em;
+  width: 1.8em;
+  float: right;
+  border: none;
+  cursor: pointer;
+}
+#languageSwitchOffer[_ngcontent-ng-c2349498990]   .closeButton[_ngcontent-ng-c2349498990]:hover {
+  background-color: rgb(206, 206, 206);
+}
+#languageSwitchOffer[_ngcontent-ng-c2349498990]   .buttons[_ngcontent-ng-c2349498990] {
+  display: flex;
+  gap: 0.5em;
+  margin-top: 1em;
+}
+#languageSwitchOffer[_ngcontent-ng-c2349498990]   .buttons[_ngcontent-ng-c2349498990]   button[_ngcontent-ng-c2349498990] {
+  background-color: rgb(69, 69, 187);
+  color: var(--font-color);
+  padding: 0.5em 1em;
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#languageSwitchOffer[_ngcontent-ng-c2349498990]   .buttons[_ngcontent-ng-c2349498990]   button[_ngcontent-ng-c2349498990]:hover {
+  background-color: transparent;
+  border: 2px solid rgb(69, 69, 187);
+}
+/*# sourceMappingURL=/language-switch-offer.component.css.map */</style><style ng-app-id="ng">
+
+.closingDiv[_ngcontent-ng-c1032176811] {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  display: none;
+}
+@media only screen and (max-width: 1100px) {
+  .closingDiv.sidemenuOpen[_ngcontent-ng-c1032176811] {
+    display: block;
+  }
+}
+aside[_ngcontent-ng-c1032176811] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  z-index: 1;
+  width: var(--sidemenu-width);
+  transition: transform 100ms ease-in-out;
+  box-sizing: border-box;
+  background-color: var(--section);
+  display: flex;
+}
+aside.sidemenuOpen[_ngcontent-ng-c1032176811] {
+  transform: translateX(calc(-1 * var(--sidemenu-width)));
+}
+@media only screen and (max-width: 1100px) {
+  aside[_ngcontent-ng-c1032176811] {
+    transform: translateX(calc(-1 * var(--sidemenu-width)));
+  }
+  aside.sidemenuOpen[_ngcontent-ng-c1032176811] {
+    transform: translateX(0);
+  }
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811] {
+  margin-top: 5em;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 100%;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   ul[_ngcontent-ng-c1032176811] {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   ul[_ngcontent-ng-c1032176811]   li[_ngcontent-ng-c1032176811] {
+  list-style: none;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   ul[_ngcontent-ng-c1032176811]   hr[_ngcontent-ng-c1032176811] {
+  width: 100%;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   ul[_ngcontent-ng-c1032176811]   a[_ngcontent-ng-c1032176811] {
+  border-radius: 10px;
+  padding: 1em 0.5em;
+  flex: 1 1 auto;
+  text-decoration: none;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  font-size: 1.2em;
+  justify-content: center;
+  text-align: center;
+  text-wrap: balance;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   ul[_ngcontent-ng-c1032176811]   a[_ngcontent-ng-c1032176811]:hover {
+  background-color: #1c2e64;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   .languageSetter[_ngcontent-ng-c1032176811] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: auto;
+  margin-bottom: 1em;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   .languageSetter[_ngcontent-ng-c1032176811]   input[_ngcontent-ng-c1032176811] {
+  display: none;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   .languageSetter[_ngcontent-ng-c1032176811]   input[_ngcontent-ng-c1032176811]:checked    + label[_ngcontent-ng-c1032176811] {
+  border: solid 1px rgb(109, 109, 109);
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   .languageSetter[_ngcontent-ng-c1032176811]   label[_ngcontent-ng-c1032176811] {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  -webkit-user-select: none;
+  user-select: none;
+  border: solid 1px transparent;
+  padding: 0.2em;
+  cursor: pointer;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   .languageSetter[_ngcontent-ng-c1032176811]   label[_ngcontent-ng-c1032176811]   svg[_ngcontent-ng-c1032176811] {
+  height: 2em;
+}
+aside[_ngcontent-ng-c1032176811]   .sidemenuContent[_ngcontent-ng-c1032176811]   .languageSetter[_ngcontent-ng-c1032176811]   label[_ngcontent-ng-c1032176811]:hover {
+  background-color: rgb(3, 3, 24);
+}
+/*# sourceMappingURL=/sidemenu.component.css.map */</style><style ng-app-id="ng">
+
+#consentManager[_ngcontent-ng-c98833692] {
+  background-color: rgb(37, 44, 51);
+  padding: 1em;
+  position: fixed;
+  top: -10%;
+  box-shadow: 1px 1px 3px 1px black;
+  border-radius: 12px;
+  border: 1px solid;
+  color: var(--font-color);
+  font-size: 1em;
+}
+#consentManager[_ngcontent-ng-c98833692]::backdrop {
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+}
+#consentManager[_ngcontent-ng-c98833692]   .closeButton[_ngcontent-ng-c98833692] {
+  border-radius: 4px;
+  height: 2em;
+  width: 2em;
+  border: none;
+  cursor: pointer;
+}
+#consentManager[_ngcontent-ng-c98833692]   .closeButton[_ngcontent-ng-c98833692]:hover {
+  background-color: rgb(206, 206, 206);
+}
+#consentManager[_ngcontent-ng-c98833692]   .headlineDiv[_ngcontent-ng-c98833692] {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
+#consentManager[_ngcontent-ng-c98833692]   .headlineDiv[_ngcontent-ng-c98833692]   h2[_ngcontent-ng-c98833692] {
+  margin-top: 0;
+}
+#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692] {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692] {
+  list-style: none;
+}
+#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]   div[_ngcontent-ng-c98833692] {
+  display: flex;
+  justify-content: space-between;
+}
+#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]   div[_ngcontent-ng-c98833692]   span[_ngcontent-ng-c98833692] {
+  font-weight: bold;
+}
+#consentManager[_ngcontent-ng-c98833692]   ul[_ngcontent-ng-c98833692]   li[_ngcontent-ng-c98833692]   p[_ngcontent-ng-c98833692] {
+  margin-top: 0.3em;
+}
+#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692] {
+  font-size: 1em;
+  appearance: none;
+  width: 3em;
+  height: 1.5em;
+  background: #ddd;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]:checked {
+  background: #295869;
+}
+#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]:after {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  left: 0;
+  transition: all 150ms ease-in-out;
+}
+#consentManager[_ngcontent-ng-c98833692]   input[type=checkbox][_ngcontent-ng-c98833692]:checked:after {
+  left: calc(100% - 1.5em);
+}
+/*# sourceMappingURL=/consent-manager.component.css.map */</style><style ng-app-id="ng">
+
+footer[_ngcontent-ng-c317472653] {
+  font-size: clamp(12px, 5vw, 14px);
+  padding: 4vw;
+  background-color: var(--section);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653] {
+  padding: 1em;
+}
+footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   h2[_ngcontent-ng-c317472653] {
+  font-size: 1.3em;
+  margin: 0;
+  color: rgb(206, 245, 245);
+}
+footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653] {
+  list-style: none;
+  padding-left: 0.8em;
+}
+footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]   li[_ngcontent-ng-c317472653] {
+  display: flex;
+  margin-top: 0.5em;
+  padding: 0.2em 0;
+}
+footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]   li[_ngcontent-ng-c317472653]   fa-icon[_ngcontent-ng-c317472653] {
+  margin-right: 0.5em;
+}
+footer[_ngcontent-ng-c317472653]   .linkGroup[_ngcontent-ng-c317472653]   ul[_ngcontent-ng-c317472653]   li[_ngcontent-ng-c317472653]   span[_ngcontent-ng-c317472653] {
+  text-decoration: underline;
+  cursor: pointer;
+}
+/*# sourceMappingURL=/footer.component.css.map */</style><style ng-app-id="ng">/* src/app/routes/blog-post/blog-post.component.scss */
+.blogpostMain {
+  padding-bottom: 3em;
+  text-wrap: pretty;
+}
+.blogpostMain .hero {
+  display: flex;
+  justify-content: center;
+  padding: 1em 4%;
+  text-align: center;
+  overflow: hidden;
+}
+.blogpostMain .hero img {
+  max-width: 100%;
+  height: auto;
+  animation: grow 500ms ease-out;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+}
+@media only screen and (max-width: 1100px) {
+  .blogpostMain .hero {
+    padding-top: var(--header-height);
+  }
+}
+.blogpostMain .hero time {
+  float: right;
+  font-style: italic;
+  font-size: 0.8em;
+}
+.blogpostMain .hero .description {
+  max-width: 90%;
+  margin: 0 auto;
+  font-size: 1.2em;
+}
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.blogpostMain .sectionSpacer {
+  max-width: 60em;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 800px) {
+  .blogpostMain .sectionSpacer {
+    padding: 0;
+  }
+}
+.blogpostMain section {
+  flex-direction: unset;
+  justify-content: center;
+}
+.blogpostMain .postContent {
+  min-height: 40em;
+  line-height: 1.5em;
+  margin-bottom: 4em;
+  padding: clamp(1em, 2vw, 2em);
+  overflow: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 800px) {
+  .blogpostMain .postContent ul,
+  .blogpostMain .postContent ol {
+    padding-left: 1em;
+  }
+}
+.blogpostMain .postContent ul {
+  padding-left: 1.5em;
+}
+.blogpostMain .postContent h2,
+.blogpostMain .postContent h3,
+.blogpostMain .postContent a {
+  color: #8888ff;
+}
+.blogpostMain .postContent h1,
+.blogpostMain .postContent h2,
+.blogpostMain .postContent h3,
+.blogpostMain .postContent h4 {
+  margin: 1em 0 0 0;
+  line-height: 1.2em;
+}
+.blogpostMain .postContent img {
+  max-width: 100%;
+}
+.blogpostMain .postContent img:hover {
+  filter: brightness(0.8);
+}
+.blogpostMain .postContent p > code,
+.blogpostMain .postContent li > code {
+  background-color: rgb(21, 39, 90);
+  padding: 0.4em;
+  border-radius: 4px;
+}
+.blogpostMain .postContent pre {
+  background-color: #1d2027;
+  padding: 1em;
+  border-radius: 12px;
+  max-width: 100%;
+  overflow-x: auto;
+  font-size: 0.8em;
+  font-size: 1em;
+  margin-bottom: 1em;
+  border: 8px solid #3a3a75;
+}
+.blogpostMain .postContent pre + .toolbar {
+  opacity: unset;
+  right: 0.8em;
+  top: 0.8em;
+}
+.blogpostMain .postContent pre + .toolbar button {
+  padding: 0.5em;
+  border-radius: unset;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.blogpostMain .postContent pre + .toolbar button:hover {
+  background-color: rgb(50, 50, 66);
+}
+.blogpostMain .postContent pre:hover {
+  border-color: #1f1f9e;
+}
+.blogpostMain .postContent .linkButton {
+  font-size: 1.4em;
+  padding: 0.7em;
+  background-color: #1f1d57;
+  border-radius: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(168, 168, 252);
+  transition: all 250ms;
+  display: inline-block;
+}
+.blogpostMain .postContent .linkButton:hover {
+  background-color: #2d2b5f;
+}
+.blogpostMain #disqus_thread {
+  min-height: 500px;
+}
+.blogpostMain .codepen:has(.codePenConsentButton) {
+  flex-direction: column;
+}
+.blogpostMain .codePenConsentButton {
+  padding: 1em;
+  background-color: rgb(193, 192, 255);
+  border-radius: 4px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5em;
+  font-size: 1.2em;
+  transition: all 250ms;
+  margin: 0 auto;
+}
+.blogpostMain .codePenConsentButton:hover {
+  color: var(--font-color);
+  border-color: rgb(193, 192, 255);
+  background-color: transparent;
+}
+.blogpostMain .codePenConsentButton + p {
+  font-size: 0.8em;
+  text-wrap: balance;
+  text-align: center;
+}
+/*# sourceMappingURL=/blog-post.component.css.map */
+</style><meta property="og:title" content="Linux: Fix Steam Dropdown Bug"><meta property="og:type" content="article"><meta property="og:url" content="https://ricoswebsite.com/en/blogpost/steam-dropdown-bug"><meta property="og:author" content="Rico"><meta property="article:published_time" content="2024-06-17T00:00:00.000Z"><meta property="og:description" content="Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug."><meta name="description" content="Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug."><meta name="keywords" content="Steam Settings Bug, Steam Dropdown not selectable, Linux Steam Client Issue, Steam Settings Linux"><meta property="og:image" content="https://ricoswebsite.com//images/steam-dropdown-bug.avif"><style ng-app-id="ng">
+
+#disqus_thread[_ngcontent-ng-c1934723076] {
+  padding: 0 0.5em;
+}
+.consentBanner[_ngcontent-ng-c1934723076] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+.consentBanner[_ngcontent-ng-c1934723076]   button[_ngcontent-ng-c1934723076] {
+  padding: 1em;
+  background-color: rgb(193, 192, 255);
+  border-radius: 4px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5em;
+  font-size: 1.2em;
+  transition: all 250ms;
+}
+.consentBanner[_ngcontent-ng-c1934723076]   button[_ngcontent-ng-c1934723076]:hover {
+  color: var(--font-color);
+  border-color: rgb(193, 192, 255);
+  background-color: transparent;
+}
+.consentBanner[_ngcontent-ng-c1934723076]   .disclaimer[_ngcontent-ng-c1934723076] {
+  font-size: 0.8em;
+  text-wrap: balance;
+  text-align: center;
+}
+/*# sourceMappingURL=/disqus.component.css.map */</style></head>
+
+    <body><!--nghm-->
+        <app-root ng-version="19.1.6" _nghost-ng-c292575549="" ngh="4" ng-server-context="ssg"><app-header _ngcontent-ng-c292575549="" _nghost-ng-c1730771519="" ngh="0"><header _ngcontent-ng-c1730771519="" ng-reflect-ng-class="[object Object]" class=""><button _ngcontent-ng-c1730771519="" aria-label="toggle sidemenu" class="toggle_sidemenu_button"><fa-icon _ngcontent-ng-c1730771519="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path></svg></fa-icon></button><a _ngcontent-ng-c1730771519="" class="websiteName" ng-reflect-router-link="en/projects/page/1/." href="/en/projects/page/1/."><span _ngcontent-ng-c1730771519="">Ricos</span><span _ngcontent-ng-c1730771519=""> Website</span></a></header></app-header><div _ngcontent-ng-c292575549="" class="content" ng-reflect-ng-class="[object Object]"><app-language-switch-offer _ngcontent-ng-c292575549="" _nghost-ng-c2349498990="" ngh="0"><div _ngcontent-ng-c2349498990="" id="languageSwitchOffer" ng-reflect-ng-class="[object Object]" class=""><button _ngcontent-ng-c2349498990="" class="closeButton">✕</button><p _ngcontent-ng-c2349498990=""> Do you want to change the language to english? </p><div _ngcontent-ng-c2349498990="" class="buttons"><button _ngcontent-ng-c2349498990="">Yes</button><button _ngcontent-ng-c2349498990="">No</button></div></div></app-language-switch-offer><app-sidemenu _ngcontent-ng-c292575549="" _nghost-ng-c1032176811="" ngh="0"><div _ngcontent-ng-c1032176811="" class="closingDiv" ng-reflect-ng-class="[object Object]"></div><aside _ngcontent-ng-c1032176811="" side="" ng-reflect-ng-class="[object Object]" class=""><div _ngcontent-ng-c1032176811="" class="sidemenuContent"><nav _ngcontent-ng-c1032176811=""><ul _ngcontent-ng-c1032176811=""><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="en/projects/page/1/." href="/en/projects/page/1/."><fa-icon _ngcontent-ng-c1032176811="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" class="svg-inline--fa fa-house" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg></fa-icon><span _ngcontent-ng-c1032176811="">Home</span></a></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" href="https://github.com/KopfdesDaemons" target="_blank"><fa-icon _ngcontent-ng-c1032176811="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></fa-icon><span _ngcontent-ng-c1032176811="">GitHub</span></a></li><li _ngcontent-ng-c1032176811=""><hr _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="en/blog/." href="/en/blog/."><span _ngcontent-ng-c1032176811="">Blog</span></a></li><li _ngcontent-ng-c1032176811=""><hr _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" fragment="projectsSection" ng-reflect-fragment="projectsSection" ng-reflect-router-link="en/." href="/en/.#projectsSection"><span _ngcontent-ng-c1032176811="">Portfolio</span></a><hr _ngcontent-ng-c1032176811=""></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="en/blogpost/css-gallery/." href="/en/blogpost/css-gallery/."><span _ngcontent-ng-c1032176811="">CSS gallery</span></a></li><li _ngcontent-ng-c1032176811=""><a _ngcontent-ng-c1032176811="" ng-reflect-router-link="en/blogpost/about-this-website" href="/en/blogpost/about-this-website/."><span _ngcontent-ng-c1032176811="">About this website</span></a></li></ul></nav><fieldset _ngcontent-ng-c1032176811="" class="languageSetter"><legend _ngcontent-ng-c1032176811="">Language:</legend><div _ngcontent-ng-c1032176811=""><input _ngcontent-ng-c1032176811="" type="radio" id="german" name="language" value="de" ng-reflect-name="language" ng-reflect-value="de" ng-reflect-model="en" class="ng-untouched ng-pristine ng-valid"><label _ngcontent-ng-c1032176811="" for="german"><svg _ngcontent-ng-c1032176811="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img" aria-labelledby="german-flag"><title _ngcontent-ng-c1032176811="" id="german-flag">Flagge von Deutschland</title><path _ngcontent-ng-c1032176811="" fill="#fc0" d="M0 320h640v160H0z"></path><path _ngcontent-ng-c1032176811="" fill="#000001" d="M0 0h640v160H0z"></path><path _ngcontent-ng-c1032176811="" fill="red" d="M0 160h640v160H0z"></path></svg><span _ngcontent-ng-c1032176811="">German</span></label></div><div _ngcontent-ng-c1032176811=""><input _ngcontent-ng-c1032176811="" type="radio" id="english" name="language" value="en" ng-reflect-name="language" ng-reflect-value="en" ng-reflect-model="en" class="ng-untouched ng-pristine ng-valid" checked=""><label _ngcontent-ng-c1032176811="" for="english"><svg _ngcontent-ng-c1032176811="" xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img" aria-labelledby="us-flag"><title _ngcontent-ng-c1032176811="" id="us-flag">Flagge der USA</title><path _ngcontent-ng-c1032176811="" fill="#bd3d44" d="M0 0h640v480H0"></path><path _ngcontent-ng-c1032176811="" stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"></path><path _ngcontent-ng-c1032176811="" fill="#192f5d" d="M0 0h364.8v258.5H0"></path><marker _ngcontent-ng-c1032176811="" id="us-a" markerHeight="30" markerWidth="30"><path _ngcontent-ng-c1032176811="" fill="#fff" d="m14 0 9 27L0 10h28L5 27z"></path></marker><path _ngcontent-ng-c1032176811="" fill="none" marker-mid="url(#us-a)" d="m0 0 16 11h61 61 61 61 60L47 37h61 61 60 61L16 63h61 61 61 61 60L47 89h61 61 60 61L16 115h61 61 61 61 60L47 141h61 61 60 61L16 166h61 61 61 61 60L47 192h61 61 60 61L16 218h61 61 61 61 60z"></path></svg><span _ngcontent-ng-c1032176811="">English</span></label></div></fieldset></div></aside></app-sidemenu><router-outlet _ngcontent-ng-c292575549=""></router-outlet><app-blog-post ngh="2"><main class="blogpostMain"><div class="hero gradient"><div class="sectionSpacer"><img height="495" width="880" alt="Linux: Fix Steam Dropdown Bug" src="/images/steam-dropdown-bug.avif"><!--container--><h1>Linux: Fix Steam Dropdown Bug</h1><div class="description"><p>Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.</p></div><time>6/17/2024</time><!--container--></div></div><section><div class="sectionSpacer"><div class="postContent"><h2>The problem: The Steam Client does not adopt settings from dropdowns</h2>
 <p>Under Linux, after installing Steam, it can quickly lead to frustration if, for example, you want to change the language in the settings. The dropdown menus do not respond to selection attempts and the selection made remains unchanged. This problem affects all dropdown fields in the Steam Client.</p>
 <h2>Valve is aware of the problem of unselectable dropdowns</h2>
-<p>A quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on <a href="https://github.com/ValveSoftware/steam-for-linux/issues/9273" title target="_blank">GitHub</a>. The status of this issue is still "open", which means that Valve has not yet offered an official solution. The problem was reported in March 2023.</p>
+<p>A quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on <a href="https://github.com/ValveSoftware/steam-for-linux/issues/9273" title="" target="_blank">GitHub</a>. The status of this issue is still "open", which means that Valve has not yet offered an official solution. The problem was reported in March 2023.</p>
 <h2>The cause: Why the dropdowns in Steam cannot be selected</h2>
 <p>The error lies in the focusing behavior of the windows in the desktop environment. In Cinnamon, for example, there are various options for the focusing behavior. If the window focus is supposed to follow the mouse, this problem occurs.</p>
 <h2>Solution: Fix the problem of unselectable dropdowns</h2>
@@ -584,7 +1139,10 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <li>Continue to hold down the right mouse button and select the desired option with the left mouse button</li>
 </ol>
 <p>Steam should now have adopted the selection.</p>
-</div><!----><app-disqus _nghost-ng-c1181359517 ngh="1"><!----><div _ngcontent-ng-c1181359517 class="consentBanner"><button _ngcontent-ng-c1181359517><fa-icon _ngcontent-ng-c1181359517 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment" class="svg-inline--fa fa-comment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9l.3-.5z"/></svg></fa-icon><span _ngcontent-ng-c1181359517>Load Comments</span></button><span _ngcontent-ng-c1181359517 class="disclaimer">The comments are loaded by the third-party provider <a _ngcontent-ng-c1181359517 href="https://disqus.com/" target="_blank">Disqus</a>. For more details see <a _ngcontent-ng-c1181359517 href="/en/privacy-policy/.">Privacy policy</a>.</span></div><!----></app-disqus><!----></div></section></main></app-blog-post><!----><app-consent-manager _ngcontent-ng-c292575549 _nghost-ng-c98833692 ngh="3"><dialog _ngcontent-ng-c98833692 id="consentManager"><div _ngcontent-ng-c98833692 class="headlineDiv"><h2 _ngcontent-ng-c98833692>Consent&nbsp;Manager</h2><button _ngcontent-ng-c98833692 class="closeButton">✕</button></div><ul _ngcontent-ng-c98833692><li _ngcontent-ng-c98833692><div _ngcontent-ng-c98833692><span _ngcontent-ng-c98833692>Disqus</span><input _ngcontent-ng-c98833692 type="checkbox"></div><p _ngcontent-ng-c98833692>Provides the comment function.</p></li><li _ngcontent-ng-c98833692><div _ngcontent-ng-c98833692><span _ngcontent-ng-c98833692>CodePen</span><input _ngcontent-ng-c98833692 type="checkbox"></div><p _ngcontent-ng-c98833692>Provides the code snippets.</p></li><li _ngcontent-ng-c98833692><div _ngcontent-ng-c98833692><span _ngcontent-ng-c98833692>Custom Language</span><input _ngcontent-ng-c98833692 type="checkbox"></div><p _ngcontent-ng-c98833692>Storage of the selected language.</p></li><!----></ul></dialog><!----></app-consent-manager><app-footer _ngcontent-ng-c292575549 _nghost-ng-c317472653 ngh="0"><footer _ngcontent-ng-c317472653><div _ngcontent-ng-c317472653 class="linkGroup"><h2 _ngcontent-ng-c317472653>My Links</h2><ul _ngcontent-ng-c317472653><li _ngcontent-ng-c317472653><fa-icon _ngcontent-ng-c317472653 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="svg-inline--fa fa-instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></fa-icon><a _ngcontent-ng-c317472653 target="_blank" href="https://www.instagram.com/KopfdesDaemons/">Instagram</a></li><li _ngcontent-ng-c317472653><fa-icon _ngcontent-ng-c317472653 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></fa-icon><a _ngcontent-ng-c317472653 target="_blank" href="https://github.com/KopfdesDaemons">GitHub</a></li><li _ngcontent-ng-c317472653><fa-icon _ngcontent-ng-c317472653 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="stack-overflow" class="svg-inline--fa fa-stack-overflow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M290.7 311L95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg></fa-icon><a _ngcontent-ng-c317472653 target="_blank" href="https://stackoverflow.com/users/13802163/rico">StackOverflow</a></li><li _ngcontent-ng-c317472653><fa-icon _ngcontent-ng-c317472653 class="ng-fa-icon" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="wordpress" class="svg-inline--fa fa-wordpress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M61.7 169.4l101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6zm337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7zm-139.9 29.3l-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9l-65.4-179.2zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1zM504 256c0 136.8-111.3 248-248 248C119.2 504 8 392.7 8 256 8 119.2 119.2 8 256 8c136.7 0 248 111.2 248 248zm-11.4 0c0-130.5-106.2-236.6-236.6-236.6C125.5 19.4 19.4 125.5 19.4 256S125.6 492.6 256 492.6c130.5 0 236.6-106.1 236.6-236.6z"/></svg></fa-icon><a _ngcontent-ng-c317472653 target="_blank" href="https://profiles.wordpress.org/ricosylvain/">WordPress</a></li></ul></div><div _ngcontent-ng-c317472653 class="linkGroup"><h2 _ngcontent-ng-c317472653>Page</h2><ul _ngcontent-ng-c317472653><li _ngcontent-ng-c317472653><a _ngcontent-ng-c317472653 routerlink="/legal-notice/." href="/legal-notice/.">Legal notice</a></li><li _ngcontent-ng-c317472653><a _ngcontent-ng-c317472653 href="/en/privacy-policy/.">Privacy policy</a></li><li _ngcontent-ng-c317472653><span _ngcontent-ng-c317472653>Consent Manager</span></li></ul></div></footer></app-footer></div></app-root>
-<link rel="modulepreload" href="chunk-UIJSNBL6.js"><link rel="modulepreload" href="chunk-AGZN4A57.js"><link rel="modulepreload" href="chunk-SG6SXBG7.js"><link rel="modulepreload" href="chunk-OJX3C56S.js"><link rel="modulepreload" href="chunk-DSWJBLYP.js"><link rel="modulepreload" href="chunk-77P4CJW4.js"><link rel="modulepreload" href="chunk-SY5BRRD3.js"><script src="polyfills-QBXW4TBJ.js" type="module"></script><script src="main-HT7QRV5G.js" type="module"></script>
+</div><!--container--><app-disqus _nghost-ng-c1934723076="" ng-reflect-identifier="steam-dropdown-bug" ngh="1"><!--container--><div _ngcontent-ng-c1934723076="" class="consentBanner"><button _ngcontent-ng-c1934723076=""><fa-icon _ngcontent-ng-c1934723076="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment" class="svg-inline--fa fa-comment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9l.3-.5z"></path></svg></fa-icon><span _ngcontent-ng-c1934723076="">Load Comments</span></button><span _ngcontent-ng-c1934723076="" class="disclaimer">The comments are loaded by the third-party provider <a _ngcontent-ng-c1934723076="" href="https://disqus.com/" target="_blank">Disqus</a>. For more details see <a _ngcontent-ng-c1934723076="" ng-reflect-router-link="/en/privacy-policy/." href="/en/privacy-policy/.">Privacy policy</a>.</span></div><!--container--></app-disqus><!--container--></div></section></main></app-blog-post><!--container--><app-consent-manager _ngcontent-ng-c292575549="" _nghost-ng-c98833692="" ngh="3"><dialog _ngcontent-ng-c98833692="" id="consentManager"><div _ngcontent-ng-c98833692="" class="headlineDiv"><h2 _ngcontent-ng-c98833692="">Consent&nbsp;Manager</h2><button _ngcontent-ng-c98833692="" class="closeButton">✕</button></div><ul _ngcontent-ng-c98833692=""><li _ngcontent-ng-c98833692=""><div _ngcontent-ng-c98833692=""><span _ngcontent-ng-c98833692="">Disqus</span><input _ngcontent-ng-c98833692="" type="checkbox"></div><p _ngcontent-ng-c98833692="">Provides the comment function.</p></li><li _ngcontent-ng-c98833692=""><div _ngcontent-ng-c98833692=""><span _ngcontent-ng-c98833692="">CodePen</span><input _ngcontent-ng-c98833692="" type="checkbox"></div><p _ngcontent-ng-c98833692="">Provides the code snippets.</p></li><li _ngcontent-ng-c98833692=""><div _ngcontent-ng-c98833692=""><span _ngcontent-ng-c98833692="">Custom Language</span><input _ngcontent-ng-c98833692="" type="checkbox"></div><p _ngcontent-ng-c98833692="">Storage of the selected language.</p></li><!--container--></ul></dialog><!--container--></app-consent-manager><app-footer _ngcontent-ng-c292575549="" _nghost-ng-c317472653="" ngh="0"><footer _ngcontent-ng-c317472653=""><div _ngcontent-ng-c317472653="" class="linkGroup"><h2 _ngcontent-ng-c317472653="">My Links</h2><ul _ngcontent-ng-c317472653=""><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="svg-inline--fa fa-instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://www.instagram.com/KopfdesDaemons/">Instagram</a></li><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://github.com/KopfdesDaemons">GitHub</a></li><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="stack-overflow" class="svg-inline--fa fa-stack-overflow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M290.7 311L95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://stackoverflow.com/users/13802163/rico">StackOverflow</a></li><li _ngcontent-ng-c317472653=""><fa-icon _ngcontent-ng-c317472653="" class="ng-fa-icon" ng-reflect-icon="[object Object]" ngh="0"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="wordpress" class="svg-inline--fa fa-wordpress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M61.7 169.4l101.5 278C92.2 413 43.3 340.2 43.3 256c0-30.9 6.6-60.1 18.4-86.6zm337.9 75.9c0-26.3-9.4-44.5-17.5-58.7-10.8-17.5-20.9-32.4-20.9-49.9 0-19.6 14.8-37.8 35.7-37.8.9 0 1.8.1 2.8.2-37.9-34.7-88.3-55.9-143.7-55.9-74.3 0-139.7 38.1-177.8 95.9 5 .2 9.7.3 13.7.3 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l77.5 230.4L249.8 247l-33.1-90.8c-11.5-.7-22.3-2-22.3-2-11.5-.7-10.1-18.2 1.3-17.5 0 0 35.1 2.7 56 2.7 22.2 0 56.7-2.7 56.7-2.7 11.5-.7 12.8 16.2 1.4 17.5 0 0-11.5 1.3-24.3 2l76.9 228.7 21.2-70.9c9-29.4 16-50.5 16-68.7zm-139.9 29.3l-63.8 185.5c19.1 5.6 39.2 8.7 60.1 8.7 24.8 0 48.5-4.3 70.6-12.1-.6-.9-1.1-1.9-1.5-2.9l-65.4-179.2zm183-120.7c.9 6.8 1.4 14 1.4 21.9 0 21.6-4 45.8-16.2 76.2l-65 187.9C426.2 403 468.7 334.5 468.7 256c0-37-9.4-71.8-26-102.1zM504 256c0 136.8-111.3 248-248 248C119.2 504 8 392.7 8 256 8 119.2 119.2 8 256 8c136.7 0 248 111.2 248 248zm-11.4 0c0-130.5-106.2-236.6-236.6-236.6C125.5 19.4 19.4 125.5 19.4 256S125.6 492.6 256 492.6c130.5 0 236.6-106.1 236.6-236.6z"></path></svg></fa-icon><a _ngcontent-ng-c317472653="" target="_blank" href="https://profiles.wordpress.org/ricosylvain/">WordPress</a></li></ul></div><div _ngcontent-ng-c317472653="" class="linkGroup"><h2 _ngcontent-ng-c317472653="">Page</h2><ul _ngcontent-ng-c317472653=""><li _ngcontent-ng-c317472653=""><a _ngcontent-ng-c317472653="" routerlink="/legal-notice/." ng-reflect-router-link="/legal-notice/." href="/legal-notice/.">Legal notice</a></li><li _ngcontent-ng-c317472653=""><a _ngcontent-ng-c317472653="" ng-reflect-router-link="en/privacy-policy/." href="/en/privacy-policy/.">Privacy policy</a></li><li _ngcontent-ng-c317472653=""><span _ngcontent-ng-c317472653="">Consent Manager</span></li></ul></div></footer></app-footer></div></app-root>
+    <link rel="modulepreload" href="chunk-D45IXOGT.js"><link rel="modulepreload" href="chunk-7JADWIHW.js"><link rel="modulepreload" href="chunk-UNCXCIG4.js"><link rel="modulepreload" href="chunk-C4FMDJ5B.js"><link rel="modulepreload" href="chunk-QTWOLS27.js"><link rel="modulepreload" href="chunk-S6YPVKVZ.js"><link rel="modulepreload" href="chunk-YQ2WRJ7O.js"><script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
+<link rel="modulepreload" href="blog-post.component-5PBMDAZT.js">
+<link rel="modulepreload" href="chunk-ZUMQFM6H.js">
 
-<script id="ng-state" type="application/json">{"1711327116":{"b":"---\r\ntitle: \"Linux: Fix Steam Dropdown Bug\"\r\nauthor: Rico\r\nimage: assets/images/steam-dropdown-bug.avif\r\nkeywords:\r\n  - Steam Settings Bug\r\n  - Steam Dropdown not selectable\r\n  - Linux Steam Client Issue\r\n  - Steam Settings Linux\r\ndescription: Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.\r\ndate: 2024-06-17\r\n---\r\n\r\n## The problem: The Steam Client does not adopt settings from dropdowns\r\n\r\nUnder Linux, after installing Steam, it can quickly lead to frustration if, for example, you want to change the language in the settings. The dropdown menus do not respond to selection attempts and the selection made remains unchanged. This problem affects all dropdown fields in the Steam Client.\r\n\r\n## Valve is aware of the problem of unselectable dropdowns\r\n\r\nA quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on [GitHub](https://github.com/ValveSoftware/steam-for-linux/issues/9273). The status of this issue is still \"open\", which means that Valve has not yet offered an official solution. The problem was reported in March 2023.\r\n\r\n## The cause: Why the dropdowns in Steam cannot be selected\r\n\r\nThe error lies in the focusing behavior of the windows in the desktop environment. In Cinnamon, for example, there are various options for the focusing behavior. If the window focus is supposed to follow the mouse, this problem occurs.\r\n\r\n## Solution: Fix the problem of unselectable dropdowns\r\n\r\nTo work around the error, the focusing behavior of the windows must be set so that they are only focused by a mouse click. In the Cinnamon desktop environment, this is done as follows:\r\n\r\n1. Search for _\"Window\"_ in the start menu\r\n2. Switch to the _\"Behavior\"_ tab\r\n3. Change _\"Window focus behavior\"_ to _\"Click\"_\r\n\r\nAfter this change, the problem should no longer occur.\r\n\r\n## Steam: Bypass unselectable dropdowns\r\n\r\nIf you do not want to change the window focus behavior, there is a workaround to still be able to select the settings:\r\n\r\n1. Hold down the right mouse button before opening the dropdown\r\n2. With the right mouse button still pressed, left-click on the dropdown\r\n3. Continue to hold down the right mouse button and select the desired option with the left mouse button\r\n\r\nSteam should now have adopted the selection.\r\n","h":{},"s":200,"st":"OK","u":"/assets/posts/en/steam-dropdown-bug.md","rt":"text"},"2521509313":{"b":"---\r\nhome_h1: Web development is my biggest hobby\r\nhome_subtitle: I taught myself all skills out of interest.\r\nmy_projects: My Projects\r\nfilter_options: Filter options\r\nlegal_notice: Legal notice\r\nprivacy_policy: Privacy policy\r\nmy_links: My Links\r\ncss_gallery_title: CSS gallery\r\nabout_this_website_title: About this website\r\nload_comments: Load Comments\r\ndisqus_privacy_notice: The comments are loaded by the third-party provider\r\nfor_more_details_see: For more details see\r\ncodepen_button: Load code snippet from CodePen\r\ncodepen_privacy_notice: The code is loaded by the third-party provider CodePen. For more details see\r\nlanguage: Language\r\nhome_description: My portfolio website as a hobby web developer.\r\ndisqus_descr: Provides the comment function.\r\ncodepen_descr: Provides the code snippets.\r\ncustom_language: Storage of the selected language.\r\nblog_h1: My blogposts\r\nread_more: read more\r\ndate_desc: Date descending\r\ndate_asc: Date ascending\r\ntitle_desc: Title ascending\r\ntitle_asc: Title descending\r\nblogpost_not_found: This post could not be found\r\nblogpost_not_found_text: The article does not exist. Perhaps the article does not exist in this language.\r\nvisit_project: visit project\r\n","h":{},"s":200,"st":"OK","u":"/assets/i18n/en.yaml","rt":"text"},"post-en-steam-dropdown-bug":{"postMeta":{"commentsDisabled":false,"hasCodePen":false,"hideInFeed":false,"fileName":"steam-dropdown-bug","title":"Linux: Fix Steam Dropdown Bug","author":"Rico","image":"assets/images/steam-dropdown-bug.avif","keywords":["Steam Settings Bug","Steam Dropdown not selectable","Linux Steam Client Issue","Steam Settings Linux"],"description":"Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.","date":"2024-06-17","localDateString":"6/17/2024"},"postContent":"\u003Ch2>The problem: The Steam Client does not adopt settings from dropdowns\u003C/h2>\n\u003Cp>Under Linux, after installing Steam, it can quickly lead to frustration if, for example, you want to change the language in the settings. The dropdown menus do not respond to selection attempts and the selection made remains unchanged. This problem affects all dropdown fields in the Steam Client.\u003C/p>\n\u003Ch2>Valve is aware of the problem of unselectable dropdowns\u003C/h2>\n\u003Cp>A quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on \u003Ca href=\"https://github.com/ValveSoftware/steam-for-linux/issues/9273\" title=\"\" target=\"_blank\">GitHub\u003C/a>. The status of this issue is still &quot;open&quot;, which means that Valve has not yet offered an official solution. The problem was reported in March 2023.\u003C/p>\n\u003Ch2>The cause: Why the dropdowns in Steam cannot be selected\u003C/h2>\n\u003Cp>The error lies in the focusing behavior of the windows in the desktop environment. In Cinnamon, for example, there are various options for the focusing behavior. If the window focus is supposed to follow the mouse, this problem occurs.\u003C/p>\n\u003Ch2>Solution: Fix the problem of unselectable dropdowns\u003C/h2>\n\u003Cp>To work around the error, the focusing behavior of the windows must be set so that they are only focused by a mouse click. In the Cinnamon desktop environment, this is done as follows:\u003C/p>\n\u003Col>\n\u003Cli>Search for \u003Cem>&quot;Window&quot;\u003C/em> in the start menu\u003C/li>\n\u003Cli>Switch to the \u003Cem>&quot;Behavior&quot;\u003C/em> tab\u003C/li>\n\u003Cli>Change \u003Cem>&quot;Window focus behavior&quot;\u003C/em> to \u003Cem>&quot;Click&quot;\u003C/em>\u003C/li>\n\u003C/ol>\n\u003Cp>After this change, the problem should no longer occur.\u003C/p>\n\u003Ch2>Steam: Bypass unselectable dropdowns\u003C/h2>\n\u003Cp>If you do not want to change the window focus behavior, there is a workaround to still be able to select the settings:\u003C/p>\n\u003Col>\n\u003Cli>Hold down the right mouse button before opening the dropdown\u003C/li>\n\u003Cli>With the right mouse button still pressed, left-click on the dropdown\u003C/li>\n\u003Cli>Continue to hold down the right mouse button and select the desired option with the left mouse button\u003C/li>\n\u003C/ol>\n\u003Cp>Steam should now have adopted the selection.\u003C/p>\n"},"__nghData__":[{},{"t":{"0":"t48","1":"t49"},"c":{"0":[],"1":[{"i":"t49","r":1}]}},{"t":{"3":"t44","11":"t45","14":"t46","15":"t47"},"c":{"3":[{"i":"t44","r":1}],"11":[],"14":[{"i":"t46","r":1}],"15":[{"i":"t47","r":1}]}},{"t":{"0":"t9"},"c":{"0":[{"i":"t9","r":1,"t":{"9":"t10"},"c":{"9":[{"i":"t10","r":1,"x":3}]}}]}},{"c":{"4":[{"i":"c4025851534","r":1}]}}]}</script></body></html>
+
+<script id="ng-state" type="application/json">{"1936343233":{"b":"---\nhome_h1: Web development is my biggest hobby\nhome_subtitle: I taught myself all skills out of interest.\nmy_projects: My Projects\nfilter_options: Filter options\nlegal_notice: Legal notice\nprivacy_policy: Privacy policy\nmy_links: My Links\ncss_gallery_title: CSS gallery\nabout_this_website_title: About this website\nload_comments: Load Comments\ndisqus_privacy_notice: The comments are loaded by the third-party provider\nfor_more_details_see: For more details see\ncodepen_button: Load code snippet from CodePen\ncodepen_privacy_notice: The code is loaded by the third-party provider CodePen. For more details see\nlanguage: Language\nhome_description: My portfolio website as a hobby web developer.\ndisqus_descr: Provides the comment function.\ncodepen_descr: Provides the code snippets.\ncustom_language: Storage of the selected language.\nblog_h1: My blogposts\nread_more: read more\ndate_desc: Date descending\ndate_asc: Date ascending\ntitle_desc: Title ascending\ntitle_asc: Title descending\nblogpost_not_found: This post could not be found\nblogpost_not_found_text: The article does not exist. Perhaps the article does not exist in this language.\nvisit_project: visit project\n","h":{},"s":200,"st":"OK","u":"/i18n/en.yaml","rt":"text"},"2124487308":{"b":"---\ntitle: \"Linux: Fix Steam Dropdown Bug\"\nauthor: Rico\nimage: /images/steam-dropdown-bug.avif\nkeywords:\n  - Steam Settings Bug\n  - Steam Dropdown not selectable\n  - Linux Steam Client Issue\n  - Steam Settings Linux\ndescription: Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.\ndate: 2024-06-17\n---\n\n## The problem: The Steam Client does not adopt settings from dropdowns\n\nUnder Linux, after installing Steam, it can quickly lead to frustration if, for example, you want to change the language in the settings. The dropdown menus do not respond to selection attempts and the selection made remains unchanged. This problem affects all dropdown fields in the Steam Client.\n\n## Valve is aware of the problem of unselectable dropdowns\n\nA quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on [GitHub](https://github.com/ValveSoftware/steam-for-linux/issues/9273). The status of this issue is still \"open\", which means that Valve has not yet offered an official solution. The problem was reported in March 2023.\n\n## The cause: Why the dropdowns in Steam cannot be selected\n\nThe error lies in the focusing behavior of the windows in the desktop environment. In Cinnamon, for example, there are various options for the focusing behavior. If the window focus is supposed to follow the mouse, this problem occurs.\n\n## Solution: Fix the problem of unselectable dropdowns\n\nTo work around the error, the focusing behavior of the windows must be set so that they are only focused by a mouse click. In the Cinnamon desktop environment, this is done as follows:\n\n1. Search for _\"Window\"_ in the start menu\n2. Switch to the _\"Behavior\"_ tab\n3. Change _\"Window focus behavior\"_ to _\"Click\"_\n\nAfter this change, the problem should no longer occur.\n\n## Steam: Bypass unselectable dropdowns\n\nIf you do not want to change the window focus behavior, there is a workaround to still be able to select the settings:\n\n1. Hold down the right mouse button before opening the dropdown\n2. With the right mouse button still pressed, left-click on the dropdown\n3. Continue to hold down the right mouse button and select the desired option with the left mouse button\n\nSteam should now have adopted the selection.\n","h":{},"s":200,"st":"OK","u":"/posts/en/steam-dropdown-bug.md","rt":"text"},"post-en-steam-dropdown-bug":{"postMeta":{"keywords":["Steam Settings Bug","Steam Dropdown not selectable","Linux Steam Client Issue","Steam Settings Linux"],"commentsDisabled":false,"hasCodePen":false,"hideInFeed":false,"fileName":"steam-dropdown-bug","title":"Linux: Fix Steam Dropdown Bug","author":"Rico","image":"/images/steam-dropdown-bug.avif","description":"Under Linux, the settings of the Steam Client can be bugged and settings in dropdowns cannot be selected. Here you can find out how to fix this bug.","date":"2024-06-17T00:00:00.000Z","localDateString":"6/17/2024"},"postContent":"\u003Ch2>The problem: The Steam Client does not adopt settings from dropdowns\u003C/h2>\n\u003Cp>Under Linux, after installing Steam, it can quickly lead to frustration if, for example, you want to change the language in the settings. The dropdown menus do not respond to selection attempts and the selection made remains unchanged. This problem affects all dropdown fields in the Steam Client.\u003C/p>\n\u003Ch2>Valve is aware of the problem of unselectable dropdowns\u003C/h2>\n\u003Cp>A quick internet search quickly shows that many users have the same problem. There are numerous reports of this error on \u003Ca href=\"https://github.com/ValveSoftware/steam-for-linux/issues/9273\" title=\"\" target=\"_blank\">GitHub\u003C/a>. The status of this issue is still &quot;open&quot;, which means that Valve has not yet offered an official solution. The problem was reported in March 2023.\u003C/p>\n\u003Ch2>The cause: Why the dropdowns in Steam cannot be selected\u003C/h2>\n\u003Cp>The error lies in the focusing behavior of the windows in the desktop environment. In Cinnamon, for example, there are various options for the focusing behavior. If the window focus is supposed to follow the mouse, this problem occurs.\u003C/p>\n\u003Ch2>Solution: Fix the problem of unselectable dropdowns\u003C/h2>\n\u003Cp>To work around the error, the focusing behavior of the windows must be set so that they are only focused by a mouse click. In the Cinnamon desktop environment, this is done as follows:\u003C/p>\n\u003Col>\n\u003Cli>Search for \u003Cem>&quot;Window&quot;\u003C/em> in the start menu\u003C/li>\n\u003Cli>Switch to the \u003Cem>&quot;Behavior&quot;\u003C/em> tab\u003C/li>\n\u003Cli>Change \u003Cem>&quot;Window focus behavior&quot;\u003C/em> to \u003Cem>&quot;Click&quot;\u003C/em>\u003C/li>\n\u003C/ol>\n\u003Cp>After this change, the problem should no longer occur.\u003C/p>\n\u003Ch2>Steam: Bypass unselectable dropdowns\u003C/h2>\n\u003Cp>If you do not want to change the window focus behavior, there is a workaround to still be able to select the settings:\u003C/p>\n\u003Col>\n\u003Cli>Hold down the right mouse button before opening the dropdown\u003C/li>\n\u003Cli>With the right mouse button still pressed, left-click on the dropdown\u003C/li>\n\u003Cli>Continue to hold down the right mouse button and select the desired option with the left mouse button\u003C/li>\n\u003C/ol>\n\u003Cp>Steam should now have adopted the selection.\u003C/p>\n"},"__nghData__":[{},{"t":{"0":"t48","1":"t49"},"c":{"0":[],"1":[{"i":"t49","r":1}]}},{"t":{"3":"t44","11":"t45","14":"t46","15":"t47"},"c":{"3":[{"i":"t44","r":1}],"11":[],"14":[{"i":"t46","r":1}],"15":[{"i":"t47","r":1}]}},{"t":{"0":"t33"},"c":{"0":[{"i":"t33","r":1,"t":{"9":"t34"},"c":{"9":[{"i":"t34","r":1,"x":3}]}}]}},{"c":{"4":[{"i":"c4025851534","r":1}]}}]}</script></body></html>

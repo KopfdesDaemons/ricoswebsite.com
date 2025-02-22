@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/routes/legal-notice/legal-notice.component.scss"],
+  "sourcesContent": [":host {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  align-items: stretch;\n}\n\nmain {\n  padding-top: 5em;\n  margin-bottom: auto;\n}\n\nh1 {\n  font-size: clamp(34px, 4vw, 60px);\n}\n\np {\n  font-size: clamp(20px, 2vw, 32px);\n}\n\n.spacingDiv {\n  padding-right: 30vw;\n  min-height: 100vh;\n}\n\nsection {\n  align-items: center;\n}\n"],
+  "mappings": ";AAAA;AACE,cAAA;AACA,WAAA;AACA,kBAAA;AACA,eAAA;;AAGF;AACE,eAAA;AACA,iBAAA;;AAGF;AACE,aAAA,MAAA,IAAA,EAAA,GAAA,EAAA;;AAGF;AACE,aAAA,MAAA,IAAA,EAAA,GAAA,EAAA;;AAGF,CAAA;AACE,iBAAA;AACA,cAAA;;AAGF;AACE,eAAA;;",
+  "names": []
+}

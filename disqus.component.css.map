@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/disqus/disqus.component.scss"],
+  "sourcesContent": ["#disqus_thread {\n  padding: 0 0.5em;\n}\n\n.consentBanner {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 0.5em;\n\n  $color: rgb(193, 192, 255);\n\n  button {\n    padding: 1em;\n    background-color: $color;\n    border-radius: 4px;\n    border: 3px solid transparent;\n    cursor: pointer;\n    display: flex;\n    gap: 0.5em;\n    font-size: 1.2em;\n    transition: all 250ms;\n\n    &:hover {\n      color: var(--font-color);\n      border-color: $color;\n      background-color: transparent;\n    }\n  }\n\n  .disclaimer {\n    font-size: 0.8em;\n    text-wrap: balance;\n    text-align: center;\n  }\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,WAAA,EAAA;;AAGF,CAAA;AACE,WAAA;AACA,kBAAA;AACA,eAAA;AACA,OAAA;;AAIA,CARF,cAQE;AACE,WAAA;AACA,oBAJM,IAAA,GAAA,EAAA,GAAA,EAAA;AAKN,iBAAA;AACA,UAAA,IAAA,MAAA;AACA,UAAA;AACA,WAAA;AACA,OAAA;AACA,aAAA;AACA,cAAA,IAAA;;AAEA,CAnBJ,cAmBI,MAAA;AACE,SAAA,IAAA;AACA,gBAfI,IAAA,GAAA,EAAA,GAAA,EAAA;AAgBJ,oBAAA;;AAIJ,CA1BF,cA0BE,CAAA;AACE,aAAA;AACA,aAAA;AACA,cAAA;;",
+  "names": []
+}

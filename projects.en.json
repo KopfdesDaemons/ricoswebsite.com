@@ -1,0 +1,142 @@
+{
+  "projects": [
+    {
+      "name": "Advent Candles",
+      "description": "A desklet for the Cinnamon Desktop that displays animated Advent candles on the desktop",
+      "image": "\\images\\advent-candles.avif",
+      "features": [
+        "Automatic adjustment of the number of candles based on the current date",
+        "Animation speed setting",
+        "Desklet size setting"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/71",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/adventCandles@KopfdesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
+      "name": "System Uptime",
+      "description": "A desklet for the Cinnamon desktop that displays the current uptime and the system start time",
+      "image": "\\images\\system-uptime.avif",
+      "features": ["Setting for the label color", "Setting for the font size"],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/70",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemUptime@KopfDesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
+      "name": "Days Countdown",
+      "description": "A desklet for the Cinnamon desktop that displays the remaining days until a date",
+      "image": "\\images\\days-countdown.avif",
+      "features": [
+        "Date setting",
+        "Adjustable refresh interval",
+        "Font color settings",
+        "Font size settings",
+        "Custom label text"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/69",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/daysCountdown@KopfDesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
+      "name": "RSS Newsticker",
+      "description": "An applet for the Cinnamon desktop that displays a news ticker in the taskbar",
+      "image": "\\images\\rss-newsticker.avif",
+      "features": [
+        "Customizable RSS feed source",
+        "Customizable speed",
+        "Customizable refresh interval",
+        "Customizable width",
+        "Customizable separators"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/applets/view/402",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-applets/tree/master/rssNewsticker@KopfDesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
+      "name": "System Temperature",
+      "description": "A desklet for the Cinnamon desktop that displays the temperature of a thermal zone of the system",
+      "image": "\\images\\system-temperature.avif",
+      "features": [
+        "thermal zone setting",
+        "dynamic color adjustment based on temperature",
+        "changing the temperature unit (Celsius or Fahrenheit)",
+        "font size settings",
+        "custom label text"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/68",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/systemTemperature@KopfDesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
+      "name": "BlogTube",
+      "description": "A WordPress theme that is based on the design scheme of YouTube",
+      "image": "\\images\\blogtube.avif",
+      "features": [
+        "infinite scroll feed",
+        "custom sidemenu",
+        "custom primary color",
+        "custom font"
+      ],
+      "projectURL": "https://wordpress.org/themes/blogtube/",
+      "githubURL": "https://github.com/KopfdesDaemons/blogtube",
+      "blogpostURL": "/blogpost/blogtube/.",
+      "technologies": ["WordPress", "PHP", "JavaScript"]
+    },
+    {
+      "name": "Blog Layouts",
+      "description": "A WordPress theme that has the swapping of layouts as a core feature",
+      "image": "\\images\\blog-layouts.avif",
+      "features": [
+        "swapping layouts",
+        "well-known designs such as Material Design 2 and 3",
+        "extensive author page",
+        "custom theme colors"
+      ],
+      "projectURL": "https://wordpress.org/themes/blog-layouts/",
+      "githubURL": "https://github.com/KopfdesDaemons/blog-layouts",
+      "technologies": ["WordPress", "PHP", "JavaScript"]
+    },
+    {
+      "name": "Neo Blog",
+      "description": "WordPress Theme",
+      "image": "\\images\\neo-blog.avif",
+      "features": [
+        "dark mode / light mode",
+        "lots of customization options",
+        "custom theme colors"
+      ],
+      "projectURL": "https://wordpress.org/themes/neo-blog/",
+      "githubURL": "https://github.com/KopfdesDaemons/neo-blog",
+      "technologies": ["WordPress", "PHP", "JavaScript"]
+    },
+    {
+      "name": "tickturtle.com",
+      "description": "A website for time recording of work steps",
+      "image": "\\images\\tickturtle.com.avif",
+      "features": [
+        "time calculation / time pause / time resume",
+        "edit tasks / delete tasks",
+        "data storage in local storage",
+        "custom table design with several features"
+      ],
+      "projectURL": "https://tickturtle.com/",
+      "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
+      "technologies": ["Angular", "TypeScript"]
+    },
+    {
+      "name": "grundbuch-musterantrag.de",
+      "description": "A website about German land register law",
+      "image": "\\images\\grundbuch-musterantrag.de.avif",
+      "features": [
+        "dark mode / light mode",
+        "custom primary theme color",
+        "admin login / dashboard",
+        "pdf generation",
+        "step by step form"
+      ],
+      "projectURL": "https://www.grundbuch-musterantrag.de/",
+      "githubURL": "https://github.com/KopfdesDaemons/grundbuch-musterantrag.de",
+      "technologies": ["Angular", "TypeScript", "Node.js"]
+    }
+  ]
+}
