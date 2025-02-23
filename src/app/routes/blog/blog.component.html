@@ -10,7 +10,7 @@
             </select>
         </div>
         <ul class="feed">
-            @for (post of postsList; track post) {
+            @for (post of postsList; track post.postMeta.title) {
             <li>
                 @defer (hydrate never) {
                 <app-blogpost-card [postMeta]="post.postMeta"></app-blogpost-card>

@@ -1,8 +1,7 @@
-import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { DISQUS_SHORTNAME } from '../environment/enviroment';
 import { ScriptService } from './script.service';
 import { DisqusService } from './disqus.service';
-import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,6 @@ import { isPlatformBrowser } from '@angular/common';
 export class ConsentService {
   private scriptS = inject(ScriptService);
   private disqusS = inject(DisqusService);
-  private platformId = inject<object>(PLATFORM_ID);
   consentManagerIsOpen = signal<boolean>(false);
 
   possibleConsents: { name: string; domains: string[] | undefined; descriptionTransString: string }[] = [
@@ -36,7 +34,6 @@ export class ConsentService {
   }
 
   checkConsent(serviceName: string): boolean {
-    if (!isPlatformBrowser(this.platformId)) return false;
     return localStorage.getItem(serviceName) != null;
   }
 
