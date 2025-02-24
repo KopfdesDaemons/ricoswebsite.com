@@ -70,7 +70,7 @@ ng serve
 
 ## Deployment
 
-prerender website
+optionally build the project before deployment for testing (ng deploy also builds the project)
 
 ```bash
 ng build
@@ -79,5 +79,5 @@ ng build
 deploy prerendered website
 
 ```bash
-npx angular-cli-ghpages --dir=dist/ricoswebsite.com/browser --cname=ricoswebsite.com
+ng deploy
 ```
