@@ -5,9 +5,8 @@
 <div class="content" [ngClass]="{ menuIsOpen: sidemenuS.MenuIsOpen }">
     @defer (when langS.askUserToSwitch) {
     <app-language-switch-offer></app-language-switch-offer>
-    } @defer (hydrate when sidemenuS.MenuIsOpen) {
-    <app-sidemenu></app-sidemenu>
     }
+    <app-sidemenu></app-sidemenu>
     <router-outlet></router-outlet>
     @defer (hydrate on interaction) {
     <app-footer></app-footer>
