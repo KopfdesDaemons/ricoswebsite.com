@@ -99,9 +99,12 @@
       }
     }
 
+    code {
+      padding: 0;
+    }
+
     // Für einzelne Wörter in Absätzen
-    p > code,
-    li > code {
+    p > code {
       background-color: rgb(21, 39, 90);
       padding: 0.4em;
       border-radius: 4px;
@@ -116,29 +119,6 @@
       font-size: 0.8em;
       font-size: 1em;
       margin-bottom: 1em;
-      border: 8px solid #3a3a75;
-
-      + .toolbar {
-        opacity: unset;
-        right: 0.8em;
-        top: 0.8em;
-
-        button {
-          padding: 0.5em;
-          border-radius: unset;
-          font-size: 1em;
-          cursor: pointer;
-          border-radius: 6px;
-
-          &:hover {
-            background-color: rgb(50, 50, 66);
-          }
-        }
-      }
-
-      &:hover {
-        border-color: #1f1f9e;
-      }
     }
 
     .linkButton {

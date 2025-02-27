@@ -6,6 +6,7 @@ import { Post } from '../models/post.model';
 import { MarkdownHelper } from '../helpers/markdown.helper';
 import { LanguageService } from './language.service';
 import { PostMeta } from '../models/post-meta.model';
+import { HighlightHelper } from '../helpers/highlight.helper';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class PostService {
   private http = inject(HttpClient);
   private transferState = inject(TransferState);
   private markdownHelper = MarkdownHelper;
+  private highlightHelper = HighlightHelper;
   private languageS = inject(LanguageService);
   private platformId = inject<object>(PLATFORM_ID);
 
@@ -64,9 +66,10 @@ export class PostService {
       const markdownFile = response.body as string;
       const markdownHeader = this.markdownHelper.extractYamlHeader(markdownFile);
       const markdownBody = this.markdownHelper.extractBody(markdownFile);
-      const postContent = await this.markdownHelper.parseMarkdown(markdownBody);
+      const postHtml = await this.markdownHelper.parseMarkdown(markdownBody);
+      const withHighlightedCodeSnippets = await this.highlightHelper.highlightCodeBlocksInPostHtml(postHtml);
 
-      return new Post(markdownHeader, fileName, this.languageS.userLanguage, postContent);
+      return new Post(markdownHeader, fileName, this.languageS.userLanguage, withHighlightedCodeSnippets);
     } catch (error) {
       console.error(error);
       if (error instanceof HttpErrorResponse)

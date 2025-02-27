@@ -25,7 +25,6 @@ const loadLanguagesFileNamesList = async (): Promise<{ lang: string; fileNames: 
     langFileNames.push({ lang: langFolder, fileNames: markdownFiles });
   }
 
-  console.log(langFileNames);
   return langFileNames;
 };
 
@@ -109,6 +108,7 @@ export const getPostsRouteParams = async (): Promise<{ lang: string; fileName: s
       fileName: path.basename(fileName, path.extname(fileName)),
     }))
   );
+  console.log(languageFileNameList);
 
   return languageFileNameList;
 };
