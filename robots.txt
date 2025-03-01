@@ -1,7 +1,7 @@
 user-agent: *
 Disallow: /legal-notice/
+Disallow: /legal-notice
 Disallow: /de/privacy-policy/
 Disallow: /en/privacy-policy/
-Disallow: /legal-notice
 Disallow: /de/privacy-policy
 Disallow: /en/privacy-policy
