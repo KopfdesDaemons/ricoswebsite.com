@@ -25,7 +25,6 @@ const loadLanguagesFileNamesList = async (): Promise<{ lang: string; fileNames: 
     langFileNames.push({ lang: langFolder, fileNames: markdownFiles });
   }
 
-  console.log(langFileNames);
   return langFileNames;
 };
 
@@ -79,9 +78,9 @@ const createPostsJSON = async (lang: string, fileNames: string[]): Promise<void>
     // Write JSON
     await fs.promises.writeFile(outputFilePath, JSON.stringify(metadataList, null, 2), 'utf8');
 
-    console.log(`JSON-Datei erfolgreich erstellt: ${outputFilePath}`);
+    console.log(`JSON-File successfully created for the language ${lang}`);
   } catch (error) {
-    console.error(`Fehler beim Erstellen der JSON für Sprache ${lang}:`, error);
+    console.error(`Error creating JSON-File for the language ${lang}:`, error);
   }
 };
 

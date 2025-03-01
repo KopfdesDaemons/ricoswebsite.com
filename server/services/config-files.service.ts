@@ -46,11 +46,11 @@ const generateSitemapTxt = async (lang: string, fileNames: string[]) => {
     // add new blogpost routes
     const newContent = [filteredData, ...urls].filter(Boolean).join('\n');
 
-    // Schreibe den gesamten neuen Inhalt in die Datei
+    // write new content
     await fs.promises.writeFile(sitemapFilePath, newContent + '\n', 'utf8');
 
-    console.log(`sitemap.txt erfolgreich für die Sprache ${lang} aktualisiert.`);
+    console.log(`sitemap.txt successfully updated for the language ${lang}`);
   } catch (err) {
-    console.error('Fehler beim Verarbeiten der Datei:', err);
+    console.error('Error updating sitemap.txt:', err);
   }
 };
