@@ -22,7 +22,7 @@ export class PostService {
 
   async getPost(fileName: string): Promise<Post | null> {
     this.post = this.loadPostFromTransfareState(fileName);
-    const lang = this.languageS.userLanguage;
+    const lang = this.languageS.userLanguage();
     if (!this.post) this.post = await this.loadFromMarkdownFile(fileName, lang);
     if (!this.post) return null;
 
@@ -31,16 +31,16 @@ export class PostService {
   }
 
   private savePostTransfereState(title: string) {
-    const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
+    const key = makeStateKey<Post>('post-' + this.languageS.userLanguage() + '-' + title);
     this.transferState.set(key, this.post);
   }
 
   private loadPostFromTransfareState(title: string): Post | null {
     if (!isPlatformBrowser(this.platformId)) return null;
-    const key = makeStateKey<Post>('post-' + this.languageS.userLanguage + '-' + title);
+    const key = makeStateKey<Post>('post-' + this.languageS.userLanguage() + '-' + title);
     const postFromState = this.transferState.get(key, null);
     if (!postFromState) return null;
-    const post = new Post(postFromState?.postMeta ?? {}, title, this.languageS.userLanguage);
+    const post = new Post(postFromState?.postMeta ?? {}, title, this.languageS.userLanguage());
     post.postContent = postFromState?.postContent;
     return post;
   }
@@ -66,7 +66,7 @@ export class PostService {
       const markdownBody = this.markdownHelper.extractBody(markdownFile);
       const postContent = await this.markdownHelper.parseMarkdown(markdownBody);
 
-      return new Post(markdownHeader, fileName, this.languageS.userLanguage, postContent);
+      return new Post(markdownHeader, fileName, this.languageS.userLanguage(), postContent);
     } catch (error) {
       console.error(error);
       if (error instanceof HttpErrorResponse)
@@ -102,7 +102,7 @@ export class PostService {
 
     const postArray: Post[] = [];
     for (const post of visiblePosts) {
-      postArray.push(new Post(post, post.fileName, this.languageS.userLanguage));
+      postArray.push(new Post(post, post.fileName, this.languageS.userLanguage()));
     }
     // Sortierung
     postArray.sort((a: Post, b: Post) => {

@@ -17,24 +17,24 @@
                 </li>
                 <li>
                     <hr />
-                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/blog/.']">
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage() + '/blog/.']">
                         <span>{{ "Blog" | translate }}</span>
                     </a>
                 </li>
                 <li>
                     <hr />
-                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/projects/page/1/.']" fragment="projectsSection">
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage() + '/projects/page/1/.']" fragment="projectsSection">
                         <span>Portfolio</span>
                     </a>
                     <hr />
                 </li>
                 <li>
-                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/blogpost/css-gallery/.']">
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage() + '/blogpost/css-gallery/.']">
                         <span>{{ "css_gallery_title" | translate }}</span>
                     </a>
                 </li>
                 <li>
-                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage + '/blogpost/about-this-website/.']">
+                    <a (click)="toggleMenu()" [routerLink]="[languageS.userLanguage() + '/blogpost/about-this-website/.']">
                         <span>{{ "about_this_website_title" | translate }}</span>
                     </a>
                 </li>
@@ -43,7 +43,7 @@
         <fieldset class="languageSetter">
             <legend>{{ "language" | translate }}:</legend>
             <div>
-                <input type="radio" id="german" name="language" value="de" checked [(ngModel)]="languageS.userLanguage" (click)="languageS.switchUserLanguage('de')" />
+                <input type="radio" id="german" name="language" value="de" [checked]="languageS.userLanguage() == 'de'" (click)="languageS.switchUserLanguage('de')" />
                 <label for="german">
                     <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-de" viewBox="0 0 640 480" role="img" aria-labelledby="german-flag">
                         <title id="german-flag">Flagge von Deutschland</title>
@@ -55,7 +55,7 @@
                 </label>
             </div>
             <div>
-                <input type="radio" id="english" name="language" value="en" [(ngModel)]="languageS.userLanguage" (click)="languageS.switchUserLanguage('en')" />
+                <input type="radio" id="english" name="language" value="en" [checked]="languageS.userLanguage() == 'en'" (click)="languageS.switchUserLanguage('en')" />
                 <label for="english">
                     <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-us" viewBox="0 0 640 480" role="img" aria-labelledby="us-flag">
                         <title id="us-flag">Flagge der USA</title>

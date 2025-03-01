@@ -13,7 +13,7 @@ export class ProjectService {
 
   private projects: Project[] = [];
 
-  async loadProjectsFromJson(lang: string = this.languageS.userLanguage): Promise<Project[]> {
+  async loadProjectsFromJson(lang: string = this.languageS.userLanguage()): Promise<Project[]> {
     try {
       const url = `/projects.${lang}.json`;
       const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));

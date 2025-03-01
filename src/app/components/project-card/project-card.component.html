@@ -1,7 +1,7 @@
 <div class="projectDiv">
     <div class="row1">
         @if (project().blogpostURL || project().projectURL) { @if (project().blogpostURL) {
-        <a [routerLink]="['/' + languageS.userLanguage + project().blogpostURL]" aria-label="Visit project" class="imageDiv">
+        <a [routerLink]="['/' + languageS.userLanguage() + project().blogpostURL]" aria-label="Visit project" class="imageDiv">
             <img src="{{ project().image }}" alt="{{ project().name }}" width="436" height="326" />
         </a>
         } @else {
@@ -12,7 +12,7 @@
 
         <div class="descriptionDiv">
             @if (project().blogpostURL) {
-            <a [routerLink]="['/' + languageS.userLanguage + project().blogpostURL]">
+            <a [routerLink]="['/' + languageS.userLanguage() + project().blogpostURL]">
                 <h3>{{ project().name }}</h3>
             </a>
             } @else {

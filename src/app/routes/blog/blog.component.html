@@ -23,7 +23,7 @@
             @for (page of [].constructor(totalPages); track $index; let i = $index) {
             <li>
                 @if (currentPage != i + 1) {
-                <a [routerLink]="['/' + languageS.userLanguage + '/blog/page/' + (i + 1) + '/.']" [queryParams]="{ sortBy: sortBy, sortOrder: sortOrder }">{{ i + 1 }} </a>
+                <a [routerLink]="['/' + languageS.userLanguage() + '/blog/page/' + (i + 1) + '/.']" [queryParams]="{ sortBy: sortBy, sortOrder: sortOrder }">{{ i + 1 }} </a>
                 } @if (currentPage === i + 1) {
                 <span>{{ i + 1 }}</span>
                 }

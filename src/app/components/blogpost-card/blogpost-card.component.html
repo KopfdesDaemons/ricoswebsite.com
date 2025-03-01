@@ -1,11 +1,11 @@
 <div class="card">
     @if (postMeta().image) {
-    <a class="imageContainer" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta().fileName + '/.']">
+    <a class="imageContainer" [routerLink]="['/' + languageS.userLanguage() + '/blogpost/' + postMeta().fileName + '/.']">
         <img src="{{ postMeta().image }}" alt="{{ postMeta().title }}" />
     </a>
     }
     <div class="content">
-        <a class="titleLink" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta().fileName + '/.']">
+        <a class="titleLink" [routerLink]="['/' + languageS.userLanguage() + '/blogpost/' + postMeta().fileName + '/.']">
             <h2>{{ postMeta().title }}</h2>
         </a>
         @if (postMeta().date) {
@@ -19,6 +19,6 @@
             }
         </ul>
         }
-        <a class="readMore" [routerLink]="['/' + languageS.userLanguage + '/blogpost/' + postMeta().fileName]">{{ "read_more" | translate }}</a>
+        <a class="readMore" [routerLink]="['/' + languageS.userLanguage() + '/blogpost/' + postMeta().fileName]">{{ "read_more" | translate }}</a>
     </div>
 </div>

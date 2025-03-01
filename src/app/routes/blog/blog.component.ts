@@ -62,14 +62,14 @@ export class BlogComponent implements OnInit {
 
   async loadPostsList() {
     try {
-      const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage, this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
+      const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage(), this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
       this.postsList = posts;
       this.totalPages = totalPages;
       await this.setMetaTags();
     } catch (error) {
       console.error(error);
       if (error instanceof HttpErrorResponse) {
-        if (error.status === 404 && this.languageS.userLanguage !== 'en') {
+        if (error.status === 404 && this.languageS.userLanguage() !== 'en') {
           // try to load posts in english
           await this.postS.loadPostList('en', this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
         }
@@ -79,6 +79,6 @@ export class BlogComponent implements OnInit {
 
   public async sort(event: any) {
     const [sortBy, sortOrder] = event.target.value.split(' ');
-    await this.router.navigate([`/${this.languageS.userLanguage}/blog/page/1`], { queryParams: { sortBy, sortOrder } });
+    await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], { queryParams: { sortBy, sortOrder } });
   }
 }

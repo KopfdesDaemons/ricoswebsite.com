@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
@@ -14,7 +14,7 @@ export class LanguageService {
   private platformId = inject<object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
 
-  userLanguage: string;
+  userLanguage = signal<string>('');
   userAgendLanguage: string;
   askUserToSwitch: boolean = false;
   supportedLanguages: string[] = ['de', 'en'];
@@ -26,7 +26,7 @@ export class LanguageService {
     this.translate.setDefaultLang('en');
 
     this.userAgendLanguage = this.getLanguageFromUserAgent();
-    this.userLanguage = this.userAgendLanguage;
+    this.userLanguage.set(this.userAgendLanguage);
     this.loadLanguageFromLocalStorage();
   }
 
@@ -35,18 +35,18 @@ export class LanguageService {
     this.askUserToSwitch = true;
     const storedLanguage = localStorage.getItem('Custom Language');
     if (storedLanguage) {
-      this.userLanguage = storedLanguage;
+      this.userLanguage.set(storedLanguage);
       this.askUserToSwitch = false;
     }
   }
 
   async updateLanguage(lang: string | null) {
-    if (!lang) lang = this.userLanguage;
-    this.userLanguage = await this.replaceUnsupportedLangauge(lang);
-    this.document.documentElement.lang = this.userLanguage;
-    const ask = this.askUserToSwitch && this.userLanguage != this.userAgendLanguage;
+    if (!lang) lang = this.userLanguage();
+    this.userLanguage.set(await this.replaceUnsupportedLangauge(lang));
+    this.document.documentElement.lang = this.userLanguage();
+    const ask = this.askUserToSwitch && this.userLanguage() != this.userAgendLanguage;
     this.askUserToSwitch = ask;
-    this.translate.use(this.userLanguage);
+    this.translate.use(this.userLanguage());
   }
 
   private async replaceUnsupportedLangauge(lang: string): Promise<string> {
@@ -61,14 +61,14 @@ export class LanguageService {
   }
 
   async switchUserLanguage(lang: string) {
-    this.oldLanguage = this.userLanguage;
-    this.userLanguage = lang;
+    this.oldLanguage = this.userLanguage();
+    this.userLanguage.set(lang);
     const pathHasLangParam = this.location.path().includes(this.oldLanguage);
     const newUrl = this.location.path().replace(this.oldLanguage, lang);
     console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
     if (!pathHasLangParam) await this.updateLanguage(lang);
     await this.router.navigateByUrl(newUrl);
-    localStorage.setItem('Custom Language', this.userLanguage.toString());
+    localStorage.setItem('Custom Language', this.userLanguage().toString());
     this.askUserToSwitch = false;
   }
 

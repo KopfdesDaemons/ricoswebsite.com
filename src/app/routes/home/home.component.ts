@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID, effect } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   technologiesFilterOptions: string[] = [];
   activTechnologiesFilter: string[] = [];
   totalPages: number = 0;
-  currentPage: number = 0;
+  currentPage: number = 1;
   faCircleXmark = faCircleXmark;
   private totalProjects: number = 0;
   private projectsPerPage = 5;
@@ -38,9 +38,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   private routeParamsSubscription: Subscription | undefined;
   private queryParamsSubscription: Subscription | undefined;
 
+  constructor() {
+    effect(async () => {
+      await this.loadProjects();
+    });
+  }
+
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
       const { page } = params;
+      if (this.currentPage === +page) return;
       this.currentPage = +page || 1;
       await this.loadProjects();
 
@@ -98,7 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async applyFilter(filter: string[]) {
-    await this.router.navigate([`/${this.languageS.userLanguage}/projects/page/1/`], {
+    await this.router.navigate([`/${this.languageS.userLanguage()}/projects/page/1/`], {
       queryParams: this.getQueryParams(filter),
       fragment: 'projectsSection',
     });
