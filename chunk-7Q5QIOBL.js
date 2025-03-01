@@ -1,0 +1,1 @@
+import{U as e}from"./chunk-BAJSPIZF.js";var s=(()=>{class t{constructor(){this.MenuIsOpen=!1}toggleMenu(){this.MenuIsOpen=!this.MenuIsOpen}static{this.\u0275fac=function(n){return new(n||t)}}static{this.\u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{s as a};
