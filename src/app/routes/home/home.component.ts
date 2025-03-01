@@ -40,8 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
-      const { lang, page } = params;
-      if (!lang) await this.languageS.updateLanguage(null);
+      const { page } = params;
       this.currentPage = +page || 1;
       await this.loadProjects();
 

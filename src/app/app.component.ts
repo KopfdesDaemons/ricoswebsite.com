@@ -21,8 +21,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe(async (event) => {
-      if (event instanceof ActivationStart && Object.keys(event.snapshot.params).length > 0) {
-        const lang = event.snapshot.params['lang'];
+      if (event instanceof ActivationStart) {
+        let lang = null;
+        if (Object.keys(event.snapshot.params).length > 0) lang = event.snapshot.params['lang'];
         await this.langS.updateLanguage(lang);
       }
     });

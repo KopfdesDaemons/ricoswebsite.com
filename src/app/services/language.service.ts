@@ -14,7 +14,7 @@ export class LanguageService {
   private platformId = inject<object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
 
-  userLanguage: string = 'en';
+  userLanguage: string;
   userAgendLanguage: string;
   askUserToSwitch: boolean = false;
   supportedLanguages: string[] = ['de', 'en'];
@@ -25,8 +25,9 @@ export class LanguageService {
     this.translate.addLangs(this.supportedLanguages);
     this.translate.setDefaultLang('en');
 
-    this.loadLanguageFromLocalStorage();
     this.userAgendLanguage = this.getLanguageFromUserAgent();
+    this.userLanguage = this.userAgendLanguage;
+    this.loadLanguageFromLocalStorage();
   }
 
   loadLanguageFromLocalStorage() {
@@ -40,7 +41,7 @@ export class LanguageService {
   }
 
   async updateLanguage(lang: string | null) {
-    if (!lang) lang = this.userAgendLanguage;
+    if (!lang) lang = this.userLanguage;
     this.userLanguage = await this.replaceUnsupportedLangauge(lang);
     this.document.documentElement.lang = this.userLanguage;
     const ask = this.askUserToSwitch && this.userLanguage != this.userAgendLanguage;
@@ -62,8 +63,10 @@ export class LanguageService {
   async switchUserLanguage(lang: string) {
     this.oldLanguage = this.userLanguage;
     this.userLanguage = lang;
+    const pathHasLangParam = this.location.path().includes(this.oldLanguage);
     const newUrl = this.location.path().replace(this.oldLanguage, lang);
     console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
+    if (!pathHasLangParam) await this.updateLanguage(lang);
     await this.router.navigateByUrl(newUrl);
     localStorage.setItem('Custom Language', this.userLanguage.toString());
     this.askUserToSwitch = false;
