@@ -2,7 +2,7 @@
     <section>
         <h1>{{ "blog_h1" | translate }}</h1>
         <div class="options">
-            <select (change)="sort($event)">
+            <select (change)="sort($event)" value="{{ sortBy }} {{ sortOrder }}">
                 <option value="date desc">{{ "date_desc" | translate }}</option>
                 <option value="date asc">{{ "date_asc" | translate }}</option>
                 <option value="title asc">{{ "title_asc" | translate }}</option>
@@ -23,7 +23,7 @@
             @for (page of [].constructor(totalPages); track $index; let i = $index) {
             <li>
                 @if (currentPage != i + 1) {
-                <a [routerLink]="['/' + languageS.userLanguage + '/blog/page/' + (i + 1)] + '/.'">{{ i + 1 }}</a>
+                <a [routerLink]="['/' + languageS.userLanguage + '/blog/page/' + (i + 1) + '/.']" [queryParams]="{ sortBy: sortBy, sortOrder: sortOrder }">{{ i + 1 }} </a>
                 } @if (currentPage === i + 1) {
                 <span>{{ i + 1 }}</span>
                 }

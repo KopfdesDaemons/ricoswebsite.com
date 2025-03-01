@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
@@ -20,6 +20,7 @@ export class BlogComponent implements OnInit {
   private postS = inject(PostService);
   languageS = inject(LanguageService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private title = inject(Title);
   private meta = inject(Meta);
   private translate = inject(TranslateService);
@@ -31,22 +32,26 @@ export class BlogComponent implements OnInit {
   sortBy: 'date' | 'title' = 'date';
   totalPages: number = 1;
   private routeParamsSubscription: Subscription | undefined;
+  private queryParamsSubscription: Subscription | undefined;
 
   ngOnInit(): void {
-    // when route changes
-    this.routeParamsSubscription = this.route.params.subscribe(async () => {
-      const page = this.route.snapshot.paramMap.get('page');
+    this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
+      const { page } = params;
       if (page) this.currentPage = Number(page);
-
       await this.loadPostsList();
-      await this.setMetaTags();
+    });
+
+    this.queryParamsSubscription = this.route.queryParams.subscribe(async (params) => {
+      const { sortBy, sortOrder } = params;
+      if (sortBy === 'date' || sortBy === 'title') this.sortBy = sortBy;
+      if (sortOrder === 'asc' || sortOrder === 'desc') this.sortOrder = sortOrder;
+      await this.loadPostsList();
     });
   }
 
   ngOnDestroy(): void {
-    if (this.routeParamsSubscription) {
-      this.routeParamsSubscription.unsubscribe();
-    }
+    this.routeParamsSubscription?.unsubscribe();
+    this.queryParamsSubscription?.unsubscribe();
   }
 
   async setMetaTags() {
@@ -60,6 +65,7 @@ export class BlogComponent implements OnInit {
       const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage, this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
       this.postsList = posts;
       this.totalPages = totalPages;
+      await this.setMetaTags();
     } catch (error) {
       console.error(error);
       if (error instanceof HttpErrorResponse) {
@@ -73,8 +79,6 @@ export class BlogComponent implements OnInit {
 
   public async sort(event: any) {
     const [sortBy, sortOrder] = event.target.value.split(' ');
-    this.sortBy = sortBy;
-    this.sortOrder = sortOrder;
-    await this.loadPostsList();
+    await this.router.navigate([`/${this.languageS.userLanguage}/blog/page/1`], { queryParams: { sortBy, sortOrder } });
   }
 }
