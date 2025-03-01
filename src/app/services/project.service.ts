@@ -13,7 +13,6 @@ export class ProjectService {
 
   private projects: Project[] = [];
 
-  // Projekte aus JSON laden
   async loadProjectsFromJson(lang: string = this.languageS.userLanguage): Promise<Project[]> {
     try {
       const url = `/projects.${lang}.json`;
@@ -27,13 +26,11 @@ export class ProjectService {
     }
   }
 
-  // Hilfsfunktion zum Erstellen eines Project-Objekts aus den Daten
   private createProjectFromData(data: any): Project {
     data.technologies = data.technologies.sort();
     return new Project(data.name, data.description, data.image, data.features, data.projectURL, data.githubURL, data.blogpostURL, data.technologies);
   }
 
-  // Abragen der Anzahl der Projekte für Paginierung
   async getTotalProjectCount(filterByTechnologies: string[] = []): Promise<number> {
     await this.loadProjectsFromJson();
 
@@ -46,7 +43,6 @@ export class ProjectService {
     return filteredProjects.length;
   }
 
-  // Abfragen der Projektdaten
   async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
     await this.loadProjectsFromJson();
 
@@ -63,7 +59,6 @@ export class ProjectService {
     return filteredProjects.slice(startIndex, endIndex);
   }
 
-  // Abrufen aller Technologien
   async getAllTechnologies(): Promise<string[]> {
     await this.loadProjectsFromJson();
 

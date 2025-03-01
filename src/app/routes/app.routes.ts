@@ -22,14 +22,6 @@ export const routes: Routes = [
     loadComponent: () => import('./blog/blog.component').then((m) => m.BlogComponent),
   },
   {
-    path: ':lang/projects/page/:page/.:technologies',
-    loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent),
-  },
-  {
-    path: ':lang/projects/page/:page/:technologies',
-    loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent),
-  },
-  {
     path: ':lang/projects/page/:page/.',
     loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent),
   },

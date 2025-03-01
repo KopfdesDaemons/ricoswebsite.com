@@ -1,15 +1,14 @@
-import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
-import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project.model';
 import { LanguageService } from 'src/app/services/language.service';
-import { Location } from '@angular/common';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -18,100 +17,91 @@ import { ProjectCardComponent } from '../../components/project-card/project-card
   imports: [ProjectCardComponent, RouterLink, TranslateModule],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  languageS = inject(LanguageService);
   private meta = inject(Meta);
   private title = inject(Title);
-  languageS = inject(LanguageService);
-  ps = inject(ProjectService);
-  private location = inject(Location);
+  private ps = inject(ProjectService);
   private translate = inject(TranslateService);
-  sidemenuS = inject(SidemenuService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-
-  readonly projectsSection = viewChild<ElementRef>('projectsSection');
+  private platformID = inject<object>(PLATFORM_ID);
 
   projects: Project[] = [];
   technologiesFilterOptions: string[] = [];
-  activTechnologiesFilterOptions: string[] = [];
-  totalProjects: number = 0;
+  activTechnologiesFilter: string[] = [];
   totalPages: number = 0;
   currentPage: number = 0;
-  projectsPerPage = 5;
   faCircleXmark = faCircleXmark;
+  private totalProjects: number = 0;
+  private projectsPerPage = 5;
+  readonly projectsSection = viewChild.required<ElementRef>('projectsSection');
   private routeParamsSubscription: Subscription | undefined;
+  private queryParamsSubscription: Subscription | undefined;
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
-      // Switch to Route Language if not set
-      const lang = params['lang'];
-      if (!lang) await this.router.navigate(['/' + this.languageS.userAgendLanguage + '/projects/page/1/.']);
+      const { lang, page } = params;
+      if (!lang) await this.languageS.updateLanguage(null);
+      this.currentPage = +page || 1;
+      await this.loadProjects();
 
-      this.activTechnologiesFilterOptions = [];
-      this.currentPage = +params['page'] || 1;
+      // scroll to projects section
+      if (isPlatformBrowser(this.platformID) && page) {
+        this.projectsSection().nativeElement?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
 
-      // get technologies and remove first dot for the static sites (Trailing Slash Problem)
-      const technologieParams = params['technologies']?.replace(/^\./, '');
-
-      // load filter options
-      if (technologieParams) this.activTechnologiesFilterOptions = technologieParams.split('&');
-
-      // load projects
-      await this.loadProjects(this.currentPage, this.activTechnologiesFilterOptions);
-
-      // set Meta Data
-      const description = await lastValueFrom(this.translate.get('home_description'));
-      this.title.setTitle('Ricos Website');
-      this.meta.addTags([
-        { property: 'og:description', content: description },
-        { name: 'description', content: description },
-      ]);
+    this.queryParamsSubscription = this.route.queryParams.subscribe(async (params) => {
+      const { technologies } = params;
+      this.activTechnologiesFilter = technologies ? technologies.split('&') : [];
+      await this.loadProjects();
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.routeParamsSubscription) {
-      this.routeParamsSubscription.unsubscribe();
-    }
+  async setMetaTags() {
+    const description = await lastValueFrom(this.translate.get('home_description'));
+    this.title.setTitle('Ricos Website');
+    this.meta.addTags([
+      { property: 'og:description', content: description },
+      { name: 'description', content: description },
+    ]);
   }
 
-  async loadProjects(page: number, filter: string[] = []) {
+  ngOnDestroy(): void {
+    this.routeParamsSubscription?.unsubscribe();
+    this.queryParamsSubscription?.unsubscribe();
+  }
+
+  async loadProjects() {
+    const filter = this.activTechnologiesFilter;
     this.technologiesFilterOptions = await this.ps.getAllTechnologies();
 
     // remove filter chips for active filters
-    this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activTechnologiesFilterOptions.includes(t));
+    this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activTechnologiesFilter.includes(t));
 
-    this.projects = await this.ps.getProjects(filter, this.projectsPerPage, page);
+    this.projects = await this.ps.getProjects(filter, this.projectsPerPage, this.currentPage);
     this.totalProjects = await this.ps.getTotalProjectCount(filter);
     this.totalPages = Math.ceil(this.totalProjects / this.projectsPerPage);
+    await this.setMetaTags();
   }
 
-  getParamChain(params: string[]) {
-    return params.join('&');
+  getQueryParams(technologies: string[] = this.activTechnologiesFilter) {
+    if (technologies.length === 0) return null;
+    return { technologies: technologies.join('&') };
   }
 
   async addTechnologieToFilter(technologie: string) {
-    await this.applyFilter([...this.activTechnologiesFilterOptions, technologie]);
+    await this.applyFilter([...this.activTechnologiesFilter, technologie]);
   }
 
   async removeTechnologieFromFilter(technologie: string) {
-    await this.applyFilter(this.activTechnologiesFilterOptions.filter((item) => item !== technologie));
+    await this.applyFilter(this.activTechnologiesFilter.filter((item) => item !== technologie));
   }
 
   async applyFilter(filter: string[]) {
-    this.activTechnologiesFilterOptions = filter;
-    const filterString = this.getParamChain(this.activTechnologiesFilterOptions);
-
-    // change route
-    const lang = this.languageS.userLanguage;
-    const routePath = `/${lang}/projects/page/1/${filterString}`;
-    this.location.go(routePath + '#projectsSection');
-
-    if (this.currentPage != 1) await this.router.navigate([routePath], { fragment: 'projectsSection' });
-
-    await this.loadProjects(1, this.activTechnologiesFilterOptions);
-
-    // scroll to projects section
-    const projectsSection = this.projectsSection();
-    if (projectsSection) projectsSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    await this.router.navigate([`/${this.languageS.userLanguage}/projects/page/1/`], {
+      queryParams: this.getQueryParams(filter),
+      fragment: 'projectsSection',
+    });
   }
 }

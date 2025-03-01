@@ -22,7 +22,7 @@
             <h2>{{ "my_projects" | translate }}</h2>
             <div class="filter">
                 <ul class="activTechnologiesFilterOptions">
-                    @for (technologie of activTechnologiesFilterOptions; track technologie) {
+                    @for (technologie of activTechnologiesFilter; track technologie) {
                     <li>
                         <span>{{ technologie }}</span>
                         <span class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</span>
@@ -47,9 +47,7 @@
             <ul class="projectCards">
                 @for (project of projects; track project.name) {
                 <li>
-                    @defer (hydrate on interaction) {
                     <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])"> </app-project-card>
-                    }
                 </li>
                 }
             </ul>
@@ -58,18 +56,13 @@
             <div class="pagination">
                 <!-- back button -->
                 @if (currentPage - 1 > 0) {
-                <a
-                    class="navLink"
-                    [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 1) + '/.' + getParamChain(activTechnologiesFilterOptions)"
-                    [fragment]="'projectsSection'"
-                    >&lt;</a
-                >
+                <a class="navLink" [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 1) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">&lt;</a>
                 }
                 <ul>
                     <!-- jump to first page button -->
                     @if (currentPage >= 4) {
                     <li>
-                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/1/.' + getParamChain(activTechnologiesFilterOptions)" [fragment]="'projectsSection'">1</a>
+                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/1/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">1</a>
                     </li>
                     }
                     <!-- dots next to first page -->
@@ -81,7 +74,7 @@
                     <!-- button to 2nd page before current -->
                     @if (currentPage - 2 > 0) {
                     <li>
-                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 2) + '/.' + getParamChain(activTechnologiesFilterOptions)" [fragment]="'projectsSection'">{{
+                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 2) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
                             currentPage - 2
                         }}</a>
                     </li>
@@ -89,7 +82,7 @@
                     <!-- button to 1st page before current -->
                     @if (currentPage - 1 > 0) {
                     <li>
-                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 1) + '/.' + getParamChain(activTechnologiesFilterOptions)" [fragment]="'projectsSection'">{{
+                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage - 1) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
                             currentPage - 1
                         }}</a>
                     </li>
@@ -102,7 +95,7 @@
                     <!-- button to next page after current -->
                     @if (currentPage + 1 <= totalPages) {
                     <li>
-                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 1) + '/.' + getParamChain(activTechnologiesFilterOptions)" fragment="projectsSection">{{
+                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 1) + '/.'" [queryParams]="getQueryParams()" fragment="projectsSection">{{
                             currentPage + 1
                         }}</a>
                     </li>
@@ -110,7 +103,7 @@
                     <!-- button to 2nd page after current -->
                     @if (currentPage + 2 <= totalPages) {
                     <li>
-                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 2) + '/.' + getParamChain(activTechnologiesFilterOptions)" [fragment]="'projectsSection'">{{
+                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 2) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
                             currentPage + 2
                         }}</a>
                     </li>
@@ -124,21 +117,14 @@
                     <!-- jump to last page button -->
                     @if (totalPages - 3 >= currentPage) {
                     <li>
-                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + totalPages + '/.' + getParamChain(activTechnologiesFilterOptions)" [fragment]="'projectsSection'">{{
-                            totalPages
-                        }}</a>
+                        <a [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + totalPages + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{ totalPages }}</a>
                     </li>
                     }
                 </ul>
 
                 <!-- forward button -->
                 @if (currentPage + 1 <= totalPages) {
-                <a
-                    class="navLink"
-                    [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 1) + '/.' + getParamChain(activTechnologiesFilterOptions)"
-                    [fragment]="'projectsSection'"
-                    >&gt;</a
-                >
+                <a class="navLink" [routerLink]="'/' + languageS.userLanguage + '/projects/page/' + (currentPage + 1) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">&gt;</a>
                 }
             </div>
             }

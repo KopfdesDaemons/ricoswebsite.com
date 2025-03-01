@@ -74,14 +74,6 @@ export const serverRoutes: ServerRoute[] = [
     getPrerenderParams: getProjectsRouteParams,
   },
   {
-    path: ':lang/projects/page/:page/:technologies',
-    renderMode: RenderMode.Client,
-  },
-  {
-    path: ':lang/projects/page/:page/.:technologies',
-    renderMode: RenderMode.Client,
-  },
-  {
     path: ':lang/privacy-policy/',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: getAllLangParams,
