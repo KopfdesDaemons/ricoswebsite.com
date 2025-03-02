@@ -16,23 +16,21 @@ export class LanguageService {
 
   userLanguage = signal<string>('');
   userAgendLanguage: string;
-  askUserToSwitch: boolean = false;
+  askUserToSwitch: boolean = true;
   supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
 
   constructor() {
-    // Setup ngx translate
     this.translate.addLangs(this.supportedLanguages);
     this.translate.setDefaultLang('en');
-
-    this.userAgendLanguage = this.getLanguageFromUserAgent();
+    this.userAgendLanguage = this.getUserAgentLanguage();
     this.userLanguage.set(this.userAgendLanguage);
     this.loadLanguageFromLocalStorage();
   }
 
-  loadLanguageFromLocalStorage() {
+  private loadLanguageFromLocalStorage() {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.askUserToSwitch = true;
+
     const storedLanguage = localStorage.getItem('Custom Language');
     if (storedLanguage) {
       this.userLanguage.set(storedLanguage);
@@ -41,21 +39,20 @@ export class LanguageService {
   }
 
   async updateLanguage(lang: string | null) {
-    if (!lang) lang = this.userLanguage();
+    lang = lang || this.userLanguage();
     this.userLanguage.set(await this.replaceUnsupportedLangauge(lang));
     this.document.documentElement.lang = this.userLanguage();
-    const ask = this.askUserToSwitch && this.userLanguage() != this.userAgendLanguage;
-    this.askUserToSwitch = ask;
+    this.askUserToSwitch = this.askUserToSwitch && this.userLanguage() != this.userAgendLanguage;
     this.translate.use(this.userLanguage());
   }
 
   private async replaceUnsupportedLangauge(lang: string): Promise<string> {
     if (!this.supportedLanguages.includes(lang)) {
-      const userLang = this.userAgendLanguage;
-      const newUrl = this.router.url.replace(lang, userLang);
-      console.log('Language ' + lang + ' not supported. Switching to ' + userLang);
+      const fallbackLang = this.userAgendLanguage;
+      const newUrl = this.router.url.replace(lang, fallbackLang);
+      console.log(`Language ${lang} not supported. Switching to ${fallbackLang}`);
       await this.router.navigateByUrl(newUrl);
-      return userLang;
+      return fallbackLang;
     }
     return lang;
   }
@@ -63,17 +60,18 @@ export class LanguageService {
   async switchUserLanguage(lang: string) {
     this.oldLanguage = this.userLanguage();
     this.userLanguage.set(lang);
-    const pathHasLangParam = this.location.path().includes(this.oldLanguage);
     const newUrl = this.location.path().replace(this.oldLanguage, lang);
-    console.log('Switching language from ' + this.oldLanguage + ' to ' + lang + ' newURL: ' + newUrl);
+    console.log(`Switching language from ${this.oldLanguage} to ${lang}. New URL: ${newUrl}`);
+    const pathHasLangParam = this.location.path().includes(this.oldLanguage);
     if (!pathHasLangParam) await this.updateLanguage(lang);
     await this.router.navigateByUrl(newUrl);
     localStorage.setItem('Custom Language', this.userLanguage().toString());
     this.askUserToSwitch = false;
   }
 
-  private getLanguageFromUserAgent(): string {
+  private getUserAgentLanguage(): string {
     if (isPlatformServer(this.platformId)) return 'en';
+
     const userLang = navigator.language || (navigator.languages && navigator.languages[0]);
     console.log(`Detected user language: ${userLang}`);
     return userLang ? userLang.split('-')[0] : 'en';
