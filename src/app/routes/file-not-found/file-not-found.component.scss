@@ -1,0 +1,13 @@
+section:first-of-type {
+  background: var(--gradient);
+  padding: 5em 0;
+}
+.error-code {
+  font-size: 4em;
+}
+
+.sectionSpacer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

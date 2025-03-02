@@ -57,6 +57,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent),
+    loadComponent: () => import('./file-not-found/file-not-found.component').then((m) => m.FileNotFoundComponent),
   },
 ];
