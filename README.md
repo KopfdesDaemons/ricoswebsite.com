@@ -17,7 +17,7 @@ To deploy the website to GitHub Pages [angular-cli-ghpages](https://github.com/a
 
 ## PageSpeed Insights
 
-![PageSpeed Insights](/images/pagespeed-english.png "PageSpeed Insights")
+![PageSpeed Insights](/public/images/pagespeed-english.png "PageSpeed Insights")
 
 Due to GitHub Pages, the total blocking time is higher and the overall rating of 100 for the "performance" point is unfortunately not achieved. When using a VPS, the total blocking time is not a problem.
 

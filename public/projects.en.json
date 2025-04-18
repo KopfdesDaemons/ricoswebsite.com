@@ -1,6 +1,15 @@
 {
   "projects": [
     {
+      "name": "MatYou",
+      "description": "A WordPress theme inspired by Google’s Material Design 3 (Material You)",
+      "image": "\\images\\matyou.avif",
+      "features": ["custom primary color", "custom font", "custom side menu"],
+      "projectURL": "https://wordpress.org/themes/matyou/",
+      "githubURL": "https://github.com/KopfdesDaemons/matyou",
+      "technologies": ["WordPress", "PHP", "JavaScript"]
+    },
+    {
       "name": "Advent Candles",
       "description": "A desklet for the Cinnamon Desktop that displays animated Advent candles on the desktop",
       "image": "\\images\\advent-candles.avif",
