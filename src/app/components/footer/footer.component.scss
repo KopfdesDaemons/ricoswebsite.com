@@ -28,7 +28,12 @@ footer {
           margin-right: 0.5em;
         }
 
-        span {
+        button {
+          border: none;
+          background: none;
+          color: var(--font-color);
+          padding: 0;
+          font-size: 1em;
           text-decoration: underline;
           cursor: pointer;
         }

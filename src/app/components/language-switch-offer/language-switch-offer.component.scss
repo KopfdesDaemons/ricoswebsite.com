@@ -10,6 +10,7 @@
   transform: translateX(110%);
   border: solid 1px;
   opacity: 0;
+  display: none;
 
   @media only screen and (max-width: 600px) {
     right: 1em;
@@ -20,11 +21,13 @@
 
   @keyframes moveIn {
     from {
+      display: none;
       transform: translateX(110%);
       opacity: 0;
     }
 
     to {
+      display: block;
       transform: translateX(0);
       opacity: 100;
     }
@@ -33,6 +36,7 @@
   &.open {
     animation: moveIn 500ms forwards ease-out;
     transform: translateX(0);
+    display: block;
   }
 
   .closeButton {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener, ElementRef } from '@angular/core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
@@ -17,9 +17,17 @@ import { TranslateModule } from '@ngx-translate/core';
 export class SidemenuComponent {
   sidemenuS = inject(SidemenuService);
   languageS = inject(LanguageService);
+  elementRef = inject(ElementRef);
 
   faHome = faHome;
   faGithub = faGithub;
+
+  @HostListener('focusout', ['$event'])
+  onFocusOut(event: FocusEvent) {
+    if (!this.elementRef.nativeElement.contains(event.relatedTarget)) {
+      this.toggleMenu();
+    }
+  }
 
   toggleMenu() {
     if (this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();

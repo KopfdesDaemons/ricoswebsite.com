@@ -1,7 +1,7 @@
 .websiteName {
   :nth-child(2) {
     background: -webkit-linear-gradient(#eee, #2525d9);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
@@ -58,6 +58,10 @@ header {
 
     &:hover {
       transform: scale(1.3);
+    }
+
+    &:focus-visible {
+      outline: 1px solid;
     }
   }
 }

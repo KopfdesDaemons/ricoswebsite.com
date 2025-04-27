@@ -19,20 +19,28 @@ aside {
   height: 100dvh;
   z-index: 1;
   width: var(--sidemenu-width);
-  transition: transform 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
   box-sizing: border-box;
   background-color: var(--section);
   display: flex;
+  transition-behavior: allow-discrete;
 
   &.sidemenuOpen {
     transform: translateX(calc(-1 * var(--sidemenu-width)));
+    display: flex;
   }
 
   @media only screen and (max-width: 1100px) {
     transform: translateX(calc(-1 * var(--sidemenu-width)));
+    display: none;
 
     &.sidemenuOpen {
+      display: flex;
       transform: translateX(0);
+
+      @starting-style {
+        transform: translateX(calc(-1 * var(--sidemenu-width)));
+      }
     }
   }
 
@@ -83,12 +91,18 @@ aside {
       gap: 0.5em;
       margin-top: auto;
       margin-bottom: 1em;
+      position: relative;
 
       input {
-        display: none;
+        position: absolute;
+        opacity: 0;
 
         &:checked + label {
           border: solid 1px rgb(109, 109, 109);
+        }
+
+        &:focus-visible + label {
+          outline: solid 1px;
         }
       }
 

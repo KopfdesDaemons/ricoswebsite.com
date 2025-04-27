@@ -25,7 +25,7 @@
                     @for (technologie of activTechnologiesFilter; track technologie) {
                     <li>
                         <span>{{ technologie }}</span>
-                        <span class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</span>
+                        <button class="material-icon" (click)="removeTechnologieFromFilter(technologie)">cancel</button>
                     </li>
                     }
                 </ul>

@@ -69,25 +69,29 @@
     position: relative;
     cursor: pointer;
     outline: none;
-  }
 
-  input[type="checkbox"]:checked {
-    background: #295869;
-  }
+    &:focus-visible {
+      outline: solid 1px var(--font-color);
+    }
 
-  input[type="checkbox"]:after {
-    position: absolute;
-    content: "";
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-    left: 0;
-    transition: all 150ms ease-in-out;
-  }
+    &:checked {
+      background: #295869;
+    }
 
-  input[type="checkbox"]:checked:after {
-    left: calc(100% - 1.5em);
+    &:after {
+      position: absolute;
+      content: "";
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+      left: 0;
+      transition: all 150ms ease-in-out;
+    }
+
+    &:checked:after {
+      left: calc(100% - 1.5em);
+    }
   }
 }
