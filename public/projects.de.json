@@ -126,7 +126,7 @@
       "technologies": ["WordPress", "PHP", "JavaScript"]
     },
     {
-      "name": "tickturtle.com",
+      "name": "tickturtle.ricoswebsite.com",
       "description": "Eine Website zur Zeiterfassung von Arbeitsschritten",
       "image": "\\images\\tickturtle.com.avif",
       "features": [
@@ -135,8 +135,8 @@
         "Datenspeicherung im Local Storage",
         "eigenes Tabellendesign mit mehreren Funktionen"
       ],
-      "projectURL": "https://tickturtle.com/",
-      "githubURL": "https://github.com/KopfdesDaemons/tickturtle.com",
+      "projectURL": "https://tickturtle.ricoswebsite.com/",
+      "githubURL": "https://github.com/KopfdesDaemons/tickturtle",
       "technologies": ["Angular", "TypeScript"]
     },
     {
