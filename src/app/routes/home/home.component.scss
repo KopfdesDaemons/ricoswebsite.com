@@ -25,7 +25,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr;
-    max-width: 70em;
+    max-width: 65em;
   }
 
   .profilePicDiv:hover .shadowDiv {
@@ -34,12 +34,14 @@
 
   h1 {
     font-size: clamp(34px, 4vw, 60px);
+    text-wrap: balance;
   }
 
   .sloganDiv {
     padding-right: 1em;
     grid-column: 1;
     grid-row: 1;
+    text-wrap: balance;
 
     p {
       font-size: clamp(20px, 2vw, 24px);
