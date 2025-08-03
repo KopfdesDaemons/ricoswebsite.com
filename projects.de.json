@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "name": "Stoppuhr",
+      "description": "Ein einfaches Stoppuhr-Desklet für den Cinnamon Desktop",
+      "image": "\\images\\stopwatch.avif",
+      "features": [
+        "Benutzerdefinierte Farben",
+        "Animationsgeschwindigkeitseinstellung",
+        "Benutzerdefinierte Desklet Größe"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/80",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/stopwatch@KopfdesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
       "name": "MatYou",
       "description": "Ein WordPress-Theme, welches vom Material Design 3 (Material You) von Google inspiriert ist",
       "image": "\\images\\matyou.avif",
@@ -29,7 +42,7 @@
     {
       "name": "Systembetriebszeit",
       "description": "Ein Desklet für den Cinnamon Desktop, welches die aktuelle Betriebszeit und die Startzeit des Systems anzeigt",
-      "image": "\\images\\system-uptime.avif",
+      "image": "\\images\\system-uptime-german.avif",
       "features": [
         "Einstellung für die Labelfarbe",
         "Einstellung für die Schriftgröße"

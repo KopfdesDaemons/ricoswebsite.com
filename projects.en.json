@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "name": "Stopwatch",
+      "description": "A simple stopwatch desklet for the Cinnamon desktop",
+      "image": "\\images\\stopwatch.avif",
+      "features": [
+        "Custom colors",
+        "Animation speed setting",
+        "Custom desklet size"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/80",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/stopwatch@KopfdesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
       "name": "MatYou",
       "description": "A WordPress theme inspired by Google’s Material Design 3 (Material You)",
       "image": "\\images\\matyou.avif",
