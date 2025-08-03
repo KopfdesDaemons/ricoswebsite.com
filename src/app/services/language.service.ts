@@ -1,5 +1,5 @@
-import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { Injectable, PLATFORM_ID, inject, signal, DOCUMENT } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
