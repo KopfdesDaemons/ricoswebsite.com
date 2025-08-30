@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "name": "odt-templater",
+      "description": "A simple templater for ODT files as an npm package",
+      "image": "\\images\\odt-templater.avif",
+      "features": [
+        "Replacing placeholders in ODT files",
+        "If statements in the template",
+        "Nullish check in the template"
+      ],
+      "projectURL": "https://www.npmjs.com/package/odt-templater",
+      "githubURL": "https://github.com/KopfdesDaemons/odt-templater",
+      "technologies": ["TypeScript", "npm"]
+    },
+    {
       "name": "Stopwatch",
       "description": "A simple stopwatch desklet for the Cinnamon desktop",
       "image": "\\images\\stopwatch.avif",
