@@ -1,5 +1,5 @@
 import { Component, inject, input, output } from '@angular/core';
-import { faGithub, faWordpress, faPhp, faAngular, faNodeJs, faJs } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faWordpress, faPhp, faAngular, faNodeJs, faJs, faNpm } from '@fortawesome/free-brands-svg-icons';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project.model';
 import { LanguageService } from 'src/app/services/language.service';
@@ -23,6 +23,7 @@ export class ProjectCardComponent {
   faAngular = faAngular;
   faNodeJs = faNodeJs;
   faJs = faJs;
+  faNpm = faNpm;
 
   project = input.required<Project>();
   readonly clickOnTag = output<string>();

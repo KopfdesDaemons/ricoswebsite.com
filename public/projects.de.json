@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "name": "odt-templater",
+      "description": "Ein einfacher Templater für ODT-Dateien als NPM-Paket",
+      "image": "\\images\\odt-templater.avif",
+      "features": [
+        "Ersetzen von Platzhaltern in ODT-Dateien",
+        "If-Statements im Template",
+        "Nullish Prüfung im Template"
+      ],
+      "projectURL": "https://www.npmjs.com/package/odt-templater",
+      "githubURL": "https://github.com/KopfdesDaemons/odt-templater",
+      "technologies": ["TypeScript", "npm"]
+    },
+    {
       "name": "Stoppuhr",
       "description": "Ein einfaches Stoppuhr-Desklet für den Cinnamon Desktop",
       "image": "\\images\\stopwatch.avif",
