@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -25,7 +25,7 @@ export class BlogComponent implements OnInit {
   private meta = inject(Meta);
   private translate = inject(TranslateService);
 
-  postsList: Post[] = [];
+  postsList = signal<Post[]>([]);
   currentPage: number = 1;
   pageSize: number = 5;
   sortOrder: 'desc' | 'asc' = 'desc';
@@ -63,7 +63,7 @@ export class BlogComponent implements OnInit {
   async loadPostsList() {
     try {
       const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage(), this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
-      this.postsList = posts;
+      this.postsList.set(posts);
       this.totalPages = totalPages;
       await this.setMetaTags();
     } catch (error) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID, effect } from '@angular/core';
+import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID, effect, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -25,11 +25,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private platformID = inject<object>(PLATFORM_ID);
 
-  projects: Project[] = [];
+  projects = signal<Project[]>([]);
   technologiesFilterOptions: string[] = [];
   activTechnologiesFilter: string[] = [];
-  totalPages: number = 0;
-  currentPage: number = 1;
+  totalPages = signal<number>(0);
+  currentPage = signal<number>(1);
   private totalProjects: number = 0;
   private projectsPerPage = 5;
   readonly projectsSection = viewChild.required<ElementRef>('projectsSection');
@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
       const { page } = params;
-      if (this.currentPage === +page) return;
-      this.currentPage = +page || 1;
+      if (this.currentPage() === +page) return;
+      this.currentPage.set(+page || 1);
       await this.loadProjects();
 
       // scroll to projects section
@@ -83,9 +83,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     // remove filter chips for active filters
     this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activTechnologiesFilter.includes(t));
 
-    this.projects = await this.ps.getProjects(filter, this.projectsPerPage, this.currentPage);
+    this.projects.set(await this.ps.getProjects(filter, this.projectsPerPage, this.currentPage()));
     this.totalProjects = await this.ps.getTotalProjectCount(filter);
-    this.totalPages = Math.ceil(this.totalProjects / this.projectsPerPage);
+    this.totalPages.set(Math.ceil(this.totalProjects / this.projectsPerPage));
     await this.setMetaTags();
   }
 

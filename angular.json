@@ -22,7 +22,7 @@
               "base": "dist/ricoswebsite.com"
             },
             "index": "src/index.html",
-            "polyfills": ["zone.js", "@angular/localize/init"],
+            "polyfills": ["@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -39,16 +39,7 @@
             "ssr": {
               "entry": "server.ts"
             },
-            "allowedCommonJsDependencies": [
-              "prismjs",
-              "prismjs/plugins/toolbar/prism-toolbar",
-              "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard",
-              "prismjs/components/prism-typescript",
-              "prismjs/components/prism-yaml",
-              "prismjs/components/prism-json",
-              "prismjs/components/prism-scss",
-              "yaml"
-            ]
+            "allowedCommonJsDependencies": ["yaml"]
           },
           "configurations": {
             "production": {
