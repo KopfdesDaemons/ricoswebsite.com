@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_I
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project.model';
 import { LanguageService } from 'src/app/services/language.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -31,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   activTechnologiesFilter: string[] = [];
   totalPages: number = 0;
   currentPage: number = 1;
-  faCircleXmark = faCircleXmark;
   private totalProjects: number = 0;
   private projectsPerPage = 5;
   readonly projectsSection = viewChild.required<ElementRef>('projectsSection');

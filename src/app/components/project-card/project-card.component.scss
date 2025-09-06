@@ -63,10 +63,12 @@
         padding: 1em;
         border-radius: 4px;
         flex: 1;
+        display: flex;
+        align-items: center;
 
-        fa-icon {
+        svg {
           margin-right: 0.5em;
-          font-size: 1.4em;
+          height: 2em;
         }
       }
 

@@ -55,6 +55,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1em;
+    box-sizing: border-box;
 
     &:hover {
       transform: scale(1.3);

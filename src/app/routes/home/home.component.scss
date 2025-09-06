@@ -79,12 +79,12 @@
     animation: pulse 3s linear infinite;
   }
 
-  // Angualar und NodeJS Logos
+  // Angualar, NodeJS and WordPress Logo
   .logoDiv {
     display: flex;
     gap: 1em;
 
-    img {
+    svg {
       height: clamp(2.5em, 4vw, 4em);
       width: auto;
     }
@@ -249,11 +249,13 @@
       align-items: center;
       gap: 5px;
 
-      .material-icon {
+      .cancel-btn {
         padding: 0;
         color: var(--font-color);
         background: none;
         border: none;
+        display: flex;
+        align-items: center;
 
         &:hover {
           color: rgb(121, 121, 121);

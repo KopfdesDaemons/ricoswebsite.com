@@ -42,7 +42,9 @@ export class BlogPostComponent implements OnInit {
 
       // load CodePen
       if (this.post()?.postMeta?.hasCodePen) {
-        await this.codePenS.loadCodePen(this.renderer);
+        setTimeout(async () => {
+          await this.codePenS.loadCodePen(this.renderer);
+        });
       }
 
       this.postNotFound = !this.post();

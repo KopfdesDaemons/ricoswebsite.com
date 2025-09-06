@@ -1,9 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject, input } from '@angular/core';
 import { DisqusService } from 'src/app/services/disqus.service';
-import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { LanguageService } from 'src/app/services/language.service';
 import { isPlatformBrowser } from '@angular/common';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ConsentService } from 'src/app/services/consent.service';
@@ -12,7 +10,7 @@ import { ConsentService } from 'src/app/services/consent.service';
   selector: 'app-disqus',
   templateUrl: './disqus.component.html',
   styleUrls: ['./disqus.component.scss'],
-  imports: [FaIconComponent, RouterLink, TranslateModule],
+  imports: [RouterLink, TranslateModule],
 })
 export class DisqusComponent implements OnChanges {
   private disqusS = inject(DisqusService);
@@ -25,7 +23,6 @@ export class DisqusComponent implements OnChanges {
   readonly identifier = input<string>();
   disqusDiv = ViewChild('disqusDiv');
   private observer: IntersectionObserver | undefined;
-  faComment = faComment;
 
   ngOnChanges(): void {
     if (!isPlatformBrowser(this.platformId)) return;

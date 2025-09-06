@@ -79,6 +79,10 @@ aside {
         text-align: center;
         text-wrap: balance;
 
+        svg {
+          height: 1.2em;
+        }
+
         &:hover {
           background-color: #1c2e64;
         }
