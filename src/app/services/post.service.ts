@@ -6,6 +6,7 @@ import { Post } from '../models/post.model';
 import { MarkdownHelper } from '../helpers/markdown.helper';
 import { LanguageService } from './language.service';
 import { PostMeta } from '../models/post-meta.model';
+import { HighlightHelper } from '../helpers/highlight.helper';
 
 @Injectable({
   providedIn: 'root',
@@ -64,9 +65,19 @@ export class PostService {
       const markdownFile = response.body as string;
       const markdownHeader = this.markdownHelper.extractYamlHeader(markdownFile);
       const markdownBody = this.markdownHelper.extractBody(markdownFile);
-      const postContent = await this.markdownHelper.parseMarkdown(markdownBody);
+      const codeBlocksRegex = /```(\S*)\s([\s\S]*?)```/g;
 
-      return new Post(markdownHeader, fileName, this.languageS.userLanguage(), postContent);
+      const finalMarkdownBody = markdownBody.replace(codeBlocksRegex, (match, lang, code) => {
+        const cleanedCode = code.trim();
+
+        const highlightedCode = HighlightHelper.highlightElement(cleanedCode, lang);
+
+        return `<pre><code class="language-${lang}">${highlightedCode}</code></pre>`;
+      });
+
+      const highlightedContent = await this.markdownHelper.parseMarkdown(finalMarkdownBody);
+
+      return new Post(markdownHeader, fileName, this.languageS.userLanguage(), highlightedContent);
     } catch (error) {
       console.error(error);
       if (error instanceof HttpErrorResponse)

@@ -1,3 +1,5 @@
+@use "highlight.js/styles/base16/material-palenight.min.css";
+
 .blogpostMain {
   padding-bottom: 3em;
   text-wrap: pretty;
@@ -108,7 +110,9 @@
     }
 
     pre {
-      background-color: #1d2027;
+      background: #292d3e;
+      font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+      line-height: 1em;
       padding: 1em;
       border-radius: 12px;
       max-width: 100%;
@@ -116,7 +120,6 @@
       font-size: 0.8em;
       font-size: 1em;
       margin-bottom: 1em;
-      border: 8px solid #3a3a75;
 
       + .toolbar {
         opacity: unset;
