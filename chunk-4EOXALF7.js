@@ -1,1 +1,0 @@
-import{O as n}from"./chunk-C7F2T4HE.js";var i=(()=>{let t=class t{constructor(){this.MenuIsOpen=!1}toggleMenu(){this.MenuIsOpen=!this.MenuIsOpen}};t.\u0275fac=function(o){return new(o||t)},t.\u0275prov=n({token:t,factory:t.\u0275fac,providedIn:"root"});let e=t;return e})();export{i as a};
