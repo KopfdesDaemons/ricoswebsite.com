@@ -7,7 +7,8 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ricoswebsite.com": "node dist/ricoswebsite.com/server/server.mjs"
+    "serve:ssr:ricoswebsite.com": "node dist/ricoswebsite.com/server/server.mjs",
+    "serve:static": "http-server dist/ricoswebsite.com/browser"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +46,7 @@
     "angular-cli-ghpages": "^2.0.1",
     "eslint": "^9.20.1",
     "globals": "^15.14.0",
+    "http-server": "^14.1.1",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

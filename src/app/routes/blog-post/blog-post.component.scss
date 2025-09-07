@@ -1,15 +1,16 @@
 @use "highlight.js/styles/base16/material-palenight.min.css";
 
-.blogpostMain {
+main {
   padding-bottom: 3em;
   text-wrap: pretty;
 
-  .hero {
+  header {
     display: flex;
     justify-content: center;
     padding: 1em 4%;
     text-align: center;
     overflow: hidden;
+    background: var(--gradient);
 
     img {
       max-width: 100%;
@@ -62,7 +63,7 @@
     justify-content: center;
   }
 
-  .post-content {
+  article {
     min-height: 40em;
     line-height: 1.5em;
     margin-bottom: 4em;

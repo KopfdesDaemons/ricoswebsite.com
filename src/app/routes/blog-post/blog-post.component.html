@@ -1,5 +1,5 @@
-<main class="blogpostMain">
-    <div class="hero gradient">
+<main>
+    <header>
         <div class="sectionSpacer">
             @if (post()?.postMeta?.image) {
             <img height="495" width="880" [src]="post()?.postMeta?.image" alt="{{ post()?.postMeta?.title }}" />
@@ -16,11 +16,11 @@
             <p>{{ "blogpost_not_found_text" | translate }}</p>
             }
         </div>
-    </div>
+    </header>
     <section>
         <div class="sectionSpacer">
             @if (post()?.postContent) {
-            <div class="post-content" #postContent [innerHTML]="post()?.postContent ?? '' | safeHtml"></div>
+            <article #postContent [innerHTML]="post()?.postContent ?? '' | safeHtml"></article>
             } @if (post() && !post()?.postMeta?.commentsDisabled) { @defer (on viewport) {
             <app-disqus [identifier]="post()?.postMeta?.fileName"></app-disqus>
             }@placeholder {

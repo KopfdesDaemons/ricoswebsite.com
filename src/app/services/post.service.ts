@@ -22,7 +22,7 @@ export class PostService {
   private baseUrl = '/';
 
   async getPost(fileName: string): Promise<Post | null> {
-    this.post = this.loadPostFromTransfareState(fileName);
+    this.post = this.loadPostFromTransferState(fileName);
     const lang = this.languageS.userLanguage();
     if (!this.post) this.post = await this.loadFromMarkdownFile(fileName, lang);
     if (!this.post) return null;
@@ -36,7 +36,7 @@ export class PostService {
     this.transferState.set(key, this.post);
   }
 
-  private loadPostFromTransfareState(title: string): Post | null {
+  private loadPostFromTransferState(title: string): Post | null {
     if (!isPlatformBrowser(this.platformId)) return null;
     const key = makeStateKey<Post>('post-' + this.languageS.userLanguage() + '-' + title);
     const postFromState = this.transferState.get(key, null);

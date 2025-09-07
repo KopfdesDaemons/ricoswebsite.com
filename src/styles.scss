@@ -1,15 +1,3 @@
-@font-face {
-  font-family: "Material Icons";
-  font-style: normal;
-  font-weight: 400;
-  src: url(public/fonts/material-icons.woff2) format("woff2");
-}
-
-.material-icon {
-  font-family: "Material Icons";
-  font-size: 24px;
-}
-
 :root {
   --border-color: rgb(49, 49, 150);
   --body: rgb(22, 22, 24);
@@ -76,8 +64,4 @@ section {
 .sectionSpacer {
   padding: 0 2%;
   max-width: 80em;
-}
-
-.gradient {
-  background: var(--gradient);
 }
