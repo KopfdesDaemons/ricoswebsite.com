@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "name": "odt-templater website",
+      "description": "Documentation for the odt-templater",
+      "image": "\\images\\odt-templater-website.avif",
+      "features": [
+        "Code highlighting",
+        "Extremely small website",
+        "Loads Markdown files"
+      ],
+      "projectURL": "https://odt-templater.com/",
+      "githubURL": "https://github.com/KopfdesDaemons/odt-templater-website",
+      "technologies": ["Angular", "TypeScript"]
+    },
+    {
       "name": "odt-templater",
       "description": "A simple templater for ODT files as an npm package",
       "image": "\\images\\odt-templater.avif",

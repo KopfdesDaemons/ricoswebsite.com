@@ -16,6 +16,6 @@ export abstract class HighlightHelper {
     if (lang === 'ts') lang = 'typescript';
     if (lang == 'html') lang = 'xml';
     if (!lang) return element;
-    return hljs.highlight(element, { language: lang }).value as string;
+    return hljs.highlight(element, { language: lang }).value;
   }
 }
