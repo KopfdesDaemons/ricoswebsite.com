@@ -23,12 +23,6 @@ This website is hosted on GitHub Pages.
 The [GitHub repository](https://github.com/KopfdesDaemons/ricoswebsite.com) is public.
 To deploy the website to GitHub Pages [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) is used.
 
-## PageSpeed Insights
-
-![PageSpeed Insights](/images/pagespeed-english.png "PageSpeed Insights")
-
-Due to GitHub Pages, the total blocking time is higher and the overall rating of 100 for the "performance" point is unfortunately not achieved. When using a VPS, the total blocking time is not a problem.
-
 ## Scalability
 
 ### Blog posts
