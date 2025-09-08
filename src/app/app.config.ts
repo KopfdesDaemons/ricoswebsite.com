@@ -4,7 +4,7 @@ import { YamlLanguageLoader } from './utilities/yam-language-loader';
 import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration, withIncrementalHydration } from '@angular/platform-browser';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { routes } from './routes/app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -16,7 +16,8 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
-      })
+      }),
+      withPreloading(PreloadAllModules)
     ),
     importProvidersFrom(
       TranslateModule.forRoot({

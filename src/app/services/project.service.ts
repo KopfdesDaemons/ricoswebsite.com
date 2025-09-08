@@ -11,17 +11,21 @@ export class ProjectService {
   private http = inject(HttpClient);
   private languageS = inject(LanguageService);
 
-  private projects: Project[] = [];
+  private projectsCache = new Map<string, Project[]>();
 
   async loadProjectsFromJson(lang: string = this.languageS.userLanguage()): Promise<Project[]> {
+    if (this.projectsCache.has(lang)) {
+      return this.projectsCache.get(lang)!;
+    }
+
     try {
       const url = `/projects.${lang}.json`;
       const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));
-      this.projects = response.projects.map(this.createProjectFromData);
-      return this.projects;
+      const loadedProjects = response.projects.map(this.createProjectFromData);
+      this.projectsCache.set(lang, loadedProjects);
+      return loadedProjects;
     } catch (error) {
       console.error('Fehler beim Laden der Projekte:', error);
-      this.projects = [];
       return [];
     }
   }
@@ -32,21 +36,21 @@ export class ProjectService {
   }
 
   async getTotalProjectCount(filterByTechnologies: string[] = []): Promise<number> {
-    await this.loadProjectsFromJson();
+    const projects = await this.loadProjectsFromJson();
 
     if (filterByTechnologies.length === 0) {
-      return this.projects.length;
+      return projects.length;
     }
 
-    const filteredProjects = this.projects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
+    const filteredProjects = projects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
 
     return filteredProjects.length;
   }
 
   async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
-    await this.loadProjectsFromJson();
+    const projects = await this.loadProjectsFromJson();
 
-    let filteredProjects = this.projects;
+    let filteredProjects = projects;
 
     if (filterByTechnologies.length > 0) {
       filteredProjects = filteredProjects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
@@ -60,9 +64,9 @@ export class ProjectService {
   }
 
   async getAllTechnologies(): Promise<string[]> {
-    await this.loadProjectsFromJson();
+    const projects = await this.loadProjectsFromJson();
 
-    const allTechnologies = this.projects.flatMap((project) => project.technologies);
+    const allTechnologies = projects.flatMap((project) => project.technologies);
     const uniqueTechnologies = Array.from(new Set(allTechnologies));
 
     return uniqueTechnologies.sort();
