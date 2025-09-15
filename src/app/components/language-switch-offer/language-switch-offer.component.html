@@ -1,4 +1,4 @@
-<div id="languageSwitchOffer" [ngClass]="{ open: langS.askUserToSwitch && !closed }">
+<div id="languageSwitchOffer" [ngClass]="{ open: langS.askUserToSwitch() && !closed }">
     <button class="closeButton" (click)="closed = true">&#10005;</button>
     <p>
         Do you want to change the language to
@@ -6,6 +6,6 @@
     </p>
     <div class="buttons">
         <button (click)="langS.switchUserLanguage(langS.userAgendLanguage)">Yes</button>
-        <button (click)="langS.askUserToSwitch = false">No</button>
+        <button (click)="langS.askUserToSwitch.set(false)">No</button>
     </div>
 </div>

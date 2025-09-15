@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID, effect, signal } from '@angular/core';
+import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID, effect, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -14,6 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   imports: [ProjectCardComponent, RouterLink, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   languageS = inject(LanguageService);

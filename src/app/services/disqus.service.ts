@@ -1,6 +1,8 @@
-import { Injectable, Renderer2, inject } from '@angular/core';
+import { Injectable, Renderer2, computed, effect, inject } from '@angular/core';
 import { ScriptService } from './script.service';
 import { LanguageService } from './language.service';
+import { ConsentService } from './consent.service';
+import { DISQUS_SHORTNAME } from '../environment/enviroment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +10,16 @@ import { LanguageService } from './language.service';
 export class DisqusService {
   scriptS = inject(ScriptService);
   languageS = inject(LanguageService);
+  consentS = inject(ConsentService);
+  disqusConsent = computed(() => this.consentS.possibleConsents.find((c) => c.name === 'Disqus')?.consent() ?? false);
 
   disqus: any;
-  shortname: string = 'ricoswebsite-com';
+
+  constructor() {
+    effect(() => {
+      if (!this.disqusConsent()) this.removeDisqus();
+    });
+  }
 
   async loadDisqus(renderer: Renderer2, title: string): Promise<void> {
     this.disqus = (window as any)['DISQUS'];
@@ -20,7 +29,7 @@ export class DisqusService {
         this.page.identifier = title;
         this.language = lang;
       };
-      await this.scriptS.addJsScript(renderer, 'https://' + this.shortname + '.disqus.com/embed.js');
+      await this.scriptS.addJsScript(renderer, 'https://' + DISQUS_SHORTNAME + '.disqus.com/embed.js');
     } else {
       (window as any)['DISQUS'].reset({
         reload: true,
@@ -33,7 +42,7 @@ export class DisqusService {
   }
 
   removeDisqus() {
-    this.scriptS.removeJsScript('https://' + this.shortname + '.disqus.com/embed.js');
+    this.scriptS.removeJsScript('https://' + DISQUS_SHORTNAME + '.disqus.com/embed.js');
     (window as any)['DISQUS'] = undefined;
   }
 }

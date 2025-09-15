@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation, inject, signal, viewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2, ViewEncapsulation, inject, signal, viewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
@@ -15,8 +15,9 @@ import { MetaService } from 'src/app/services/meta.service';
   styleUrls: ['./blog-post.component.scss'],
   encapsulation: ViewEncapsulation.None,
   imports: [DisqusComponent, TranslateModule, SafeHtmlPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogPostComponent implements OnInit {
+export class BlogPostComponent implements OnInit, AfterViewChecked {
   private route = inject(ActivatedRoute);
   private postS = inject(PostService);
   private renderer = inject(Renderer2);
@@ -24,6 +25,7 @@ export class BlogPostComponent implements OnInit {
   private metaS = inject(MetaService);
   postContent = viewChild.required<ElementRef>('postContent');
 
+  fileName: string = '';
   post = signal<Post | undefined | null>(undefined);
   private routeParamsSubscription: Subscription | undefined;
   postNotFound: boolean = false;
@@ -40,15 +42,14 @@ export class BlogPostComponent implements OnInit {
         this.metaS.updateMetaTags(this.post()!.postMeta);
       }
 
-      // load CodePen
-      if (this.post()?.postMeta?.hasCodePen) {
-        setTimeout(async () => {
-          await this.codePenS.loadCodePen(this.renderer);
-        });
-      }
-
       this.postNotFound = !this.post();
     });
+  }
+
+  async ngAfterViewChecked(): Promise<void> {
+    if (this.post()?.postMeta?.hasCodePen) {
+      await this.codePenS.loadCodePen(this.renderer);
+    }
   }
 
   ngOnDestroy(): void {

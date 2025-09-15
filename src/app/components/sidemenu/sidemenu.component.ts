@@ -1,4 +1,4 @@
-import { Component, inject, HostListener, ElementRef } from '@angular/core';
+import { Component, inject, HostListener, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { NgClass } from '@angular/common';
 import { LanguageService } from 'src/app/services/language.service';
@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './sidemenu.component.html',
   styleUrls: ['./sidemenu.component.scss'],
   imports: [NgClass, RouterLink, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidemenuComponent {
   sidemenuS = inject(SidemenuService);
@@ -24,6 +25,6 @@ export class SidemenuComponent {
   }
 
   toggleMenu() {
-    if (this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
+    if (this.sidemenuS.menuIsOpen()) this.sidemenuS.toggleMenu();
   }
 }

@@ -1,44 +1,64 @@
-import { Injectable, inject, signal } from '@angular/core';
-import { DISQUS_SHORTNAME } from '../environment/enviroment';
-import { ScriptService } from './script.service';
-import { DisqusService } from './disqus.service';
+import { Injectable, PLATFORM_ID, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsentService {
-  private scriptS = inject(ScriptService);
-  private disqusS = inject(DisqusService);
   consentManagerIsOpen = signal<boolean>(false);
+  private platformId = inject<object>(PLATFORM_ID);
 
-  possibleConsents: { name: string; domains: string[] | undefined; descriptionTransString: string }[] = [
+  private _possibleConsents: {
+    name: string;
+    domains: string[] | undefined;
+    descriptionTransString: string;
+    _consent: WritableSignal<boolean>;
+  }[] = [
     {
       name: 'Disqus',
       domains: ['disqus.com'],
       descriptionTransString: 'disqus_descr',
+      _consent: this.initializeConsentSignal('Disqus'),
     },
     {
       name: 'CodePen',
       domains: ['codepen.io', 'cdpn.io'],
       descriptionTransString: 'codepen_descr',
+      _consent: this.initializeConsentSignal('CodePen'),
     },
     {
-      name: 'Custom Language',
+      name: 'Custom Language Consent',
       domains: [],
       descriptionTransString: 'custom_language',
+      _consent: this.initializeConsentSignal('Custom Language Consent'),
     },
   ];
 
-  giveConsent(serviceName: string) {
-    localStorage.setItem(serviceName, '');
+  readonly possibleConsents: { name: string; domains: string[] | undefined; descriptionTransString: string; consent: Signal<boolean> }[] = this._possibleConsents.map((item) => ({
+    name: item.name,
+    domains: item.domains,
+    descriptionTransString: item.descriptionTransString,
+    consent: item._consent.asReadonly(),
+  }));
+
+  private initializeConsentSignal(serviceName: string): WritableSignal<boolean> {
+    if (!isPlatformBrowser(this.platformId)) return signal<boolean>(false);
+    const isConsented = localStorage.getItem(serviceName) === 'true';
+    return signal<boolean>(isConsented);
   }
 
-  checkConsent(serviceName: string): boolean {
-    return localStorage.getItem(serviceName) != null;
+  private findWritableSignal(serviceName: string): WritableSignal<boolean> | undefined {
+    return this._possibleConsents.find((c) => c.name === serviceName)?._consent;
+  }
+
+  giveConsent(serviceName: string) {
+    localStorage.setItem(serviceName, 'true');
+    this.findWritableSignal(serviceName)?.set(true);
   }
 
   revokeConsent(serviceName: string) {
     localStorage.removeItem(serviceName);
+    this.findWritableSignal(serviceName)?.set(false);
 
     // delete cookies
     const consent = this.possibleConsents.find((c) => c.name === serviceName);
@@ -46,12 +66,6 @@ export class ConsentService {
       consent.domains.forEach((domain) => {
         this.deleteCookiesForDomain(domain);
       });
-    }
-
-    if (serviceName === 'Disqus') {
-      this.scriptS.removeJsScript('https://' + DISQUS_SHORTNAME + '.disqus.com/embed.js');
-      (window as any)['DISQUS'] = undefined;
-      this.disqusS.removeDisqus();
     }
   }
 

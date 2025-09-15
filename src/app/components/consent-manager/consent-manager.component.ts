@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
 import { ConsentService } from 'src/app/services/consent.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -8,6 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './consent-manager.component.html',
   styleUrls: ['./consent-manager.component.scss'],
   imports: [TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsentManagerComponent {
   consentS = inject(ConsentService);

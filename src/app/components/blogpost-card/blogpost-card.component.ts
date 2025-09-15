@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,6 +9,7 @@ import { PostMeta } from 'src/app/models/post-meta.model';
   templateUrl: './blogpost-card.component.html',
   styleUrls: ['./blogpost-card.component.scss'],
   imports: [RouterLink, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogpostCardComponent {
   languageS = inject(LanguageService);

@@ -2,8 +2,8 @@
 <app-header></app-header>
 }
 
-<div class="content" [ngClass]="{ menuIsOpen: sidemenuS.MenuIsOpen }">
-    @defer (when langS.askUserToSwitch) {
+<div class="content" [ngClass]="{ menuIsOpen: sidemenuS.menuIsOpen() }">
+    @defer (when langS.askUserToSwitch()) {
     <app-language-switch-offer></app-language-switch-offer>
     }
     <app-sidemenu></app-sidemenu>

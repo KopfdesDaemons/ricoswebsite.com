@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './project-card.component.html',
   styleUrls: ['./project-card.component.scss'],
   imports: [RouterLink, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectCardComponent {
   languageS = inject(LanguageService);

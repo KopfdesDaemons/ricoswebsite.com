@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { SidemenuService } from './services/sidemenu.service';
 import { LanguageService } from './services/language.service';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports: [HeaderComponent, NgClass, LanguageSwitchOfferComponent, SidemenuComponent, RouterOutlet, FooterComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   sidemenuS = inject(SidemenuService);

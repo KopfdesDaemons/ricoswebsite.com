@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -8,11 +8,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   imports: [NgClass, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   sidemenuS = inject(SidemenuService);
 
   public clickOnWebsitename() {
-    if (this.sidemenuS.MenuIsOpen) this.sidemenuS.toggleMenu();
+    if (this.sidemenuS.menuIsOpen()) this.sidemenuS.toggleMenu();
   }
 }

@@ -1,38 +1,48 @@
-import { Component, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject, input } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject, input, ChangeDetectionStrategy, computed, effect, OnDestroy } from '@angular/core';
 import { DisqusService } from 'src/app/services/disqus.service';
-import { LanguageService } from 'src/app/services/language.service';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ConsentService } from 'src/app/services/consent.service';
+import { RouterLink } from '@angular/router';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-disqus',
   templateUrl: './disqus.component.html',
   styleUrls: ['./disqus.component.scss'],
   imports: [RouterLink, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DisqusComponent implements OnChanges {
+export class DisqusComponent implements OnChanges, OnDestroy {
   private disqusS = inject(DisqusService);
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
   private platformId = inject<object>(PLATFORM_ID);
+  private consentS = inject(ConsentService);
   languageS = inject(LanguageService);
-  consentS = inject(ConsentService);
 
   readonly identifier = input<string>();
   disqusDiv = ViewChild('disqusDiv');
-  private observer: IntersectionObserver | undefined;
+  private observer: IntersectionObserver | null = null;
+
+  hasDisqusConsent = computed(() => this.consentS.possibleConsents.find((c) => c.name === 'Disqus')?.consent() ?? false);
+
+  constructor() {
+    effect(async () => {
+      if (this.hasDisqusConsent() && this.identifier()) {
+        await this.loadDisqusAndDisconnectObserver();
+      }
+    });
+  }
 
   ngOnChanges(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    if (this.observer) this.observer.disconnect();
-    if (!this.identifier()) return;
-    if (!this.consentS.checkConsent('Disqus')) return;
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(async (entry) => {
-        if (entry.isIntersecting) await this.isVisible();
-      });
+    if (!isPlatformBrowser(this.platformId) || !this.identifier()) {
+      return;
+    }
+    this.observer = new IntersectionObserver(async (entries) => {
+      if (entries[0].isIntersecting && this.hasDisqusConsent() && this.identifier()) {
+        await this.loadDisqusAndDisconnectObserver();
+      }
     });
     this.observer.observe(this.elementRef.nativeElement);
   }
@@ -41,19 +51,13 @@ export class DisqusComponent implements OnChanges {
     this.observer?.disconnect();
   }
 
-  async isVisible() {
-    const identifier = this.identifier();
-    if (this.consentS.checkConsent('Disqus') && identifier) {
-      await this.disqusS.loadDisqus(this.renderer, identifier);
-      this.observer?.disconnect();
-    }
+  giveConsent() {
+    if (!this.identifier()) return;
+    this.consentS.giveConsent('Disqus');
   }
 
-  async giveConsent() {
-    const identifier = this.identifier();
-    if (!identifier) return;
-    this.consentS.giveConsent('Disqus');
+  private async loadDisqusAndDisconnectObserver() {
     this.observer?.disconnect();
-    await this.disqusS.loadDisqus(this.renderer, identifier);
+    await this.disqusS.loadDisqus(this.renderer, this.identifier()!);
   }
 }

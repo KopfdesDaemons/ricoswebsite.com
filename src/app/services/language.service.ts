@@ -1,8 +1,9 @@
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Injectable, PLATFORM_ID, inject, signal, DOCUMENT } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, signal, DOCUMENT, computed, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
+import { ConsentService } from './consent.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,12 @@ export class LanguageService {
   private location = inject(Location);
   private platformId = inject<object>(PLATFORM_ID);
   private document = inject<Document>(DOCUMENT);
+  private consentS = inject(ConsentService);
+  private customLanguageConsent = computed(() => this.consentS.possibleConsents.find((c) => c.name === 'Custom Language Consent')?.consent() ?? false);
 
   userLanguage = signal<string>('');
   userAgendLanguage: string;
-  askUserToSwitch: boolean = true;
+  askUserToSwitch = signal<boolean>(true);
   supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
 
@@ -26,6 +29,13 @@ export class LanguageService {
     this.userAgendLanguage = this.getUserAgentLanguage();
     this.userLanguage.set(this.userAgendLanguage);
     this.loadLanguageFromLocalStorage();
+
+    effect(() => {
+      if (!this.customLanguageConsent()) {
+        if (!isPlatformBrowser(this.platformId)) return;
+        localStorage.removeItem('Custom Language');
+      }
+    });
   }
 
   private loadLanguageFromLocalStorage() {
@@ -34,7 +44,7 @@ export class LanguageService {
     const storedLanguage = localStorage.getItem('Custom Language');
     if (storedLanguage) {
       this.userLanguage.set(storedLanguage);
-      this.askUserToSwitch = false;
+      this.askUserToSwitch.set(false);
     }
   }
 
@@ -42,7 +52,7 @@ export class LanguageService {
     lang = lang || this.userLanguage();
     this.userLanguage.set(await this.replaceUnsupportedLangauge(lang));
     this.document.documentElement.lang = this.userLanguage();
-    this.askUserToSwitch = this.askUserToSwitch && this.userLanguage() != this.userAgendLanguage;
+    this.askUserToSwitch.set(this.askUserToSwitch() && this.userLanguage() != this.userAgendLanguage);
     this.translate.use(this.userLanguage());
   }
 
@@ -66,7 +76,8 @@ export class LanguageService {
     if (!pathHasLangParam) await this.updateLanguage(lang);
     await this.router.navigateByUrl(newUrl);
     localStorage.setItem('Custom Language', this.userLanguage().toString());
-    this.askUserToSwitch = false;
+    this.askUserToSwitch.set(false);
+    this.consentS.giveConsent('Custom Language Consent');
   }
 
   private getUserAgentLanguage(): string {

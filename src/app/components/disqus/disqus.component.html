@@ -1,4 +1,4 @@
-@if (consentS.checkConsent("Disqus")) {
+@if (hasDisqusConsent()) {
 <div #disqusDiv id="disqus_thread"></div>
 } @else {
 <div class="consentBanner">

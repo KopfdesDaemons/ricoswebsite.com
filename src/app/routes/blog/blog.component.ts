@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
   imports: [FormsModule, BlogpostCardComponent, RouterLink, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogComponent implements OnInit {
   private postS = inject(PostService);

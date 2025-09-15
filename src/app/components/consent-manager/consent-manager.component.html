@@ -8,7 +8,7 @@
         <li>
             <div>
                 <span>{{ service.name }}</span>
-                <input (change)="switchConsent($event, service.name)" type="checkbox" [checked]="consentS.checkConsent(service.name)" />
+                <input (change)="switchConsent($event, service.name)" type="checkbox" [checked]="service.consent()" />
             </div>
             <p>{{ service.descriptionTransString | translate }}</p>
         </li>
