@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild, OnChanges, PLATFORM_ID, inject, input, ChangeDetectionStrategy, computed, effect, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, PLATFORM_ID, inject, input, ChangeDetectionStrategy, computed, effect, OnDestroy } from '@angular/core';
 import { DisqusService } from 'src/app/services/disqus.service';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { LanguageService } from 'src/app/services/language.service';
   imports: [RouterLink, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DisqusComponent implements OnChanges, OnDestroy {
+export class DisqusComponent implements OnDestroy {
   private disqusS = inject(DisqusService);
   private renderer = inject(Renderer2);
   private elementRef = inject(ElementRef);
@@ -28,17 +28,13 @@ export class DisqusComponent implements OnChanges, OnDestroy {
   hasDisqusConsent = computed(() => this.consentS.possibleConsents.find((c) => c.name === 'Disqus')?.consent() ?? false);
 
   constructor() {
-    effect(async () => {
-      if (this.hasDisqusConsent() && this.identifier()) {
-        await this.loadDisqusAndDisconnectObserver();
-      }
-    });
+    effect(() => this.setupObserver());
   }
 
-  ngOnChanges(): void {
-    if (!isPlatformBrowser(this.platformId) || !this.identifier()) {
-      return;
-    }
+  setupObserver() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (!this.identifier()) return;
+
     this.observer = new IntersectionObserver(async (entries) => {
       if (entries[0].isIntersecting && this.hasDisqusConsent() && this.identifier()) {
         await this.loadDisqusAndDisconnectObserver();
@@ -51,9 +47,10 @@ export class DisqusComponent implements OnChanges, OnDestroy {
     this.observer?.disconnect();
   }
 
-  giveConsent() {
+  async giveConsent() {
     if (!this.identifier()) return;
     this.consentS.giveConsent('Disqus');
+    await this.loadDisqusAndDisconnectObserver();
   }
 
   private async loadDisqusAndDisconnectObserver() {

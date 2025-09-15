@@ -23,7 +23,7 @@ export class DisqusService {
 
   async loadDisqus(renderer: Renderer2, title: string): Promise<void> {
     this.disqus = (window as any)['DISQUS'];
-    const lang = this.languageS.userLanguage;
+    const lang = this.languageS.userLanguage();
     if (!this.disqus) {
       (window as any).disqus_config = function () {
         this.page.identifier = title;
