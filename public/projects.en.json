@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "name": "Steam Games Starter",
+      "description": "A desklet for the Cinnamon desktop that can launch Steam games",
+      "image": "\\images\\steam-games-starter.avif",
+      "features": [
+        "Supports Flatpak and Steam's system package",
+        "Game list sorted by \"last played\"",
+        "Custom game count, desklet height, and background color"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/82",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/steamGamesStarter@KopfdesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
       "name": "odt-templater website",
       "description": "Documentation for the odt-templater",
       "image": "\\images\\odt-templater-website.avif",
