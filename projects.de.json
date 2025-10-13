@@ -15,7 +15,7 @@
     },
     {
       "name": "odt-templater Webseite",
-      "description": "Dokumentaion für den odt-templater",
+      "description": "Dokumentation für den odt-templater",
       "image": "\\images\\odt-templater-website.avif",
       "features": [
         "Code highlighting",
