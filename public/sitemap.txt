@@ -3,6 +3,7 @@ https://ricoswebsite.com/de/blogpost/angular-gh-pages/
 https://ricoswebsite.com/de/blogpost/blogtube/
 https://ricoswebsite.com/de/blogpost/codepen-in-angular/
 https://ricoswebsite.com/de/blogpost/css-gallery/
+https://ricoswebsite.com/de/blogpost/desklet-tutorial/
 https://ricoswebsite.com/de/blogpost/disqus-in-angular/
 https://ricoswebsite.com/de/blogpost/linux-test/
 https://ricoswebsite.com/de/blogpost/steam-dropdown-bug/

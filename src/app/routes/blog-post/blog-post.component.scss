@@ -91,7 +91,13 @@ main {
     }
 
     h2 {
-      font-size: 1.6em;
+      font-size: 2em;
+    }
+
+    .h2-underlined {
+      border-bottom: solid 1px #8888ff;
+      padding-bottom: 0.5em;
+      padding-top: 1em;
     }
 
     img {
