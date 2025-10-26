@@ -12,6 +12,7 @@ https://ricoswebsite.com/en/blogpost/angular-gh-pages/
 https://ricoswebsite.com/en/blogpost/blogtube/
 https://ricoswebsite.com/en/blogpost/codepen-in-angular/
 https://ricoswebsite.com/en/blogpost/css-gallery/
+https://ricoswebsite.com/en/blogpost/desklet-tutorial/
 https://ricoswebsite.com/en/blogpost/disqus-in-angular/
 https://ricoswebsite.com/en/blogpost/linux-test/
 https://ricoswebsite.com/en/blogpost/steam-dropdown-bug/

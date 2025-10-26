@@ -1,37 +1,37 @@
 ---
-title: "Tutorial: Entwicklung eines Desklets für den Cinnamon Desktop"
+title: "Tutorial: Developing a Desklet for the Cinnamon Desktop"
 author: Rico
 image: /images/desklet-tutorial.avif
 keywords:
   - Cinnamon
   - Linux
-description: Eine Dokumentation für die Entwicklung eines Desklets für den Cinnamon Desktop.
+description: Documentation for developing a desklet for the Cinnamon desktop.
 date: 2025-10-25
 ---
 
-## Übersicht
+## Overview
 
-1.  [Dateistruktur](/de/blogpost/desklet-tutorial/#file-structure)
-2.  [Hello World Desklet](/de/blogpost/desklet-tutorial/#hello-world)
-3.  [Debugging](/de/blogpost/desklet-tutorial/#debugging)
-4.  [Icons](/de/blogpost/desklet-tutorial/#icons)
-5.  [Box-Layout](/de/blogpost/desklet-tutorial/#box-layout)
-6.  [Button](/de/blogpost/desklet-tutorial/#button)
-7.  [Styling](/de/blogpost/desklet-tutorial/#styling)
-8.  [Settings](/de/blogpost/desklet-tutorial/#settings)
-9.  [Images](/de/blogpost/desklet-tutorial/#images)
-10. [Mainloop](/de/blogpost/desklet-tutorial/#mainloop)
-11. [Übersetzung](/de/blogpost/desklet-tutorial/#translation)
+1.  [File structure](/en/blogpost/desklet-tutorial/#file-structure)
+2.  [Hello World Desklet](/en/blogpost/desklet-tutorial/#hello-world)
+3.  [Debugging](/en/blogpost/desklet-tutorial/#debugging)
+4.  [Icons](/en/blogpost/desklet-tutorial/#icons)
+5.  [Box-Layout](/en/blogpost/desklet-tutorial/#box-layout)
+6.  [Button](/en/blogpost/desklet-tutorial/#button)
+7.  [Styling](/en/blogpost/desklet-tutorial/#styling)
+8.  [Settings](/en/blogpost/desklet-tutorial/#settings)
+9.  [Images](/en/blogpost/desklet-tutorial/#images)
+10. [Mainloop](/en/blogpost/desklet-tutorial/#mainloop)
+11. [Translation](/en/blogpost/desklet-tutorial/#translation)
 
-<h2 id="file-structure" class="h2-underlined">Dateistruktur</h2>
+<h2 id="file-structure" class="h2-underlined">File structure</h2>
 
-Der Quellcode aller Desklets befindet sich in diesem [GitHub Repository](https://github.com/linuxmint/cinnamon-spices-desklets).
+The source code of all desklets can be found in this [GitHub repository](https://github.com/linuxmint/cinnamon-spices-desklets).
 
-Von diesem Repository erstellen wir einen Fork und fügen unser neues Desklet in einem neuen Ordner hinzu.
+We create a fork from this repository and add our new desklet in a new folder.
 
-Der Ordner muss nach der UUID des Desklets benannt werden. Diese besteht aus dem Namen des Desklets, einem @ und dem GitHub-Usernamen. Für dieses Beispiel `tutorial-desklet@KopfdesDaemons`.
+The folder must be named after the desklet's UUID. This consists of the desklet name, an @, and the GitHub username. For this example, `tutorial-desklet@KopfdesDaemons`.
 
-Wir richten die folgende Dateistruktur ein:
+We set up the following file structure:
 
 ```
   tutorial-desklet@KopfdesDaemons
@@ -47,7 +47,7 @@ Wir richten die folgende Dateistruktur ein:
     └── screenshot.png
 ```
 
-In die `info.json` fügen wir nur den Autor hinzu:
+In the `info.json` we only add the author:
 
 ```json
 {
@@ -55,9 +55,9 @@ In die `info.json` fügen wir nur den Autor hinzu:
 }
 ```
 
-Die `README.md` und `screenshot.png` werden auf der [Cinnamon Webseite](https://cinnamon-spices.linuxmint.com/desklets/popular) angezeigt.
+The `README.md` and `screenshot.png` are displayed on the [Cinnamon website](https://cinnamon-spices.linuxmint.com/desklets/popular).
 
-Die `metadata.json` sieht wie folgt aus:
+The `metadata.json` looks like this:
 
 ```json
 {
@@ -71,7 +71,7 @@ Die `metadata.json` sieht wie folgt aus:
 
 <h2 id="hello-world" class="h2-underlined">Hello World Desklet</h2>
 
-Um den Aufbau der `desklet.js` zu erklären, beginnen wir mit einem einfachen Hello World-Desklet.
+To explain the structure of `desklet.js`, we start with a simple Hello World desklet.
 
 ![Hello World Desklet](/images/desklet-tutorial/hello-world.png "Hello World Desklet")
 
@@ -98,30 +98,30 @@ function main(metadata, deskletId) {
 }
 ```
 
-Mit diesem Befehl können wir das Desklet testen:
+We can test the desklet with this command:
 
 ```bash
 ./test-spice tutorial-desklet@KopfdesDaemons -s
 ```
 
-Der Parameter `-s` überspringt die Validierung des Desklets. Das ist hilfreich, wenn noch nicht alle Dateien, wie z.B. die `screenshot.png`, vorhanden sind.
+The `-s` parameter skips desklet validation. This is useful if not all files, such as `screenshot.png`, are present yet.
 
 <h2 id="debugging" class="h2-underlined">Debugging</h2>
 
-Wir können Meldungen in die Konsole loggen:
+We can log messages to the console:
 
 ```ts
 global.log("test");
 global.logError("error");
 ```
 
-Die Konsole öffnet man mit einem Rechtsklick auf die Taskleiste unter "Fehler suchen" und dann "Looking Glass".
+You can open the console by right-clicking on the taskbar, selecting "Troubleshoot" and then "Looking Glass".
 
 <h2 id="icons" class="h2-underlined">Icons</h2>
 
-Bisher haben wir nicht viele Importe. Neben `Desklet` importieren wir noch `St` für das Label, welches wir anzeigen. `St` steht für [Shell Toolkit](https://gnome.pages.gitlab.gnome.org/gnome-shell/st/index.html) und stellt UI-Elemente bereit. Das Shell Toolkit baut auf [Clutter](https://mutter.gnome.org/clutter/index.html) auf, eine OpenGl basierte Library zum anzeigen von UI-Elementen auf einem Canvas.
+So far, we don't have many imports. In addition to `Desklet`, we also import `St` for the label we display. `St` stands for [Shell Toolkit](https://gnome.pages.gitlab.gnome.org/gnome-shell/st/index.html) and provides UI elements. The Shell Toolkit is based on [Clutter](https://mutter.gnome.org/clutter/index.html), an OpenGL-based library for displaying UI elements on a canvas.
 
-Mit dem Shell Toolkit können wir noch weitere Elemente anzeigen lassen. Tauschen wir als nächstes unser Label mit einem Icon:
+With the Shell Toolkit, we can display even more elements. Next, let's replace our label with an icon:
 
 ![Icon Desklet](/images/desklet-tutorial/icon.png "Icon Desklet")
 
@@ -152,11 +152,11 @@ function main(metadata, deskletId) {
 }
 ```
 
-Die Icon-Namen findet Ihr unter /usr/share/icons/Adwaita/symbolic.
+The icon names can be found under /usr/share/icons/Adwaita/symbolic.
 
 <h2 id="box-layout" class="h2-underlined">Box-Layout</h2>
 
-Bisher haben wir nur ein Element als Content des Desklets gesetzt. Zeigen wir als nächsten das Label und das Icon zusammen an. Um mehr als ein Element anzuzeigen, brauchen wir ein Box-Layout.
+So far, we've only set one element as the desklet's content. Next, let's display the label and icon together. To display more than one element, we need a box layout.
 
 ![Box Layout Desklet](/images/desklet-tutorial/box-layout.png "Box Layout Desklet")
 
@@ -196,7 +196,7 @@ function main(metadata, deskletId) {
 
 <h2 id="button" class="h2-underlined">Button</h2>
 
-Fügen wir nun etwas Logik hinzu und ändern das angezeigte Icon mit einem Klick auf einem Button:
+Now let’s add some logic and change the displayed icon with a click on a button:
 
 ![Button Desklet](/images/desklet-tutorial/button.png "Button Desklet")
 
@@ -245,20 +245,20 @@ function main(metadata, deskletId) {
 }
 ```
 
-Nun wird der Smiley traurig, wenn wir den Button "Change Icon" drücken.
+Now the smiley becomes sad when we press the "Change Icon" button.
 
 <h2 id="styling" class="h2-underlined">Styling</h2>
 
 ![Styling Desklet](/images/desklet-tutorial/styling.png "Styling Desklet")
 
-Den Elementen aus dem [Shell Toolkit](https://gnome.pages.gitlab.gnome.org/gnome-shell/st/index.html) können wir eine `style_class` hinzufügen.
+We can add a `style_class` to the elements from the [Shell Toolkit](https://gnome.pages.gitlab.gnome.org/gnome-shell/st/index.html).
 
 ```ts
 const label = new St.Label({ text: "Hello World!", style_class: "tutorial-desklet-label" });
 const button = new St.Button({ label: "Change Icon", style_class: "tutorial-desklet-button" });
 ```
 
-Anschließend können wir die Elemente in der `stylesheet.css` mit CSS anpassen:
+We can then customize the elements in the `stylesheet.css` with CSS:
 
 ```css
 .tutorial-desklet-label {
@@ -278,20 +278,20 @@ Anschließend können wir die Elemente in der `stylesheet.css` mit CSS anpassen:
 }
 ```
 
-Einige Änderungen in der `stylesheet.css` werden erst nach einem Neustart des Cinnamon Desktops sichtbar. Dazu auf der Taskleiste mit der rechten Maustaste klicken und unter "Fehler suchen" "Cinnamon neustarten" auswählen.
+Some changes in the `stylesheet.css` file will only become visible after restarting the Cinnamon desktop. To do this, right-click on the taskbar and select "Restart Cinnamon" under "Troubleshoot".
 
-Der Style kann auch per JavaScript angepasst werden:
+The style can also be adjusted using JavaScript:
 
 ```ts
 label.style = `font-size: 2em; color: green;`;
 label.set_style(`font-size: ${this.labelFontSize}px;`);
 ```
 
-Das CSS ist nur rudimentär implementiert. Es funktionieren nur grundlegende Dinge, wie margin, padding, color, border oder font-size. Alles was das Layout betrifft wird über das [Box-Layout](/de/blogpost/desklet-tutorial/#box-layout) gesteuert. Flexbox funktioniert nicht.
+The CSS is only rudimentarily implemented. Only basic properties like margin, padding, color, border, and font-size work. Everything related to the layout is controlled via the [box layout](/en/blogpost/desklet-tutorial/#box-layout). Flexbox does not work.
 
-### Hover-Effekte
+### Hover Effects
 
-Hover-Effekte funktionieren für Buttons. Wenn andere Elemente mit einem Hover-Effekt versehen werden sollen, muss das Shell Toolkit Element angepasst werden mit dem Parameter `track_hover` und `reactive`:
+Hover effects work for buttons. If other elements are to be given a hover effect, the Shell Toolkit element must be adapted with the `track_hover` and `reactive` parameters:
 
 ```ts
 const box = new St.BoxLayout({ style_class: "tutorial-desklet-box", reactive: true, track_hover: true });
@@ -299,7 +299,7 @@ const box = new St.BoxLayout({ style_class: "tutorial-desklet-box", reactive: tr
 
 <h2 id="settings" class="h2-underlined">Settings</h2>
 
-Die Einstellungen des Desklets werden in der `settings-schema.json` definiert.
+The desklet settings are defined in the `settings-schema.json`.
 
 ```json
 {
@@ -319,7 +319,7 @@ Die Einstellungen des Desklets werden in der `settings-schema.json` definiert.
 }
 ```
 
-Die Settings API ist [dokumentiert](https://projects.linuxmint.com/reference/git/cinnamon-tutorials/xlet-settings-ref.html). Hier die wichtigsten Typen der Settings:
+The Settings API is [documented](https://projects.linuxmint.com/reference/git/cinnamon-tutorials/xlet-settings-ref.html). Here are the most important settings types:
 
 - entry
 - checkbox
@@ -330,9 +330,9 @@ Die Settings API ist [dokumentiert](https://projects.linuxmint.com/reference/git
 - colorchooser
 - datechooser
 
-Es wird ein neuer Import benötigt und die Einstellungen müssen gebunden werden.
+A new import is required, and the settings must be bound.
 
-Hier ein einfaches Hello World-Desklet, bei dem die Schriftgröße geändert werden kann:
+Here's a simple Hello World desklet that allows you to change the font size:
 
 ```ts
 const Desklet = imports.ui.desklet;
@@ -367,9 +367,9 @@ function main(metadata, deskletId) {
 
 ![Image Desklet](/images/desklet-tutorial/image.png "Image Desklet")
 
-Um Bilder anzuzeigen brauchen wir Hilfsfunktionen und drei weitere Importe.
+To display images, we need helper functions and three additional imports.
 
-Hier eine Desklet, welches nur ein Bild anzeigt:
+Here's a desklet that displays only one image:
 
 ```ts
 const Desklet = imports.ui.desklet;
@@ -423,10 +423,10 @@ function main(metadata, deskletId) {
 
 ![Counter Desklet](/images/desklet-tutorial/counter.png "Counter Desklet")
 
-Für den Aufruf von Funktionen nach einer bestimmten Zeitspanne gibt es die Mainloop.
-Mit dieser können wir einen Timeout setzen und eine Funktion übergeben, die nach dem Timeout ausgeführt wird.
+The main loop is used to call functions after a specific time period.
+With this, we can set a timeout and pass a function that executes after the timeout.
 
-Hier ein einfaches Desklet, welches alle 5 Sekunden einen Counter hochzählt:
+Here's a simple desklet that increments a counter every 5 seconds:
 
 ```ts
 const Desklet = imports.ui.desklet;
@@ -464,15 +464,15 @@ function main(metadata, deskletId) {
 }
 ```
 
-Der Timeout kann auch in Millisekunden gesetzt werden:
+The timeout can also be set in milliseconds:
 
 ```ts
 this.timeout = Mainloop.timeout_add(300, () => this._updateCounter());
 ```
 
-<h2 id="translation" class="h2-underlined">Übersetzung</h2>
+<h2 id="translation" class="h2-underlined">Translation</h2>
 
-Für die Übersetzung brauchen wir etwas Boilerplate:
+For the translation we need some boilerplate:
 
 ```ts
 const GLib = imports.gi.GLib;
@@ -487,34 +487,34 @@ function _(str) {
 }
 ```
 
-Mit diesem Code können wir die Übersetzungen mit der Funktion `_()` verwenden.
+With this code, we can use the translations with the `_()` function.
 
-Hier ein Beispielaufruf einer Übersetzung:
+Here is an example call to a translation:
 
 ```ts
 const label = new St.Label({ text: _("Hello World!") });
 ```
 
-### Übersetzung extrahieren
+### Extract translation
 
-Mit dem folgendem Befehl wird eine `.pot`-Datei im Ordner `po` erstellt, welche die zu übersetzenden Texte enthält:
+The following command creates a `.pot` file in the `po` folder containing the text to be translated:
 
 ```bash
 ./cinnamon-spices-makepot tutorial-desklet@KopfdesDaemons
 
 ```
 
-Diese Datei können wir mit einem Programm wie [Poedit](https://poedit.net/) öffnen, um Übersetzungen hinzuzufügen.
+We can open this file with a program like [Poedit](https://poedit.net/) to add translations.
 
-Die Übersetzung speichern wir z.B. als `de.po` für die deutsche Sprache. Die `.mo`-Datei muss gelöscht werden.
+We'll save the translation as `de.po` for the German language, for example. The `.mo` file must be deleted.
 
-Mit diesem Befehl können wir die Übersetzung installieren und testen:
+We can install and test the translation with this command:
 
 ```bash
 ./cinnamon-spices-makepot tutorial-desklet@KopfdesDaemons --install
 ```
 
-Hier ein Hello World-Desklet mit Übersetzung:
+Here is a Hello World desklet with translation:
 
 ```ts
 const Desklet = imports.ui.desklet;

@@ -70,6 +70,18 @@
     "fileName": "css-gallery"
   },
   {
+    "title": "Tutorial: Developing a Desklet for the Cinnamon Desktop",
+    "author": "Rico",
+    "image": "/images/desklet-tutorial.avif",
+    "keywords": [
+      "Cinnamon",
+      "Linux"
+    ],
+    "description": "Documentation for developing a desklet for the Cinnamon desktop.",
+    "date": "2025-10-25",
+    "fileName": "desklet-tutorial"
+  },
+  {
     "title": "Angular: Integrate Disqus manually with own service",
     "author": "Rico",
     "image": "/images/disqus-in-angular.avif",
