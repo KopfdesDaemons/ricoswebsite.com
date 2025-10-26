@@ -1,6 +1,7 @@
 ---
 title: "Tutorial: Entwicklung eines Desklets für den Cinnamon Desktop"
 author: Rico
+image: /images/desklet-tutorial.avif
 keywords:
   - Cinnamon
   - Linux
@@ -18,6 +19,9 @@ date: 2025-10-25
 6.  [Button](/de/blogpost/desklet-tutorial/#button)
 7.  [Styling](/de/blogpost/desklet-tutorial/#styling)
 8.  [Settings](/de/blogpost/desklet-tutorial/#settings)
+9.  [Images](/de/blogpost/desklet-tutorial/#images)
+10. [Mainloop](/de/blogpost/desklet-tutorial/#mainloop)
+11. [Übersetzung](/de/blogpost/desklet-tutorial/#translation)
 
 <h2 id="file-structure" class="h2-underlined">Dateistruktur</h2>
 
@@ -285,6 +289,8 @@ label.set_style(`font-size: ${this.labelFontSize}px;`);
 
 Das CSS ist nur rudimentär implementiert. Es funktionieren nur grundlegende Dinge, wie margin, padding, color, border oder font-size. Alles was das Layout betrifft wird über das [Box-Layout](/de/blogpost/desklet-tutorial/#box-layout) gesteuert. Flexbox funktioniert nicht.
 
+### Hover-Effekte
+
 Hover-Effekte funktionieren für Buttons. Wenn andere Elemente mit einem Hover-Effekt versehen werden sollen, muss das Shell Toolkit Element angepasst werden mit dem Parameter `track_hover` und `reactive`:
 
 ```ts
@@ -348,6 +354,192 @@ class MyDesklet extends Desklet.Desklet {
     const label = new St.Label({ text: "Hello World!", style_class: "tutorial-desklet-label" });
     label.set_style(`font-size: ${this.labelFontSize}px;`);
 
+    this.setContent(label);
+  }
+}
+
+function main(metadata, deskletId) {
+  return new MyDesklet(metadata, deskletId);
+}
+```
+
+<h2 id="images" class="h2-underlined">Images</h2>
+
+![Image Desklet](/images/desklet-tutorial/image.png "Image Desklet")
+
+Um Bilder anzuzeigen brauchen wir Hilfsfunktionen und drei weitere Importe.
+
+Hier eine Desklet, welches nur ein Bild anzeigt:
+
+```ts
+const Desklet = imports.ui.desklet;
+const St = imports.gi.St;
+const GdkPixbuf = imports.gi.GdkPixbuf;
+const Clutter = imports.gi.Clutter;
+const Cogl = imports.gi.Cogl;
+
+class MyDesklet extends Desklet.Desklet {
+  constructor(metadata, deskletId) {
+    super(metadata, deskletId);
+
+    this.setHeader("Tutorial Desklet");
+    this._setupLayout();
+  }
+
+  _setupLayout() {
+    const image = this._getImageAtScale(`${this.metadata.path}/images/cat.jpg`, 200, 300);
+    this.setContent(image);
+  }
+
+  _createActorFromPixbuf(pixBuf) {
+    const pixelFormat = pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGB_888;
+    const image = new Clutter.Image();
+    image.set_data(pixBuf.get_pixels(), pixelFormat, pixBuf.get_width(), pixBuf.get_height(), pixBuf.get_rowstride());
+
+    return new Clutter.Actor({
+      content: image,
+      width: pixBuf.get_width(),
+      height: pixBuf.get_height(),
+    });
+  }
+
+  _getImageAtScale(imageFilePath, requestedWidth, requestedHeight) {
+    try {
+      const pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFilePath, requestedWidth, requestedHeight);
+      return this._createActorFromPixbuf(pixBuf);
+    } catch (e) {
+      global.logError(`Error loading image ${imageFilePath}: ${e}`);
+      return new St.Label({ text: "Error" });
+    }
+  }
+}
+
+function main(metadata, deskletId) {
+  return new MyDesklet(metadata, deskletId);
+}
+```
+
+<h2 id="mainloop" class="h2-underlined">Mainloop</h2>
+
+![Counter Desklet](/images/desklet-tutorial/counter.png "Counter Desklet")
+
+Für den Aufruf von Funktionen nach einer bestimmten Zeitspanne gibt es die Mainloop.
+Mit dieser können wir einen Timeout setzen und eine Funktion übergeben, die nach dem Timeout ausgeführt wird.
+
+Hier ein einfaches Desklet, welches alle 5 Sekunden einen Counter hochzählt:
+
+```ts
+const Desklet = imports.ui.desklet;
+const St = imports.gi.St;
+const Mainloop = imports.mainloop;
+
+class MyDesklet extends Desklet.Desklet {
+  constructor(metadata, deskletId) {
+    super(metadata, deskletId);
+    this.counter = 0;
+
+    this.setHeader("Tutorial Desklet");
+    this._updateCounter();
+  }
+
+  _updateCounter() {
+    if (this.timeout) Mainloop.source_remove(this.timeout);
+    this.timeout = Mainloop.timeout_add_seconds(5, () => this._updateCounter());
+    this.counter++;
+    this._setupLayout();
+  }
+
+  _setupLayout() {
+    const label = new St.Label({ text: `Counter: ${this.counter}` });
+    this.setContent(label);
+  }
+
+  on_desklet_removed() {
+    if (this._timeout) Mainloop.source_remove(this._timeout);
+  }
+}
+
+function main(metadata, deskletId) {
+  return new MyDesklet(metadata, deskletId);
+}
+```
+
+Der Timeout kann auch in Millisekunden gesetzt werden:
+
+```ts
+this.timeout = Mainloop.timeout_add(300, () => this._updateCounter());
+```
+
+<h2 id="translation" class="h2-underlined">Übersetzung</h2>
+
+Für die Übersetzung brauchen wir etwas Boilerplate:
+
+```ts
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+
+const UUID = "tutorial-desklet@KopfdesDaemons";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+```
+
+Mit diesem Code können wir die Übersetzungen mit der Funktion `_()` verwenden.
+
+Hier ein Beispielaufruf einer Übersetzung:
+
+```ts
+const label = new St.Label({ text: _("Hello World!") });
+```
+
+### Übersetzung extrahieren
+
+Mit dem folgendem Befehl wird eine `.pot`-Datei im Ordner `po` erstellt, welche die zu übersetzenden Texte enthält:
+
+```bash
+./cinnamon-spices-makepot tutorial-desklet@KopfdesDaemons
+
+```
+
+Diese Datei können wir mit [Poedit](https://poedit.net/) öffnen und eine Übersetzung hinzufügen.
+
+Die Übersetzung speichern wir z.B. als `de.po` für die deutsche Sprache. Die `.mo`-Datei muss gelöscht werden.
+
+Mit diesem Befehl können wir die Übersetzung testen:
+
+```bash
+./cinnamon-spices-makepot tutorial-desklet@KopfdesDaemons --install
+```
+
+Hier ein Hello World-Desklet mit Übersetzung:
+
+```ts
+const Desklet = imports.ui.desklet;
+const St = imports.gi.St;
+const GLib = imports.gi.GLib;
+const Gettext = imports.gettext;
+
+const UUID = "tutorial-desklet@KopfdesDaemons";
+
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(str) {
+  return Gettext.dgettext(UUID, str);
+}
+
+class MyDesklet extends Desklet.Desklet {
+  constructor(metadata, deskletId) {
+    super(metadata, deskletId);
+
+    this.setHeader("Tutorial Desklet");
+    this._setupLayout();
+  }
+
+  _setupLayout() {
+    const label = new St.Label({ text: _("Hello World!") });
     this.setContent(label);
   }
 }
