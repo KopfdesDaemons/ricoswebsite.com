@@ -1,6 +1,6 @@
-import { AfterViewChecked, ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2, ViewEncapsulation, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewEncapsulation, effect, inject, signal, viewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { CodepenService } from 'src/app/services/codepen.service';
 import { PostService } from 'src/app/services/post.service';
@@ -17,18 +17,28 @@ import { MetaService } from 'src/app/services/meta.service';
   imports: [DisqusComponent, TranslateModule, SafeHtmlPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogPostComponent implements OnInit, AfterViewChecked {
+export class BlogPostComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private postS = inject(PostService);
   private renderer = inject(Renderer2);
   private codePenS = inject(CodepenService);
   private metaS = inject(MetaService);
-  postContent = viewChild.required<ElementRef>('postContent');
+  postContent = viewChild<ElementRef>('postContent');
 
   fileName: string = '';
   post = signal<Post | undefined | null>(undefined);
   private routeParamsSubscription: Subscription | undefined;
   postNotFound: boolean = false;
+
+  constructor() {
+    effect(async () => {
+      const post = this.post();
+      this.postContent(); // ensure viewChild is resolved
+      if (post?.postMeta?.hasCodePen) {
+        await this.codePenS.loadCodePen(this.renderer);
+      }
+    });
+  }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe(async (param) => {
@@ -44,12 +54,6 @@ export class BlogPostComponent implements OnInit, AfterViewChecked {
 
       this.postNotFound = !this.post();
     });
-  }
-
-  async ngAfterViewChecked(): Promise<void> {
-    if (this.post()?.postMeta?.hasCodePen) {
-      await this.codePenS.loadCodePen(this.renderer);
-    }
   }
 
   ngOnDestroy(): void {
