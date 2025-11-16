@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, PLATFORM_ID, effect, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ElementRef, inject, OnDestroy, viewChild, signal, ChangeDetectionStrategy, afterRenderEffect } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -7,7 +7,6 @@ import { LanguageService } from 'src/app/services/language.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
-import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -24,11 +23,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private translate = inject(TranslateService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private platformID = inject<object>(PLATFORM_ID);
 
   projects = signal<Project[]>([]);
   technologiesFilterOptions: string[] = [];
-  activTechnologiesFilter: string[] = [];
+  activeTechnologiesFilter: string[] = [];
   totalPages = signal<number>(0);
   currentPage = signal<number>(1);
   private totalProjects: number = 0;
@@ -38,27 +36,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   private queryParamsSubscription: Subscription | undefined;
 
   constructor() {
-    effect(async () => {
-      await this.loadProjects();
+    afterRenderEffect(() => {
+      if (this.projects().length > 0 && this.route.snapshot.fragment === 'projectsSection') {
+        this.projectsSection().nativeElement?.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loadProjects();
+
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
       const { page } = params;
       if (this.currentPage() === +page) return;
       this.currentPage.set(+page || 1);
       await this.loadProjects();
-
-      // scroll to projects section
-      if (isPlatformBrowser(this.platformID) && page) {
-        this.projectsSection().nativeElement?.scrollIntoView({ behavior: 'smooth' });
-      }
     });
 
     this.queryParamsSubscription = this.route.queryParams.subscribe(async (params) => {
       const { technologies } = params;
-      this.activTechnologiesFilter = technologies ? technologies.split('&') : [];
+      this.activeTechnologiesFilter = technologies ? technologies.split('&') : [];
       await this.loadProjects();
     });
   }
@@ -78,11 +75,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async loadProjects() {
-    const filter = this.activTechnologiesFilter;
+    const filter = this.activeTechnologiesFilter;
     this.technologiesFilterOptions = await this.ps.getAllTechnologies();
 
-    // remove filter chips for active filters
-    this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activTechnologiesFilter.includes(t));
+    // Remove filter chips for active filters
+    this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activeTechnologiesFilter.includes(t));
 
     this.projects.set(await this.ps.getProjects(filter, this.projectsPerPage, this.currentPage()));
     this.totalProjects = await this.ps.getTotalProjectCount(filter);
@@ -90,17 +87,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     await this.setMetaTags();
   }
 
-  getQueryParams(technologies: string[] = this.activTechnologiesFilter) {
+  getQueryParams(technologies: string[] = this.activeTechnologiesFilter) {
     if (technologies.length === 0) return null;
     return { technologies: technologies.join('&') };
   }
 
   async addTechnologieToFilter(technologie: string) {
-    await this.applyFilter([...this.activTechnologiesFilter, technologie]);
+    await this.applyFilter([...this.activeTechnologiesFilter, technologie]);
   }
 
   async removeTechnologieFromFilter(technologie: string) {
-    await this.applyFilter(this.activTechnologiesFilter.filter((item) => item !== technologie));
+    await this.applyFilter(this.activeTechnologiesFilter.filter((item) => item !== technologie));
   }
 
   async applyFilter(filter: string[]) {
