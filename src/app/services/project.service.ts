@@ -45,13 +45,16 @@ export class ProjectService {
   async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
     const projects = await this.loadProjectsFromJson();
 
-    const filteredProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
-    const sortedProjects = filteredProjects.sort((a, b) => a.name.localeCompare(b.name));
+    const processedProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
+
+    if (filterByTechnologies.length > 0) {
+      processedProjects.sort((a, b) => a.name.localeCompare(b.name));
+    }
 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    return sortedProjects.slice(startIndex, endIndex);
+    return processedProjects.slice(startIndex, endIndex);
   }
 
   async getAllTechnologies(): Promise<string[]> {

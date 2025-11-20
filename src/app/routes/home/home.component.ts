@@ -75,16 +75,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async loadProjects() {
-    const filter = this.activeTechnologiesFilter;
-    this.technologiesFilterOptions = await this.ps.getAllTechnologies();
-
-    // Remove filter chips for active filters
-    this.technologiesFilterOptions = this.technologiesFilterOptions.filter((t) => !this.activeTechnologiesFilter.includes(t));
-
-    this.projects.set(await this.ps.getProjects(filter, this.projectsPerPage, this.currentPage()));
-    this.totalProjects = await this.ps.getTotalProjectCount(filter);
-    this.totalPages.set(Math.ceil(this.totalProjects / this.projectsPerPage));
     await this.setMetaTags();
+    const filter = this.activeTechnologiesFilter;
+
+    const [projects, totalProjects, allTechnologies] = await Promise.all([
+      this.ps.getProjects(filter, this.projectsPerPage, this.currentPage()),
+      this.ps.getTotalProjectCount(filter),
+      this.ps.getAllTechnologies(),
+    ]);
+
+    this.projects.set(projects);
+    this.totalProjects = totalProjects;
+    this.technologiesFilterOptions = allTechnologies.filter((t) => !this.activeTechnologiesFilter.includes(t));
+    this.totalPages.set(Math.ceil(this.totalProjects / this.projectsPerPage));
   }
 
   getQueryParams(technologies: string[] = this.activeTechnologiesFilter) {
