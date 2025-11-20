@@ -2,7 +2,7 @@ import { Injectable, Renderer2, computed, effect, inject } from '@angular/core';
 import { ScriptService } from './script.service';
 import { LanguageService } from './language.service';
 import { ConsentService } from './consent.service';
-import { DISQUS_SHORTNAME } from '../environment/enviroment';
+import { DISQUS_SHORTNAME } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root',

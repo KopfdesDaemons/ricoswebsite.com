@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { getLanguagesFileNamesList } from './posts.service';
 import { BLOGPOST_ROUTE, PUBLIC_FOLDER_PATH } from 'server/config/paths.config';
-import { BASE_URL } from 'src/app/environment/enviroment';
+import { BASE_URL } from 'src/app/environment/environment';
 
 /**
  * Generates routes.txt and sitemap.txt for each language

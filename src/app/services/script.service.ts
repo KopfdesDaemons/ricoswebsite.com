@@ -1,4 +1,3 @@
-
 import { Injectable, Renderer2, inject, DOCUMENT } from '@angular/core';
 
 @Injectable({
@@ -34,9 +33,5 @@ export class ScriptService {
     if (existingScript) {
       existingScript.remove();
     }
-  }
-
-  ceckIfJsScriptExist(src: string): boolean {
-    return !!this.document.querySelector(`script[src="${src}"]`);
   }
 }

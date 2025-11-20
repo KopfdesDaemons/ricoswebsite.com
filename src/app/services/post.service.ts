@@ -27,11 +27,11 @@ export class PostService {
     if (!this.post) this.post = await this.loadFromMarkdownFile(fileName, lang);
     if (!this.post) return null;
 
-    this.savePostTransfereState(fileName);
+    this.savePostTransferState(fileName);
     return this.post;
   }
 
-  private savePostTransfereState(title: string) {
+  private savePostTransferState(title: string) {
     const key = makeStateKey<Post>('post-' + this.languageS.userLanguage() + '-' + title);
     this.transferState.set(key, this.post);
   }

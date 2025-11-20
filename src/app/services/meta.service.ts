@@ -3,7 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { PostMeta } from '../models/post-meta.model';
-import { BASE_URL } from '../environment/enviroment';
+import { BASE_URL } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root',

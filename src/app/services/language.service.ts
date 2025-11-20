@@ -18,7 +18,7 @@ export class LanguageService {
   private customLanguageConsent = computed(() => this.consentS.possibleConsents.find((c) => c.name === 'Custom Language Consent')?.consent() ?? false);
 
   userLanguage = signal<string>('');
-  userAgendLanguage: string;
+  userAgentLanguage: string;
   askUserToSwitch = signal<boolean>(true);
   supportedLanguages: string[] = ['de', 'en'];
   private oldLanguage: string = '';
@@ -26,8 +26,8 @@ export class LanguageService {
   constructor() {
     this.translate.addLangs(this.supportedLanguages);
     this.translate.setDefaultLang('en');
-    this.userAgendLanguage = this.getUserAgentLanguage();
-    this.userLanguage.set(this.userAgendLanguage);
+    this.userAgentLanguage = this.getUserAgentLanguage();
+    this.userLanguage.set(this.userAgentLanguage);
     this.loadLanguageFromLocalStorage();
 
     effect(() => {
@@ -52,13 +52,13 @@ export class LanguageService {
     lang = lang || this.userLanguage();
     this.userLanguage.set(await this.replaceUnsupportedLangauge(lang));
     this.document.documentElement.lang = this.userLanguage();
-    this.askUserToSwitch.set(this.askUserToSwitch() && this.userLanguage() != this.userAgendLanguage);
+    this.askUserToSwitch.set(this.askUserToSwitch() && this.userLanguage() != this.userAgentLanguage);
     this.translate.use(this.userLanguage());
   }
 
   private async replaceUnsupportedLangauge(lang: string): Promise<string> {
     if (!this.supportedLanguages.includes(lang)) {
-      const fallbackLang = this.userAgendLanguage;
+      const fallbackLang = this.userAgentLanguage;
       const newUrl = this.router.url.replace(lang, fallbackLang);
       console.log(`Language ${lang} not supported. Switching to ${fallbackLang}`);
       await this.router.navigateByUrl(newUrl);

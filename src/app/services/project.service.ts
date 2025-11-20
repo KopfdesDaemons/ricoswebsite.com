@@ -20,47 +20,38 @@ export class ProjectService {
 
     try {
       const url = `/projects.${lang}.json`;
-      const response = await lastValueFrom(this.http.get<{ projects: any[] }>(url));
-      const loadedProjects = response.projects.map(this.createProjectFromData);
-      this.projectsCache.set(lang, loadedProjects);
-      return loadedProjects;
+      const response = await lastValueFrom(this.http.get<{ projects: Project[] }>(url));
+      this.projectsCache.set(lang, response.projects);
+      return response.projects;
     } catch (error) {
       console.error('Fehler beim Laden der Projekte:', error);
       return [];
     }
   }
 
-  private createProjectFromData(data: any): Project {
-    data.technologies = data.technologies.sort();
-    return new Project(data.name, data.description, data.image, data.features, data.projectURL, data.githubURL, data.blogpostURL, data.technologies);
+  private filterProjectsByTechnologies(projects: Project[], technologies: string[]): Project[] {
+    if (technologies.length === 0) {
+      return projects;
+    }
+    return projects.filter((project) => technologies.some((tech) => project.technologies.includes(tech)));
   }
 
   async getTotalProjectCount(filterByTechnologies: string[] = []): Promise<number> {
     const projects = await this.loadProjectsFromJson();
-
-    if (filterByTechnologies.length === 0) {
-      return projects.length;
-    }
-
-    const filteredProjects = projects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
-
+    const filteredProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
     return filteredProjects.length;
   }
 
   async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
     const projects = await this.loadProjectsFromJson();
 
-    let filteredProjects = projects;
-
-    if (filterByTechnologies.length > 0) {
-      filteredProjects = filteredProjects.filter((project) => filterByTechnologies.some((tech) => project.technologies.includes(tech)));
-      filteredProjects = filteredProjects.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    const filteredProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
+    const sortedProjects = filteredProjects.sort((a, b) => a.name.localeCompare(b.name));
 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    return filteredProjects.slice(startIndex, endIndex);
+    return sortedProjects.slice(startIndex, endIndex);
   }
 
   async getAllTechnologies(): Promise<string[]> {
