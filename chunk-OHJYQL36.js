@@ -1,0 +1,1 @@
+import{P as n,ka as o}from"./chunk-OQZGMZJZ.js";var c=(()=>{class e{constructor(){this.menuIsOpen=o(!1,{})}toggleMenu(){this.menuIsOpen.update(t=>!t)}static{this.\u0275fac=function(r){return new(r||e)}}static{this.\u0275prov=n({token:e,factory:e.\u0275fac,providedIn:"root"})}}return e})();export{c as a};

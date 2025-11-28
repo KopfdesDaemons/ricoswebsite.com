@@ -1,1 +1,0 @@
-import{U as o,ma as r}from"./chunk-D2U43JFJ.js";var p=(()=>{let t=class t{constructor(){this.menuIsOpen=r(!1)}toggleMenu(){this.menuIsOpen.update(n=>!n)}};t.\u0275fac=function(s){return new(s||t)},t.\u0275prov=o({token:t,factory:t.\u0275fac,providedIn:"root"});let e=t;return e})();export{p as a};
