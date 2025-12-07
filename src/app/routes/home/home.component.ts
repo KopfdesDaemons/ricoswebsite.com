@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   activeTechnologiesFilter: string[] = [];
   totalPages = signal<number>(0);
   currentPage = signal<number>(1);
+  currentLang = signal<string>('en');
   private totalProjects: number = 0;
   private projectsPerPage = 5;
   readonly projectsSection = viewChild.required<ElementRef>('projectsSection');
@@ -47,8 +48,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     await this.loadProjects();
 
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {
-      const { page } = params;
-      if (this.currentPage() === +page) return;
+      const { page, lang } = params;
+      if (this.currentPage() === +page && this.currentLang() === lang) return;
+      this.currentLang.set(lang);
       this.currentPage.set(+page || 1);
       await this.loadProjects();
     });
