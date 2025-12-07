@@ -7,16 +7,17 @@ import { LanguageService } from 'src/app/services/language.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [ProjectCardComponent, RouterLink, TranslateModule],
+  imports: [ProjectCardComponent, RouterLink, TranslateModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  languageS = inject(LanguageService);
+  protected languageS = inject(LanguageService);
   private meta = inject(Meta);
   private title = inject(Title);
   private ps = inject(ProjectService);
@@ -24,13 +25,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  projects = signal<Project[]>([]);
-  technologiesFilterOptions: string[] = [];
-  activeTechnologiesFilter: string[] = [];
-  private searchQuery = '';
-  totalPages = signal<number>(0);
-  currentPage = signal<number>(1);
-  currentLang = signal<string>('en');
+  protected projects = signal<Project[]>([]);
+  protected technologiesFilterOptions: string[] = [];
+  protected activeTechnologiesFilter: string[] = [];
+  protected searchQuery = '';
+  protected totalPages = signal<number>(0);
+  protected currentPage = signal<number>(1);
+  protected currentLang = signal<string>('en');
   private totalProjects: number = 0;
   private projectsPerPage = 5;
   readonly projectsSection = viewChild.required<ElementRef>('projectsSection');
@@ -92,6 +93,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getQueryParams(technologies: string[] = this.activeTechnologiesFilter) {
     if (technologies.length === 0 && this.searchQuery === '') return null;
+    if (technologies.length === 0) return { search: this.searchQuery };
+    if (this.searchQuery === '') return { technologies: technologies.join('&') };
     return { technologies: technologies.join('&'), search: this.searchQuery };
   }
 
@@ -101,6 +104,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async removeTechnologieFromFilter(technologie: string) {
     await this.applyFilter(this.activeTechnologiesFilter.filter((item) => item !== technologie));
+  }
+
+  async search() {
+    this.activeTechnologiesFilter = [];
+    await this.router.navigate([`/${this.languageS.userLanguage()}/projects/page/1/`], {
+      queryParams: this.getQueryParams(),
+      fragment: 'projectsSection',
+    });
   }
 
   async applyFilter(filter: string[]) {

@@ -313,4 +313,46 @@
   ::-webkit-scrollbar {
     height: 1px;
   }
+
+  .no-projects-found {
+    text-align: center;
+    margin: 4em 0;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  input:-webkit-autofill {
+    -webkit-text-fill-color: azure;
+  }
+  --background-input: rgb(36, 36, 41);
+  .search {
+    display: inline;
+    color-scheme: dark;
+
+    input[type="text"] {
+      padding: 0.5em;
+      font-size: 1.3em;
+      background-color: rgb(36, 36, 41);
+      color: azure !important;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        box-shadow: inset 0 0 0 0 var(--background-input),
+          inset 0 0 0 100px var(--background-input) !important;
+        -webkit-text-fill-color: azure !important;
+        border: none;
+        background-clip: content-box !important;
+      }
+    }
+  }
 }

@@ -72,9 +72,13 @@
         </div>
     </section>
     <section id="projectsSection" #projectsSection>
-        @if (projects().length > 0) {
         <div class="sectionSpacer">
-            <h2>{{ "my_projects" | translate }}</h2>
+            <div class="search-container">
+                <h2>{{ "my_projects" | translate }}</h2>
+                <form (submit)="$event.preventDefault(); search()" class="search">
+                    <input type="text" [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_project' | translate" />
+                </form>
+            </div>
             <div class="filter">
                 <ul class="activTechnologiesFilterOptions">
                     @for (technologie of activeTechnologiesFilter; track technologie) {
@@ -106,6 +110,7 @@
                     </div>
                 </div>
             </div>
+            @if (projects().length > 0) {
             <ul class="projectCards">
                 @for (project of projects(); track project.name) {
                 <li>
@@ -113,8 +118,9 @@
                 </li>
                 }
             </ul>
-
-            @if (totalPages() > 1) {
+            } @else {
+            <span class="no-projects-found">{{ "no_projects_found" | translate }}</span>
+            } @if (totalPages() > 1) {
             <div class="pagination">
                 <!-- back button -->
                 @if (currentPage() - 1 > 0) {
@@ -197,6 +203,5 @@
             </div>
             }
         </div>
-        }
     </section>
 </main>
