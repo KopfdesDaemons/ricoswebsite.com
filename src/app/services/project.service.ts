@@ -61,7 +61,8 @@ export class ProjectService {
     const projects = await this.loadProjectsFromJson();
 
     const allTechnologies = projects.flatMap((project) => project.technologies);
-    const uniqueTechnologies = Array.from(new Set(allTechnologies));
+    const withoutUndefined = allTechnologies.filter((item) => item !== undefined);
+    const uniqueTechnologies = Array.from(new Set(withoutUndefined));
 
     return uniqueTechnologies.sort();
   }
