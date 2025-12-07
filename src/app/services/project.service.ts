@@ -33,7 +33,12 @@ export class ProjectService {
     if (technologies.length === 0) {
       return projects;
     }
-    return projects.filter((project) => technologies.some((tech) => project.technologies.includes(tech)));
+    return projects.filter((project) =>
+      technologies.some((tech) => {
+        if (!project.technologies) return false;
+        return project.technologies.includes(tech);
+      })
+    );
   }
 
   async getTotalProjectCount(filterByTechnologies: string[] = []): Promise<number> {
