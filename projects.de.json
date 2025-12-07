@@ -1,6 +1,18 @@
 {
   "projects": [
     {
+      "name": "Ricos Resource Pack",
+      "description": "Ein Minecraft Ressourcenpaket",
+      "image": "\\images\\ricos-resource-pack.avif",
+      "features": [
+        "Saubere, farbenfrohe und helle Blöcke",
+        "16x16 Auflösung",
+        "Inventar GUI"
+      ],
+      "projectURL": "https://modrinth.com/resourcepack/ricos-resource-pack",
+      "githubURL": "https://github.com/KopfdesDaemons/ricos-resource-pack"
+    },
+    {
       "name": "Steam-Spiele-Starter",
       "description": "Ein Desklet für den Cinnamon Desktop, welches Steam Spiele starten kann",
       "image": "\\images\\steam-games-starter.avif",
