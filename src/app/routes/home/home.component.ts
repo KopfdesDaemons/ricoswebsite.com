@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   projects = signal<Project[]>([]);
   technologiesFilterOptions: string[] = [];
   activeTechnologiesFilter: string[] = [];
+  private searchQuery = '';
   totalPages = signal<number>(0);
   currentPage = signal<number>(1);
   currentLang = signal<string>('en');
@@ -56,8 +57,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this.queryParamsSubscription = this.route.queryParams.subscribe(async (params) => {
-      const { technologies } = params;
+      const { technologies, search } = params;
       this.activeTechnologiesFilter = technologies ? technologies.split('&') : [];
+      this.searchQuery = search || '';
       await this.loadProjects();
     });
   }
@@ -80,21 +82,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     await this.setMetaTags();
     const filter = this.activeTechnologiesFilter;
 
-    const [projects, totalProjects, allTechnologies] = await Promise.all([
-      this.ps.getProjects(filter, this.projectsPerPage, this.currentPage()),
-      this.ps.getTotalProjectCount(filter),
-      this.ps.getAllTechnologies(),
-    ]);
+    const [projects, allTechnologies] = await Promise.all([this.ps.getProjects(filter, this.projectsPerPage, this.currentPage(), this.searchQuery), this.ps.getAllTechnologies()]);
 
-    this.projects.set(projects);
-    this.totalProjects = totalProjects;
+    this.projects.set(projects.projects);
+    this.totalProjects = projects.total;
     this.technologiesFilterOptions = allTechnologies.filter((t) => !this.activeTechnologiesFilter.includes(t));
     this.totalPages.set(Math.ceil(this.totalProjects / this.projectsPerPage));
   }
 
   getQueryParams(technologies: string[] = this.activeTechnologiesFilter) {
-    if (technologies.length === 0) return null;
-    return { technologies: technologies.join('&') };
+    if (technologies.length === 0 && this.searchQuery === '') return null;
+    return { technologies: technologies.join('&'), search: this.searchQuery };
   }
 
   async addTechnologieToFilter(technologie: string) {
@@ -106,6 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async applyFilter(filter: string[]) {
+    this.searchQuery = '';
     await this.router.navigate([`/${this.languageS.userLanguage()}/projects/page/1/`], {
       queryParams: this.getQueryParams(filter),
       fragment: 'projectsSection',

@@ -41,25 +41,45 @@ export class ProjectService {
     );
   }
 
-  async getTotalProjectCount(filterByTechnologies: string[] = []): Promise<number> {
-    const projects = await this.loadProjectsFromJson();
-    const filteredProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
-    return filteredProjects.length;
+  private filterProjectsBySearchQuery(projects: Project[], searchQuery: string): Project[] {
+    if (!searchQuery) {
+      return projects;
+    }
+
+    const lowerCaseQuery = searchQuery.toLowerCase();
+
+    return projects.filter((project) => {
+      // 1. Check project name
+      const nameMatches = project.name.toLowerCase().includes(lowerCaseQuery);
+
+      // 2. Check project description
+      const descriptionMatches = project.description.toLowerCase().includes(lowerCaseQuery);
+
+      // 3. Check project features
+      const featuresMatch = project.features?.some((feature) => feature.toLowerCase().includes(lowerCaseQuery));
+
+      // Return true if any of the fields match the query
+      return nameMatches || descriptionMatches || featuresMatch;
+    });
   }
 
-  async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1): Promise<Project[]> {
+  async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1, searchQuery: string = ''): Promise<{ projects: Project[]; total: number }> {
     const projects = await this.loadProjectsFromJson();
 
-    const processedProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
+    let processedProjects = this.filterProjectsByTechnologies(projects, filterByTechnologies);
+    processedProjects = this.filterProjectsBySearchQuery(processedProjects, searchQuery);
 
-    if (filterByTechnologies.length > 0) {
+    if (filterByTechnologies.length > 0 || searchQuery.length > 0) {
       processedProjects.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    return processedProjects.slice(startIndex, endIndex);
+    return {
+      projects: processedProjects.slice(startIndex, endIndex),
+      total: processedProjects.length,
+    };
   }
 
   async getAllTechnologies(): Promise<string[]> {
