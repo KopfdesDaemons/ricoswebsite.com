@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal, afterRenderEffect, viewChild, ElementRef } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -25,6 +25,7 @@ export class BlogComponent implements OnInit {
   private title = inject(Title);
   private meta = inject(Meta);
   private translate = inject(TranslateService);
+  private searchInput = viewChild<ElementRef>('searchInput');
 
   postsList = signal<Post[]>([]);
   currentPage: number = 1;
@@ -35,6 +36,14 @@ export class BlogComponent implements OnInit {
   searchQuery: string = '';
   private routeParamsSubscription: Subscription | undefined;
   private queryParamsSubscription: Subscription | undefined;
+
+  constructor() {
+    afterRenderEffect(() => {
+      if (this.searchQuery) {
+        this.searchInput()?.nativeElement.focus();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.routeParamsSubscription = this.route.params.subscribe(async (params) => {

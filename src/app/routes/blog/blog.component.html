@@ -3,7 +3,7 @@
         <h1>{{ "blog_h1" | translate }}</h1>
         <div class="options">
             <form (submit)="$event.preventDefault(); search()" class="search">
-                <input type="text" [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_post' | translate" />
+                <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_post' | translate" />
                 @if(searchQuery.length > 0) {
                 <button type="button" (click)="searchQuery = ''; search()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">

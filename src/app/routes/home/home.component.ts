@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private totalProjects: number = 0;
   private projectsPerPage = 5;
   readonly projectsSection = viewChild.required<ElementRef>('projectsSection');
+  private searchInput = viewChild<ElementRef>('searchInput');
   private routeParamsSubscription: Subscription | undefined;
   private queryParamsSubscription: Subscription | undefined;
 
@@ -42,6 +43,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     afterRenderEffect(() => {
       if (this.projects().length > 0 && this.route.snapshot.fragment === 'projectsSection') {
         this.projectsSection().nativeElement?.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (this.searchQuery) {
+        this.searchInput()?.nativeElement.focus();
       }
     });
   }
