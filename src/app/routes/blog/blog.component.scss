@@ -29,8 +29,37 @@ h1 {
 
 .options {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
   width: 100%;
+
+  --background-input: rgb(36, 36, 41);
+  .search {
+    display: inline;
+    position: relative;
+
+    input[type="text"] {
+      padding: 0.5em;
+      font-size: 1.3em;
+      border-radius: 20px;
+      border: none;
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: transparent;
+      border: none;
+
+      &:hover {
+        color: rgb(121, 121, 121);
+        cursor: pointer;
+      }
+    }
+  }
 
   select {
     padding: 0.5em;

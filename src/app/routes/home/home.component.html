@@ -76,7 +76,7 @@
             <div class="search-container">
                 <h2>{{ "my_projects" | translate }}</h2>
                 <form (submit)="$event.preventDefault(); search()" class="search">
-                    <input type="text" [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_project' | translate" />
+                    <input type="text" [(ngModel)]="searchQuery" (keyup)="search()" name="searchQuery" [placeholder]="'search_project' | translate" />
                     @if(searchQuery.length > 0) {
                     <button type="button" (click)="searchQuery = ''; loadProjects()">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">

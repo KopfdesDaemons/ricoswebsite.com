@@ -96,14 +96,15 @@ export class PostService {
     sortOrder: 'asc' | 'desc' = 'desc',
     sortBy: 'date' | 'title' = 'date',
     filterTags: string[] = [],
-    filterTitle: string = ''
+    filterTitle: string = '',
+    searchQuery: string = ''
   ): Promise<{ posts: Post[]; totalPages: number }> {
     const postListURL = `${this.baseUrl}posts/posts.${language}.json`;
 
     const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
     const posts = JSON.parse(json) as PostMeta[];
 
-    // Filter nach Sichtbarkeit, Tags und Titel
+    // Filter by visibility, tags and title
     const visiblePosts = posts.filter(
       (post: PostMeta) =>
         !post.hideInFeed &&
@@ -111,11 +112,25 @@ export class PostService {
         (filterTitle === '' || (post.title && post.title.includes(filterTitle)))
     );
 
-    const postArray: Post[] = [];
+    // Create post object array
+    let postArray: Post[] = [];
     for (const post of visiblePosts) {
       postArray.push(new Post(post, post.fileName, this.languageS.userLanguage()));
     }
-    // Sortierung
+
+    // Filter by search query
+    if (searchQuery) {
+      const lowerCaseQuery = searchQuery.toLowerCase();
+      postArray = postArray.filter((post: Post) => {
+        const titleMatches = post.postMeta?.title?.toLowerCase().includes(lowerCaseQuery);
+        const descriptionMatches = post.postMeta?.description?.toLowerCase().includes(lowerCaseQuery);
+        const keywordsMatch = post.postMeta?.keywords.some((keyword: string) => keyword.toLowerCase().includes(lowerCaseQuery));
+
+        return titleMatches || descriptionMatches || keywordsMatch;
+      });
+    }
+
+    // Sorting
     postArray.sort((a: Post, b: Post) => {
       let compareA: number | string, compareB: number | string;
 
@@ -136,7 +151,7 @@ export class PostService {
       return 0;
     });
 
-    // Paginierung
+    // Pagination
     const startIndex = (page - 1) * pageSize;
     const paginatedPosts = postArray.slice(startIndex, startIndex + pageSize);
 

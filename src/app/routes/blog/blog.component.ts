@@ -32,6 +32,7 @@ export class BlogComponent implements OnInit {
   sortOrder: 'desc' | 'asc' = 'desc';
   sortBy: 'date' | 'title' = 'date';
   totalPages: number = 1;
+  searchQuery: string = '';
   private routeParamsSubscription: Subscription | undefined;
   private queryParamsSubscription: Subscription | undefined;
 
@@ -43,9 +44,10 @@ export class BlogComponent implements OnInit {
     });
 
     this.queryParamsSubscription = this.route.queryParams.subscribe(async (params) => {
-      const { sortBy, sortOrder } = params;
+      const { sortBy, sortOrder, search } = params;
       if (sortBy === 'date' || sortBy === 'title') this.sortBy = sortBy;
       if (sortOrder === 'asc' || sortOrder === 'desc') this.sortOrder = sortOrder;
+      this.searchQuery = search || '';
       await this.loadPostsList();
     });
   }
@@ -63,7 +65,7 @@ export class BlogComponent implements OnInit {
 
   async loadPostsList() {
     try {
-      const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage(), this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
+      const { posts, totalPages } = await this.postS.loadPostList(this.languageS.userLanguage(), this.currentPage, this.pageSize, this.sortOrder, this.sortBy, [], '', this.searchQuery);
       this.postsList.set(posts);
       this.totalPages = totalPages;
       await this.setMetaTags();
@@ -71,8 +73,7 @@ export class BlogComponent implements OnInit {
       console.error(error);
       if (error instanceof HttpErrorResponse) {
         if (error.status === 404 && this.languageS.userLanguage() !== 'en') {
-          // try to load posts in english
-          await this.postS.loadPostList('en', this.currentPage, this.pageSize, this.sortOrder, this.sortBy);
+          await this.postS.loadPostList('en', this.currentPage, this.pageSize, this.sortOrder, this.sortBy, [], '', this.searchQuery);
         }
       }
     }
@@ -81,5 +82,13 @@ export class BlogComponent implements OnInit {
   public async sort(event: any) {
     const [sortBy, sortOrder] = event.target.value.split(' ');
     await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], { queryParams: { sortBy, sortOrder } });
+  }
+
+  async search() {
+    await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], {
+      queryParams: {
+        search: this.searchQuery,
+      },
+    });
   }
 }
