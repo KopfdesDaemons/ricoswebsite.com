@@ -8,6 +8,7 @@ import { LanguageService } from './language.service';
 import { PostMeta } from '../models/post-meta.model';
 import { HighlightHelper } from '../helpers/highlight.helper';
 
+type PostListResult = { posts: Post[]; totalPages: number };
 @Injectable({
   providedIn: 'root',
 })
@@ -99,6 +100,14 @@ export class PostService {
     filterTitle: string = '',
     searchQuery: string = ''
   ): Promise<{ posts: Post[]; totalPages: number }> {
+    const key = makeStateKey<PostListResult>(`post-list-${language}-${page}-${pageSize}-${sortOrder}-${sortBy}-${filterTags.join('_')}-${filterTitle}-${searchQuery}`);
+
+    if (this.transferState.hasKey(key)) {
+      const result = this.transferState.get<PostListResult>(key, { posts: [], totalPages: 0 });
+      this.transferState.remove(key);
+      return result;
+    }
+
     const postListURL = `${this.baseUrl}posts/posts.${language}.json`;
 
     const json = await lastValueFrom(this.http.get(postListURL, { responseType: 'text' }));
@@ -157,6 +166,11 @@ export class PostService {
 
     const totalPages = Math.ceil(postArray.length / pageSize);
 
-    return { posts: paginatedPosts, totalPages: totalPages };
+    const result: PostListResult = { posts: paginatedPosts, totalPages: totalPages };
+
+    if (!isPlatformBrowser(this.platformId)) {
+      this.transferState.set(key, result);
+    }
+    return result;
   }
 }
