@@ -79,16 +79,22 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  getQueryParams() {
+    const queryParams: { [key: string]: string } = { sortBy: this.sortBy, sortOrder: this.sortOrder };
+    if (this.searchQuery) {
+      queryParams['search'] = this.searchQuery;
+    }
+    return queryParams;
+  }
+
   public async sort(event: any) {
     const [sortBy, sortOrder] = event.target.value.split(' ');
-    await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], { queryParams: { sortBy, sortOrder } });
+    this.sortBy = sortBy;
+    this.sortOrder = sortOrder;
+    await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], { queryParams: this.getQueryParams() });
   }
 
   async search() {
-    await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], {
-      queryParams: {
-        search: this.searchQuery,
-      },
-    });
+    await this.router.navigate([`/${this.languageS.userLanguage()}/blog/page/1`], { queryParams: this.getQueryParams() });
   }
 }

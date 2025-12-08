@@ -3,7 +3,7 @@
         <h1>{{ "blog_h1" | translate }}</h1>
         <div class="options">
             <form (submit)="$event.preventDefault(); search()" class="search">
-                <input type="text" [(ngModel)]="searchQuery" (keyup)="search()" name="searchQuery" [placeholder]="'search_post' | translate" />
+                <input type="text" [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_post' | translate" />
                 @if(searchQuery.length > 0) {
                 <button type="button" (click)="searchQuery = ''; search()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
@@ -35,9 +35,9 @@
         <ul class="pagination">
             @for (page of [].constructor(totalPages); track $index; let i = $index) {
             <li>
-                @if (currentPage != i + 1) {
-                <a [routerLink]="['/' + languageS.userLanguage() + '/blog/page/' + (i + 1) + '/.']" [queryParams]="{ sortBy: sortBy, sortOrder: sortOrder }">{{ i + 1 }} </a>
-                } @if (currentPage === i + 1) {
+                @if (currentPage !== i + 1) {
+                <a [routerLink]="['/' + languageS.userLanguage() + '/blog/page/' + (i + 1) + '/.']" [queryParams]="getQueryParams()">{{ i + 1 }} </a>
+                } @else {
                 <span>{{ i + 1 }}</span>
                 }
             </li>

@@ -92,10 +92,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getQueryParams(technologies: string[] = this.activeTechnologiesFilter) {
-    if (technologies.length === 0 && this.searchQuery === '') return null;
-    if (technologies.length === 0) return { search: this.searchQuery };
-    if (this.searchQuery === '') return { technologies: technologies.join('&') };
-    return { technologies: technologies.join('&'), search: this.searchQuery };
+    const queryParams: { [key: string]: string } = {};
+    if (technologies.length > 0) {
+      queryParams['technologies'] = technologies.join('&');
+    }
+    if (this.searchQuery) {
+      queryParams['search'] = this.searchQuery;
+    }
+    return Object.keys(queryParams).length > 0 ? queryParams : null;
   }
 
   async addTechnologieToFilter(technologie: string) {
