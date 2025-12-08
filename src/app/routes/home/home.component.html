@@ -77,10 +77,20 @@
                 <h2>{{ "my_projects" | translate }}</h2>
                 <form (submit)="$event.preventDefault(); search()" class="search">
                     <input type="text" [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_project' | translate" />
+                    @if(searchQuery.length > 0) {
+                    <button type="button" (click)="searchQuery = ''; loadProjects()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
+                            <path
+                                fill="currentColor"
+                                d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                            />
+                        </svg>
+                    </button>
+                    }
                 </form>
             </div>
             <div class="filter">
-                <ul class="activTechnologiesFilterOptions">
+                <ul class="activeTechnologiesFilterOptions">
                     @for (technologie of activeTechnologiesFilter; track technologie) {
                     <li>
                         <span>{{ technologie }}</span>

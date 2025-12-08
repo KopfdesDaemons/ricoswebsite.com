@@ -235,7 +235,7 @@
     }
   }
 
-  .activTechnologiesFilterOptions {
+  .activeTechnologiesFilterOptions {
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 60%;
@@ -333,6 +333,7 @@
   .search {
     display: inline;
     color-scheme: dark;
+    position: relative;
 
     input[type="text"] {
       padding: 0.5em;
@@ -341,7 +342,6 @@
       color: azure !important;
       border-radius: 20px;
       border: none;
-      outline: none;
 
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
@@ -350,8 +350,21 @@
         box-shadow: inset 0 0 0 0 var(--background-input),
           inset 0 0 0 100px var(--background-input) !important;
         -webkit-text-fill-color: azure !important;
-        border: none;
         background-clip: content-box !important;
+      }
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: transparent;
+      border: none;
+
+      &:hover {
+        color: rgb(121, 121, 121);
+        cursor: pointer;
       }
     }
   }
