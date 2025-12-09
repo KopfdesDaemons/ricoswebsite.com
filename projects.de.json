@@ -1,6 +1,32 @@
 {
   "projects": [
     {
+      "name": "Bilderrahmen",
+      "description": "Ein Desklet für den Cinnamon Desktop, welches verschiedene Bilderrahmen anzeigen kann.",
+      "image": "\\images\\picture-frames.avif",
+      "features": [
+        "Ausrichtung des angezeigten Bildbereiches",
+        "Stark anpassbare Rahmenformen",
+        "Anpassbarer Rand"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/87",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/picture-frames@KopfdesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
+      "name": "GitHub Beitragsraster",
+      "description": "Ein Desklet für den Cinnamon Desktop, welches das Beitragsraster eines GitHub-Benutzers anzeigt",
+      "image": "\\images\\github-contribution-grid.avif",
+      "features": [
+        "Benutzerdefinierte Größe des Desklets",
+        "Einstellung des Aktualisierungsintervalls",
+        "Einstellung für die Hintergrundfarbe"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/86",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/tree/master/github-contribution-grid@KopfdesDaemons",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
       "name": "Ricos Resource Pack",
       "description": "Ein Minecraft Ressourcenpaket",
       "image": "\\images\\ricos-resource-pack.avif",
