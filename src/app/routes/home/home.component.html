@@ -78,7 +78,7 @@
                 <form (submit)="$event.preventDefault(); search()" class="search">
                     <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_project' | translate" />
                     @if(searchQuery.length > 0) {
-                    <button type="button" (click)="searchQuery = ''; loadProjects()">
+                    <button type="button" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/1/.'" [fragment]="'projectsSection'">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
                             <path
                                 fill="currentColor"

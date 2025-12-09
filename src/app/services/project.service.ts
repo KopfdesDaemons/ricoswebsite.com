@@ -70,7 +70,7 @@ export class ProjectService {
 
   async getProjects(filterByTechnologies: string[] = [], itemsPerPage: number = 10, page: number = 1, searchQuery: string = ''): Promise<GetProjectsResult> {
     const lang = this.languageS.userLanguage();
-    const key = makeStateKey<GetProjectsResult>(`projects-list-${lang}-${filterByTechnologies.join('_')}-${itemsPerPage}-${page}-${searchQuery}`);
+    const key = this.getProjectsStateKey(lang, filterByTechnologies, itemsPerPage, page, searchQuery);
 
     if (this.transferState.hasKey(key)) {
       const result = this.transferState.get<GetProjectsResult>(key, { projects: [], total: 0 });
@@ -102,9 +102,13 @@ export class ProjectService {
     return result;
   }
 
+  getProjectsStateKey(lang: string, filterByTechnologies: string[], itemsPerPage: number, page: number, searchQuery: string) {
+    return makeStateKey<GetProjectsResult>(`projects-list-${lang}-${filterByTechnologies.join('_')}-${itemsPerPage}-${page}-${searchQuery}`);
+  }
+
   async getAllTechnologies(): Promise<AllTechnologiesResult> {
     const lang = this.languageS.userLanguage();
-    const key = makeStateKey<AllTechnologiesResult>(`all-technologies-${lang}`);
+    const key = this.getAllTechnologiesStateKey(lang);
 
     if (this.transferState.hasKey(key)) {
       const result = this.transferState.get<AllTechnologiesResult>(key, []);
@@ -118,6 +122,16 @@ export class ProjectService {
     const withoutUndefined = allTechnologies.filter((item) => item !== undefined);
     const uniqueTechnologies = Array.from(new Set(withoutUndefined));
 
-    return uniqueTechnologies.sort();
+    const sortedTechnologies = uniqueTechnologies.sort();
+
+    if (!isPlatformBrowser(this.platformId)) {
+      this.transferState.set(key, sortedTechnologies);
+    }
+
+    return sortedTechnologies;
+  }
+
+  getAllTechnologiesStateKey(lang: string) {
+    return makeStateKey<AllTechnologiesResult>(`all-technologies-${lang}`);
   }
 }

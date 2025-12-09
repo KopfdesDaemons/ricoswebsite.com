@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, viewChild, signal, ChangeDetectionStrategy, afterRenderEffect, effect } from '@angular/core';
+import { Component, ElementRef, inject, viewChild, signal, ChangeDetectionStrategy, afterRenderEffect, effect, PLATFORM_ID, TransferState, makeStateKey } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
@@ -7,6 +7,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
+import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -25,6 +26,8 @@ export class HomeComponent {
   private translate = inject(TranslateService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private transferState = inject(TransferState);
+  private platformId = inject<object>(PLATFORM_ID);
 
   private routeParams = toSignal(this.route.params);
   private queryParams = toSignal(this.route.queryParams);
@@ -41,6 +44,31 @@ export class HomeComponent {
   private searchInput = viewChild<ElementRef>('searchInput');
 
   constructor() {
+    const params = this.route.snapshot.params;
+    const queryParams = this.route.snapshot.queryParams;
+    const page = +(params['page'] || 1);
+    const activeTechnologiesFilter = queryParams['technologies'] ? queryParams['technologies'].split('&') : [];
+    const searchQuery = queryParams['search'] || '';
+
+    const projectsKey = this.ps.getProjectsStateKey(this.languageS.userLanguage(), activeTechnologiesFilter, this.projectsPerPage, page, searchQuery);
+
+    if (this.transferState.hasKey(projectsKey)) {
+      const result = this.transferState.get<any>(projectsKey, { projects: [], total: 0 });
+      this.projects.set(result.projects);
+      this.totalProjects = result.total;
+      this.totalPages.set(Math.ceil(this.totalProjects / this.projectsPerPage));
+      this.transferState.remove(projectsKey);
+    }
+
+    const technologiesKey = this.ps.getAllTechnologiesStateKey(this.languageS.userLanguage());
+    if (this.transferState.hasKey(technologiesKey)) {
+      const allTechnologies = this.transferState.get<string[]>(technologiesKey, []);
+      this.technologiesFilterOptions = allTechnologies.filter((t) => !activeTechnologiesFilter.includes(t));
+      this.activeTechnologiesFilter = activeTechnologiesFilter;
+      this.searchQuery = searchQuery;
+      this.transferState.remove(technologiesKey);
+    }
+
     effect(async () => {
       // Re-load projects when language, route params or query params change
       this.languageS.userLanguage();
@@ -70,7 +98,7 @@ export class HomeComponent {
   }
 
   async loadProjects() {
-    console.log('load projects');
+    if (!isPlatformBrowser(this.platformId) && this.projects().length > 0) return;
 
     const params = this.routeParams();
     const queryParams = this.queryParams();
