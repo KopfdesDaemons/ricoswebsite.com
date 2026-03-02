@@ -82,8 +82,10 @@ const St = imports.gi.St;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
     this.setHeader("Tutorial Desklet");
+  }
+
+  on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
@@ -132,8 +134,10 @@ const St = imports.gi.St;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
     this.setHeader("Tutorial Desklet");
+  }
+
+  on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
@@ -167,8 +171,10 @@ const St = imports.gi.St;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
     this.setHeader("Tutorial Desklet");
+  }
+
+  on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
@@ -207,10 +213,12 @@ const St = imports.gi.St;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader("Tutorial Desklet");
 
     this.iconName = "face-smile-symbolic";
+  }
 
-    this.setHeader("Tutorial Desklet");
+  on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
@@ -342,12 +350,27 @@ const Settings = imports.ui.settings;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "label-font-size", "labelFontSize", this._setupLayout.bind(this));
-
     this.setHeader("Tutorial Desklet");
+
+    this.isReloading = false;
+    this.labelFontSize = 20;
+
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    (this, settings.bindProperty(Settings.BindingDirection.IN, "label-font-size", "labelFontSize", this._setupLayout.bind(this)));
+  }
+
+  on_desklet_added_to_desktop() {
     this._setupLayout();
+  }
+
+  on_desklet_removed() {
+    if (this.settings && !this.isReloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this.isReloading = true;
   }
 
   _setupLayout() {
@@ -381,8 +404,10 @@ const Cogl = imports.gi.Cogl;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-
     this.setHeader("Tutorial Desklet");
+  }
+
+  on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
@@ -436,26 +461,44 @@ const Mainloop = imports.mainloop;
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
-    this.counter = 0;
-
     this.setHeader("Tutorial Desklet");
-    this._updateCounter();
+
+    this._timeoutId = null;
+    this._counter = 0;
+    this._label = null;
   }
 
-  _updateCounter() {
-    if (this.timeout) Mainloop.source_remove(this.timeout);
-    this.timeout = Mainloop.timeout_add_seconds(5, () => this._updateCounter());
-    this.counter++;
-    this._setupLayout();
+  on_desklet_added_to_desktop() {
+    this._label = new St.Label({ style_class: "counter-label" });
+    this.setContent(this._label);
+    this._updateUI();
+    this._runTimer();
   }
 
-  _setupLayout() {
-    const label = new St.Label({ text: `Counter: ${this.counter}` });
-    this.setContent(label);
+  _runTimer() {
+    // Ensure no multiple loops are running
+    this._stopTimer();
+
+    this._timeoutId = Mainloop.timeout_add_seconds(5, () => {
+      this._counter++;
+      this._updateUI();
+      return true; // Keeps the timeout active
+    });
+  }
+
+  _updateUI() {
+    this._label.set_text(`Counter: ${this._counter}`);
+  }
+
+  _stopTimer() {
+    if (this._timeoutId) {
+      Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
+    }
   }
 
   on_desklet_removed() {
-    if (this._timeout) Mainloop.source_remove(this._timeout);
+    this._stopTimer();
   }
 }
 
@@ -480,7 +523,7 @@ const Gettext = imports.gettext;
 
 const UUID = "tutorial-desklet@KopfdesDaemons";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
@@ -524,7 +567,7 @@ const Gettext = imports.gettext;
 
 const UUID = "tutorial-desklet@KopfdesDaemons";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
@@ -533,8 +576,10 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("Tutorial Desklet"));
+  }
 
-    this.setHeader("Tutorial Desklet");
+  on_desklet_added_to_desktop() {
     this._setupLayout();
   }
 
