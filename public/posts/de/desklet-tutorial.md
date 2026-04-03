@@ -356,7 +356,7 @@ class MyDesklet extends Desklet.Desklet {
     this.labelFontSize = 20;
 
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    (this, settings.bindProperty(Settings.BindingDirection.IN, "label-font-size", "labelFontSize", this._setupLayout.bind(this)));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "label-font-size", "labelFontSize", this._setupLayout.bind(this));
   }
 
   on_desklet_added_to_desktop() {
