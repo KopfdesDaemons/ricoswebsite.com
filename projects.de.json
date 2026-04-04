@@ -1,6 +1,20 @@
 {
   "projects": [
     {
+      "name": "Clocket (Rewrite)",
+      "description": "Ein Desklet für den Cinnamon Desktop, welches die Uhrzeit, das Datum und eine Wettervorhersage anzeigt.",
+      "image": "\\images\\clocket.avif",
+      "features": [
+        "Auswahl des Wetterdienstes (Open-Meteo oder Open Weather Map free)",
+        "Einstellungen für den Standort für die Wettervorhersage",
+        "Style Presets sowie viele Optionen für Designanpassungen",
+        "Benutzerdefiniertes Zeit- und Datumsformat"
+      ],
+      "projectURL": "https://cinnamon-spices.linuxmint.com/desklets/view/59",
+      "githubURL": "https://github.com/linuxmint/cinnamon-spices-desklets/pull/1745",
+      "technologies": ["JavaScript", "Cinnamon"]
+    },
+    {
       "name": "Bilderrahmen",
       "description": "Ein Desklet für den Cinnamon Desktop, welches verschiedene Bilderrahmen anzeigen kann.",
       "image": "\\images\\picture-frames.avif",
