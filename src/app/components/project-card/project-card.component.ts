@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
-import { Project } from 'src/app/models/project.model';
-import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Project } from '../../models/project.model';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-project-card',

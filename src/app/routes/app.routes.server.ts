@@ -1,8 +1,8 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import { LanguageService } from '../services/language.service';
 import { inject } from '@angular/core';
-import { getPostsListRouteParams, getPostsRouteParams } from 'server/services/posts.service';
 import { ProjectService } from '../services/project.service';
+import { getPostsListRouteParams, getPostsRouteParams } from '../../../server/services/posts.service';
 
 const getAllLangParams = async (): Promise<Record<string, string>[]> => {
   return new Promise((resolve) => {

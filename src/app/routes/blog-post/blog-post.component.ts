@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewEncapsulation, effect, inject, signal, viewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, firstValueFrom } from 'rxjs';
-import { Post } from 'src/app/models/post.model';
-import { CodepenService } from 'src/app/services/codepen.service';
-import { PostService } from 'src/app/services/post.service';
 import { DisqusComponent } from '../../components/disqus/disqus.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { SafeHtmlPipe } from 'src/app/pipes/safe-html.pipe';
-import { MetaService } from 'src/app/services/meta.service';
+import { Post } from '../../models/post.model';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
+import { CodepenService } from '../../services/codepen.service';
+import { MetaService } from '../../services/meta.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-blog-post',

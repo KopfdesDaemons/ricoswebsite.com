@@ -1,15 +1,15 @@
 import { Component, ElementRef, inject, viewChild, signal, ChangeDetectionStrategy, afterRenderEffect, effect, PLATFORM_ID, TransferState, makeStateKey } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ProjectService } from 'src/app/services/project.service';
-import { Project } from 'src/app/models/project.model';
-import { LanguageService } from 'src/app/services/language.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { lastValueFrom } from 'rxjs';
 import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Project } from '../../models/project.model';
+import { LanguageService } from '../../services/language.service';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-home',

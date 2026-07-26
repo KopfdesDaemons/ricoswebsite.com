@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { PostMeta } from 'src/app/models/post-meta.model';
+import { PostMeta } from '../../models/post-meta.model';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-blogpost-card',

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, ElementRef, inject, PLATFORM_ID, viewChild } from '@angular/core';
-import { ConsentService } from 'src/app/services/consent.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { ConsentService } from '../../services/consent.service';
 
 @Component({
   selector: 'app-consent-manager',

@@ -3,12 +3,12 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { Subscription, lastValueFrom } from 'rxjs';
-import { Post } from 'src/app/models/post.model';
-import { LanguageService } from 'src/app/services/language.service';
-import { PostService } from 'src/app/services/post.service';
 import { FormsModule } from '@angular/forms';
 import { BlogpostCardComponent } from '../../components/blogpost-card/blogpost-card.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Post } from '../../models/post.model';
+import { LanguageService } from '../../services/language.service';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-blog',

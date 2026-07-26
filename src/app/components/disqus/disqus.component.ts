@@ -1,10 +1,10 @@
 import { Component, ElementRef, Renderer2, ViewChild, PLATFORM_ID, inject, input, ChangeDetectionStrategy, computed, effect, OnDestroy } from '@angular/core';
-import { DisqusService } from 'src/app/services/disqus.service';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { ConsentService } from 'src/app/services/consent.service';
 import { RouterLink } from '@angular/router';
-import { LanguageService } from 'src/app/services/language.service';
+import { ConsentService } from '../../services/consent.service';
+import { DisqusService } from '../../services/disqus.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-disqus',

@@ -1,9 +1,9 @@
 import { Component, inject, HostListener, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { NgClass } from '@angular/common';
-import { LanguageService } from 'src/app/services/language.service';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../services/language.service';
+import { SidemenuService } from '../../services/sidemenu.service';
 
 @Component({
   selector: 'app-sidemenu',

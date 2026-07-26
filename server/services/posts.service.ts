@@ -1,7 +1,7 @@
 import path from 'path';
 import * as fs from 'fs';
-import { POSTS_FOLDER_PATH } from 'server/config/paths.config';
-import { MarkdownHelper } from 'src/app/helpers/markdown.helper';
+import { MarkdownHelper } from '../../src/app/helpers/markdown.helper';
+import { POSTS_FOLDER_PATH } from '../config/paths.config';
 
 let languageFileNameList: { lang: string; fileNames: string[] }[] | undefined = undefined;
 const postsPerPage = 5;
@@ -106,7 +106,7 @@ export const getPostsRouteParams = async (): Promise<{ lang: string; fileName: s
     fileNames.map((fileName) => ({
       lang,
       fileName: path.basename(fileName, path.extname(fileName)),
-    }))
+    })),
   );
 
   return languageFileNameList;

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SidemenuService } from 'src/app/services/sidemenu.service';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SidemenuService } from '../../services/sidemenu.service';
 
 @Component({
   selector: 'app-header',

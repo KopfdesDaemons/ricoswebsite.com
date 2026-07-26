@@ -2,8 +2,8 @@ import { AngularNodeAppEngine, createNodeRequestHandler, isMainModule, writeResp
 import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
-import { generateConfigFiles } from 'server/services/config-files.service';
-import { generatePostFiles } from 'server/services/posts.service';
+import { generateConfigFiles } from './server/services/config-files.service';
+import { generatePostFiles } from './server/services/posts.service';
 
 export async function app(): Promise<express.Express> {
   const server = express();
@@ -22,7 +22,7 @@ export async function app(): Promise<express.Express> {
     express.static(browserDistFolder, {
       maxAge: '1y',
       index: 'index.html',
-    })
+    }),
   );
 
   // All regular routes use the Angular engine
