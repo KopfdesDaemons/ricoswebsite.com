@@ -7,7 +7,7 @@ keywords:
   - GitHub Pages
   - Prerendering
 description: A guide for deploying an Angular project to GitHub Pages with pre-rendered pages.
-date: 2024-09-07
+date: 2026-07-26
 ---
 
 The Angular Application Builder pre-renders an Angular project, but is designed for deployment with a backend. By default, all requests run via `server.mjs`, which runs in the backend via Node. In order to be able to use the Application Builder for a deployment with only the pre-rendered files, a few things have to be taken into account.
@@ -22,54 +22,10 @@ Without further adjustments, you will encounter a problem in the network tab of 
 
 The reason for this is that the HTTP server is looking for a file but finds a directory. When requesting `domain.de/legal-notice`, the HTTP server tries to find the file `domain.de/legal-notice.html`. Since this file does not exist, the redirection to `domain.de/legal-notice/index.html` occurs. To prevent the redirection, the URL `domain.de/legal-notice/` should be called directly.
 
-Now the problem remains that Angular changes the URL to `domain.de/legal-notice` after calling `domain.de/legal-notice/`. This leads again to the problem with the redirection when reloading the page. The following script in `main.ts` prevents Angular from removing the trailing slash:
+Now the problem remains that Angular changes the URL to `domain.de/legal-notice` after calling `domain.de/legal-notice/`. This leads again to the problem with the redirection when reloading the page. To solve the problem, the `TrailingSlashPathLocationStrategy` must be enabled in `app.config.ts`:
 
-```typescript
-import { Location } from "@angular/common";
-import { bootstrapApplication } from "@angular/platform-browser";
-import { AppComponent } from "./app/app.component";
-import { appConfig } from "./app/app.config";
-
-bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));
-
-const __stripTrailingSlash = Location.stripTrailingSlash;
-
-// Enables navigation with a trailing slash without removing it
-Location.stripTrailingSlash = function _stripTrailingSlash(url: string): string {
-  const urlParts = url.match(/([^?#]*)(\?[^#]*)?(#.*)?/);
-
-  const path = urlParts?.[1] || "";
-  const query = urlParts?.[2] || "";
-  const fragment = urlParts?.[3] || "";
-
-  // If the path ends with a slash, add a dot
-  return /[^\\/]\/$/.test(path) ? path + "." + query + fragment : __stripTrailingSlash(url);
-};
-```
-
-All route paths in Angular must have a trailing slash, followed by a dot.
-
-```typescript
-export const routes: Routes = [
-  {
-    path: "",
-    loadComponent: () => import("./home/home.component").then((m) => m.HomeComponent),
-  },
-  {
-    path: "legal-notice/.",
-    loadComponent: () => import("./legal-notice/legal-notice.component").then((m) => m.LegalNoticeComponent),
-  },
-  {
-    path: "legal-notice",
-    loadComponent: () => import("./legal-notice/legal-notice.component").then((m) => m.LegalNoticeComponent),
-  },
-];
-```
-
-The call must also end with a period:
-
-```html
-<a routerLink="/legal-notice/.">legal-notice</a>
+```ts
+{ provide: LocationStrategy, useClass: TrailingSlashPathLocationStrategy }
 ```
 
 ## Testing the pre-rendered page
