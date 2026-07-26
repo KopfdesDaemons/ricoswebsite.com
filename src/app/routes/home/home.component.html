@@ -77,24 +77,8 @@
                 <h2>{{ "my_projects" | translate }}</h2>
                 <form (submit)="$event.preventDefault(); search()" class="search">
                     <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_project' | translate" />
-                    @if(searchQuery.length > 0) {
-                    <button type="button" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/1/.'" [fragment]="'projectsSection'">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
-                            <path
-                                fill="currentColor"
-                                d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
-                            />
-                        </svg>
-                    </button>
-                    }
-                </form>
-            </div>
-            <div class="filter">
-                <ul class="activeTechnologiesFilterOptions">
-                    @for (technologie of activeTechnologiesFilter; track technologie) {
-                    <li>
-                        <span>{{ technologie }}</span>
-                        <button class="cancel-btn" (click)="removeTechnologieFromFilter(technologie)">
+                    @if (searchQuery.length > 0) {
+                        <button type="button" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/1'" [fragment]="'projectsSection'">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
                                 <path
                                     fill="currentColor"
@@ -102,115 +86,132 @@
                                 />
                             </svg>
                         </button>
-                    </li>
+                    }
+                </form>
+            </div>
+            <div class="filter">
+                <ul class="activeTechnologiesFilterOptions">
+                    @for (technologie of activeTechnologiesFilter; track technologie) {
+                        <li>
+                            <span>{{ technologie }}</span>
+                            <button class="cancel-btn" (click)="removeTechnologieFromFilter(technologie)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
+                                    <path
+                                        fill="currentColor"
+                                        d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                                    />
+                                </svg>
+                            </button>
+                        </li>
                     }
                 </ul>
                 <div class="technologiesFilterOption">
                     <div>
                         @if (technologiesFilterOptions.length > 0) {
-                        <span>{{ "filter_options" | translate }}:</span>
+                            <span>{{ "filter_options" | translate }}:</span>
                         }
                         <ul>
                             @for (technologie of technologiesFilterOptions; track technologie) {
-                            <li>
-                                <button (click)="addTechnologieToFilter(technologie)">{{ technologie }}</button>
-                            </li>
+                                <li>
+                                    <button (click)="addTechnologieToFilter(technologie)">{{ technologie }}</button>
+                                </li>
                             }
                         </ul>
                     </div>
                 </div>
             </div>
             @if (projects().length > 0) {
-            <ul class="projectCards">
-                @for (project of projects(); track project.name) {
-                <li>
-                    <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])"> </app-project-card>
-                </li>
-                }
-            </ul>
-            } @else {
-            <span class="no-projects-found">{{ "no_projects_found" | translate }}</span>
-            } @if (totalPages() > 1) {
-            <div class="pagination">
-                <!-- back button -->
-                @if (currentPage() - 1 > 0) {
-                <a class="navLink" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() - 1) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'"
-                    >&lt;</a
-                >
-                }
-                <ul>
-                    <!-- jump to first page button -->
-                    @if (currentPage() >= 4) {
-                    <li>
-                        <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/1/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">1</a>
-                    </li>
-                    }
-                    <!-- dots next to first page -->
-                    @if (currentPage() >= 5) {
-                    <li class="dots">
-                        <span>…</span>
-                    </li>
-                    }
-                    <!-- button to 2nd page before current -->
-                    @if (currentPage() - 2 > 0) {
-                    <li>
-                        <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() - 2) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
-                            currentPage() - 2
-                        }}</a>
-                    </li>
-                    }
-                    <!-- button to 1st page before current -->
-                    @if (currentPage() - 1 > 0) {
-                    <li>
-                        <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() - 1) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
-                            currentPage() - 1
-                        }}</a>
-                    </li>
-                    }
-
-                    <li class="current">
-                        <span>{{ currentPage() }}</span>
-                    </li>
-
-                    <!-- button to next page after current -->
-                    @if (currentPage() + 1 <= totalPages()) {
-                    <li>
-                        <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() + 1) + '/.'" [queryParams]="getQueryParams()" fragment="projectsSection">{{
-                            currentPage() + 1
-                        }}</a>
-                    </li>
-                    }
-                    <!-- button to 2nd page after current -->
-                    @if (currentPage() + 2 <= totalPages()) {
-                    <li>
-                        <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() + 2) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
-                            currentPage() + 2
-                        }}</a>
-                    </li>
-                    }
-                    <!-- dots next to last page -->
-                    @if (totalPages() - 4 >= currentPage()) {
-                    <li class="dots">
-                        <span>…</span>
-                    </li>
-                    }
-                    <!-- jump to last page button -->
-                    @if (totalPages() - 3 >= currentPage()) {
-                    <li>
-                        <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + totalPages() + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
-                            totalPages()
-                        }}</a>
-                    </li>
+                <ul class="projectCards">
+                    @for (project of projects(); track project.name) {
+                        <li>
+                            <app-project-card [project]="project" (clickOnTag)="applyFilter([$event])"> </app-project-card>
+                        </li>
                     }
                 </ul>
+            } @else {
+                <span class="no-projects-found">{{ "no_projects_found" | translate }}</span>
+            }
+            @if (totalPages() > 1) {
+                <div class="pagination">
+                    <!-- back button -->
+                    @if (currentPage() - 1 > 0) {
+                        <a class="navLink" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() - 1)" [queryParams]="getQueryParams()" [fragment]="'projectsSection'"
+                            >&lt;</a
+                        >
+                    }
+                    <ul>
+                        <!-- jump to first page button -->
+                        @if (currentPage() >= 4) {
+                            <li>
+                                <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/1'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">1</a>
+                            </li>
+                        }
+                        <!-- dots next to first page -->
+                        @if (currentPage() >= 5) {
+                            <li class="dots">
+                                <span>…</span>
+                            </li>
+                        }
+                        <!-- button to 2nd page before current -->
+                        @if (currentPage() - 2 > 0) {
+                            <li>
+                                <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() - 2)" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
+                                    currentPage() - 2
+                                }}</a>
+                            </li>
+                        }
+                        <!-- button to 1st page before current -->
+                        @if (currentPage() - 1 > 0) {
+                            <li>
+                                <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() - 1)" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
+                                    currentPage() - 1
+                                }}</a>
+                            </li>
+                        }
 
-                <!-- forward button -->
-                @if (currentPage() + 1 <= totalPages()) {
-                <a class="navLink" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() + 1) + '/.'" [queryParams]="getQueryParams()" [fragment]="'projectsSection'"
-                    >&gt;</a
-                >
-                }
-            </div>
+                        <li class="current">
+                            <span>{{ currentPage() }}</span>
+                        </li>
+
+                        <!-- button to next page after current -->
+                        @if (currentPage() + 1 <= totalPages()) {
+                            <li>
+                                <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() + 1)" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
+                                    currentPage() + 1
+                                }}</a>
+                            </li>
+                        }
+                        <!-- button to 2nd page after current -->
+                        @if (currentPage() + 2 <= totalPages()) {
+                            <li>
+                                <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() + 2)" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
+                                    currentPage() + 2
+                                }}</a>
+                            </li>
+                        }
+                        <!-- dots next to last page -->
+                        @if (totalPages() - 4 >= currentPage()) {
+                            <li class="dots">
+                                <span>…</span>
+                            </li>
+                        }
+                        <!-- jump to last page button -->
+                        @if (totalPages() - 3 >= currentPage()) {
+                            <li>
+                                <a [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + totalPages()" [queryParams]="getQueryParams()" [fragment]="'projectsSection'">{{
+                                    totalPages()
+                                }}</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- forward button -->
+                    @if (currentPage() + 1 <= totalPages()) {
+                        <a class="navLink" [routerLink]="'/' + languageS.userLanguage() + '/projects/page/' + (currentPage() + 1)" [queryParams]="getQueryParams()" [fragment]="'projectsSection'"
+                            >&gt;</a
+                        >
+                    }
+                </div>
             }
         </div>
     </section>

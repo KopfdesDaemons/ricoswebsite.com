@@ -1,34 +1,37 @@
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { YamlLanguageLoader } from './utilities/yam-language-loader';
-import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection, TransferState } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule, provideClientHydration, withIncrementalHydration } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
+import { LocationStrategy, TrailingSlashPathLocationStrategy } from '@angular/common';
 import { routes } from './routes/app.routes';
+import { TranslateBrowserLoader } from './utilities/translate-browser.loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideClientHydration(withIncrementalHydration()),
+    provideClientHydration(),
     provideZonelessChangeDetection(),
+    { provide: LocationStrategy, useClass: TrailingSlashPathLocationStrategy },
     provideRouter(
       routes,
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
       }),
-      withPreloading(PreloadAllModules)
+      withPreloading(PreloadAllModules),
     ),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
-          useFactory: () => new YamlLanguageLoader(),
+          useClass: TranslateBrowserLoader,
+          deps: [HttpClient, TransferState],
         },
       }),
       BrowserModule,
-      FormsModule
+      FormsModule,
     ),
-    provideHttpClient(withFetch()),
+    provideHttpClient(),
   ],
 };

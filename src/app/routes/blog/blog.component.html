@@ -4,15 +4,15 @@
         <div class="options">
             <form (submit)="$event.preventDefault(); search()" class="search">
                 <input type="text" #searchInput [(ngModel)]="searchQuery" name="searchQuery" [placeholder]="'search_post' | translate" />
-                @if(searchQuery.length > 0) {
-                <button type="button" (click)="searchQuery = ''; search()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
-                        <path
-                            fill="currentColor"
-                            d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
-                        />
-                    </svg>
-                </button>
+                @if (searchQuery.length > 0) {
+                    <button type="button" (click)="searchQuery = ''; search()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24">
+                            <path
+                                fill="currentColor"
+                                d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                            />
+                        </svg>
+                    </button>
                 }
             </form>
             <select (change)="sort($event)" value="{{ sortBy }} {{ sortOrder }}">
@@ -24,25 +24,25 @@
         </div>
         <ul class="feed">
             @for (post of postsList(); track post.postMeta.description) {
-            <li>
-                @defer (hydrate never) {
-                <app-blogpost-card [postMeta]="post.postMeta"></app-blogpost-card>
-                }
-            </li>
+                <li>
+                    @defer (hydrate never) {
+                        <app-blogpost-card [postMeta]="post.postMeta"></app-blogpost-card>
+                    }
+                </li>
             }
         </ul>
         @if (totalPages > 1) {
-        <ul class="pagination">
-            @for (page of [].constructor(totalPages); track $index; let i = $index) {
-            <li>
-                @if (currentPage !== i + 1) {
-                <a [routerLink]="['/' + languageS.userLanguage() + '/blog/page/' + (i + 1) + '/.']" [queryParams]="getQueryParams()">{{ i + 1 }} </a>
-                } @else {
-                <span>{{ i + 1 }}</span>
+            <ul class="pagination">
+                @for (page of [].constructor(totalPages); track $index; let i = $index) {
+                    <li>
+                        @if (currentPage !== i + 1) {
+                            <a [routerLink]="['/' + languageS.userLanguage() + '/blog/page/' + (i + 1)]" [queryParams]="getQueryParams()">{{ i + 1 }} </a>
+                        } @else {
+                            <span>{{ i + 1 }}</span>
+                        }
+                    </li>
                 }
-            </li>
-            }
-        </ul>
+            </ul>
         }
     </section>
 </main>

@@ -47,13 +47,13 @@
                 <a routerLink="/legal-notice/.">{{ "legal_notice" | translate }}</a>
             </li>
             <li>
-                <a routerLink="{{ languageS.userLanguage() + '/privacy-policy/.' }}">{{ "privacy_policy" | translate }}</a>
+                <a routerLink="{{ languageS.userLanguage() + '/privacy-policy' }}">{{ "privacy_policy" | translate }}</a>
             </li>
             <li><button (click)="consentS.openConsentManager()">Consent Manager</button></li>
         </ul>
     </div>
 </footer>
 
-@defer(when consentS.consentManagerIsOpen()){
-<app-consent-manager></app-consent-manager>
+@defer (when consentS.consentManagerIsOpen()) {
+    <app-consent-manager></app-consent-manager>
 }

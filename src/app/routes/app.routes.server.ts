@@ -39,17 +39,7 @@ export const serverRoutes: ServerRoute[] = [
     getPrerenderParams: getAllLangParams,
   },
   {
-    path: ':lang/blog/.',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: getAllLangParams,
-  },
-  {
     path: ':lang/blog/page/:page',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: getPostsListRouteParams,
-  },
-  {
-    path: ':lang/blog/page/:page/.',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: getPostsListRouteParams,
   },
@@ -59,27 +49,12 @@ export const serverRoutes: ServerRoute[] = [
     getPrerenderParams: getPostsRouteParams,
   },
   {
-    path: ':lang/blogpost/:fileName/.',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: getPostsRouteParams,
-  },
-  {
     path: ':lang/projects/page/:page',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: getProjectsRouteParams,
   },
   {
-    path: ':lang/projects/page/:page/.',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: getProjectsRouteParams,
-  },
-  {
     path: ':lang/privacy-policy/',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: getAllLangParams,
-  },
-  {
-    path: ':lang/privacy-policy/.',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: getAllLangParams,
   },
